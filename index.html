@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwissKidsSpots - Find Playparks, Pools & Game Zones in Switzerland</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet.js CSS (OpenStreetMap Map Library) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css?v=8">
+</head>
+<body class="light-theme">
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <div class="swiss-cross"><i class="fa-solid fa-plus"></i></div>
+                <div class="logo-text">
+                    <h1>SwissKids<span>Spots</span></h1>
+                    <p class="tagline">Explore playparks, game zones & swimming pools for kids in Switzerland</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="add-spot-btn" class="btn btn-primary" title="Add a playspot">
+                    <i class="fa-solid fa-map-pin"></i> Add a Spot
+                </button>
+                <button id="feedback-btn" class="btn btn-outline" title="Give Feedback">
+                    <i class="fa-solid fa-comments"></i> Feedback
+                </button>
+                <button id="theme-toggle" class="btn btn-icon" title="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-content">
+            <!-- Sidebar Panel: Search & Controls -->
+            <aside class="sidebar-panel">
+                <section class="search-section card">
+                    <h2><i class="fa-solid fa-magnifying-glass"></i> Search Nearby</h2>
+                    <div class="form-group search-zip-group">
+                        <label for="zip-input">Swiss ZIP Code or City</label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-location-dot input-icon"></i>
+                            <input type="text" id="zip-input" placeholder="e.g. 8000 (Zürich) or Bern" autocomplete="off">
+                            <button id="clear-zip" class="clear-btn" style="display: none;" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+                            <button id="locate-me-btn" class="locate-btn" title="Search near my location"><i class="fa-solid fa-crosshairs"></i></button>
+                        </div>
+                        <!-- Custom Autocomplete Dropdown -->
+                        <div id="zip-autocomplete" class="autocomplete-dropdown" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-with-value">
+                            <label for="radius-slider">Distance Radius</label>
+                            <span id="radius-value" class="badge">5 km</span>
+                        </div>
+                        <input type="range" id="radius-slider" min="0" max="10" step="1" value="5">
+                    </div>
+
+                    <div class="weather-dashboard-widget" id="weather-widget" style="display: none;">
+                        <!-- Will be dynamically updated by weather API -->
+                    </div>
+                </section>
+
+                <section class="filter-section card">
+                    <h2><i class="fa-solid fa-sliders"></i> Filters</h2>
+                    
+                    <div class="filter-group">
+                        <label>Spot Category</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-playpark" value="playpark" checked>
+                                <span class="checkmark playpark-chk"></span>
+                                <i class="fa-solid fa-child-reaching text-playpark"></i> Playparks
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-gamezone" value="gamezone" checked>
+                                <span class="checkmark gamezone-chk"></span>
+                                <i class="fa-solid fa-gamepad text-gamezone"></i> Game Zones
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-swimmingpool" value="swimmingpool" checked>
+                                <span class="checkmark swimmingpool-chk"></span>
+                                <i class="fa-solid fa-water-ladder text-swimmingpool"></i> Swimming Pools
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Entry Fee</label>
+                        <div class="radio-group">
+                            <label class="radio-container">
+                                <input type="radio" name="filter-fees" value="all" checked>
+                                <span class="radio-checkmark"></span>
+                                All spots
+                            </label>
+                            <label class="radio-container">
+                                <input type="radio" name="filter-fees" value="free">
+                                <span class="radio-checkmark"></span>
+                                Free entry only
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="checkbox-container toggle-container">
+                            <input type="checkbox" id="filter-weather-suitable">
+                            <span class="checkmark"></span>
+                            <i class="fa-solid fa-cloud-sun"></i> Weather Suitable Only
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sort-select">Sort By</label>
+                        <select id="sort-select" class="form-select">
+                            <option value="distance">Proximity (Closest First)</option>
+                            <option value="rating">User Rating (Highest First)</option>
+                            <option value="name">Name (A-Z)</option>
+                        </select>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Dashboard Split Area: List + Map -->
+            <div class="dashboard-split">
+                <!-- Spots List Container -->
+                <div class="spots-list-container">
+                    <div class="results-header">
+                        <span id="results-count">0 spots found</span>
+                        <button id="mobile-map-toggle" class="btn btn-secondary mobile-only">
+                            <i class="fa-solid fa-map"></i> Show Map
+                        </button>
+                    </div>
+                    <div id="spots-list" class="spots-list">
+                        <!-- Dynamic Spot Cards -->
+                    </div>
+                </div>
+
+                <!-- Sticky Map Container -->
+                <div id="map-panel" class="map-panel">
+                    <div class="map-wrapper">
+                        <div id="map"></div>
+                        <button id="mobile-list-toggle" class="btn btn-secondary mobile-only floating-map-btn">
+                            <i class="fa-solid fa-list"></i> Show List
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Detail Modal -->
+        <div id="detail-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content card">
+                <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+                <div class="modal-body" id="modal-spot-details">
+                    <!-- Dynamic Details Loaded Here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Spot Modal -->
+        <div id="add-spot-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content card max-w-lg">
+                <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+                <h2>Add a New Playspot</h2>
+                <p class="modal-subtitle">Share your favorite kid's spot in Switzerland with other families.</p>
+                <form id="add-spot-form" class="scroll-form">
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="new-spot-name">Spot Name *</label>
+                            <input type="text" id="new-spot-name" required placeholder="e.g., Zurich Horn Playground">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="new-spot-type">Type of Zone *</label>
+                            <select id="new-spot-type" class="form-select" required>
+                                <option value="playpark">Playpark (Outdoor)</option>
+                                <option value="gamezone">Game Zone (Indoor)</option>
+                                <option value="swimmingpool">Swimming Pool</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="new-spot-zip">Swiss ZIP Code (4-digits) *</label>
+                            <input type="text" id="new-spot-zip" required pattern="\d{4}" maxlength="4" placeholder="e.g., 8008">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="new-spot-city">City/Town *</label>
+                            <input type="text" id="new-spot-city" required placeholder="e.g., Zürich">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-spot-address">Full Address / Specific Location Description *</label>
+                        <input type="text" id="new-spot-address" required placeholder="e.g., Seefeldquai, 8008 Zürich">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="new-spot-lat">Latitude (Optional)</label>
+                            <input type="number" id="new-spot-lat" step="any" placeholder="e.g., 47.3582">
+                            <small class="form-help">Automatically derived from ZIP if left blank.</small>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="new-spot-lng">Longitude (Optional)</label>
+                            <input type="number" id="new-spot-lng" step="any" placeholder="e.g., 8.5488">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="new-spot-hours">Opening Times *</label>
+                            <input type="text" id="new-spot-hours" required placeholder="e.g., 08:00 - 20:00 daily">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="new-spot-fees">Fees (CHF) - Enter 0 if free *</label>
+                            <input type="text" id="new-spot-fees" required placeholder="e.g., Free or 15 CHF for kids">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="new-spot-minage">Min Age Recommendation</label>
+                            <input type="number" id="new-spot-minage" min="0" max="18" placeholder="e.g. 2">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="new-spot-maxage">Max Age Recommendation</label>
+                            <input type="number" id="new-spot-maxage" min="0" max="18" placeholder="e.g. 12">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Amenities / Facilities Available</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="new-spot-amenities" value="Toilets">
+                                <span class="checkmark"></span> Toilets
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="new-spot-amenities" value="Cafe/Food">
+                                <span class="checkmark"></span> Cafe / Food stall
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="new-spot-amenities" value="Shade">
+                                <span class="checkmark"></span> Shaded areas
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="new-spot-amenities" value="Stroller Friendly">
+                                <span class="checkmark"></span> Stroller Friendly
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="new-spot-amenities" value="Parking">
+                                <span class="checkmark"></span> Parking Nearby
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" name="new-spot-amenities" value="Picnic Area">
+                                <span class="checkmark"></span> Picnic/BBQ Spot
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-spot-image">Image URL (Optional)</label>
+                        <input type="url" id="new-spot-image" placeholder="Leave empty for a standard type placeholder image">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-spot-desc">Description & Play Features *</label>
+                        <textarea id="new-spot-desc" rows="3" required placeholder="Describe what makes this spot awesome for kids! (slides, trampolines, sand pit, water games etc.)"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="add-spot-cancel">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Spot</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Feedback Modal -->
+        <div id="feedback-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content card max-w-md">
+                <button class="modal-close" id="feedback-close"><i class="fa-solid fa-xmark"></i></button>
+                <h2>Share Your Feedback</h2>
+                <p class="modal-subtitle">Help us improve SwissKidsSpots for families.</p>
+                <form id="feedback-form">
+                    <div class="form-group">
+                        <label for="feedback-name">Name (Optional)</label>
+                        <input type="text" id="feedback-name" placeholder="e.g. Papa Roger">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-email">Email (Optional)</label>
+                        <input type="email" id="feedback-email" placeholder="e.g. roger@example.ch">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-type">Feedback Type *</label>
+                        <select id="feedback-type" class="form-select" required>
+                            <option value="suggestion">Feature Suggestion</option>
+                            <option value="bug">Report a Bug</option>
+                            <option value="content">Content Correction / Missing Spot</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>How would you rate your experience? *</label>
+                        <div class="feedback-rating-selector" id="feedback-rating-stars">
+                            <i class="fa-regular fa-star feedback-star" data-val="1"></i>
+                            <i class="fa-regular fa-star feedback-star" data-val="2"></i>
+                            <i class="fa-regular fa-star feedback-star" data-val="3"></i>
+                            <i class="fa-regular fa-star feedback-star" data-val="4"></i>
+                            <i class="fa-regular fa-star feedback-star" data-val="5"></i>
+                        </div>
+                        <input type="hidden" id="feedback-rating-input" required value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-comments">Message / Suggestions *</label>
+                        <textarea id="feedback-comments" rows="4" required placeholder="What can we improve?"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="feedback-cancel">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 SwissKidsSpots. Made with <i class="fa-solid fa-heart text-red"></i> for families in Switzerland. Weather data via Open-Meteo API.</p>
+        </footer>
+    </div>
+
+    <!-- Leaflet.js JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <!-- Custom Application Logic -->
+    <script src="app.js?v=8"></script>
+</body>
+</html>
