@@ -2138,39 +2138,6 @@
         ]
     },
     {
-        "id": "spot-57",
-        "name": "Funny Farm Indoor Playground",
-        "type": "gamezone",
-        "description": "Fun farm-themed indoor playground with trampolines, ball pits, slides, and climbing structures in a colourful, safe environment.",
-        "address": "Schaffhauserstrasse 550, 8052 Zürich",
-        "zip": "8052",
-        "city": "Zurich",
-        "lat": 47.418,
-        "lng": 8.55,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Entry fee applies",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "SwissKids Explorer",
-                "rating": 5,
-                "text": "Featured premium spot imported from our curated directory."
-            }
-        ],
-        "images": [
-            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
-        ]
-    },
-    {
         "id": "spot-58",
         "name": "The Jump Spot Lausanne",
         "type": "gamezone",
