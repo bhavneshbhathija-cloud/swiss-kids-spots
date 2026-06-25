@@ -500,6 +500,59 @@ async function openDetails(spotId) {
     const spot = spots.find(s => s.id === spotId);
     if (!spot) return;
 
+    let isGenericName = /^(playground|swimming pool|indoor play center) (in|at) /i.test(spot.name);
+
+    // If it's an OSM spot with a generic name, try to reverse geocode it to get a specific street name
+    if (spotId.startsWith("osm-spot-") && isGenericName) {
+        try {
+            const geoResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${spot.lat}&lon=${spot.lng}&format=json&accept-language=en,de`);
+            if (geoResponse.ok) {
+                const geoData = await geoResponse.json();
+                if (geoData && geoData.address) {
+                    const addr = geoData.address;
+                    const roadTypes = ['road', 'pedestrian', 'footway', 'path', 'cycleway', 'square', 'suburb', 'neighbourhood'];
+                    let street = "";
+                    for (const type of roadTypes) {
+                        if (addr[type]) {
+                            street = addr[type];
+                            break;
+                        }
+                    }
+                    
+                    if (street) {
+                        const suburb = addr.suburb || addr.neighbourhood || addr.city_district || "";
+                        
+                        if (spot.type === "playpark") {
+                            spot.name = `Playground at ${street}`;
+                        } else if (spot.type === "swimmingpool") {
+                            spot.name = `Swimming Pool at ${street}`;
+                        } else {
+                            spot.name = `Indoor Play Center at ${street}`;
+                        }
+                        
+                        if (suburb && suburb.toLowerCase() !== spot.city.toLowerCase()) {
+                            spot.name += ` (${suburb})`;
+                        }
+                        
+                        spot.address = `${street}, ${spot.zip} ${spot.city}`;
+                        
+                        // Update in global memory spots array
+                        const mainIdx = spots.findIndex(s => s.id === spotId);
+                        if (mainIdx !== -1) {
+                            spots[mainIdx].name = spot.name;
+                            spots[mainIdx].address = spot.address;
+                        }
+                        
+                        // Re-render the map and list to show the new name
+                        renderSpotsList();
+                    }
+                }
+            }
+        } catch (err) {
+            console.warn("Reverse geocoding failed:", err);
+        }
+    }
+
     const spotImages = spot.images && spot.images.length > 0 ? spot.images : [spot.imageUrl];
     const mainImage = spotImages[0];
     const isPlaceholder = spot.imageUrl && spot.imageUrl.includes("unsplash.com/photo-");
@@ -749,12 +802,12 @@ async function openDetails(spotId) {
     }
 
     // Dynamic image scraping in background if it's an OSM spot with placeholder and NOT a generic name
-    const isGenericName = /^(playground|swimming pool|indoor play center) (in|at) /i.test(spot.name);
-    if (isOSM && isPlaceholder && !isGenericName) {
+    const isStillGenericName = /^(playground|swimming pool|indoor play center) (in|at) /i.test(spot.name);
+    if (isOSM && isPlaceholder && !isStillGenericName) {
         (async () => {
             try {
                 const query = `${spot.name} ${spot.city} Switzerland`;
-                const response = await fetch(`/api/scrape-images?id=${spot.id}&query=${encodeURIComponent(query)}`);
+                const response = await fetch(`/api/scrape-images?id=${spot.id}&query=${encodeURIComponent(query)}&name=${encodeURIComponent(spot.name)}&address=${encodeURIComponent(spot.address)}`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data.images && data.images.length > 0) {

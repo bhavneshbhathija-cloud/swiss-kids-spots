@@ -202,10 +202,12 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
-    // API Endpoint: Dynamic Image Scraper
+    // API Endpoint: Dynamic Image Scraper and Spot Enricher
     if (pathname === '/api/scrape-images') {
         const id = parsedUrl.searchParams.get('id');
         const query = parsedUrl.searchParams.get('query');
+        const name = parsedUrl.searchParams.get('name');
+        const address = parsedUrl.searchParams.get('address');
 
         if (!id || !query) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -216,28 +218,38 @@ const server = http.createServer(async (req, res) => {
         console.log(`[Dynamic Scrape] Fetching images for spot ${id} ("${query}")...`);
         const images = await fetchBingImages(query);
 
-        if (images.length > 0) {
-            // Update harvested spots database if the spot is from OSM
-            if (id.startsWith('osm-spot-') && fs.existsSync(harvestedPath)) {
-                try {
-                    const spots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
-                    const spotIdx = spots.findIndex(s => s.id === id);
-                    if (spotIdx !== -1) {
+        // Update database if name/address or images are provided
+        if (id.startsWith('osm-spot-') && fs.existsSync(harvestedPath)) {
+            try {
+                const spots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
+                const spotIdx = spots.findIndex(s => s.id === id);
+                if (spotIdx !== -1) {
+                    let updated = false;
+                    if (images.length > 0) {
                         spots[spotIdx].imageUrl = images[0];
                         spots[spotIdx].images = images;
-                        fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
-                        console.log(`  -> Updated spot ${id} permanently in spots_harvested.json`);
+                        updated = true;
                     }
-                } catch (e) {
-                    console.error('Error writing to spots_harvested.json:', e);
+                    if (name && spots[spotIdx].name !== name) {
+                        spots[spotIdx].name = name;
+                        updated = true;
+                    }
+                    if (address && spots[spotIdx].address !== address) {
+                        spots[spotIdx].address = address;
+                        updated = true;
+                    }
+                    if (updated) {
+                        fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
+                        console.log(`  -> Enriched spot ${id} permanently: name="${spots[spotIdx].name}", hasImages=${images.length > 0}`);
+                    }
                 }
+            } catch (e) {
+                console.error('Error writing to spots_harvested.json during enrichment:', e);
             }
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ images }));
-        } else {
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ images: [] }));
         }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ images }));
         return;
     }
 
