@@ -22839,37 +22839,6 @@
         ]
     },
     {
-        "id": "osm-spot-700",
-        "name": "Busgate Süd",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Busgate Süd, 8060 Zürich",
-        "zip": "8060",
-        "city": "Zürich",
-        "lat": 47.44943,
-        "lng": 8.56129,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Zürich!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-701",
         "name": "Spiel-Nest",
         "type": "playpark",

@@ -24,6 +24,23 @@ if (DATA_DIR !== PUBLIC_DIR) {
     }
 }
 
+// Database Migration / Data Cleansing: Remove mis-tagged or inappropriate spots (like Busgate Süd osm-spot-700)
+if (fs.existsSync(harvestedPath)) {
+    try {
+        const data = fs.readFileSync(harvestedPath, 'utf-8');
+        let spots = JSON.parse(data);
+        const originalLength = spots.length;
+        // Filter out invalid spots
+        spots = spots.filter(s => s.id !== 'osm-spot-700');
+        if (spots.length !== originalLength) {
+            fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
+            console.log(`[Migration] Cleaned up database: removed ${originalLength - spots.length} invalid spots (osm-spot-700).`);
+        }
+    } catch (e) {
+        console.error('[Migration] Failed to cleanse spots_harvested.json:', e);
+    }
+}
+
 // Helper to validate image URLs
 function isValidImageUrl(url) {
     if (!url || typeof url !== 'string') return false;
