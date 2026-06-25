@@ -20530,37 +20530,6 @@
         ]
     },
     {
-        "id": "osm-spot-628",
-        "name": "Kinder Indoor Spielplatz",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Kinder Indoor Spielplatz, 8050 Zürich",
-        "zip": "8050",
-        "city": "Zürich",
-        "lat": 47.41386,
-        "lng": 8.56018,
-        "openingHours": "24/7",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Zürich!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-629",
         "name": "Spinnerei Indoor Spielplatz und Boulderhalle",
         "type": "playpark",
@@ -23022,37 +22991,6 @@
                 "author": "OSM Contributor",
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Verbier!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-708",
-        "name": "Auzelg-Opfikonstrasse",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Auzelg-Opfikonstrasse, 8050 Zürich",
-        "zip": "8050",
-        "city": "Zürich",
-        "lat": 47.41806,
-        "lng": 8.56961,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Zürich!"
             }
         ]
     },
