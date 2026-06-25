@@ -275,12 +275,15 @@ function updateMapMarkers(filteredSpots) {
 
         const marker = L.marker([spot.lat, spot.lng], { icon: customMarkerIcon }).addTo(activeMap);
         
+        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
         const popupContent = `
-            <div>
-                <h3>${spot.name}</h3>
-                <p><i class="fa-solid fa-location-dot"></i> ${spot.city} (${spot.zip})</p>
-                <span class="badge-type badge-${spot.type}">${spot.type}</span>
-                <p style="margin-top:8px;"><button class="btn btn-primary btn-xs" onclick="openDetails('${spot.id}')" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">Details</button></p>
+            <div style="font-family: var(--font-primary); min-width: 160px; padding: 2px;">
+                <h4 style="margin: 0 0 4px 0; font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">${spot.name}</h4>
+                <p style="margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-location-dot"></i> ${spot.city} (${spot.zip})</p>
+                <div style="display: flex; gap: 8px; margin-top: 4px;">
+                    <button class="btn btn-outline" onclick="openDetails('${spot.id}')" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; flex: 1; min-height: auto; height: auto;">Details</button>
+                    <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex: 1; color: white; min-height: auto; height: auto; text-transform: none; letter-spacing: 0;"><i class="fa-solid fa-diamond-turn-right"></i> Route</a>
+                </div>
             </div>
         `;
         
@@ -579,6 +582,7 @@ async function openDetails(spotId) {
         `;
     }).join("") : '<p class="no-reviews-placeholder">No reviews yet. Be the first to share your thoughts!</p>';
 
+    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
     container.innerHTML = `
         ${galleryHtml}
         <div class="detail-title-section">
@@ -586,7 +590,12 @@ async function openDetails(spotId) {
                 <h2>${spot.name}</h2>
                 <span class="badge-type badge-${spot.type}">${spot.type}</span>
             </div>
-            <p class="spot-card-area"><i class="fa-solid fa-location-dot"></i> ${spot.address}</p>
+            <div class="detail-address-row" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; margin-bottom: 1.2rem;">
+                <p class="spot-card-area" style="margin: 0;"><i class="fa-solid fa-location-dot"></i> ${spot.address}</p>
+                <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                </a>
+            </div>
         </div>
 
         <div class="detail-meta-grid">
