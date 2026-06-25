@@ -1398,5 +1398,1007 @@
             "https://image.jimcdn.com/app/cms/image/transf/dimension=2048x2048:format=jpg/path/s49fae5bbc627cf5f/image/i0770fb5a9bd56e67/version/1608990457/image.jpg",
             "https://image.jimcdn.com/app/cms/image/transf/dimension=2048x2048:format=jpg/path/s49fae5bbc627cf5f/image/i03a77e397d89891a/version/1512417515/image.jpg"
         ]
+    },
+    {
+        "id": "spot-35",
+        "name": "Zurichhorn Park & Playground",
+        "type": "playpark",
+        "description": "Beloved lakeside park with splash areas, picnic meadows, and great views of Lake Zurich. Free entry, perfect for all ages.",
+        "address": "Bellerivestrasse 160, 8008 Zürich",
+        "zip": "8008",
+        "city": "Zurich",
+        "lat": 47.355,
+        "lng": 8.562,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Picnic Area"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-36",
+        "name": "Bellerivepark",
+        "type": "playpark",
+        "description": "Charming lakefront park with water play features, swings, and open green spaces for children to run free.",
+        "address": "Bellerivestrasse, 8008 Zürich",
+        "zip": "8008",
+        "city": "Zurich",
+        "lat": 47.3536,
+        "lng": 8.5646,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Picnic Area"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-37",
+        "name": "Elfenau Park",
+        "type": "playpark",
+        "description": "One of Bern's most beautiful playgrounds set in trees and meadows, with water features, slides, a wooden fort, sandbox, and swings.",
+        "address": "Elfenauweg, 3006 Bern",
+        "zip": "3006",
+        "city": "Bern",
+        "lat": 46.9278,
+        "lng": 7.482,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-38",
+        "name": "St. Johanns Park",
+        "type": "playpark",
+        "description": "Well-equipped family park with play facilities, clean toilets, lockers, nursing room, and a splash pool for little ones.",
+        "address": "St. Johanns-Parkweg, 4056 Basel",
+        "zip": "4056",
+        "city": "Basel",
+        "lat": 47.5617,
+        "lng": 7.5795,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Cafe/Food"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-39",
+        "name": "Parc La Grange",
+        "type": "playpark",
+        "description": "Geneva's most popular family park with a rose garden, large playground, open lawns by Lake Geneva, and seasonal water jets.",
+        "address": "Quai Gustave-Ador, 1207 Genève",
+        "zip": "1207",
+        "city": "Geneva",
+        "lat": 46.1952,
+        "lng": 6.1742,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Picnic Area"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-40",
+        "name": "Bois de la Bâtie",
+        "type": "playpark",
+        "description": "Popular woodland park with a small zoo, adventure playground, mini train, and mini-golf — a full day out for families.",
+        "address": "Route de la Forêt, 1213 Onex, Geneva",
+        "zip": "1213",
+        "city": "Geneva",
+        "lat": 46.1889,
+        "lng": 6.103,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-41",
+        "name": "Parc de Sauvabelin",
+        "type": "playpark",
+        "description": "Enchanting forest park with a deer enclosure, lake, wooden tower, and nature playground — magical for children year-round.",
+        "address": "Chemin du Bois de Sauvabelin, 1018 Lausanne",
+        "zip": "1018",
+        "city": "Lausanne",
+        "lat": 46.5328,
+        "lng": 6.6346,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-42",
+        "name": "Inseli Park",
+        "type": "playpark",
+        "description": "Scenic lakeside park in central Lucerne with a great playground, paddleboat rentals nearby, and breathtaking mountain views.",
+        "address": "Inseli, 6005 Luzern",
+        "zip": "6005",
+        "city": "Lucerne",
+        "lat": 47.0482,
+        "lng": 8.301,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Picnic Area"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-43",
+        "name": "Zugersee Lakeside Park",
+        "type": "playpark",
+        "description": "Gorgeous lake park with a children's playground, paddling area, seasonal beach, and views of the Alps across Lake Zug.",
+        "address": "Artherstrasse, 6300 Zug",
+        "zip": "6300",
+        "city": "Zug",
+        "lat": 47.1649,
+        "lng": 8.518,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Picnic Area"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-44",
+        "name": "Stadtpark St. Gallen",
+        "type": "playpark",
+        "description": "Central city park with a large playground, pond, wooded pathways, and open lawns great for family picnics.",
+        "address": "Parkstrasse, 9000 St. Gallen",
+        "zip": "9000",
+        "city": "St. Gallen",
+        "lat": 47.4224,
+        "lng": 9.3699,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-45",
+        "name": "Stoos Alpine Playground",
+        "type": "playpark",
+        "description": "Spectacular car-free alpine village with a fenced adventure playground at 1300m altitude, with stunning lake and mountain views.",
+        "address": "6433 Stoos, Schwyz",
+        "zip": "6433",
+        "city": "Other",
+        "lat": 46.9786,
+        "lng": 8.6714,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-46",
+        "name": "Alpamare Water Park",
+        "type": "swimmingpool",
+        "description": "Switzerland's largest water park! 12 slides spanning 2.1 km, children's paradise, wave pool, and wellness. 30 min from Zurich by train.",
+        "address": "Gwattstrasse 12, 8808 Pfäffikon SZ",
+        "zip": "8808",
+        "city": "Other",
+        "lat": 47.2114,
+        "lng": 8.7797,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Cafe/Food"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-47",
+        "name": "Dolder Bad",
+        "type": "swimmingpool",
+        "description": "Historic lido in leafy grounds above Zurich. 50m outdoor pool, shaded paddling pool, and play area surrounded by forest.",
+        "address": "Dolderbahn, 8032 Zürich",
+        "zip": "8032",
+        "city": "Zurich",
+        "lat": 47.3736,
+        "lng": 8.5707,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Cafe/Food"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-48",
+        "name": "Bernaqua Adventure Pool",
+        "type": "swimmingpool",
+        "description": "The largest adventure pool in Canton Bern — 2,000 m² of water, three giant slides, white-water canyon, and 18 different pools.",
+        "address": "Weissenbühlweg 1, 3007 Bern",
+        "zip": "3007",
+        "city": "Bern",
+        "lat": 46.9373,
+        "lng": 7.4051,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Cafe/Food"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-49",
+        "name": "Marzili Freibad",
+        "type": "swimmingpool",
+        "description": "Among Switzerland's oldest baths, right in the shadow of the Parliament. Free entry, river swim on the Aare, massively popular in summer.",
+        "address": "Marzilistrasse 29, 3005 Bern",
+        "zip": "3005",
+        "city": "Bern",
+        "lat": 46.9432,
+        "lng": 7.4486,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Free",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-50",
+        "name": "Weyermannshaus Freibad",
+        "type": "swimmingpool",
+        "description": "Switzerland's largest outdoor pool by water surface — 16,000 m² across multiple pools with waterslides and a children's area.",
+        "address": "Weyermannshaus, 3018 Bern",
+        "zip": "3018",
+        "city": "Bern",
+        "lat": 46.9282,
+        "lng": 7.4012,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-51",
+        "name": "Genève-Plage",
+        "type": "swimmingpool",
+        "description": "Iconic lakeside lido on Lake Geneva with an Olympic pool, beach area, water slides, and stunning views of Mont Blanc.",
+        "address": "Quai de Cologny, 1223 Cologny, Geneva",
+        "zip": "1223",
+        "city": "Geneva",
+        "lat": 46.217,
+        "lng": 6.1647,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Cafe/Food"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-52",
+        "name": "Piscine de Bellerive",
+        "type": "swimmingpool",
+        "description": "Outdoor lakeside pool complex with a 50m competition pool, children's pool, grass sunbathing areas, and Lake Geneva access.",
+        "address": "Avenue de Rhodanie 27, 1007 Lausanne",
+        "zip": "1007",
+        "city": "Lausanne",
+        "lat": 46.5041,
+        "lng": 6.6362,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly",
+            "Picnic Area",
+            "Cafe/Food"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-53",
+        "name": "Lido Lucerne",
+        "type": "swimmingpool",
+        "description": "Beautiful outdoor pool and beach on Lake Lucerne with mountain backdrop. Lakeside swimming, pools for all ages, and a stunning Alpine setting.",
+        "address": "Lidostrasse 6, 6006 Luzern",
+        "zip": "6006",
+        "city": "Lucerne",
+        "lat": 47.0537,
+        "lng": 8.318,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-54",
+        "name": "Lido di Lugano",
+        "type": "swimmingpool",
+        "description": "Mediterranean-feel lido in Ticino with lake swimming, waterslides, sandy beach area, and palm trees — a taste of the Italian south.",
+        "address": "Viale Castagnola 11, 6906 Lugano",
+        "zip": "6906",
+        "city": "Other",
+        "lat": 46.0037,
+        "lng": 8.9539,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-55",
+        "name": "Flip Lab Zurich",
+        "type": "gamezone",
+        "description": "Massive 3,000 m² trampoline park near Zurich airport with jump zones, dodge ball, foam pit, parkour, and trained instructors.",
+        "address": "Thurgauerstrasse 7, 8050 Zürich",
+        "zip": "8050",
+        "city": "Zurich",
+        "lat": 47.4312,
+        "lng": 8.5664,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-56",
+        "name": "Play Village Zürich",
+        "type": "gamezone",
+        "description": "Creative indoor play world with themed rooms — supermarket, café, construction site, medical centre. Book a 2-hour slot. Ages 1–8.",
+        "address": "Letzipark, 8048 Zürich",
+        "zip": "8048",
+        "city": "Zurich",
+        "lat": 47.386,
+        "lng": 8.507,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-57",
+        "name": "Funny Farm Indoor Playground",
+        "type": "gamezone",
+        "description": "Fun farm-themed indoor playground with trampolines, ball pits, slides, and climbing structures in a colourful, safe environment.",
+        "address": "Schaffhauserstrasse 550, 8052 Zürich",
+        "zip": "8052",
+        "city": "Zurich",
+        "lat": 47.418,
+        "lng": 8.55,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-58",
+        "name": "The Jump Spot Lausanne",
+        "type": "gamezone",
+        "description": "Switzerland's biggest indoor trampoline park — 150 trampolines across 3,300 m²! Foam pits, slam dunk zones, dodgeball, and ninja course.",
+        "address": "Avenue de Longemalle 1, 1020 Renens",
+        "zip": "1020",
+        "city": "Lausanne",
+        "lat": 46.5298,
+        "lng": 6.591,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-59",
+        "name": "Jump Factory Basel",
+        "type": "gamezone",
+        "description": "Huge trampoline park with basketball trampolines, foam pit, free jump areas, and dodgeball court — great for all ages.",
+        "address": "Gärtnerstrasse 46, 4132 Muttenz",
+        "zip": "4132",
+        "city": "Basel",
+        "lat": 47.5241,
+        "lng": 7.6561,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-60",
+        "name": "Kids Arena Lucerne",
+        "type": "gamezone",
+        "description": "Lucerne's largest indoor playground for ages 0–10. Climbing wall, ball pit, electric go-kart track, trampolines, and a soft-play toddler zone.",
+        "address": "Udligenswilerstrasse 21, 6048 Horw",
+        "zip": "6048",
+        "city": "Lucerne",
+        "lat": 47.0093,
+        "lng": 8.3153,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-61",
+        "name": "Freiruum Spielruum — Zug",
+        "type": "gamezone",
+        "description": "Indoor playground for children aged 2–7 inside the Freiruum complex, plus a 120 m² trampoline park. Café on site.",
+        "address": "Industriestrasse 21, 6300 Zug",
+        "zip": "6300",
+        "city": "Zug",
+        "lat": 47.1649,
+        "lng": 8.5025,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-62",
+        "name": "Elevation Indoor Winterthur",
+        "type": "gamezone",
+        "description": "Creative indoor playground in Winterthur's Lagerplatz district — bouncy castles, swirly slides, trampolines, and a ball pit.",
+        "address": "Lagerplatz 17, 8400 Winterthur",
+        "zip": "8400",
+        "city": "Winterthur",
+        "lat": 47.4983,
+        "lng": 8.729,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-63",
+        "name": "Kindercity Bern",
+        "type": "gamezone",
+        "description": "Interactive children's city where kids role-play as doctors, firefighters, chefs, and more in themed rooms for imaginative play.",
+        "address": "Papiermühlestrasse 65, 3014 Bern",
+        "zip": "3014",
+        "city": "Bern",
+        "lat": 46.9568,
+        "lng": 7.472,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
+    },
+    {
+        "id": "spot-64",
+        "name": "X-Stream Trampoline Park",
+        "type": "gamezone",
+        "description": "High-energy trampoline park east of Zurich with a ninja warrior course, slam dunk zones, foam pits, and dedicated toddler sections.",
+        "address": "Industriestrasse 45, 8604 Volketswil",
+        "zip": "8604",
+        "city": "Other",
+        "lat": 47.3827,
+        "lng": 8.685,
+        "openingHours": "08:00 - 20:00 daily",
+        "fees": "Entry fee applies",
+        "minAge": 1,
+        "maxAge": 12,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "SwissKids Explorer",
+                "rating": 5,
+                "text": "Featured premium spot imported from our curated directory."
+            }
+        ],
+        "images": [
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
+        ]
     }
 ]
