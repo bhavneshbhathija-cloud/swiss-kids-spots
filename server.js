@@ -24,18 +24,18 @@ if (DATA_DIR !== PUBLIC_DIR) {
     }
 }
 
-// Database Migration / Data Cleansing: Remove mis-tagged or inappropriate spots (like Busgate Süd osm-spot-700, Airport Kinderspielplatz osm-spot-585, Auzelg-Opfikonstrasse osm-spot-708, and Kinder Indoor Spielplatz osm-spot-628)
+// Database Migration / Data Cleansing: Remove mis-tagged or inappropriate spots (like Busgate Süd osm-spot-700, Airport Kinderspielplatz osm-spot-585, Auzelg-Opfikonstrasse osm-spot-708, Kinder Indoor Spielplatz osm-spot-628, Babybeach osm-spot-877, and Play Village Buckhauserstrasse osm-spot-879)
 if (fs.existsSync(harvestedPath)) {
     try {
         const data = fs.readFileSync(harvestedPath, 'utf-8');
         let spots = JSON.parse(data);
         const originalLength = spots.length;
         // Filter out invalid spots
-        const blacklist = ['osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628'];
+        const blacklist = ['osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628', 'osm-spot-877', 'osm-spot-879'];
         spots = spots.filter(s => !blacklist.includes(s.id));
         if (spots.length !== originalLength) {
             fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
-            console.log(`[Migration] Cleaned up database: removed ${originalLength - spots.length} invalid spots (osm-spot-700, osm-spot-585, osm-spot-708, osm-spot-628).`);
+            console.log(`[Migration] Cleaned up database: removed ${originalLength - spots.length} invalid spots (osm-spot-700, osm-spot-585, osm-spot-708, osm-spot-628, osm-spot-877, osm-spot-879).`);
         }
     } catch (e) {
         console.error('[Migration] Failed to cleanse spots_harvested.json:', e);

@@ -28247,37 +28247,6 @@
         ]
     },
     {
-        "id": "osm-spot-877",
-        "name": "Babybeach",
-        "type": "gamezone",
-        "description": "An indoor game and play zone featuring safe spaces, interactive games, and obstacle arenas.",
-        "address": "Babybeach, 8590 Romanshorn",
-        "zip": "8590",
-        "city": "Romanshorn",
-        "lat": 47.65277,
-        "lng": 9.47916,
-        "openingHours": "Tu,We,Fr 09:45-14:00,15:00-18:00; Th 08:45-14:00; Sa,Su 08:45-15:00; Mo off",
-        "fees": "18 EUR",
-        "minAge": 2,
-        "maxAge": 14,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Romanshorn!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-878",
         "name": "Hotel Kreuz",
         "type": "playpark",
@@ -28305,37 +28274,6 @@
                 "author": "OSM Contributor",
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Welschenrohr!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-879",
-        "name": "Play Village",
-        "type": "gamezone",
-        "description": "An indoor game and play zone featuring safe spaces, interactive games, and obstacle arenas.",
-        "address": "Buckhauserstrasse 28, 8048 Zürich",
-        "zip": "8048",
-        "city": "Zürich",
-        "lat": 47.38448,
-        "lng": 8.49274,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Paid Entry",
-        "minAge": 2,
-        "maxAge": 14,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Zürich!"
             }
         ]
     },
