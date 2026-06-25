@@ -6,6 +6,10 @@ const path = require('path');
 const zipPath = path.join(__dirname, 'postal-codes.json');
 const SWISS_ZIPS = JSON.parse(fs.readFileSync(zipPath, 'utf-8'));
 
+// Load baseline curated spots for deduplication
+const baseSpotsPath = path.join(__dirname, 'base_spots.json');
+const BASE_SPOTS = fs.existsSync(baseSpotsPath) ? JSON.parse(fs.readFileSync(baseSpotsPath, 'utf-8')) : [];
+
 // Unsplash Image Databases for kids spots
 const PLAYPARK_IMAGES = [
     "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
@@ -64,19 +68,19 @@ function findClosestZip(lat, lng) {
 function harvestSpots() {
     console.log("Connecting to OpenStreetMap Overpass API...");
     
-    // Query for 1000 named play and swim sites in Switzerland
+    // Query for 1500 play and swim sites in Switzerland (removing [name] requirement from playgrounds to include unnamed neighborhood spielplatzs)
     const overpassQuery = `[out:json][timeout:90];
     (
-      node(45.8,5.9,47.9,10.5)[leisure=playground][name];
+      node(45.8,5.9,47.9,10.5)[leisure=playground];
       node(45.8,5.9,47.9,10.5)[leisure=water_park];
       node(45.8,5.9,47.9,10.5)[leisure=swimming_pool];
       node(45.8,5.9,47.9,10.5)[leisure=indoor_play];
-      way(45.8,5.9,47.9,10.5)[leisure=playground][name];
+      way(45.8,5.9,47.9,10.5)[leisure=playground];
       way(45.8,5.9,47.9,10.5)[leisure=water_park];
       way(45.8,5.9,47.9,10.5)[leisure=swimming_pool];
       way(45.8,5.9,47.9,10.5)[leisure=indoor_play];
     );
-    out center 1000;
+    out center 1500;
     `;
 
     const postData = 'data=' + encodeURIComponent(overpassQuery);
@@ -112,6 +116,7 @@ function harvestSpots() {
                 console.log(`Harvested ${elements.length} raw spots from OpenStreetMap.`);
 
                 const formattedSpots = [];
+                let spotCounter = 0;
 
                 elements.forEach((el, idx) => {
                     const tags = el.tags || {};
@@ -187,12 +192,103 @@ function harvestSpots() {
                         }
                     }
 
+                    // Special overrides for known spots that are unnamed or generic in OSM
+                    let customAddress = null;
+                    if (Math.abs(lat - 47.41017) < 0.0002 && Math.abs(lng - 8.55221) < 0.0002) {
+                        name = "Oerliker Park Playground & Blauer Turm";
+                        defaultDesc = "A famous playground in Oerliker Park featuring the iconic 35-meter blue climbing tower (Blauer Turm) and beautiful wooden play structures.";
+                        defaultAmenities = ["Toilets", "Shade", "Stroller Friendly", "Climbing Tower"];
+                        customAddress = "Oerliker Park, 8050 Zürich";
+                    }
+
                     // 5. Build full address
                     let address = "";
-                    if (street) {
+                    if (customAddress) {
+                        address = customAddress;
+                    } else if (street) {
                         address = `${street} ${houseNum}`.trim() + `, ${zipCode} ${city}`;
                     } else {
                         address = `${name}, ${zipCode} ${city}`;
+                    }
+
+                    // 6. Run spam/suspicious filters (transit, private kitas, fitness trail stations, duplicates)
+                    const hardBlockKeywords = [
+                        /\bgate\b/i, /\bbusgate\b/i, /\btransit\b/i, /\bairport\b/i, /\bflughafen\b/i,
+                        /\bkita\b/i, /\bkrippe\b/i, /\bkinderkrippe\b/i, /\bkinderhort\b/i, /\bhort\b/i,
+                        /\bdaycare\b/i, /\bspielgruppe\b/i, /\bnursery\b/i, /\bcrèche\b/i,
+                        /\bprivat\b/i, /\bprivate\b/i, /\bwohnsiedlung\b/i, /\bresidential\b/i, /\bprivate yard\b/i,
+                        /\bbüro\b/i, /\boffice\b/i, /\bgewerbe\b/i, /\bcompany\b/i
+                    ];
+
+                    const softBlockKeywords = [
+                        /\bgleis\b/i, /\bbahnhof\b/i, /\btram\b/i, /\bbusstation\b/i, /\bhaltestelle\b/i, /\bdepot\b/i, /\bstation\b/i, /\bbusstop\b/i
+                    ];
+
+                    let isSuspicious = false;
+                    for (const regex of hardBlockKeywords) {
+                        if (regex.test(name) || regex.test(address)) {
+                            isSuspicious = true;
+                            break;
+                        }
+                    }
+
+                    if (!isSuspicious) {
+                        const isExplicitPlayground = /spielplatz/i.test(name) || /playground/i.test(name) || /schaukel/i.test(name) || /rutsche/i.test(name);
+                        for (const regex of softBlockKeywords) {
+                            if (regex.test(name) || regex.test(address)) {
+                                if (!isExplicitPlayground) {
+                                    isSuspicious = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (isSuspicious) {
+                        return;
+                    }
+
+                    // 7. Deduplication Check
+                    // A. Check against curated spots (base_spots.json) - skip if within 100 meters (approx 0.100 km)
+                    let isDuplicateOfCurated = false;
+                    for (const baseSpot of BASE_SPOTS) {
+                        const dist = calculateDistance(lat, lng, baseSpot.lat, baseSpot.lng);
+                        if (dist < 0.100) {
+                            isDuplicateOfCurated = true;
+                            break;
+                        }
+                    }
+                    if (isDuplicateOfCurated) {
+                        return;
+                    }
+
+                    // B. Check against already added harvested spots - if within 75 meters (approx 0.075 km)
+                    let isDuplicateOfHarvested = false;
+                    let duplicateIdx = -1;
+                    for (let i = 0; i < formattedSpots.length; i++) {
+                        const existing = formattedSpots[i];
+                        const dist = calculateDistance(lat, lng, existing.lat, existing.lng);
+                        if (dist < 0.075) {
+                            isDuplicateOfHarvested = true;
+                            duplicateIdx = i;
+                            break;
+                        }
+                    }
+
+                    if (isDuplicateOfHarvested) {
+                        const existing = formattedSpots[duplicateIdx];
+                        const isGenericExisting = /^(playground|swimming pool|indoor play center) (in|at) /i.test(existing.name);
+                        const isGenericNew = /^(playground|swimming pool|indoor play center) (in|at) /i.test(name);
+                        // If candidate has a specific name and existing has a generic name, override the existing one
+                        if (!isGenericNew && isGenericExisting) {
+                            formattedSpots[duplicateIdx].name = name;
+                            formattedSpots[duplicateIdx].description = defaultDesc;
+                            formattedSpots[duplicateIdx].address = address;
+                            formattedSpots[duplicateIdx].amenities = defaultAmenities;
+                            formattedSpots[duplicateIdx].lat = Math.round(lat * 100000) / 100000;
+                            formattedSpots[duplicateIdx].lng = Math.round(lng * 100000) / 100000;
+                        }
+                        return;
                     }
 
                     // Hours
@@ -212,8 +308,10 @@ function harvestSpots() {
                         fees = spotType === "playpark" ? "Free" : "Paid Entry";
                     }
 
+                    spotCounter++;
+
                     formattedSpots.push({
-                        id: `osm-spot-${idx + 1}`,
+                        id: `osm-spot-${spotCounter}`,
                         name: name,
                         type: spotType,
                         description: defaultDesc,

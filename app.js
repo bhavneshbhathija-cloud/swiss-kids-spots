@@ -583,6 +583,7 @@ async function openDetails(spotId) {
     }).join("") : '<p class="no-reviews-placeholder">No reviews yet. Be the first to share your thoughts!</p>';
 
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
+    const googleSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.name + ", " + spot.city + ", Switzerland")}`;
     container.innerHTML = `
         ${galleryHtml}
         <div class="detail-title-section">
@@ -592,9 +593,14 @@ async function openDetails(spotId) {
             </div>
             <div class="detail-address-row" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; margin-bottom: 1.2rem;">
                 <p class="spot-card-area" style="margin: 0;"><i class="fa-solid fa-location-dot"></i> ${spot.address}</p>
-                <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
-                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
-                </a>
+                <div style="display: flex; gap: 8px;">
+                    <a href="${googleSearchUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid var(--border-color);">
+                        <i class="fa-solid fa-map-location-dot"></i> Verify on Google Maps
+                    </a>
+                    <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
+                        <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -742,8 +748,9 @@ async function openDetails(spotId) {
         weatherBox.innerHTML = `<p style="font-size:0.85rem; color:var(--danger-red);"><i class="fa-solid fa-triangle-exclamation"></i> Could not load live weather. Please check standard weather forecast.</p>`;
     }
 
-    // Dynamic image scraping in background if it's an OSM spot with placeholder
-    if (isOSM && isPlaceholder) {
+    // Dynamic image scraping in background if it's an OSM spot with placeholder and NOT a generic name
+    const isGenericName = /^(playground|swimming pool|indoor play center) (in|at) /i.test(spot.name);
+    if (isOSM && isPlaceholder && !isGenericName) {
         (async () => {
             try {
                 const query = `${spot.name} ${spot.city} Switzerland`;
