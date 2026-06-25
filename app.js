@@ -583,7 +583,7 @@ async function openDetails(spotId) {
     }).join("") : '<p class="no-reviews-placeholder">No reviews yet. Be the first to share your thoughts!</p>';
 
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
-    const googleSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.name + ", " + spot.city + ", Switzerland")}`;
+    const googleSearchUrl = `https://www.google.com/maps/search/?api=1&query=${spot.lat},${spot.lng}`;
     container.innerHTML = `
         ${galleryHtml}
         <div class="detail-title-section">

@@ -34450,7 +34450,7 @@
             "Shade",
             "Stroller Friendly"
         ],
-        "imageUrl": "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?w=600&auto=format&fit=crop&q=80",
+        "imageUrl": "https://img3.oastatic.com/img2/52284199/max/variant.jpg",
         "ratings": [
             5
         ],
@@ -34460,6 +34460,12 @@
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Steinhausen!"
             }
+        ],
+        "images": [
+            "https://img3.oastatic.com/img2/52284199/max/variant.jpg",
+            "https://www.waldwelt-allgaeu.de/wp-content/uploads/2024/08/Abenteuerspielplatz-2-2048x1536.jpg",
+            "https://images.squarespace-cdn.com/content/v1/648169fee1b5bb7e7a81ee65/8de0adc5-ae2c-4f2e-86f2-504b0b280fcf/DSC03929_2-11604.jpg",
+            "https://images.squarespace-cdn.com/content/v1/648169fee1b5bb7e7a81ee65/44534ed0-25ba-4a65-b5b7-d4df5098227b/IMG05530-min.jpg"
         ]
     },
     {
