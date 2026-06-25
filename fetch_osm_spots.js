@@ -10,6 +10,10 @@ const SWISS_ZIPS = JSON.parse(fs.readFileSync(zipPath, 'utf-8'));
 const baseSpotsPath = path.join(__dirname, 'base_spots.json');
 const BASE_SPOTS = fs.existsSync(baseSpotsPath) ? JSON.parse(fs.readFileSync(baseSpotsPath, 'utf-8')) : [];
 
+// Load existing harvested database to preserve scraped images
+const harvestedPath = path.join(__dirname, 'spots_harvested.json');
+const EXISTING_HARVESTED = fs.existsSync(harvestedPath) ? JSON.parse(fs.readFileSync(harvestedPath, 'utf-8')) : [];
+
 // Unsplash Image Databases for kids spots
 const PLAYPARK_IMAGES = [
     "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
@@ -211,6 +215,44 @@ function harvestSpots() {
                         address = `${name}, ${zipCode} ${city}`;
                     }
 
+                    // Check coordinate blacklist (private/invalid sites and Herzogenmühle)
+                    const coordinateBlacklist = [
+                        { lat: 47.44943, lng: 8.56129, name: "Busgate Süd" },
+                        { lat: 47.45061, lng: 8.56156, name: "Kinderspielplatz Airport" },
+                        { lat: 47.41806, lng: 8.56961, name: "Auzelg-Opfikonstrasse" },
+                        { lat: 47.41386, lng: 8.56018, name: "Kinder Indoor Spielplatz" },
+                        { lat: 47.65277, lng: 9.47916, name: "Babybeach" },
+                        { lat: 47.38448, lng: 8.49274, name: "Play Village" },
+                        { lat: 47.72006, lng: 8.66517, name: "Herblinger Kinderparadies" },
+                        { lat: 46.24119, lng: 5.97273, name: "Private Playground" },
+                        { lat: 46.76559, lng: 7.60967, name: "KITA Aare" },
+                        { lat: 47.32050, lng: 9.08464, name: "Bahnhof Lichtensteig" },
+                        { lat: 46.94780, lng: 7.38837, name: "Spielplatz Kita Tscharnergut" },
+                        { lat: 45.98164, lng: 6.92679, name: "Private crèche playground" },
+                        { lat: 47.82588, lng: 10.03051, name: "Station 10 - Gerber" },
+                        { lat: 47.82701, lng: 10.02890, name: "Station 11 - Flachsbauer" },
+                        { lat: 47.82712, lng: 10.02491, name: "Station 2 - Seiler" },
+                        { lat: 47.82610, lng: 10.03362, name: "Station 9 - Gaukler" },
+                        { lat: 47.82543, lng: 10.03294, name: "Station 8 - Schriftsetzer" },
+                        { lat: 47.82743, lng: 10.02472, name: "Station 3 - Weber" },
+                        { lat: 47.82522, lng: 10.02809, name: "Station 6 - Schmid" },
+                        { lat: 47.26498, lng: 8.67550, name: "Spielplatz Spielgruppe Sunneburg" },
+                        { lat: 46.76129, lng: 7.35861, name: "Hansjoggeliweg Station 2" },
+                        { lat: 47.40543, lng: 8.57257, name: "Herzogenmühle" }
+                    ];
+
+                    let isBlacklistedByCoord = false;
+                    for (const item of coordinateBlacklist) {
+                        const dist = calculateDistance(lat, lng, item.lat, item.lng);
+                        if (dist < 0.030) { // within 30 meters
+                            isBlacklistedByCoord = true;
+                            break;
+                        }
+                    }
+                    if (isBlacklistedByCoord) {
+                        return;
+                    }
+
                     // 6. Run spam/suspicious filters (transit, private kitas, fitness trail stations, duplicates)
                     const hardBlockKeywords = [
                         /\bgate\b/i, /\bbusgate\b/i, /\btransit\b/i, /\bairport\b/i, /\bflughafen\b/i,
@@ -308,6 +350,28 @@ function harvestSpots() {
                         fees = spotType === "playpark" ? "Free" : "Paid Entry";
                     }
 
+                    // Check if we already have this spot in the existing harvested database to preserve custom scraping details (name, address, images)
+                    let existingImageUrl = imageUrl;
+                    let existingImages = [imageUrl];
+                    for (const oldSpot of EXISTING_HARVESTED) {
+                        const dist = calculateDistance(lat, lng, oldSpot.lat, oldSpot.lng);
+                        if (dist < 0.010) { // within 10 meters (representing the same playground)
+                            // If it has a specific name and address, preserve it
+                            if (oldSpot.name && !/^(playground|swimming pool|indoor play center) (in|at) /i.test(oldSpot.name)) {
+                                name = oldSpot.name;
+                                if (oldSpot.description) defaultDesc = oldSpot.description;
+                                if (oldSpot.address) address = oldSpot.address;
+                                if (oldSpot.amenities) defaultAmenities = oldSpot.amenities;
+                            }
+                            // Preserve scraped images
+                            if (oldSpot.imageUrl && !oldSpot.imageUrl.includes("unsplash.com/photo-")) {
+                                existingImageUrl = oldSpot.imageUrl;
+                                existingImages = oldSpot.images || [oldSpot.imageUrl];
+                            }
+                            break;
+                        }
+                    }
+
                     spotCounter++;
 
                     formattedSpots.push({
@@ -325,11 +389,12 @@ function harvestSpots() {
                         minAge: minAge,
                         maxAge: maxAge,
                         amenities: defaultAmenities,
-                        imageUrl: imageUrl,
+                        imageUrl: existingImageUrl,
                         ratings: [5],
                         comments: [
                             { author: "OSM Contributor", rating: 5, text: `Verified public kids spot harvested via OpenStreetMap. Great location in ${city}!` }
-                        ]
+                        ],
+                        images: existingImages
                     });
                 });
 
