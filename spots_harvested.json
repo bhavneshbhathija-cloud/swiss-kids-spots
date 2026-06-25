@@ -24471,37 +24471,6 @@
         ]
     },
     {
-        "id": "osm-spot-756",
-        "name": "Herblinger Kinderparadies",
-        "type": "gamezone",
-        "description": "An indoor game and play zone featuring safe spaces, interactive games, and obstacle arenas.",
-        "address": "Herblinger Kinderparadies, 8207 Schaffhausen",
-        "zip": "8207",
-        "city": "Schaffhausen",
-        "lat": 47.72006,
-        "lng": 8.66517,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Paid Entry",
-        "minAge": 2,
-        "maxAge": 14,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Schaffhausen!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-757",
         "name": "Station 9 - Gaukler",
         "type": "playpark",

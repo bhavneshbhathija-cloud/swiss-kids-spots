@@ -52,7 +52,7 @@ if (fs.existsSync(harvestedPath)) {
         const originalLength = spots.length;
         
         // Filter out invalid spots
-        const blacklist = ['osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628', 'osm-spot-877', 'osm-spot-879'];
+        const blacklist = ['osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628', 'osm-spot-877', 'osm-spot-879', 'osm-spot-756'];
         spots = spots.filter(s => !blacklist.includes(s.id));
         
         // Scan and scrub any existing inappropriate or bad image URLs in database
