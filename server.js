@@ -24,17 +24,17 @@ if (DATA_DIR !== PUBLIC_DIR) {
     }
 }
 
-// Database Migration / Data Cleansing: Remove mis-tagged or inappropriate spots (like Busgate Süd osm-spot-700)
+// Database Migration / Data Cleansing: Remove mis-tagged or airport transit spots (like Busgate Süd osm-spot-700 and Airport Kinderspielplatz osm-spot-585)
 if (fs.existsSync(harvestedPath)) {
     try {
         const data = fs.readFileSync(harvestedPath, 'utf-8');
         let spots = JSON.parse(data);
         const originalLength = spots.length;
         // Filter out invalid spots
-        spots = spots.filter(s => s.id !== 'osm-spot-700');
+        spots = spots.filter(s => s.id !== 'osm-spot-700' && s.id !== 'osm-spot-585');
         if (spots.length !== originalLength) {
             fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
-            console.log(`[Migration] Cleaned up database: removed ${originalLength - spots.length} invalid spots (osm-spot-700).`);
+            console.log(`[Migration] Cleaned up database: removed ${originalLength - spots.length} invalid spots (osm-spot-700, osm-spot-585).`);
         }
     } catch (e) {
         console.error('[Migration] Failed to cleanse spots_harvested.json:', e);
