@@ -6418,37 +6418,6 @@
         ]
     },
     {
-        "id": "osm-spot-177",
-        "name": "Private Playground",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Private Playground, 1283 Dardagny",
-        "zip": "1283",
-        "city": "Dardagny",
-        "lat": 46.24119,
-        "lng": 5.97273,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Dardagny!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-178",
         "name": "Fischbacher Höhe",
         "type": "playpark",
@@ -7017,37 +6986,6 @@
                 "author": "OSM Contributor",
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Court!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-196",
-        "name": "KITA Aare",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "KITA Aare, 3602 Thun",
-        "zip": "3602",
-        "city": "Thun",
-        "lat": 46.76559,
-        "lng": 7.60967,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Thun!"
             }
         ]
     },
@@ -13439,37 +13377,6 @@
         ]
     },
     {
-        "id": "osm-spot-400",
-        "name": "Bahnhof Lichtensteig",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Bahnhof Lichtensteig, 9620 Lichtensteig",
-        "zip": "9620",
-        "city": "Lichtensteig",
-        "lat": 47.3205,
-        "lng": 9.08464,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Lichtensteig!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-401",
         "name": "Rieteranlage",
         "type": "playpark",
@@ -15304,37 +15211,6 @@
                 "author": "OSM Contributor",
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in St-Prex!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-460",
-        "name": "Spielplatz Kita Tscharnergut",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Spielplatz Kita Tscharnergut, 3018 Bern",
-        "zip": "3018",
-        "city": "Bern",
-        "lat": 46.9478,
-        "lng": 7.38837,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Bern!"
             }
         ]
     },
@@ -18594,37 +18470,6 @@
                 "author": "OSM Contributor",
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Weil am Rhein!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-565",
-        "name": "Private crèche playground (enclosed)",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Private crèche playground (enclosed), 1925 Le Châtelard VS",
-        "zip": "1925",
-        "city": "Le Châtelard VS",
-        "lat": 45.98164,
-        "lng": 6.92679,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Le Châtelard VS!"
             }
         ]
     },
@@ -22808,99 +22653,6 @@
         ]
     },
     {
-        "id": "osm-spot-702",
-        "name": "Station 10 - Gerber",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Station 10 - Gerber, 9401 Rorschach",
-        "zip": "9401",
-        "city": "Rorschach",
-        "lat": 47.82588,
-        "lng": 10.03051,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Rorschach!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-703",
-        "name": "Station 11 - Flachsbauer",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Station 11 - Flachsbauer, 9401 Rorschach",
-        "zip": "9401",
-        "city": "Rorschach",
-        "lat": 47.82701,
-        "lng": 10.0289,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1473081556163-2a17de81fc97?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Rorschach!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-704",
-        "name": "Station 2 - Seiler",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Station 2 - Seiler, 9401 Rorschach",
-        "zip": "9401",
-        "city": "Rorschach",
-        "lat": 47.82712,
-        "lng": 10.02491,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1537655780520-1e392edd816a?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Rorschach!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-705",
         "name": "Waldkindergarten",
         "type": "playpark",
@@ -24471,130 +24223,6 @@
         ]
     },
     {
-        "id": "osm-spot-757",
-        "name": "Station 9 - Gaukler",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Station 9 - Gaukler, 9401 Rorschach",
-        "zip": "9401",
-        "city": "Rorschach",
-        "lat": 47.8261,
-        "lng": 10.03362,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Rorschach!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-758",
-        "name": "Station 8 - Schriftsetzer",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Station 8 - Schriftsetzer, 9401 Rorschach",
-        "zip": "9401",
-        "city": "Rorschach",
-        "lat": 47.82543,
-        "lng": 10.03294,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Rorschach!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-759",
-        "name": "Station 3 - Weber",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Station 3 - Weber, 9401 Rorschach",
-        "zip": "9401",
-        "city": "Rorschach",
-        "lat": 47.82743,
-        "lng": 10.02472,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1473081556163-2a17de81fc97?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Rorschach!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-760",
-        "name": "Station 6 - Schmid",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Station 6 - Schmid, 9401 Rorschach",
-        "zip": "9401",
-        "city": "Rorschach",
-        "lat": 47.82522,
-        "lng": 10.02809,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1537655780520-1e392edd816a?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Rorschach!"
-            }
-        ]
-    },
-    {
         "id": "osm-spot-761",
         "name": "Generationenplatz Nuglar-St.Pantaleon",
         "type": "playpark",
@@ -25347,37 +24975,6 @@
                 "author": "OSM Contributor",
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Ollon VD!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-785",
-        "name": "Spielplatz Spielgruppe Sunneburg",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Spielplatz Spielgruppe Sunneburg, 8707 Uetikon am See",
-        "zip": "8707",
-        "city": "Uetikon am See",
-        "lat": 47.26498,
-        "lng": 8.6755,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Uetikon am See!"
             }
         ]
     },
@@ -27962,37 +27559,6 @@
                 "author": "OSM Contributor",
                 "rating": 5,
                 "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Buchillon!"
-            }
-        ]
-    },
-    {
-        "id": "osm-spot-869",
-        "name": "Hansjoggeliweg Station 2",
-        "type": "playpark",
-        "description": "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.",
-        "address": "Hansjoggeliweg Station 2, 3156 Riffenmatt",
-        "zip": "3156",
-        "city": "Riffenmatt",
-        "lat": 46.76129,
-        "lng": 7.35861,
-        "openingHours": "08:00 - 20:00 daily",
-        "fees": "Free",
-        "minAge": 1,
-        "maxAge": 12,
-        "amenities": [
-            "Toilets",
-            "Shade",
-            "Stroller Friendly"
-        ],
-        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
-        "ratings": [
-            5
-        ],
-        "comments": [
-            {
-                "author": "OSM Contributor",
-                "rating": 5,
-                "text": "Verified public kids spot harvested via OpenStreetMap. Great location in Riffenmatt!"
             }
         ]
     },

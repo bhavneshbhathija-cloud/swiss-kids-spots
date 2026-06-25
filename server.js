@@ -51,8 +51,15 @@ if (fs.existsSync(harvestedPath)) {
         let spots = JSON.parse(data);
         const originalLength = spots.length;
         
-        // Filter out invalid spots
-        const blacklist = ['osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628', 'osm-spot-877', 'osm-spot-879', 'osm-spot-756'];
+        // Filter out invalid spots (transit, private kitas, fitness/themed trail stations, duplicates)
+        const blacklist = [
+            'osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628', 
+            'osm-spot-877', 'osm-spot-879', 'osm-spot-756', 'osm-spot-177', 
+            'osm-spot-196', 'osm-spot-400', 'osm-spot-460', 'osm-spot-565', 
+            'osm-spot-702', 'osm-spot-703', 'osm-spot-704', 'osm-spot-757', 
+            'osm-spot-758', 'osm-spot-759', 'osm-spot-760', 'osm-spot-785', 
+            'osm-spot-869'
+        ];
         spots = spots.filter(s => !blacklist.includes(s.id));
         
         // Scan and scrub any existing inappropriate or bad image URLs in database
