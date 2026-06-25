@@ -24,28 +24,14 @@ if (DATA_DIR !== PUBLIC_DIR) {
     }
 }
 
-// Database Migration / Data Cleansing: Remove mis-tagged or inappropriate spots (like Busgate Süd osm-spot-700, Airport Kinderspielplatz osm-spot-585, Auzelg-Opfikonstrasse osm-spot-708, Kinder Indoor Spielplatz osm-spot-628, Babybeach osm-spot-877, and Play Village Buckhauserstrasse osm-spot-879)
-if (fs.existsSync(harvestedPath)) {
-    try {
-        const data = fs.readFileSync(harvestedPath, 'utf-8');
-        let spots = JSON.parse(data);
-        const originalLength = spots.length;
-        // Filter out invalid spots
-        const blacklist = ['osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628', 'osm-spot-877', 'osm-spot-879'];
-        spots = spots.filter(s => !blacklist.includes(s.id));
-        if (spots.length !== originalLength) {
-            fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
-            console.log(`[Migration] Cleaned up database: removed ${originalLength - spots.length} invalid spots (osm-spot-700, osm-spot-585, osm-spot-708, osm-spot-628, osm-spot-877, osm-spot-879).`);
-        }
-    } catch (e) {
-        console.error('[Migration] Failed to cleanse spots_harvested.json:', e);
-    }
-}
-
-// Helper to validate image URLs
+// Helper to validate image URLs (including strict safety keywords)
 function isValidImageUrl(url) {
     if (!url || typeof url !== 'string') return false;
-    const badKeywords = ['adsystem', 'analytics', 'pixel', 'tracker', 'adserver', 'advertisement', 'doubleclick', 'telemetry', 'statcounter'];
+    const badKeywords = [
+        'adsystem', 'analytics', 'pixel', 'tracker', 'adserver', 'advertisement', 'doubleclick', 'telemetry', 'statcounter',
+        'porn', 'nude', 'naked', 'sexy', 'adult', 'erotic', 'nsfw', 'xxx', 'boobs', 'sex', 'lingerie', 'playboy', 'sensual',
+        'girls', 'model', 'bikini', 'nackt', 'nackte', 'nude-photo', 'strip', 'nudephoto', 'playmate'
+    ];
     for (const kw of badKeywords) {
         if (url.toLowerCase().includes(kw)) return false;
     }
@@ -58,10 +44,64 @@ function isValidImageUrl(url) {
     return true;
 }
 
+// Database Migration / Data Cleansing: Remove mis-tagged or inappropriate spots and scrub unsafe images
+if (fs.existsSync(harvestedPath)) {
+    try {
+        const data = fs.readFileSync(harvestedPath, 'utf-8');
+        let spots = JSON.parse(data);
+        const originalLength = spots.length;
+        
+        // Filter out invalid spots
+        const blacklist = ['osm-spot-700', 'osm-spot-585', 'osm-spot-708', 'osm-spot-628', 'osm-spot-877', 'osm-spot-879'];
+        spots = spots.filter(s => !blacklist.includes(s.id));
+        
+        // Scan and scrub any existing inappropriate or bad image URLs in database
+        let scrubbedCount = 0;
+        for (let i = 0; i < spots.length; i++) {
+            const spot = spots[i];
+            let needsScrub = false;
+            
+            // Check main image
+            if (spot.imageUrl && !isValidImageUrl(spot.imageUrl)) {
+                needsScrub = true;
+            }
+            // Check gallery images
+            if (spot.images && spot.images.length > 0) {
+                for (const img of spot.images) {
+                    if (!isValidImageUrl(img)) {
+                        needsScrub = true;
+                        break;
+                    }
+                }
+            }
+            
+            if (needsScrub) {
+                // Reset to clean default placeholder
+                const defaultImg = spot.type === 'playpark' 
+                    ? "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+                    : (spot.type === 'swimmingpool'
+                        ? "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+                        : "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80");
+                        
+                spots[i].imageUrl = defaultImg;
+                spots[i].images = [defaultImg];
+                scrubbedCount++;
+            }
+        }
+        
+        if (spots.length !== originalLength || scrubbedCount > 0) {
+            fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
+            console.log(`[Migration] Cleaned up database: removed ${originalLength - spots.length} invalid spots. Scrubbed ${scrubbedCount} spots containing unsafe or invalid images.`);
+        }
+    } catch (e) {
+        console.error('[Migration] Failed to cleanse/scrub spots_harvested.json:', e);
+    }
+}
+
 // Helper to fetch images from Bing
 function fetchBingImages(query) {
     return new Promise((resolve) => {
-        const url = `https://www.bing.com/images/search?q=${encodeURIComponent(query)}&form=HDRSC2&first=1`;
+        const url = `https://www.bing.com/images/search?q=${encodeURIComponent(query)}&form=HDRSC2&first=1&adlt=strict`;
         const options = {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
