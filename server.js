@@ -11,10 +11,27 @@ const DATA_DIR = process.env.DATA_DIR || (fs.existsSync('/opt/render/project/src
 
 const harvestedPath = path.join(DATA_DIR, 'spots_harvested.json');
 
-// Ensure spots_harvested.json exists in DATA_DIR on startup
+// Ensure spots_harvested.json in DATA_DIR is up-to-date with repo version
 const repoHarvestedPath = path.join(PUBLIC_DIR, 'spots_harvested.json');
 if (DATA_DIR !== PUBLIC_DIR) {
-    if (!fs.existsSync(harvestedPath) && fs.existsSync(repoHarvestedPath)) {
+    let shouldCopy = false;
+    if (!fs.existsSync(harvestedPath)) {
+        shouldCopy = true;
+    } else if (fs.existsSync(repoHarvestedPath)) {
+        try {
+            const repoSpots = JSON.parse(fs.readFileSync(repoHarvestedPath, 'utf-8'));
+            const liveSpots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
+            if (repoSpots.length > liveSpots.length) {
+                console.log(`[Startup] Repo version has more spots (${repoSpots.length}) than persistent volume version (${liveSpots.length}). Overwriting persistent volume.`);
+                shouldCopy = true;
+            }
+        } catch (e) {
+            console.warn('[Startup] Failed to compare spots length:', e);
+            shouldCopy = true; // Fallback to copy if file is corrupted
+        }
+    }
+
+    if (shouldCopy && fs.existsSync(repoHarvestedPath)) {
         try {
             fs.copyFileSync(repoHarvestedPath, harvestedPath);
             console.log(`[Startup] Copied spots_harvested.json to persistent volume: ${harvestedPath}`);
