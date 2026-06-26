@@ -388,6 +388,87 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
+    // API Endpoint: Proxy for MeteoSwiss Weather & Warnings
+    if (pathname === '/api/weather') {
+        const plz = parsedUrl.searchParams.get('plz');
+        if (!plz) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Missing plz parameter' }));
+            return;
+        }
+
+        const url = `https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz=${plz}00`;
+        const options = {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
+                'Accept': 'application/json'
+            }
+        };
+
+        https.get(url, options, (apiRes) => {
+            let body = '';
+            apiRes.on('data', chunk => body += chunk);
+            apiRes.on('end', () => {
+                if (apiRes.statusCode !== 200) {
+                    res.writeHead(apiRes.statusCode, { 'Content-Type': 'application/json' });
+                    res.end(body);
+                    return;
+                }
+
+                try {
+                    const data = JSON.parse(body);
+                    
+                    // Map MeteoSwiss icon to WMO code
+                    const meteoSwissToWmo = {
+                        1: 0,   // Sunny/Clear
+                        2: 1,   // Fair/Partly Cloudy
+                        3: 2,   // Partly Cloudy
+                        4: 3,   // Cloudy
+                        5: 45,  // Fog
+                        6: 3,   // Overcast
+                        7: 80,  // Showers
+                        8: 81,  // Heavy Showers
+                        9: 95,  // Thunderstorm
+                        10: 95, // Heavy Thunderstorm
+                        11: 61, // Rain
+                        12: 63, // Heavy Rain
+                        13: 85, // Snow Showers
+                        14: 71, // Snow
+                        15: 73, // Heavy Snow
+                        16: 95, // Thunderstorm
+                        17: 51, // Drizzle
+                        18: 56, // Freezing rain
+                        19: 68, // Rain and snow
+                        20: 71, // Light snow
+                    };
+
+                    const rawIcon = data.currentWeather ? data.currentWeather.icon : 1;
+                    const wmoCode = meteoSwissToWmo[rawIcon] || 3; // Default to cloudy if not found
+
+                    const result = {
+                        temperature: data.currentWeather ? Math.round(data.currentWeather.temperature) : (data.forecast && data.forecast[0] ? Math.round((data.forecast[0].temperatureMax + data.forecast[0].temperatureMin)/2) : 20),
+                        precipitation: data.forecast && data.forecast[0] ? data.forecast[0].precipitation : 0,
+                        code: wmoCode,
+                        warnings: data.warnings || [],
+                        forecast: data.forecast || []
+                    };
+
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify(result));
+                } catch (e) {
+                    console.error('[API Proxy] Error parsing response:', e);
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Error parsing weather data' }));
+                }
+            });
+        }).on('error', (e) => {
+            console.error('[API Proxy] Error fetching from MeteoSwiss:', e);
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Failed to fetch weather from MeteoSwiss' }));
+        });
+        return;
+    }
+
     // Serve Static Files
     let filePath;
     let isDataFile = false;

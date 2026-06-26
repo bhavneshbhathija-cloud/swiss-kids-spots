@@ -61,15 +61,99 @@ function getWeatherIconAndDesc(code) {
 // Determine if weather is suitable for kids playspots
 function evaluateWeatherSuitability(type, weather) {
     // If no weather loaded, assume good
-    if (!weather) return { suitable: true, status: "good", label: "Weather Suitable" };
+    if (!weather) return { suitable: true, status: "good", label: "Weather Suitable", advice: "" };
 
     const temp = weather.temperature;
     const prec = weather.precipitation;
     const code = weather.code;
+    const warnings = weather.warnings || [];
 
-    // Outdoor playspots (playpark, outdoor swimming pool)
-    const isOutdoor = type === "playpark" || (type === "swimmingpool" && prec > 0); // basic logic: playparks are outdoor, pools can be indoor/outdoor
+    // Detect heatwave
+    const heatWarning = warnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
+    const hasHeatwave = temp >= 30 || !!heatWarning;
 
+    // Detect severe weather warnings (wind, storm, rain, flood, snow, slippery roads, avalanche, earthquake)
+    // warnType 10 is forest fire, which we can exclude from immediate playspot danger unless specifically high.
+    const severeWarning = warnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
+
+    // 1. Severe Weather Warning Active
+    if (severeWarning) {
+        const typeName = {
+            0: "Wind Warning",
+            1: "Thunderstorm Warning",
+            2: "Heavy Rain Warning",
+            3: "Heavy Snow Warning",
+            4: "Slippery Roads Warning",
+            8: "Avalanche Warning",
+            9: "Earthquake Warning",
+            11: "Flood Warning"
+        }[severeWarning.warnType] || "Weather Warning";
+
+        if (type === "playpark") {
+            return {
+                suitable: false,
+                status: "warning",
+                icon: "fa-triangle-exclamation",
+                label: `⚠️ ${typeName} (Level ${severeWarning.warnLevel})`,
+                advice: `Not recommended: Severe weather active. Details: ${severeWarning.text || 'Seek shelter immediately.'}`
+            };
+        } else if (type === "swimmingpool") {
+            return {
+                suitable: true,
+                status: "warning",
+                icon: "fa-triangle-exclamation",
+                label: `⚠️ Indoor Pool Only`,
+                advice: `Severe weather active: ${severeWarning.text || 'Avoid outdoor water activities.'} Make sure to use indoor facilities only.`
+            };
+        } else if (type === "gamezone") {
+            return {
+                suitable: true,
+                status: "good",
+                icon: "fa-shield-halved",
+                label: `🌧️ Safe Indoor Escape`,
+                advice: `Severe weather outside! A perfect indoor escape to stay safe and dry.`
+            };
+        }
+    }
+
+    // 2. Heatwave Active
+    if (hasHeatwave) {
+        if (type === "playpark") {
+            let heatAdvice = `Extremely hot (${temp}°C). Outdoor play is not recommended due to heat exhaustion risk. Stay indoors or in cool, shaded spaces.`;
+            if (heatWarning) {
+                heatAdvice = `<strong>MeteoSwiss Heat Wave Warning (Level ${heatWarning.warnLevel}) is active:</strong><br>${heatWarning.htmlText || heatWarning.text}`;
+            }
+            return {
+                suitable: false,
+                status: "warning",
+                icon: "fa-temperature-high",
+                label: "🥵 Heat Wave: Avoid Outdoors",
+                advice: heatAdvice
+            };
+        } else if (type === "swimmingpool") {
+            let poolAdvice = `Excellent for cooling off! Remember to apply plenty of sunscreen, wear hats, and stay hydrated in the heat (${temp}°C).`;
+            if (heatWarning) {
+                poolAdvice = `Excellent for cooling off, but heed MeteoSwiss heat wave advice: seek shade during peak hours, apply high-SPF sunscreen, and drink plenty of water.`;
+            }
+            return {
+                suitable: true,
+                status: "good",
+                icon: "fa-water",
+                label: "🏊 Cool Down in Pool",
+                advice: poolAdvice
+            };
+        } else if (type === "gamezone") {
+            return {
+                suitable: true,
+                status: "good",
+                icon: "fa-snowflake",
+                label: "❄️ Shaded/AC Escape",
+                advice: `Stay cool indoors! A great air-conditioned or shaded escape from the ${temp}°C heat wave outside.`
+            };
+        }
+    }
+
+    // 3. Normal weather checks
     if (type === "playpark") {
         if (prec > 0.1 || temp < 12 || code >= 51) {
             return { 
@@ -105,10 +189,9 @@ function evaluateWeatherSuitability(type, weather) {
     }
 
     if (type === "swimmingpool") {
-        // Assume pools with fees are mostly indoor/outdoor hybrid, or check description
         if (prec > 0.1 || temp < 15 || code >= 51) {
             return {
-                suitable: true, // Still suitable because indoor pools exist
+                suitable: true, 
                 status: "warning",
                 label: "🌧️ Indoor Pool Only Today",
                 advice: "It is rainy or cold outside. Make sure to use the indoor pool facilities!"
@@ -122,26 +205,64 @@ function evaluateWeatherSuitability(type, weather) {
         };
     }
 
-    return { suitable: true, status: "good", label: "Open today" };
+    return { suitable: true, status: "good", label: "Open today", advice: "" };
 }
 
-// --- Fetch Weather from Open-Meteo API ---
-async function fetchWeatherData(lat, lng) {
+// Get closest Swiss ZIP code for a given coordinate
+function getClosestZip(lat, lng) {
+    if (!SWISS_ZIPS || Object.keys(SWISS_ZIPS).length === 0) return null;
+    let closestZip = null;
+    let minDist = Infinity;
+    for (const [zip, data] of Object.entries(SWISS_ZIPS)) {
+        const dist = calculateDistance(lat, lng, data.lat, data.lng);
+        if (dist < minDist) {
+            minDist = dist;
+            closestZip = zip;
+        }
+    }
+    return closestZip;
+}
+
+// --- Fetch Weather from MeteoSwiss (via Server Proxy) with Open-Meteo fallback ---
+async function fetchWeatherData(lat, lng, zip = null) {
     try {
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,precipitation,weather_code&timezone=Europe/Berlin`);
-        if (!response.ok) throw new Error("Weather request failed");
+        const targetZip = zip || getClosestZip(lat, lng);
+        if (!targetZip) {
+            throw new Error("No matching ZIP code found for coordinates");
+        }
+
+        const response = await fetch(`/api/weather?plz=${targetZip}`);
+        if (!response.ok) throw new Error("MeteoSwiss proxy request failed");
         const data = await response.json();
         
         return {
-            temperature: Math.round(data.current.temperature_2m),
-            precipitation: data.current.precipitation,
-            code: data.current.weather_code
+            temperature: data.temperature,
+            precipitation: data.precipitation,
+            code: data.code,
+            warnings: data.warnings,
+            forecast: data.forecast
         };
     } catch (e) {
-        console.warn("Could not fetch weather data:", e);
-        return null;
+        console.warn("Could not fetch MeteoSwiss weather data, falling back to Open-Meteo:", e.message);
+        // Fallback to Open-Meteo API
+        try {
+            const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,precipitation,weather_code&timezone=Europe/Berlin`);
+            if (!response.ok) throw new Error("Open-Meteo fallback failed");
+            const data = await response.json();
+            return {
+                temperature: Math.round(data.current.temperature_2m),
+                precipitation: data.current.precipitation,
+                code: data.current.weather_code,
+                warnings: [],
+                forecast: []
+            };
+        } catch (err) {
+            console.error("All weather sources failed:", err);
+            return null;
+        }
     }
 }
+
 
 // --- Load/Save LocalStorage ---
 async function loadSpots() {
@@ -400,7 +521,7 @@ function renderSpotsList() {
         // Weather Suitability Alert
         const weatherEval = evaluateWeatherSuitability(spot.type, liveWeatherData);
         const weatherClass = weatherEval.status === "warning" ? "weather-warning" : "weather-good";
-        const weatherIcon = weatherEval.status === "warning" ? "fa-triangle-exclamation" : "fa-circle-check";
+        const weatherIcon = weatherEval.icon || (weatherEval.status === "warning" ? "fa-triangle-exclamation" : "fa-circle-check");
         const weatherHtml = liveWeatherData ? `
             <div class="weather-suitability-badge ${weatherClass}">
                 <i class="fa-solid ${weatherIcon}"></i> ${weatherEval.label}
@@ -1005,14 +1126,43 @@ function updateWeatherWidget(cityName) {
     }
 
     const info = getWeatherIconAndDesc(liveWeatherData.code);
+    const warnings = liveWeatherData.warnings || [];
     
-    // Evaluate if overall weather is generally cold/wet
+    // Evaluate warning/advisory conditions
+    const heatWarning = warnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
+    const hasHeatwave = liveWeatherData.temperature >= 30 || !!heatWarning;
+    const severeWarning = warnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
+
     let generalTip = "Excellent weather for kids to play outside! Pack sunblock and head to local playparks.";
     let generalIcon = "fa-thumbs-up";
     
-    if (liveWeatherData.precipitation > 0.1 || liveWeatherData.temperature < 12) {
+    if (severeWarning) {
+        generalTip = `Severe weather alert active (Level ${severeWarning.warnLevel}). Keep children indoors.`;
+        generalIcon = "fa-triangle-exclamation";
+    } else if (hasHeatwave) {
+        generalTip = "Heat wave warning! Outdoor play not recommended. Stay cool indoors or at an indoor AC space.";
+        generalIcon = "fa-temperature-high";
+    } else if (liveWeatherData.precipitation > 0.1 || liveWeatherData.temperature < 12) {
         generalTip = "Rain or cold detected. Grab boots or check out indoor game zones/swimming pools instead.";
         generalIcon = "fa-umbrella";
+    }
+
+    // Generate warnings HTML list for the widget
+    let warningsHtml = "";
+    if (warnings.length > 0) {
+        const relevantWarnings = warnings.filter(w => w.warnLevel >= 2);
+        if (relevantWarnings.length > 0) {
+            warningsHtml = `
+                <div class="weather-widget-warnings" style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(230, 57, 70, 0.3); font-size: 0.8rem; color: var(--danger-red);">
+                    ${relevantWarnings.map(w => `
+                        <div style="margin-bottom: 4px; display: flex; align-items: flex-start; gap: 4px;">
+                            <i class="fa-solid fa-triangle-exclamation" style="margin-top: 2px;"></i> 
+                            <div><strong>Level ${w.warnLevel} warning:</strong> ${w.text.split('\n')[0]}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
     }
 
     widget.innerHTML = `
@@ -1031,6 +1181,7 @@ function updateWeatherWidget(cityName) {
             <i class="fa-solid ${generalIcon}"></i>
             <span>${generalTip}</span>
         </div>
+        ${warningsHtml}
     `;
 }
 
