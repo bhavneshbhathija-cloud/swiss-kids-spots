@@ -96,8 +96,49 @@ if (fs.existsSync(harvestedPath)) {
     }
 }
 
+// Helper to verify if a scraped image matches the category type
+function isImageRelevant(meta, type) {
+    if (!meta) return false;
+    const textToSearch = [
+        meta.t || '',
+        meta.desc || '',
+        meta.murl || '',
+        meta.purl || ''
+    ].join(' ').toLowerCase();
+
+    // Define keywords for relevance checks (German and English)
+    let keywords = [];
+    if (type === 'playpark') {
+        keywords = [
+            'playpark', 'playground', 'spielplatz', 'slide', 'swing', 'climbing', 'park', 
+            'spiel', 'kinder', 'rutsche', 'schaukel', 'sandkasten', 'play', 'outdoor', 
+            'climb', 'toy', 'fun', 'spass', 'geräte', 'seilbahn', 'wiese', 'turnen'
+        ];
+    } else if (type === 'swimmingpool') {
+        keywords = [
+            'swimming', 'pool', 'swim', 'badi', 'hallenbad', 'freibad', 'wasser', 'bad', 
+            'schwimmbad', 'strandbad', 'lido', 'bathing', 'water', 'slide', 'rutsche', 
+            'becken', 'schwimmen', 'planschbecken'
+        ];
+    } else if (type === 'gamezone') {
+        keywords = [
+            'gamezone', 'game', 'arcade', 'play', 'indoor', 'center', 'laser', 'bowling', 
+            'billiard', 'pinball', 'fun', 'spiel', 'gaming', 'arcade', 'spielhalle', 'zocken'
+        ];
+    } else {
+        return true; // fallback
+    }
+
+    for (const kw of keywords) {
+        if (textToSearch.includes(kw)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // Helper to fetch images from Bing
-function fetchBingImages(query) {
+function fetchBingImages(query, type) {
     return new Promise((resolve) => {
         const url = `https://www.bing.com/images/search?q=${encodeURIComponent(query)}&form=HDRSC2&first=1&adlt=strict`;
         const options = {
@@ -110,13 +151,19 @@ function fetchBingImages(query) {
             let html = '';
             res.on('data', (chunk) => html += chunk);
             res.on('end', () => {
-                const regex = /murl&quot;:&quot;(https:\/\/[^&"]+)&quot;/g;
+                const regex = /m="([^"]+)"/g;
                 const matches = new Set();
                 let match;
                 while ((match = regex.exec(html)) !== null) {
-                    const imgUrl = match[1];
-                    if (isValidImageUrl(imgUrl)) {
-                        matches.add(imgUrl);
+                    try {
+                        const jsonStr = match[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&#183;/g, '-');
+                        const meta = JSON.parse(jsonStr);
+                        const imgUrl = meta.murl;
+                        if (isValidImageUrl(imgUrl) && isImageRelevant(meta, type)) {
+                            matches.add(imgUrl);
+                        }
+                    } catch (e) {
+                        // ignore malformed metadata
                     }
                     if (matches.size >= 4) break;
                 }
@@ -254,21 +301,53 @@ const server = http.createServer(async (req, res) => {
             return;
         }
 
-        console.log(`[Dynamic Scrape] Fetching images for spot ${id} ("${query}")...`);
-        const images = await fetchBingImages(query);
+        // Get spot type from database to use for relevance filtering
+        let spotType = 'playpark'; // default fallback
+        if (fs.existsSync(harvestedPath)) {
+            try {
+                const spots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
+                const spot = spots.find(s => s.id === id);
+                if (spot) {
+                    spotType = spot.type;
+                }
+            } catch (e) {
+                console.error('Error looking up spot type:', e);
+            }
+        }
+
+        console.log(`[Dynamic Scrape] Fetching images for spot ${id} (type: "${spotType}", query: "${query}")...`);
+        const images = await fetchBingImages(query, spotType);
 
         // Update database if name/address or images are provided
+        let responseImages = images;
         if (fs.existsSync(harvestedPath)) {
             try {
                 const spots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
                 const spotIdx = spots.findIndex(s => s.id === id);
                 if (spotIdx !== -1) {
                     let updated = false;
+                    
                     if (images.length > 0) {
                         spots[spotIdx].imageUrl = images[0];
                         spots[spotIdx].images = images;
                         updated = true;
+                    } else {
+                        // If no images matched the relevance check or were found, auto-default to category placeholder
+                        const defaultImg = spotType === 'playpark' 
+                            ? "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+                            : (spotType === 'gamezone' 
+                                ? "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80"
+                                : "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80");
+                        
+                        if (spots[spotIdx].imageUrl !== defaultImg) {
+                            spots[spotIdx].imageUrl = defaultImg;
+                            spots[spotIdx].images = [defaultImg];
+                            updated = true;
+                            console.log(`[Auto-Default] Spot ${id} ("${spots[spotIdx].name}") failed relevance filter; set to category default: ${defaultImg}`);
+                        }
+                        responseImages = [defaultImg];
                     }
+
                     if (name && spots[spotIdx].name !== name) {
                         spots[spotIdx].name = name;
                         updated = true;
@@ -288,7 +367,7 @@ const server = http.createServer(async (req, res) => {
         }
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ images }));
+        res.end(JSON.stringify({ images: responseImages }));
         return;
     }
 

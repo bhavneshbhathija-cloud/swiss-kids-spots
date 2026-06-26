@@ -610,7 +610,6 @@ async function openDetails(spotId) {
                 <div class="detail-thumbnails">
                     ${thumbnailsHtml}
                 </div>
-                <button class="btn btn-outline btn-sm" onclick="resetSpotImage('${spot.id}')" style="margin-top: 8px; width: 100%; font-size: 0.75rem; padding: 0.25rem 0.5rem; min-height: auto; height: auto; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--border-color); color: var(--text-secondary);"><i class="fa-regular fa-image"></i> Wrong Photo? Reset to Category Default</button>
             </div>
         `;
     } else {
@@ -620,7 +619,6 @@ async function openDetails(spotId) {
                     ${loadingBadgeHtml}
                     <img id="detail-main-img" class="detail-main-img" src="${mainImage}" alt="${spot.name}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src=getDefaultSpotFallback('${spot.type}')">
                 </div>
-                <button class="btn btn-outline btn-sm" onclick="resetSpotImage('${spot.id}')" style="margin-top: 8px; width: 100%; font-size: 0.75rem; padding: 0.25rem 0.5rem; min-height: auto; height: auto; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--border-color); color: var(--text-secondary);"><i class="fa-regular fa-image"></i> Wrong Photo? Reset to Category Default</button>
             </div>
         `;
     }
