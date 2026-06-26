@@ -77,9 +77,9 @@ if (fs.existsSync(harvestedPath)) {
                 // Reset to clean default placeholder
                 const defaultImg = spot.type === 'playpark' 
                     ? "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
-                    : (spot.type === 'swimmingpool'
-                        ? "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
-                        : "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80");
+                    : (spot.type === 'gamezone'
+                        ? "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80"
+                        : "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80");
                         
                 spots[i].imageUrl = defaultImg;
                 spots[i].images = [defaultImg];
@@ -195,14 +195,62 @@ const server = http.createServer(async (req, res) => {
 
     // API Endpoint: Dynamic Image Scraper and Spot Enricher
     if (pathname === '/api/scrape-images') {
+        const action = parsedUrl.searchParams.get('action');
         const id = parsedUrl.searchParams.get('id');
         const query = parsedUrl.searchParams.get('query');
         const name = parsedUrl.searchParams.get('name');
         const address = parsedUrl.searchParams.get('address');
 
-        if (!id || !query) {
+        if (!id) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ error: 'Missing id or query parameter' }));
+            res.end(JSON.stringify({ error: 'Missing id parameter' }));
+            return;
+        }
+
+        // Action: Reset spot image to category-specific default image
+        if (action === 'reset') {
+            if (fs.existsSync(harvestedPath)) {
+                try {
+                    const spots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
+                    const spotIdx = spots.findIndex(s => s.id === id);
+                    if (spotIdx !== -1) {
+                        const spot = spots[spotIdx];
+                        const defaultImg = spot.type === 'playpark' 
+                            ? "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+                            : (spot.type === 'gamezone'
+                                ? "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80"
+                                : "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80");
+                        
+                        spots[spotIdx].imageUrl = defaultImg;
+                        spots[spotIdx].images = [defaultImg];
+                        
+                        fs.writeFileSync(harvestedPath, JSON.stringify(spots, null, 4), 'utf-8');
+                        console.log(`[Reset Spot Image] Reset spot ${id} to category default: ${defaultImg}`);
+                        
+                        res.writeHead(200, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ success: true, imageUrl: defaultImg }));
+                        return;
+                    } else {
+                        res.writeHead(404, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ error: 'Spot not found' }));
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Error during spot reset:', e);
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Internal server error during reset' }));
+                    return;
+                }
+            } else {
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Database file not found' }));
+                return;
+            }
+        }
+
+        if (!query) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Missing query parameter for search action' }));
             return;
         }
 
@@ -210,7 +258,7 @@ const server = http.createServer(async (req, res) => {
         const images = await fetchBingImages(query);
 
         // Update database if name/address or images are provided
-        if (id.startsWith('osm-spot-') && fs.existsSync(harvestedPath)) {
+        if (fs.existsSync(harvestedPath)) {
             try {
                 const spots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
                 const spotIdx = spots.findIndex(s => s.id === id);

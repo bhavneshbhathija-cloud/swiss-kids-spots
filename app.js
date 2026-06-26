@@ -495,6 +495,38 @@ window.changeDetailImage = function(src, thumbnailEl) {
     thumbnailEl.classList.add("active");
 };
 
+// Reset spot image to type-specific default category image
+window.resetSpotImage = async function(spotId) {
+    if (!confirm("Are you sure you want to reset this spot's photo to the category default?")) return;
+    
+    try {
+        const response = await fetch(`/api/scrape-images?action=reset&id=${spotId}`);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.success && data.imageUrl) {
+                // Update in local memory spots array
+                const spot = spots.find(s => s.id === spotId);
+                if (spot) {
+                    spot.imageUrl = data.imageUrl;
+                    spot.images = [data.imageUrl];
+                }
+                
+                // Update detail modal views
+                const mainImg = document.getElementById("detail-main-img");
+                if (mainImg) mainImg.src = data.imageUrl;
+                
+                const thumbnails = document.querySelector(".detail-thumbnails");
+                if (thumbnails) thumbnails.style.display = "none"; // Hide thumbnails
+                
+                // Re-render list to update card photos
+                renderSpotsList();
+            }
+        }
+    } catch (err) {
+        console.warn("Reset photo failed:", err);
+    }
+};
+
 // --- Detail View Loading ---
 async function openDetails(spotId) {
     const spot = spots.find(s => s.id === spotId);
@@ -578,6 +610,7 @@ async function openDetails(spotId) {
                 <div class="detail-thumbnails">
                     ${thumbnailsHtml}
                 </div>
+                <button class="btn btn-outline btn-sm" onclick="resetSpotImage('${spot.id}')" style="margin-top: 8px; width: 100%; font-size: 0.75rem; padding: 0.25rem 0.5rem; min-height: auto; height: auto; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--border-color); color: var(--text-secondary);"><i class="fa-regular fa-image"></i> Wrong Photo? Reset to Category Default</button>
             </div>
         `;
     } else {
@@ -587,6 +620,7 @@ async function openDetails(spotId) {
                     ${loadingBadgeHtml}
                     <img id="detail-main-img" class="detail-main-img" src="${mainImage}" alt="${spot.name}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src=getDefaultSpotFallback('${spot.type}')">
                 </div>
+                <button class="btn btn-outline btn-sm" onclick="resetSpotImage('${spot.id}')" style="margin-top: 8px; width: 100%; font-size: 0.75rem; padding: 0.25rem 0.5rem; min-height: auto; height: auto; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--border-color); color: var(--text-secondary);"><i class="fa-regular fa-image"></i> Wrong Photo? Reset to Category Default</button>
             </div>
         `;
     }
