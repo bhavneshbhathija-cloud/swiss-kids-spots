@@ -68,13 +68,26 @@ function evaluateWeatherSuitability(type, weather) {
     const code = weather.code;
     const warnings = weather.warnings || [];
 
-    // Detect heatwave
-    const heatWarning = warnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
-    const hasHeatwave = temp >= 30 || !!heatWarning;
+    const now = Date.now();
+    // Filter active warnings based on valid time range
+    const activeWarnings = warnings.filter(w => 
+        (!w.validFrom || now >= w.validFrom) && 
+        (!w.validTo || now <= w.validTo)
+    );
+
+    // Get today's forecast max temperature
+    const todayMax = (weather.forecast && weather.forecast[0]) ? weather.forecast[0].temperatureMax : temp;
+
+    // Detect heatwave in active warnings
+    const heatWarning = activeWarnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
+    
+    // A heatwave is active if the current temp >= 32, or today's forecast max >= 30,
+    // or if there is an active official heatwave warning AND either current temp >= 28 or forecast max >= 30.
+    const hasHeatwave = temp >= 32 || todayMax >= 30 || (!!heatWarning && (temp >= 28 || todayMax >= 30));
 
     // Detect severe weather warnings (wind, storm, rain, flood, snow, slippery roads, avalanche, earthquake)
     // warnType 10 is forest fire, which we can exclude from immediate playspot danger unless specifically high.
-    const severeWarning = warnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
+    const severeWarning = activeWarnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
 
     // 1. Severe Weather Warning Active
     if (severeWarning) {
@@ -1128,10 +1141,20 @@ function updateWeatherWidget(cityName) {
     const info = getWeatherIconAndDesc(liveWeatherData.code);
     const warnings = liveWeatherData.warnings || [];
     
+    const now = Date.now();
+    // Filter active warnings based on valid time range
+    const activeWarnings = warnings.filter(w => 
+        (!w.validFrom || now >= w.validFrom) && 
+        (!w.validTo || now <= w.validTo)
+    );
+
+    // Get today's forecast max temperature
+    const todayMax = (liveWeatherData.forecast && liveWeatherData.forecast[0]) ? liveWeatherData.forecast[0].temperatureMax : liveWeatherData.temperature;
+
     // Evaluate warning/advisory conditions
-    const heatWarning = warnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
-    const hasHeatwave = liveWeatherData.temperature >= 30 || !!heatWarning;
-    const severeWarning = warnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
+    const heatWarning = activeWarnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
+    const hasHeatwave = liveWeatherData.temperature >= 32 || todayMax >= 30 || (!!heatWarning && (liveWeatherData.temperature >= 28 || todayMax >= 30));
+    const severeWarning = activeWarnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
 
     let generalTip = "Excellent weather for kids to play outside! Pack sunblock and head to local playparks.";
     let generalIcon = "fa-thumbs-up";
@@ -1149,8 +1172,8 @@ function updateWeatherWidget(cityName) {
 
     // Generate warnings HTML list for the widget
     let warningsHtml = "";
-    if (warnings.length > 0) {
-        const relevantWarnings = warnings.filter(w => w.warnLevel >= 2);
+    if (activeWarnings.length > 0) {
+        const relevantWarnings = activeWarnings.filter(w => w.warnLevel >= 2);
         if (relevantWarnings.length > 0) {
             warningsHtml = `
                 <div class="weather-widget-warnings" style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(230, 57, 70, 0.3); font-size: 0.8rem; color: var(--danger-red);">
