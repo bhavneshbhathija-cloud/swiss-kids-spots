@@ -137,7 +137,7 @@ function evaluateWeatherSuitability(type, weather) {
     // 2. Heatwave Active
     if (hasHeatwave) {
         if (type === "playpark") {
-            let heatAdvice = `Extremely hot (${temp}°C). Outdoor play is not recommended due to heat exhaustion risk. Stay indoors or in cool, shaded spaces.`;
+            let heatAdvice = `Extremely hot (${temp}&deg;C). Outdoor play is not recommended due to heat exhaustion risk. Stay indoors or in cool, shaded spaces.`;
             if (heatWarning) {
                 heatAdvice = `<strong>MeteoSwiss Heat Wave Warning (Level ${heatWarning.warnLevel}) is active:</strong><br>${heatWarning.htmlText || heatWarning.text}`;
             }
@@ -149,7 +149,7 @@ function evaluateWeatherSuitability(type, weather) {
                 advice: heatAdvice
             };
         } else if (type === "swimmingpool") {
-            let poolAdvice = `Excellent for cooling off! Remember to apply plenty of sunscreen, wear hats, and stay hydrated in the heat (${temp}°C).`;
+            let poolAdvice = `Excellent for cooling off! Remember to apply plenty of sunscreen, wear hats, and stay hydrated in the heat (${temp}&deg;C).`;
             if (heatWarning) {
                 poolAdvice = `Excellent for cooling off, but heed MeteoSwiss heat wave advice: seek shade during peak hours, apply high-SPF sunscreen, and drink plenty of water.`;
             }
@@ -166,7 +166,7 @@ function evaluateWeatherSuitability(type, weather) {
                 status: "good",
                 icon: "fa-snowflake",
                 label: "❄️ Shaded/AC Escape",
-                advice: `Stay cool indoors! A great air-conditioned or shaded escape from the ${temp}°C heat wave outside.`
+                advice: `Stay cool indoors! A great air-conditioned or shaded escape from the ${temp}&deg;C heat wave outside.`
             };
         }
     }
@@ -954,7 +954,7 @@ async function openDetails(spotId) {
                 <div class="weather-detail-main">
                     <i class="fa-solid ${weatherDetails.icon}"></i>
                     <div>
-                        <span class="weather-detail-temp">${spotWeather.temperature}°C</span>
+                        <span class="weather-detail-temp">${spotWeather.temperature}&deg;C</span>
                         <div style="font-size:0.8rem; color:var(--text-secondary);">${weatherDetails.desc}</div>
                     </div>
                 </div>
@@ -1219,7 +1219,7 @@ function updateWeatherWidget(cityName) {
         <div class="weather-main">
             <i class="fa-solid ${info.icon} weather-icon-lg"></i>
             <div>
-                <div class="weather-temp">${liveWeatherData.temperature}°C</div>
+                <div class="weather-temp">${liveWeatherData.temperature}&deg;C</div>
                 <div class="weather-desc">${info.desc} (Rain: ${liveWeatherData.precipitation}mm)</div>
             </div>
         </div>
