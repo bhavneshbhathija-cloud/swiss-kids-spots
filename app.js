@@ -85,6 +85,11 @@ function evaluateWeatherSuitability(type, weather) {
     // or if there is an active official heatwave warning AND either current temp >= 28 or forecast max >= 30.
     const hasHeatwave = temp >= 32 || todayMax >= 30 || (!!heatWarning && (temp >= 28 || todayMax >= 30));
 
+    // If we determined it's NOT a heatwave, remove the heatwave warning from active warnings so it doesn't trigger alerts
+    if (!hasHeatwave) {
+        activeWarnings = activeWarnings.filter(w => w.warnType !== 7);
+    }
+
     // Detect severe weather warnings (wind, storm, rain, flood, snow, slippery roads, avalanche, earthquake)
     // warnType 10 is forest fire, which we can exclude from immediate playspot danger unless specifically high.
     const severeWarning = activeWarnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
@@ -1143,7 +1148,7 @@ function updateWeatherWidget(cityName) {
     
     const now = Date.now();
     // Filter active warnings based on valid time range
-    const activeWarnings = warnings.filter(w => 
+    let activeWarnings = warnings.filter(w => 
         (!w.validFrom || now >= w.validFrom) && 
         (!w.validTo || now <= w.validTo)
     );
@@ -1154,6 +1159,12 @@ function updateWeatherWidget(cityName) {
     // Evaluate warning/advisory conditions
     const heatWarning = activeWarnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
     const hasHeatwave = liveWeatherData.temperature >= 32 || todayMax >= 30 || (!!heatWarning && (liveWeatherData.temperature >= 28 || todayMax >= 30));
+
+    // If we determined it's NOT a heatwave, remove the heatwave warning from active warnings so it doesn't display in UI
+    if (!hasHeatwave) {
+        activeWarnings = activeWarnings.filter(w => w.warnType !== 7);
+    }
+
     const severeWarning = activeWarnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
 
     let generalTip = "Excellent weather for kids to play outside! Pack sunblock and head to local playparks.";
