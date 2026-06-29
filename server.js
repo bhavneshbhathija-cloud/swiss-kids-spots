@@ -123,6 +123,20 @@ function isImageRelevant(meta, type) {
         meta.purl || ''
     ].join(' ').toLowerCase();
 
+    // Blacklist to reject clinical/medical, diagrams, maps, and logos
+    const blacklist = [
+        'spital', 'hospital', 'klinik', 'surgery', 'operation', 'medical', 'doctor', 'arzt',
+        'dentist', 'zahnarzt', 'patient', 'therapie', 'rehab', 'treatment', 'medical center',
+        'clinic', 'op-saal', 'op ', 'operationstisch', 'operationssaal', 'krankenhaus',
+        'karte', 'map', 'blueprint', 'floor plan', 'grundriss', 'diagram', 'logo', 'flyer',
+        'poster', 'document', 'formular'
+    ];
+    for (const term of blacklist) {
+        if (textToSearch.includes(term)) {
+            return false;
+        }
+    }
+
     // Define keywords for relevance checks (German and English)
     let keywords = [];
     if (type === 'playpark') {
