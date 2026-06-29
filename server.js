@@ -418,6 +418,18 @@ const server = http.createServer(async (req, res) => {
                 try {
                     const data = JSON.parse(body);
                     
+                    // Check for stale data (older than 12 hours) or missing forecast (common on university/corporate PLZs like 8093)
+                    const now = Date.now();
+                    const isStale = data.currentWeather && data.currentWeather.time && (now - data.currentWeather.time > 12 * 60 * 60 * 1000);
+                    const hasForecast = data.forecast && data.forecast.length > 0;
+                    
+                    if (isStale || !hasForecast) {
+                        console.warn(`[API Proxy] MeteoSwiss data for PLZ ${plz} is stale or incomplete (stale=${isStale}, hasForecast=${hasForecast}). Rejecting to trigger fallback.`);
+                        res.writeHead(502, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ error: 'MeteoSwiss data is stale or incomplete' }));
+                        return;
+                    }
+                    
                     // Map MeteoSwiss icon to WMO code
                     const meteoSwissToWmo = {
                         1: 0,   // Sunny/Clear
