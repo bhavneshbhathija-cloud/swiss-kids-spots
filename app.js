@@ -70,7 +70,7 @@ function evaluateWeatherSuitability(type, weather) {
 
     const now = Date.now();
     // Filter active warnings based on valid time range
-    const activeWarnings = warnings.filter(w => 
+    let activeWarnings = warnings.filter(w => 
         (!w.validFrom || now >= w.validFrom) && 
         (!w.validTo || now <= w.validTo)
     );
@@ -939,7 +939,7 @@ async function openDetails(spotId) {
     });
 
     // Fetch live weather specifically for this spot
-    const spotWeather = await fetchWeatherData(spot.lat, spot.lng);
+    const spotWeather = await fetchWeatherData(spot.lat, spot.lng, spot.zip);
     const weatherBox = document.getElementById("modal-weather-box");
     if (spotWeather) {
         const weatherDetails = getWeatherIconAndDesc(spotWeather.code);
@@ -1125,7 +1125,7 @@ async function selectZip(zipCode) {
         </div>
     `;
 
-    liveWeatherData = await fetchWeatherData(data.lat, data.lng);
+    liveWeatherData = await fetchWeatherData(data.lat, data.lng, zipCode);
     updateWeatherWidget(data.city);
 
     // Refresh lists & center map
@@ -1271,7 +1271,7 @@ async function locateUser() {
                     </div>
                 `;
                 
-                liveWeatherData = await fetchWeatherData(lat, lng);
+                liveWeatherData = await fetchWeatherData(lat, lng, closestZip);
                 updateWeatherWidget(closestCity);
                 
                 // Add user location marker on Leaflet map
