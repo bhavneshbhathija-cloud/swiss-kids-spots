@@ -498,6 +498,8 @@ const server = http.createServer(async (req, res) => {
     else if (extname === '.png') contentType = 'image/png';
     else if (extname === '.jpg' || extname === '.jpeg') contentType = 'image/jpeg';
     else if (extname === '.ico') contentType = 'image/x-icon';
+    else if (extname === '.txt') contentType = 'text/plain';
+    else if (extname === '.xml') contentType = 'application/xml';
 
     fs.readFile(filePath, (err, content) => {
         if (err) {
