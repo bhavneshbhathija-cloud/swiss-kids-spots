@@ -1184,14 +1184,26 @@ function updateWeatherWidget(cityName) {
     // Generate warnings HTML list for the widget
     let warningsHtml = "";
     if (activeWarnings.length > 0) {
-        const relevantWarnings = activeWarnings.filter(w => w.warnLevel >= 2);
+        // Only show warnings directly relevant to playspots: wind, storm, rain, snow, heatwave, flood
+        const relevantWarnings = activeWarnings.filter(w => 
+            w.warnLevel >= 2 && 
+            [0, 1, 2, 3, 7, 11].includes(w.warnType)
+        );
         if (relevantWarnings.length > 0) {
+            const warnNames = {
+                0: "Wind",
+                1: "Thunderstorm",
+                2: "Heavy Rain",
+                3: "Heavy Snow",
+                7: "Heatwave",
+                11: "Flood"
+            };
             warningsHtml = `
                 <div class="weather-widget-warnings" style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(230, 57, 70, 0.3); font-size: 0.8rem; color: var(--danger-red);">
                     ${relevantWarnings.map(w => `
                         <div style="margin-bottom: 4px; display: flex; align-items: flex-start; gap: 4px;">
                             <i class="fa-solid fa-triangle-exclamation" style="margin-top: 2px;"></i> 
-                            <div><strong>Level ${w.warnLevel} warning:</strong> ${w.text.split('\n')[0]}</div>
+                            <div><strong>Level ${w.warnLevel} ${warnNames[w.warnType] || 'Weather'} Warning</strong></div>
                         </div>
                     `).join('')}
                 </div>
