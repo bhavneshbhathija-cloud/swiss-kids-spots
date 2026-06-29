@@ -493,15 +493,39 @@ function renderSpotsList() {
         });
     }
 
-    // Sort Results
-    if (sortBy === "distance" && currentSearchZip !== "") {
-        filtered.sort((a, b) => a.distance - b.distance);
-    } else if (sortBy === "rating") {
-        filtered.sort((a, b) => getAvgRating(b) - getAvgRating(a));
-    } else {
-        // Fallback: alphabetical name sort
-        filtered.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    // Sort Results using Priority Tiers:
+    // Tier 1: Curated baseline & user-added spots
+    // Tier 2: OSM spots with real scraped pictures
+    // Tier 3: OSM spots with placeholder pictures
+    // Within each tier: sort based on user's choice (distance, rating, or name)
+    filtered.sort((a, b) => {
+        const getPriority = (spot) => {
+            const isCustom = spot.id.startsWith("custom-spot-");
+            const isCurated = !spot.id.startsWith("osm-spot-") && !isCustom;
+            if (isCurated || isCustom) return 1;
+            
+            const isPlaceholder = spot.imageUrl && spot.imageUrl.includes("unsplash.com/photo-");
+            if (!isPlaceholder) return 2;
+            
+            return 3;
+        };
+
+        const pA = getPriority(a);
+        const pB = getPriority(b);
+
+        if (pA !== pB) {
+            return pA - pB;
+        }
+
+        // Secondary Sort: within the same tier
+        if (sortBy === "distance" && currentSearchZip !== "") {
+            return (a.distance || 0) - (b.distance || 0);
+        } else if (sortBy === "rating") {
+            return getAvgRating(b) - getAvgRating(a);
+        } else {
+            return a.name.localeCompare(b.name);
+        }
+    });
 
     // Render count
     const zipCity = currentSearchZip && SWISS_ZIPS[currentSearchZip] ? SWISS_ZIPS[currentSearchZip].city : currentSearchZip;
