@@ -81,7 +81,7 @@ function harvestSpots() {
       way(45.8,5.9,47.9,10.5)[leisure=swimming_pool];
       way(45.8,5.9,47.9,10.5)[leisure=indoor_play];
     );
-    out center 1500;
+    out center 8000;
     `;
 
     const postData = 'data=' + encodeURIComponent(overpassQuery);
@@ -288,29 +288,35 @@ function harvestSpots() {
                     }
 
                     // 7. Deduplication Check
-                    // A. Check against curated spots (base_spots.json) - skip if within 100 meters (approx 0.100 km)
+                    // A. Check against curated spots (base_spots.json)
                     let isDuplicateOfCurated = false;
+                    const baseDupThreshold = spotType === "playpark" ? 0.150 : 0.250;
                     for (const baseSpot of BASE_SPOTS) {
-                        const dist = calculateDistance(lat, lng, baseSpot.lat, baseSpot.lng);
-                        if (dist < 0.100) {
-                            isDuplicateOfCurated = true;
-                            break;
+                        if (baseSpot.type === spotType) {
+                            const dist = calculateDistance(lat, lng, baseSpot.lat, baseSpot.lng);
+                            if (dist < baseDupThreshold) {
+                                isDuplicateOfCurated = true;
+                                break;
+                            }
                         }
                     }
                     if (isDuplicateOfCurated) {
                         return;
                     }
 
-                    // B. Check against already added harvested spots - if within 75 meters (approx 0.075 km)
+                    // B. Check against already added harvested spots
                     let isDuplicateOfHarvested = false;
                     let duplicateIdx = -1;
+                    const harvestDupThreshold = spotType === "playpark" ? 0.150 : 0.250;
                     for (let i = 0; i < formattedSpots.length; i++) {
                         const existing = formattedSpots[i];
-                        const dist = calculateDistance(lat, lng, existing.lat, existing.lng);
-                        if (dist < 0.075) {
-                            isDuplicateOfHarvested = true;
-                            duplicateIdx = i;
-                            break;
+                        if (existing.type === spotType) {
+                            const dist = calculateDistance(lat, lng, existing.lat, existing.lng);
+                            if (dist < harvestDupThreshold) {
+                                isDuplicateOfHarvested = true;
+                                duplicateIdx = i;
+                                break;
+                            }
                         }
                     }
 
