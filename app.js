@@ -15,6 +15,7 @@ let currentRadiusKm = 5;
 let liveWeatherData = null; // Global cache for searched zip weather
 let theme = "light";
 let userLocationMarker = null;
+let isOsmSpotsLoaded = false;
 
 // --- Utility Functions ---
 
@@ -339,7 +340,32 @@ async function loadSpots() {
         }
     });
 
-    // 4. Fetch the 200 harvested spots from OSM
+    isOsmSpotsLoaded = false;
+    
+    // Refresh lists and map markers once loaded
+    renderSpotsList();
+}
+
+// Lazily load the large harvested OSM spots database only when user searches or geolocates
+async function loadOsmSpots() {
+    if (isOsmSpotsLoaded) return;
+    
+    const countContainer = document.getElementById("results-count");
+    const originalText = countContainer ? countContainer.textContent : "0 spots found";
+    if (countContainer) {
+        countContainer.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading all kids spots...';
+    }
+
+    const localReviews = localStorage.getItem("swiss_kids_reviews");
+    let reviewsDict = {};
+    if (localReviews) {
+        try {
+            reviewsDict = JSON.parse(localReviews);
+        } catch (e) {
+            console.error("Error loading reviews from localStorage", e);
+        }
+    }
+
     try {
         const response = await fetch("spots_harvested.json?v=" + Date.now());
         if (response.ok) {
@@ -355,13 +381,15 @@ async function loadSpots() {
 
             spots = spots.concat(harvestedSpots);
             console.log(`Loaded ${harvestedSpots.length} OSM spots dynamically.`);
+            isOsmSpotsLoaded = true;
         }
     } catch (e) {
         console.warn("Could not fetch spots_harvested.json, using baseline.", e);
+    } finally {
+        if (countContainer) {
+            countContainer.textContent = originalText;
+        }
     }
-    
-    // Refresh lists and map markers once loaded
-    renderSpotsList();
 }
 
 function saveSpots() {
@@ -1135,7 +1163,7 @@ async function selectZip(zipCode) {
     const data = SWISS_ZIPS[zipCode];
     if (!data) return;
 
-    ensureMapVisibleAndInitialized();
+    await loadOsmSpots();
 
     document.getElementById("zip-input").value = `${zipCode} - ${data.city} (${data.canton})`;
     document.getElementById("zip-autocomplete").style.display = "none";
@@ -1301,7 +1329,7 @@ async function locateUser() {
                 // Use exact user coordinates as center for high-precision distance sorting
                 currentSearchCenter = { lat, lng, name: `Your Location (${closestCity})` };
                 
-                ensureMapVisibleAndInitialized();
+                await loadOsmSpots();
                 
                 // Load weather for user's location
                 document.getElementById("weather-widget").style.display = "block";
@@ -1529,23 +1557,11 @@ async function handleFeedbackSubmit(e) {
     document.getElementById("feedback-modal").style.display = "none";
 }
 
-// Helper to dynamically show and initialize Leaflet map when a search or location check is triggered
-function ensureMapVisibleAndInitialized() {
-    const splitContainer = document.querySelector(".dashboard-split");
-    if (splitContainer && splitContainer.classList.contains("map-hidden")) {
-        splitContainer.classList.remove("map-hidden");
-    }
-    if (!activeMap) {
-        initializeMap();
-        // Re-render markers onto the newly active map
-        renderSpotsList();
-    }
-}
-
 // --- Event Listeners Initialization ---
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Data load & maps bootstrap (map is now lazily loaded)
+    // 1. Data load & maps bootstrap
     loadSpots();
+    initializeMap();
 
     // 2. Search Event Handlers
     const zipInput = document.getElementById("zip-input");
@@ -1664,7 +1680,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const mapPanel = document.getElementById("map-panel");
 
     mobileMapBtn.addEventListener("click", () => {
-        ensureMapVisibleAndInitialized();
         mapPanel.style.display = "block";
         // Recalculate Leaflet sizing
         setTimeout(() => {
