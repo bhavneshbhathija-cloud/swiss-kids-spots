@@ -496,9 +496,17 @@ function renderSpotsList() {
         return { ...spot, distance };
     });
 
-    // 1. Filter by Radius (if ZIP search is active)
+    // 1. Filter by Search Range:
+    // If ZIP search is active, filter by distance radius.
+    // If NO ZIP search is active, only show Tier 1 spots (Curated & User Custom spots) to prevent browser DOM congestion.
     if (currentSearchZip !== "") {
         filtered = filtered.filter(spot => spot.distance <= currentRadiusKm);
+    } else {
+        filtered = filtered.filter(spot => {
+            const isCustom = spot.id.startsWith("custom-spot-");
+            const isCurated = !spot.id.startsWith("osm-spot-") && !isCustom;
+            return isCurated || isCustom;
+        });
     }
 
     // 2. Filter by Category
