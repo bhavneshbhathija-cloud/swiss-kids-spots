@@ -530,39 +530,49 @@ function renderSpotsList() {
         });
     }
 
-    // Sort Results using Priority Tiers:
-    // Tier 1: Curated baseline & user-added spots
-    // Tier 2: OSM spots with real scraped pictures
-    // Tier 3: OSM spots with placeholder pictures
-    // Within each tier: sort based on user's choice (distance, rating, or name)
-    filtered.sort((a, b) => {
-        const getPriority = (spot) => {
-            const isCustom = spot.id.startsWith("custom-spot-");
-            const isCurated = !spot.id.startsWith("osm-spot-") && !isCustom;
-            if (isCurated || isCustom) return 1;
-            
-            const isPlaceholder = spot.imageUrl && spot.imageUrl.includes("unsplash.com/photo-");
-            if (!isPlaceholder) return 2;
-            
-            return 3;
-        };
+    // Sort Results
+    if (sortBy === "featured") {
+        // Featured Sort (Quality/Curation Tier-Based):
+        // Tier 1: Curated baseline & user-added spots
+        // Tier 2: OSM spots with real scraped pictures
+        // Tier 3: OSM spots with placeholder pictures
+        // Within each tier: sort based on distance (if ZIP active) or rating/name
+        filtered.sort((a, b) => {
+            const getPriority = (spot) => {
+                const isCustom = spot.id.startsWith("custom-spot-");
+                const isCurated = !spot.id.startsWith("osm-spot-") && !isCustom;
+                if (isCurated || isCustom) return 1;
+                
+                const isPlaceholder = spot.imageUrl && spot.imageUrl.includes("unsplash.com/photo-");
+                if (!isPlaceholder) return 2;
+                
+                return 3;
+            };
 
-        const pA = getPriority(a);
-        const pB = getPriority(b);
+            const pA = getPriority(a);
+            const pB = getPriority(b);
 
-        if (pA !== pB) {
-            return pA - pB;
-        }
+            if (pA !== pB) {
+                return pA - pB;
+            }
 
-        // Secondary Sort: within the same tier
-        if (sortBy === "distance" && currentSearchZip !== "") {
-            return (a.distance || 0) - (b.distance || 0);
-        } else if (sortBy === "rating") {
-            return getAvgRating(b) - getAvgRating(a);
-        } else {
-            return a.name.localeCompare(b.name);
-        }
-    });
+            // Secondary Sort: within the same tier
+            if (currentSearchZip !== "") {
+                return (a.distance || 0) - (b.distance || 0);
+            } else {
+                return getAvgRating(b) - getAvgRating(a);
+            }
+        });
+    } else if (sortBy === "distance" && currentSearchZip !== "") {
+        // Pure Proximity Sort (strictly by distance, no tiers)
+        filtered.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+    } else if (sortBy === "rating") {
+        // Pure User Rating Sort (strictly by rating, no tiers)
+        filtered.sort((a, b) => getAvgRating(b) - getAvgRating(a));
+    } else {
+        // Pure Alphabetical Name Sort (no tiers)
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
 
     // Render count
     if (currentSearchZip !== "") {
