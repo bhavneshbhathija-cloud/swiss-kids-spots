@@ -565,8 +565,12 @@ function renderSpotsList() {
     });
 
     // Render count
-    const zipCity = currentSearchZip && SWISS_ZIPS[currentSearchZip] ? SWISS_ZIPS[currentSearchZip].city : currentSearchZip;
-    countContainer.textContent = `${filtered.length} playspot${filtered.length === 1 ? '' : 's'} found ${currentSearchZip ? `near ${zipCity}` : 'in Switzerland'}`;
+    if (currentSearchZip !== "") {
+        const zipCity = SWISS_ZIPS[currentSearchZip] ? SWISS_ZIPS[currentSearchZip].city : currentSearchZip;
+        countContainer.textContent = `${filtered.length} playspot${filtered.length === 1 ? '' : 's'} found near ${zipCity}`;
+    } else {
+        countContainer.textContent = "Featured playspots in Switzerland";
+    }
 
     // Render Cards
     listContainer.innerHTML = "";
