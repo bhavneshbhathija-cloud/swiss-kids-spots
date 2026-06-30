@@ -167,6 +167,14 @@ body {
     height: calc(100vh - 120px);
 }
 
+.dashboard-split.map-hidden {
+    grid-template-columns: 1fr;
+}
+
+.dashboard-split.map-hidden .map-panel {
+    display: none;
+}
+
 .spots-list-container {
     display: flex;
     flex-direction: column;

@@ -385,6 +385,7 @@ function initializeMap() {
 
 // Plot Markers on Map
 function updateMapMarkers(filteredSpots) {
+    if (!activeMap) return;
     // Clear existing markers
     mapMarkers.forEach(m => activeMap.removeLayer(m));
     mapMarkers = [];
@@ -1134,6 +1135,8 @@ async function selectZip(zipCode) {
     const data = SWISS_ZIPS[zipCode];
     if (!data) return;
 
+    ensureMapVisibleAndInitialized();
+
     document.getElementById("zip-input").value = `${zipCode} - ${data.city} (${data.canton})`;
     document.getElementById("zip-autocomplete").style.display = "none";
 
@@ -1297,6 +1300,8 @@ async function locateUser() {
                 currentSearchZip = closestZip;
                 // Use exact user coordinates as center for high-precision distance sorting
                 currentSearchCenter = { lat, lng, name: `Your Location (${closestCity})` };
+                
+                ensureMapVisibleAndInitialized();
                 
                 // Load weather for user's location
                 document.getElementById("weather-widget").style.display = "block";
@@ -1524,11 +1529,23 @@ async function handleFeedbackSubmit(e) {
     document.getElementById("feedback-modal").style.display = "none";
 }
 
+// Helper to dynamically show and initialize Leaflet map when a search or location check is triggered
+function ensureMapVisibleAndInitialized() {
+    const splitContainer = document.querySelector(".dashboard-split");
+    if (splitContainer && splitContainer.classList.contains("map-hidden")) {
+        splitContainer.classList.remove("map-hidden");
+    }
+    if (!activeMap) {
+        initializeMap();
+        // Re-render markers onto the newly active map
+        renderSpotsList();
+    }
+}
+
 // --- Event Listeners Initialization ---
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Data load & maps bootstrap
+    // 1. Data load & maps bootstrap (map is now lazily loaded)
     loadSpots();
-    initializeMap();
 
     // 2. Search Event Handlers
     const zipInput = document.getElementById("zip-input");
@@ -1647,10 +1664,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const mapPanel = document.getElementById("map-panel");
 
     mobileMapBtn.addEventListener("click", () => {
+        ensureMapVisibleAndInitialized();
         mapPanel.style.display = "block";
         // Recalculate Leaflet sizing
         setTimeout(() => {
-            activeMap.invalidateSize();
+            if (activeMap) activeMap.invalidateSize();
         }, 100);
     });
 
