@@ -227,14 +227,32 @@
                 <h2>Add a New Playspot</h2>
                 <p class="modal-subtitle">Share your favorite kid's spot in Switzerland with other families.</p>
                 <form id="add-spot-form" class="scroll-form">
+                    <!-- Primary: Address or Location (only mandatory input) -->
+                    <div class="form-group">
+                        <label for="new-spot-address">Address or Location Description *</label>
+                        <div class="input-with-location-btn">
+                            <input type="text" id="new-spot-address" required placeholder="e.g., Seefeldquai, 8008 Zürich or a nearby landmark">
+                            <button type="button" id="use-my-location-btn" class="btn btn-location" title="Use my current location">
+                                <i class="fa-solid fa-location-crosshairs"></i> Use My Location
+                            </button>
+                        </div>
+                        <small class="form-help" id="location-status"></small>
+                        <!-- Hidden fields auto-filled by geocoding or GPS -->
+                        <input type="hidden" id="new-spot-lat">
+                        <input type="hidden" id="new-spot-lng">
+                        <input type="hidden" id="new-spot-zip">
+                        <input type="hidden" id="new-spot-city">
+                    </div>
+
+                    <!-- Optional: Spot Name -->
                     <div class="form-row">
                         <div class="form-group flex-1">
-                            <label for="new-spot-name">Spot Name *</label>
-                            <input type="text" id="new-spot-name" required placeholder="e.g., Zurich Horn Playground">
+                            <label for="new-spot-name">Spot Name <span class="optional-tag">optional</span></label>
+                            <input type="text" id="new-spot-name" placeholder="Auto-generated if left empty">
                         </div>
                         <div class="form-group flex-1">
-                            <label for="new-spot-type">Type of Zone *</label>
-                            <select id="new-spot-type" class="form-select" required>
+                            <label for="new-spot-type">Type of Zone <span class="optional-tag">optional</span></label>
+                            <select id="new-spot-type" class="form-select">
                                 <option value="playpark">Playpark (Outdoor)</option>
                                 <option value="gamezone">Game Zone (Indoor)</option>
                                 <option value="swimmingpool">Swimming Pool</option>
@@ -242,99 +260,80 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group flex-1">
-                            <label for="new-spot-zip">Swiss ZIP Code (4-digits) *</label>
-                            <input type="text" id="new-spot-zip" required pattern="\d{4}" maxlength="4" placeholder="e.g., 8008">
-                        </div>
-                        <div class="form-group flex-1">
-                            <label for="new-spot-city">City/Town *</label>
-                            <input type="text" id="new-spot-city" required placeholder="e.g., Zürich">
-                        </div>
+                    <!-- Collapsible optional details -->
+                    <div class="optional-details-toggle" id="toggle-optional-details">
+                        <i class="fa-solid fa-chevron-down"></i> More details <span class="optional-tag">optional — we'll fill in what we can automatically</span>
                     </div>
+                    <div class="optional-details-section" id="optional-details-section" style="display: none;">
 
-                    <div class="form-group">
-                        <label for="new-spot-address">Full Address / Specific Location Description *</label>
-                        <input type="text" id="new-spot-address" required placeholder="e.g., Seefeldquai, 8008 Zürich">
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="new-spot-hours">Opening Times <span class="optional-tag">optional</span></label>
+                                <input type="text" id="new-spot-hours" placeholder="e.g., 08:00 - 20:00 daily">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="new-spot-fees">Fees <span class="optional-tag">optional</span></label>
+                                <input type="text" id="new-spot-fees" placeholder="e.g., Free or 15 CHF">
+                            </div>
+                        </div>
 
-                    <div class="form-row">
-                        <div class="form-group flex-1">
-                            <label for="new-spot-lat">Latitude (Optional)</label>
-                            <input type="number" id="new-spot-lat" step="any" placeholder="e.g., 47.3582">
-                            <small class="form-help">Automatically derived from ZIP if left blank.</small>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="new-spot-minage">Min Age <span class="optional-tag">optional</span></label>
+                                <input type="number" id="new-spot-minage" min="0" max="18" placeholder="e.g. 2">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="new-spot-maxage">Max Age <span class="optional-tag">optional</span></label>
+                                <input type="number" id="new-spot-maxage" min="0" max="18" placeholder="e.g. 12">
+                            </div>
                         </div>
-                        <div class="form-group flex-1">
-                            <label for="new-spot-lng">Longitude (Optional)</label>
-                            <input type="number" id="new-spot-lng" step="any" placeholder="e.g., 8.5488">
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group flex-1">
-                            <label for="new-spot-hours">Opening Times *</label>
-                            <input type="text" id="new-spot-hours" required placeholder="e.g., 08:00 - 20:00 daily">
+                        <div class="form-group">
+                            <label>Amenities / Facilities <span class="optional-tag">optional</span></label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="new-spot-amenities" value="Toilets">
+                                    <span class="checkmark"></span> Toilets
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="new-spot-amenities" value="Cafe/Food">
+                                    <span class="checkmark"></span> Cafe / Food stall
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="new-spot-amenities" value="Shade">
+                                    <span class="checkmark"></span> Shaded areas
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="new-spot-amenities" value="Stroller Friendly">
+                                    <span class="checkmark"></span> Stroller Friendly
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="new-spot-amenities" value="Parking">
+                                    <span class="checkmark"></span> Parking Nearby
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="new-spot-amenities" value="Picnic Area">
+                                    <span class="checkmark"></span> Picnic/BBQ Spot
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-group flex-1">
-                            <label for="new-spot-fees">Fees (CHF) - Enter 0 if free *</label>
-                            <input type="text" id="new-spot-fees" required placeholder="e.g., Free or 15 CHF for kids">
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group flex-1">
-                            <label for="new-spot-minage">Min Age Recommendation</label>
-                            <input type="number" id="new-spot-minage" min="0" max="18" placeholder="e.g. 2">
+                        <div class="form-group">
+                            <label for="new-spot-image">Image URL <span class="optional-tag">optional</span></label>
+                            <input type="url" id="new-spot-image" placeholder="Leave empty for automatic image">
                         </div>
-                        <div class="form-group flex-1">
-                            <label for="new-spot-maxage">Max Age Recommendation</label>
-                            <input type="number" id="new-spot-maxage" min="0" max="18" placeholder="e.g. 12">
+
+                        <div class="form-group">
+                            <label for="new-spot-desc">Description <span class="optional-tag">optional</span></label>
+                            <textarea id="new-spot-desc" rows="3" placeholder="Describe what makes this spot awesome for kids!"></textarea>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Amenities / Facilities Available</label>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-container">
-                                <input type="checkbox" name="new-spot-amenities" value="Toilets">
-                                <span class="checkmark"></span> Toilets
-                            </label>
-                            <label class="checkbox-container">
-                                <input type="checkbox" name="new-spot-amenities" value="Cafe/Food">
-                                <span class="checkmark"></span> Cafe / Food stall
-                            </label>
-                            <label class="checkbox-container">
-                                <input type="checkbox" name="new-spot-amenities" value="Shade">
-                                <span class="checkmark"></span> Shaded areas
-                            </label>
-                            <label class="checkbox-container">
-                                <input type="checkbox" name="new-spot-amenities" value="Stroller Friendly">
-                                <span class="checkmark"></span> Stroller Friendly
-                            </label>
-                            <label class="checkbox-container">
-                                <input type="checkbox" name="new-spot-amenities" value="Parking">
-                                <span class="checkmark"></span> Parking Nearby
-                            </label>
-                            <label class="checkbox-container">
-                                <input type="checkbox" name="new-spot-amenities" value="Picnic Area">
-                                <span class="checkmark"></span> Picnic/BBQ Spot
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="new-spot-image">Image URL (Optional)</label>
-                        <input type="url" id="new-spot-image" placeholder="Leave empty for a standard type placeholder image">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="new-spot-desc">Description & Play Features *</label>
-                        <textarea id="new-spot-desc" rows="3" required placeholder="Describe what makes this spot awesome for kids! (slides, trampolines, sand pit, water games etc.)"></textarea>
                     </div>
 
                     <div class="form-actions">
                         <button type="button" class="btn btn-secondary" id="add-spot-cancel">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Create Spot</button>
+                        <button type="submit" class="btn btn-primary" id="add-spot-submit-btn">
+                            <i class="fa-solid fa-plus"></i> Add Spot
+                        </button>
                     </div>
                 </form>
             </div>

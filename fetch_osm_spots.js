@@ -81,7 +81,7 @@ function harvestSpots() {
       way(45.8,5.9,47.9,10.5)[leisure=swimming_pool];
       way(45.8,5.9,47.9,10.5)[leisure=indoor_play];
     );
-    out center 8000;
+    out body center 8000;
     `;
 
     const postData = 'data=' + encodeURIComponent(overpassQuery);
@@ -121,6 +121,12 @@ function harvestSpots() {
 
                 elements.forEach((el, idx) => {
                     const tags = el.tags || {};
+
+                    // Extract image-related OSM tags
+                    const osmImageUrl = tags.image || tags['image:0'] || null;
+                    const wikimediaCommons = tags.wikimedia_commons || tags['wikimedia_commons'] || null;
+                    const wikidataId = tags.wikidata || null;
+                    const wikipediaRef = tags.wikipedia || null;
 
                     // 1. Determine coordinates
                     let lat = el.lat;
@@ -356,6 +362,7 @@ function harvestSpots() {
                     // Check if we already have this spot in the existing harvested database to preserve custom scraping details (name, address, images)
                     let existingImageUrl = imageUrl;
                     let existingImages = [imageUrl];
+                    let existingImageSource = null;
                     for (const oldSpot of EXISTING_HARVESTED) {
                         const dist = calculateDistance(lat, lng, oldSpot.lat, oldSpot.lng);
                         if (dist < 0.010) { // within 10 meters (representing the same playground)
@@ -371,7 +378,21 @@ function harvestSpots() {
                                 existingImageUrl = oldSpot.imageUrl;
                                 existingImages = oldSpot.images || [oldSpot.imageUrl];
                             }
+                            // Preserve existing image source
+                            if (oldSpot.imageSource) {
+                                existingImageSource = oldSpot.imageSource;
+                            }
                             break;
+                        }
+                    }
+
+                    // If OSM has a valid image URL, use it directly (overriding the placeholder)
+                    if (osmImageUrl) {
+                        const lowerUrl = osmImageUrl.toLowerCase();
+                        if (/\.(jpg|jpeg|png|webp|gif)(\?|$)/i.test(lowerUrl) || lowerUrl.includes('wikimedia') || lowerUrl.includes('commons')) {
+                            existingImageUrl = osmImageUrl;
+                            existingImages = [osmImageUrl];
+                            existingImageSource = 'OpenStreetMap';
                         }
                     }
 
@@ -393,6 +414,11 @@ function harvestSpots() {
                         maxAge: maxAge,
                         amenities: defaultAmenities,
                         imageUrl: existingImageUrl,
+                        imageSource: existingImageSource,
+                        osmImageUrl: osmImageUrl,
+                        wikimediaCommons: wikimediaCommons,
+                        wikidataId: wikidataId,
+                        wikipediaRef: wikipediaRef,
                         ratings: [5],
                         comments: [
                             { author: "OSM Contributor", rating: 5, text: `Verified public kids spot harvested via OpenStreetMap. Great location in ${city}!` }

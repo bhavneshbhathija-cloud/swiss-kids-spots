@@ -627,6 +627,8 @@ function renderSpotsList() {
         ` : '';
 
         const card = document.createElement("div");
+        const attributionHtml = spot.imageSource ? `<span class="image-attribution">📷 ${spot.imageSource}</span>` : '';
+
         card.className = "spot-card";
         card.dataset.id = spot.id;
         card.innerHTML = `
@@ -637,6 +639,7 @@ function renderSpotsList() {
                     ${weatherHtml}
                 </div>
                 ${distHtml}
+                ${attributionHtml}
             </div>
             <div class="spot-card-info">
                 <h3 class="spot-card-title">${spot.name}</h3>
@@ -883,8 +886,10 @@ async function openDetails(spotId) {
 
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
     const googleSearchUrl = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${spot.lat},${spot.lng}`;
+    const detailAttributionHtml = spot.imageSource ? `<div class="image-attribution detail-attribution">📷 ${spot.imageSource}</div>` : '';
     container.innerHTML = `
         ${galleryHtml}
+        ${detailAttributionHtml}
         <div class="detail-title-section">
             <div class="detail-title-row">
                 <h2>${spot.name}</h2>
@@ -1437,42 +1442,219 @@ function clearSearch() {
 }
 
 // --- Submit a custom Spot ---
-function handleAddSpotSubmit(e) {
+// --- Reverse geocode coordinates to address using Nominatim (OSM) ---
+async function reverseGeocode(lat, lng) {
+    try {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=en,de`;
+        const response = await fetch(url, {
+            headers: { 'User-Agent': 'SwissKidsSpots/1.0' }
+        });
+        if (!response.ok) return null;
+        return await response.json();
+    } catch (e) {
+        console.error("Reverse geocode error:", e);
+        return null;
+    }
+}
+
+// --- Forward geocode address to coordinates using Nominatim ---
+async function geocodeAddress(address) {
+    try {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&countrycodes=ch&limit=1&addressdetails=1&accept-language=en,de`;
+        const response = await fetch(url, {
+            headers: { 'User-Agent': 'SwissKidsSpots/1.0' }
+        });
+        if (!response.ok) return null;
+        const results = await response.json();
+        return results.length > 0 ? results[0] : null;
+    } catch (e) {
+        console.error("Geocode error:", e);
+        return null;
+    }
+}
+
+// --- Use My Location (GPS) ---
+function useMyLocation() {
+    const statusEl = document.getElementById("location-status");
+    const addressInput = document.getElementById("new-spot-address");
+    const btn = document.getElementById("use-my-location-btn");
+
+    if (!navigator.geolocation) {
+        statusEl.textContent = "❌ Geolocation is not supported by your browser.";
+        statusEl.style.color = "var(--danger)";
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Locating...';
+    statusEl.textContent = "📍 Getting your location...";
+    statusEl.style.color = "var(--text-light)";
+
+    navigator.geolocation.getCurrentPosition(
+        async (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            // Store coordinates
+            document.getElementById("new-spot-lat").value = lat;
+            document.getElementById("new-spot-lng").value = lng;
+
+            statusEl.textContent = "📍 Got coordinates, looking up address...";
+
+            // Reverse geocode to get address details
+            const geoResult = await reverseGeocode(lat, lng);
+            if (geoResult && geoResult.address) {
+                const addr = geoResult.address;
+                const road = addr.road || addr.pedestrian || addr.footway || '';
+                const houseNumber = addr.house_number || '';
+                const postcode = addr.postcode || '';
+                const city = addr.city || addr.town || addr.village || addr.municipality || '';
+
+                // Fill in address field
+                const fullAddress = [road, houseNumber].filter(Boolean).join(' ') + (postcode ? `, ${postcode}` : '') + (city ? ` ${city}` : '');
+                addressInput.value = fullAddress || geoResult.display_name || `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+
+                // Fill hidden fields
+                document.getElementById("new-spot-zip").value = postcode;
+                document.getElementById("new-spot-city").value = city;
+
+                statusEl.textContent = `✅ Location found: ${city || 'Unknown area'}`;
+                statusEl.style.color = "var(--success)";
+            } else {
+                addressInput.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+                statusEl.textContent = "✅ Got coordinates (could not resolve address)";
+                statusEl.style.color = "var(--warning)";
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i> Use My Location';
+        },
+        (error) => {
+            let msg = "❌ Could not get location.";
+            if (error.code === 1) msg = "❌ Location access denied. Please enable location in your browser settings.";
+            else if (error.code === 2) msg = "❌ Location unavailable. Please try again.";
+            else if (error.code === 3) msg = "❌ Location request timed out. Please try again.";
+            statusEl.textContent = msg;
+            statusEl.style.color = "var(--danger)";
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i> Use My Location';
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+    );
+}
+
+// --- Handle Add Spot Submit ---
+async function handleAddSpotSubmit(e) {
     e.preventDefault();
-    const name = document.getElementById("new-spot-name").value.trim();
-    const type = document.getElementById("new-spot-type").value;
-    const zipVal = document.getElementById("new-spot-zip").value.trim();
-    const city = document.getElementById("new-spot-city").value.trim();
+
+    const submitBtn = document.getElementById("add-spot-submit-btn");
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding spot...';
+
+    // Get the mandatory field
     const address = document.getElementById("new-spot-address").value.trim();
-    const hours = document.getElementById("new-spot-hours").value.trim();
+
+    // Get optional fields (with defaults)
+    const name = document.getElementById("new-spot-name").value.trim();
+    const type = document.getElementById("new-spot-type").value || "playpark";
+    const hours = document.getElementById("new-spot-hours").value.trim() || "08:00 - 20:00 daily";
     const fees = document.getElementById("new-spot-fees").value.trim();
     const minAge = parseInt(document.getElementById("new-spot-minage").value) || 0;
     const maxAge = parseInt(document.getElementById("new-spot-maxage").value) || 12;
     const desc = document.getElementById("new-spot-desc").value.trim();
     const customImg = document.getElementById("new-spot-image").value.trim();
 
-    // Checkbox Amenities
+    // Checkbox amenities
     const amenities = [];
     document.querySelectorAll('input[name="new-spot-amenities"]:checked').forEach(chk => {
         amenities.push(chk.value);
     });
 
-    // Derive Coordinates: Check if user input custom or fallback to Swiss ZIP DB
+    // --- Resolve coordinates & location details ---
     let lat = parseFloat(document.getElementById("new-spot-lat").value);
     let lng = parseFloat(document.getElementById("new-spot-lng").value);
+    let zipVal = document.getElementById("new-spot-zip").value.trim();
+    let city = document.getElementById("new-spot-city").value.trim();
 
+    // If coordinates are not set (no GPS used), geocode the address
     if (isNaN(lat) || isNaN(lng)) {
-        if (SWISS_ZIPS[zipVal]) {
+        const geoResult = await geocodeAddress(address);
+        if (geoResult) {
+            lat = parseFloat(geoResult.lat);
+            lng = parseFloat(geoResult.lon);
+            const addr = geoResult.address || {};
+            if (!zipVal) zipVal = addr.postcode || '';
+            if (!city) city = addr.city || addr.town || addr.village || addr.municipality || '';
+        }
+    }
+
+    // Final fallback: ZIP database or center of Switzerland
+    if (isNaN(lat) || isNaN(lng)) {
+        if (zipVal && SWISS_ZIPS[zipVal]) {
             lat = SWISS_ZIPS[zipVal].lat;
             lng = SWISS_ZIPS[zipVal].lng;
         } else {
-            // Default center of Switzerland if coordinate is completely unavailable
             lat = 46.8182;
             lng = 8.2275;
         }
     }
 
-    // Set fallback image based on spot type
+    // Try to resolve city from ZIP database if still missing
+    if (!city && zipVal && SWISS_ZIPS[zipVal]) {
+        city = SWISS_ZIPS[zipVal].city;
+    }
+    if (!city) city = "Switzerland";
+
+    // Try to find closest ZIP if still missing
+    if (!zipVal) {
+        let minDist = Infinity;
+        for (const [zc, coords] of Object.entries(SWISS_ZIPS)) {
+            const d = calculateDistance(lat, lng, coords.lat, coords.lng);
+            if (d < minDist) {
+                minDist = d;
+                zipVal = zc;
+            }
+        }
+        if (!city || city === "Switzerland") {
+            city = SWISS_ZIPS[zipVal] ? SWISS_ZIPS[zipVal].city : "Switzerland";
+        }
+    }
+
+    // --- Auto-generate name if not provided ---
+    let spotName = name;
+    if (!spotName) {
+        const typeNames = { playpark: "Playground", swimmingpool: "Swimming Pool", gamezone: "Game Zone" };
+        spotName = `${typeNames[type] || "Playground"} in ${city}`;
+    }
+
+    // --- Auto-generate description if not provided ---
+    let spotDesc = desc;
+    if (!spotDesc) {
+        const descTemplates = {
+            playpark: `A public outdoor playground in ${city}, Switzerland. Great for kids with various play structures and open space.`,
+            swimmingpool: `A swimming pool facility in ${city}, Switzerland. Fun aquatic activities for the whole family.`,
+            gamezone: `An indoor game zone in ${city}, Switzerland. Safe and fun play area for children.`
+        };
+        spotDesc = descTemplates[type] || descTemplates.playpark;
+    }
+
+    // --- Smart fee defaults ---
+    let spotFees = fees;
+    if (!spotFees) {
+        spotFees = type === "playpark" ? "Free" : "Contact venue";
+    } else if (spotFees === "0") {
+        spotFees = "Free";
+    }
+
+    // --- Default amenities if none selected ---
+    let spotAmenities = amenities;
+    if (spotAmenities.length === 0) {
+        if (type === "playpark") spotAmenities = ["Stroller Friendly"];
+        else if (type === "swimmingpool") spotAmenities = ["Toilets", "Stroller Friendly"];
+        else spotAmenities = ["Toilets", "Stroller Friendly"];
+    }
+
+    // --- Set fallback image based on spot type ---
     let imageUrl = customImg;
     if (!imageUrl) {
         if (type === "playpark") imageUrl = "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80";
@@ -1480,44 +1662,52 @@ function handleAddSpotSubmit(e) {
         else imageUrl = "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80";
     }
 
-    // Create unique spot structure
+    // --- Build the full address string ---
+    const fullAddress = address.includes(zipVal) ? address : `${address}, ${zipVal} ${city}`;
+
+    // --- Create the spot ---
     const newSpot = {
         id: `custom-spot-${Date.now()}`,
-        name,
+        name: spotName,
         type,
-        description: desc,
-        address: `${address}, ${zipVal} ${city}`,
+        description: spotDesc,
+        address: fullAddress,
         zip: zipVal,
         city,
-        lat,
-        lng,
+        lat: Math.round(lat * 100000) / 100000,
+        lng: Math.round(lng * 100000) / 100000,
         openingHours: hours,
-        fees: fees === "0" ? "Free" : fees,
+        fees: spotFees,
         minAge,
         maxAge,
-        amenities,
+        amenities: spotAmenities,
         imageUrl,
         images: [imageUrl],
-        ratings: [5], // Start with positive baseline
+        ratings: [5],
         comments: [{ author: "Finder", rating: 5, text: "Newly added spot. Looks awesome!" }]
     };
 
-    // Save newly defined ZIP to temporary dictionary if it doesn't exist
+    // Save ZIP to dictionary if new
     if (!SWISS_ZIPS[zipVal]) {
         SWISS_ZIPS[zipVal] = { city, canton: "CH", lat, lng };
     }
 
     spots.push(newSpot);
     saveSpots();
-    
+
     // Reset and hide form
     document.getElementById("add-spot-form").reset();
     document.getElementById("add-spot-modal").style.display = "none";
-    
+    document.getElementById("optional-details-section").style.display = "none";
+
+    // Restore button
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Add Spot';
+
     // Refresh page
     renderSpotsList();
     focusOnMap(newSpot.id, lat, lng);
-    alert(`Success! "${name}" has been added to your local playspot finder.`);
+    alert(`Success! "${spotName}" has been added to your local playspot finder.`);
 }
 
 // --- Submit Feedback ---
@@ -1660,6 +1850,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add Spot Form Submission
     document.getElementById("add-spot-form").addEventListener("submit", handleAddSpotSubmit);
+
+    // Use My Location GPS button
+    document.getElementById("use-my-location-btn").addEventListener("click", useMyLocation);
+
+    // Collapsible optional details toggle
+    document.getElementById("toggle-optional-details").addEventListener("click", () => {
+        const section = document.getElementById("optional-details-section");
+        const icon = document.querySelector("#toggle-optional-details i");
+        if (section.style.display === "none") {
+            section.style.display = "block";
+            icon.className = "fa-solid fa-chevron-up";
+        } else {
+            section.style.display = "none";
+            icon.className = "fa-solid fa-chevron-down";
+        }
+    });
 
     // Feedback Form Submission & Rating Selectors
     const feedbackStars = document.querySelectorAll(".feedback-star");
