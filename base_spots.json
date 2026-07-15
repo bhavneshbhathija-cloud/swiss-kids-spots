@@ -2367,5 +2367,1281 @@
         "images": [
             "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80"
         ]
+    },
+    {
+        "id": "excel-spot-1784119987390-0",
+        "name": "Grosser Moorrundweg Gewinnspiel",
+        "type": "playpark",
+        "description": "Gondola to Rossweid, Mooraculum playground, Moorrundweg hiking, Forscherbox, restaurant",
+        "address": "Rossweid, Sörenberg (LU), 6174 Sörenberg",
+        "zip": "6174",
+        "city": "Sörenberg",
+        "lat": 46.80918,
+        "lng": 8.02645,
+        "openingHours": "Summer: 14 May–25 Oct, 08:15–17:15",
+        "fees": "Family Package CHF 94 (gondola + rodelbahn + Forscherbox); Kinder bis 8 Jahre kostenlos",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Wanderwegweiser_Rossweid_1465.jpg/960px-Wanderwegweiser_Rossweid_1465.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Wanderwegweiser_Rossweid_1465.jpg/960px-Wanderwegweiser_Rossweid_1465.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Gondola to Rossweid, Mooraculum playground, Moorrundweg hiking, Forscherbox, restaurant"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DaEAxN8qPAF/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784119992486-2",
+        "name": "Kostenloser Familienausflug – Wildnispark",
+        "type": "playpark",
+        "description": "Bears, wolves, lynxes, deer, boars; playgrounds, BBQ, Restaurant Langenberg; stroller-friendly",
+        "address": "Wildnispark Zürich Langenberg, Langnau am Albis, 8135 Langnau am Albis",
+        "zip": "8135",
+        "city": "Langnau am Albis",
+        "lat": 47.2992,
+        "lng": 8.52879,
+        "openingHours": "Most areas 24/7; Facilities Mar–Oct 09:00–19:00",
+        "fees": "FREE",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Europ%C3%A4ischer_Braunb%C3%A4r_%28104589047%29.jpeg/960px-Europ%C3%A4ischer_Braunb%C3%A4r_%28104589047%29.jpeg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Europ%C3%A4ischer_Braunb%C3%A4r_%28104589047%29.jpeg/960px-Europ%C3%A4ischer_Braunb%C3%A4r_%28104589047%29.jpeg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Bears, wolves, lynxes, deer, boars; playgrounds, BBQ, Restaurant Langenberg; stroller-friendly"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DZ8KeBlKLmJ/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784119993771-3",
+        "name": "Freizeitpark wird völlig unterschätzt",
+        "type": "swimmingpool",
+        "description": "Double go-karts (age 3+), climbing park, Tower, Laurapark, indoor adventure, indoor minigolf, water park (summer)",
+        "address": "Payerneland, Payerne VD, 1551 Payerne",
+        "zip": "1551",
+        "city": "Payerne",
+        "lat": 46.81262,
+        "lng": 6.95307,
+        "openingHours": "Wed–Sun 11:00–19:00; Karting varies",
+        "fees": "From CHF 5/child, CHF 7/adult; Karting 10min CHF 15",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Gymnase_intercantonal_de_la_Broye.JPG/960px-Gymnase_intercantonal_de_la_Broye.JPG",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Gymnase_intercantonal_de_la_Broye.JPG/960px-Gymnase_intercantonal_de_la_Broye.JPG"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Double go-karts (age 3+), climbing park, Tower, Laurapark, indoor adventure, indoor minigolf, water park (summer)"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DZk7U5HqfIX/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784119995182-4",
+        "name": "Familienausflug Vierwaldstättersee",
+        "type": "playpark",
+        "description": "Nessi sea-monster playground at lakeside, mini-golf, snack bar; combine with lake cruise to Luzern",
+        "address": "Brunnen, Kanton Schwyz, 6440 Brunnen",
+        "zip": "6440",
+        "city": "Brunnen",
+        "lat": 46.99404,
+        "lng": 8.60541,
+        "openingHours": "Outdoor – all day",
+        "fees": "FREE",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Brunnen_Bundeskapelle_innen.jpg/960px-Brunnen_Bundeskapelle_innen.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Brunnen_Bundeskapelle_innen.jpg/960px-Brunnen_Bundeskapelle_innen.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Nessi sea-monster playground at lakeside, mini-golf, snack bar; combine with lake cruise to Luzern"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DZaqLQeK1IO/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120000027-5",
+        "name": "Familienfreundlicher Café-Tipp im Aargau",
+        "type": "playpark",
+        "description": "Kids play area, coffee, daily lunch buffet, vegan brunch 2x/month; inside garden centre",
+        "address": "Café Florina, Huplant Gartencenter, Hirschthal AG, 5040 Schöftland",
+        "zip": "5040",
+        "city": "Schöftland",
+        "lat": 47.31828,
+        "lng": 8.04438,
+        "openingHours": "09:00–17:30; reservation required",
+        "fees": "No entry fee (café prices apply)",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Trevo_da_PFIFFNER_Messwandler_AG_-_panoramio.jpg/960px-Trevo_da_PFIFFNER_Messwandler_AG_-_panoramio.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Trevo_da_PFIFFNER_Messwandler_AG_-_panoramio.jpg/960px-Trevo_da_PFIFFNER_Messwandler_AG_-_panoramio.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Kids play area, coffee, daily lunch buffet, vegan brunch 2x/month; inside garden centre"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DZYKNJ2KEmy/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120001254-6",
+        "name": "Schlechtwetter-Tipp – Challenge Arena",
+        "type": "gamezone",
+        "description": "3,000m² indoor hall: 9 slides, 800m² trampoline park, go-karts, laser tag, soccer court, bistro",
+        "address": "Challenge Arena, Wangen SZ, 8855 Nuolen",
+        "zip": "8855",
+        "city": "Nuolen",
+        "lat": 47.19493,
+        "lng": 8.88035,
+        "openingHours": "Mon 14:00–20:00; Tue/Sun 09:00–20:00; Wed/Thu 09:00–21:00; Fri/Sat 09:00–22:00",
+        "fees": "Ages 6+: 1hr CHF 18, all-day CHF 42; Ages 1–2: CHF 8/hr; Kiddies (under 6): CHF 12",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Jona_%28SG%29_-_Obersee_-_Stampf_2012-01-15_15-12-57_%28GT-I9100%29.jpg/960px-Jona_%28SG%29_-_Obersee_-_Stampf_2012-01-15_15-12-57_%28GT-I9100%29.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Jona_%28SG%29_-_Obersee_-_Stampf_2012-01-15_15-12-57_%28GT-I9100%29.jpg/960px-Jona_%28SG%29_-_Obersee_-_Stampf_2012-01-15_15-12-57_%28GT-I9100%29.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! 3,000m² indoor hall: 9 slides, 800m² trampoline park, go-karts, laser tag, soccer court, bistro"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DZVrIq3q5DU/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120003790-7",
+        "name": "Neues Familiencafé in Luzern",
+        "type": "gamezone",
+        "description": "Family café with indoor play zones for toddlers and older kids, café menu",
+        "address": "Lula Kids Café, Luzern, 6006 Lucerne",
+        "zip": "6006",
+        "city": "Lucerne",
+        "lat": 47.05214,
+        "lng": 8.30581,
+        "openingHours": "Mon–Thu 08:30–17:30; Fri 08:30–18:30; Sat 09:30–18:30",
+        "fees": "0–3yr: CHF 11.90 (play area); 4–10yr: see website",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/2012-08-24_10-34-13_Switzerland_Kanton_Luzern_Luzern.jpg/960px-2012-08-24_10-34-13_Switzerland_Kanton_Luzern_Luzern.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/2012-08-24_10-34-13_Switzerland_Kanton_Luzern_Luzern.jpg/960px-2012-08-24_10-34-13_Switzerland_Kanton_Luzern_Luzern.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Family café with indoor play zones for toddlers and older kids, café menu"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DZBDgwCqOBw/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120006794-9",
+        "name": "Kleiner Familienhof im Zürcher Oberland",
+        "type": "playpark",
+        "description": "Farm experience, animals, outdoor",
+        "address": "Talacherhof, Illnau ZH, 8308 Illnau-Effretikon",
+        "zip": "8308",
+        "city": "Illnau-Effretikon",
+        "lat": 47.40417,
+        "lng": 8.7093,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Bauernhaus_DSC2308.jpg/960px-Bauernhaus_DSC2308.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Bauernhaus_DSC2308.jpg/960px-Bauernhaus_DSC2308.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Farm experience, animals, outdoor"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DY0AKEOKpBM/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120013538-11",
+        "name": "Familienausflug Stoos",
+        "type": "playpark",
+        "description": "Steepest funicular in the world, mountain views, hiking",
+        "address": "Stoosbahnen, Stoos SZ, 6433 Stoos",
+        "zip": "6433",
+        "city": "Stoos",
+        "lat": 46.97736,
+        "lng": 8.66664,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Brunnen.Schwyz.JPG/960px-Brunnen.Schwyz.JPG",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Brunnen.Schwyz.JPG/960px-Brunnen.Schwyz.JPG"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Steepest funicular in the world, mountain views, hiking"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DYtq6pVKwK-/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120021487-14",
+        "name": "Mini-Zugpark – Swiss Vapeur Parc",
+        "type": "playpark",
+        "description": "Mini-train rides with 12 locomotives, 5 stations, restaurant, crêperie, picnic areas",
+        "address": "Swiss Vapeur Parc, Le Bouveret, 1897 Port-Valais",
+        "zip": "1897",
+        "city": "Port-Valais",
+        "lat": 46.38473,
+        "lng": 6.85726,
+        "openingHours": "19 Mar–1 Nov 2026, daily 10:00–18:00",
+        "fees": "Adults CHF 19; Children (3–15) CHF 15; Under 3 FREE",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Swiss_Vapeur_Parc_-_Isabelle_von_Siebenthal_-_MOB_Belle_%C3%89poque.jpg/960px-Swiss_Vapeur_Parc_-_Isabelle_von_Siebenthal_-_MOB_Belle_%C3%89poque.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Swiss_Vapeur_Parc_-_Isabelle_von_Siebenthal_-_MOB_Belle_%C3%89poque.jpg/960px-Swiss_Vapeur_Parc_-_Isabelle_von_Siebenthal_-_MOB_Belle_%C3%89poque.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Mini-train rides with 12 locomotives, 5 stations, restaurant, crêperie, picnic areas"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DYVU2HVqzwH/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120029459-16",
+        "name": "Familienausflug an den Walensee",
+        "type": "playpark",
+        "description": "Lake walk, swimming, scenic villages along Walensee",
+        "address": "Walensee (Weesen, Unterterzen, Murg, Quinten, Walenstadt), 8878 Quarten",
+        "zip": "8878",
+        "city": "Quarten",
+        "lat": 47.12554,
+        "lng": 9.21988,
+        "openingHours": "Check venue for hours",
+        "fees": "FREE (outdoor)",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Lake walk, swimming, scenic villages along Walensee"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DYK4P0pKJ7h/"
+    },
+    {
+        "id": "excel-spot-1784120037253-18",
+        "name": "ROSA KIDS Keramik Workshop",
+        "type": "playpark",
+        "description": "Ceramic & creative workshops for kids, parents can join",
+        "address": "REMISE ROSA, Kids Workshop Zürich, 8004 Zurich",
+        "zip": "8004",
+        "city": "Zurich",
+        "lat": 47.38253,
+        "lng": 8.51758,
+        "openingHours": "Check venue for hours",
+        "fees": "CHF 35 incl. materials",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Ceramic & creative workshops for kids, parents can join"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DYFkZQ5Ki8z/"
+    },
+    {
+        "id": "excel-spot-1784120041256-20",
+        "name": "Zugiblubbi Erlebnisweg – Zugerberg",
+        "type": "playpark",
+        "description": "Adventure trail for kids on Zugerberg, interactive stations",
+        "address": "Zugiblubbi Erlebnisweg, Zugerberg ZG, 6317 Zug",
+        "zip": "6317",
+        "city": "Zug",
+        "lat": 47.14376,
+        "lng": 8.53378,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Adventure trail for kids on Zugerberg, interactive stations"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DX1CtsJsDJO/"
+    },
+    {
+        "id": "excel-spot-1784120043768-21",
+        "name": "Festival Regensdorf",
+        "type": "playpark",
+        "description": "Outdoor family festival, barrier-free",
+        "address": "Zentrumsplatz, Regensdorf, 8105 Regensdorf",
+        "zip": "8105",
+        "city": "Regensdorf",
+        "lat": 47.43176,
+        "lng": 8.46804,
+        "openingHours": "30 Apr–3 May",
+        "fees": "Accessible for free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Outdoor family festival, barrier-free"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DXxJBDEsDyl/"
+    },
+    {
+        "id": "excel-spot-1784120047019-22",
+        "name": "Ausflugstipp – Kinderparadies Sedel",
+        "type": "gamezone",
+        "description": "Indoor play paradise",
+        "address": "Kinderparadies Sedel, Herisau AR, 9100 Herisau",
+        "zip": "9100",
+        "city": "Herisau",
+        "lat": 47.38555,
+        "lng": 9.27876,
+        "openingHours": "Check venue for hours",
+        "fees": "Contact venue",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Indoor play paradise"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DXuitnaDGSv/"
+    },
+    {
+        "id": "excel-spot-1784120048504-23",
+        "name": "SINNESPARK – Geheimtipp für Familien",
+        "type": "playpark",
+        "description": "Sensory park, outdoor experience for families",
+        "address": "SINNESPARK, Villmergen AG, 5613 Hilfikon",
+        "zip": "5613",
+        "city": "Hilfikon",
+        "lat": 47.34283,
+        "lng": 8.24241,
+        "openingHours": "Check venue for hours",
+        "fees": "FREE",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Sensory park, outdoor experience for families"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DXqz_8GDBxj/"
+    },
+    {
+        "id": "excel-spot-1784120051640-24",
+        "name": "Papiliorama – Zoo in Kerzers",
+        "type": "playpark",
+        "description": "Tropical butterfly hall, nocturama, jungle trek, nature playground, picnic areas",
+        "address": "Papiliorama, Kerzers BE, 3207 Golaten",
+        "zip": "3207",
+        "city": "Golaten",
+        "lat": 46.9846,
+        "lng": 7.23631,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Tropical butterfly hall, nocturama, jungle trek, nature playground, picnic areas"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DXlw4D3DKVl/"
+    },
+    {
+        "id": "excel-spot-1784120055466-26",
+        "name": "Labyrinthe Aventure – Nicht nur ein Labyrinth",
+        "type": "playpark",
+        "description": "Large outdoor labyrinth & adventure park in Valais",
+        "address": "Labyrinthe Aventure, Evionnaz VS, 1903 La Balmaz",
+        "zip": "1903",
+        "city": "La Balmaz",
+        "lat": 46.16483,
+        "lng": 7.02871,
+        "openingHours": "Daily 10:00–18:00",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Large outdoor labyrinth & adventure park in Valais"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DXfN9JwjNYn/"
+    },
+    {
+        "id": "excel-spot-1784120059300-28",
+        "name": "Erlebnishof Jucker Farm – Bächlihof",
+        "type": "playpark",
+        "description": "Farm animals, farm shop, seasonal displays, playground",
+        "address": "Jucker Farm, Bächlihof, Jona SG, 8645 Rapperswil-Jona",
+        "zip": "8645",
+        "city": "Rapperswil-Jona",
+        "lat": 47.21957,
+        "lng": 8.8442,
+        "openingHours": "Check venue for hours",
+        "fees": "FREE (bring CHF 2 for wooden ball; budget for farm shop)",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Farm animals, farm shop, seasonal displays, playground"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DXXRWNajL_W/"
+    },
+    {
+        "id": "excel-spot-1784120064957-30",
+        "name": "Familientag am Bodensee – Rorschach",
+        "type": "playpark",
+        "description": "Lakeside playground on Lake Constance promenade",
+        "address": "Spielplatz Arion Seepromenade, Rorschach SG, 9400 Rorschach",
+        "zip": "9400",
+        "city": "Rorschach",
+        "lat": 47.47797,
+        "lng": 9.4914,
+        "openingHours": "Check venue for hours",
+        "fees": "FREE",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Lakeside playground on Lake Constance promenade"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DXFJRCejNYB/"
+    },
+    {
+        "id": "excel-spot-1784120070187-33",
+        "name": "Grosser Spielplatz am See – Sarnen",
+        "type": "playpark",
+        "description": "Large lakeside playground with various elements",
+        "address": "Spielplatz Kapitän Zinsli, Sarnen OW, 6060 Sarnen",
+        "zip": "6060",
+        "city": "Sarnen",
+        "lat": 46.88792,
+        "lng": 8.24259,
+        "openingHours": "Check venue for hours",
+        "fees": "FREE",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Large lakeside playground with various elements"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DWwywk8jDYD/"
+    },
+    {
+        "id": "excel-spot-1784120077107-37",
+        "name": "Erlebnishof – LBBZ Schluechthof",
+        "type": "playpark",
+        "description": "Agricultural educational farm, playground nearby",
+        "address": "LBBZ Schluechthof, Cham ZG, 6330 Cham",
+        "zip": "6330",
+        "city": "Cham",
+        "lat": 47.18666,
+        "lng": 8.46451,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Agricultural educational farm, playground nearby"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DWYg4kFDJyH/"
+    },
+    {
+        "id": "excel-spot-1784120083691-39",
+        "name": "Indoortipp – Chocolarium Flawil",
+        "type": "playpark",
+        "description": "Chocolate experience museum, interactive for all ages",
+        "address": "Chocolarium, Flawil SG, 9230 Flawil",
+        "zip": "9230",
+        "city": "Flawil",
+        "lat": 47.41307,
+        "lng": 9.16493,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Chocolate experience museum, interactive for all ages"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DWR8_3pDFGh/"
+    },
+    {
+        "id": "excel-spot-1784120087580-41",
+        "name": "Entdeckter Ort – Freizeitpark Niederbüren",
+        "type": "gamezone",
+        "description": "Outdoor adventure world with 11m slide tower, trampolines, inflatables; indoor 4-floor play barn, bowling",
+        "address": "Freizeitpark Niederbüren, Niederbüren SG, 9246 Niederbüren",
+        "zip": "9246",
+        "city": "Niederbüren",
+        "lat": 47.46516,
+        "lng": 9.19993,
+        "openingHours": "Check venue for hours",
+        "fees": "Contact venue",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Outdoor adventure world with 11m slide tower, trampolines, inflatables; indoor 4-floor play barn, bowling"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DWHyBLODCeU/"
+    },
+    {
+        "id": "excel-spot-1784120091560-42",
+        "name": "Oster-Erlebnis – Osterhasen-Werkstatt",
+        "type": "playpark",
+        "description": "45-min chocolate Easter bunny workshop with treats",
+        "address": "ChocoDromo, Chocolaterie (Easter Workshop), 6039 Root",
+        "zip": "6039",
+        "city": "Root",
+        "lat": 47.10563,
+        "lng": 8.37341,
+        "openingHours": "Check venue for hours",
+        "fees": "CHF 25/person; accompanying adult FREE (under 14); incl. CHF 5 voucher",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! 45-min chocolate Easter bunny workshop with treats"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DWCi8jEjP_-/"
+    },
+    {
+        "id": "excel-spot-1784120101426-45",
+        "name": "Erlebnishof Burgrain – Alberswil",
+        "type": "playpark",
+        "description": "Agro-experience farm with animals and interactive exhibits",
+        "address": "Burgrain Agrovision Erlebnishof, Alberswil LU, 6248 Alberswil",
+        "zip": "6248",
+        "city": "Alberswil",
+        "lat": 47.15062,
+        "lng": 8.00134,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Agro-experience farm with animals and interactive exhibits"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DVb8XZPjEIE/"
+    },
+    {
+        "id": "excel-spot-1784120102690-46",
+        "name": "Dino-Show – Basel",
+        "type": "playpark",
+        "description": "Live dinosaur show with animatronic dinos, dino rides, heated tent",
+        "address": "Rosentalanlage, Basel, 4005 Basel",
+        "zip": "4005",
+        "city": "Basel",
+        "lat": 47.56365,
+        "lng": 7.60248,
+        "openingHours": "4–15 Mar, daily 16:00",
+        "fees": "Adults CHF 19; Children (2+) CHF 17 (cash only); Dino ride FREE",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Live dinosaur show with animatronic dinos, dino rides, heated tent"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DVZUoN6jEPy/"
+    },
+    {
+        "id": "excel-spot-1784120106614-48",
+        "name": "Spielplatz geöffnet – BOWI Willisau",
+        "type": "swimmingpool",
+        "description": "Large playground with water area (summer), climbing elements for older kids, toddler areas",
+        "address": "BOWI Garten + Freizeit AG, Willisau LU, 6130 Willisau",
+        "zip": "6130",
+        "city": "Willisau",
+        "lat": 47.12818,
+        "lng": 7.99847,
+        "openingHours": "Open until early Nov, daily 10:00–18:00",
+        "fees": "Adults CHF 5; Children CHF 7",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Large playground with water area (summer), climbing elements for older kids, toddler areas"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DVRtETpjB7h/"
+    },
+    {
+        "id": "excel-spot-1784120109754-49",
+        "name": "Geheimtipp – Chärnsmatt Rothenburg",
+        "type": "gamezone",
+        "description": "Inn with outdoor play paradise, indoor area, mini train rides",
+        "address": "Chärnsmatt Gasthof & Spielparadies, Rothenburg LU, 6023 Rothenburg",
+        "zip": "6023",
+        "city": "Rothenburg",
+        "lat": 47.094,
+        "lng": 8.27242,
+        "openingHours": "Check venue for hours",
+        "fees": "1 ride CHF 2.50; 6-pack CHF 12.50",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80",
+        "images": [
+            "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Inn with outdoor play paradise, indoor area, mini train rides"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DVNkNOMDLdM/"
+    },
+    {
+        "id": "excel-spot-1784120115509-51",
+        "name": "Spielarium",
+        "type": "gamezone",
+        "description": "Indoor play space",
+        "address": "Spielarium, Sursee LU, 6210 Sursee",
+        "zip": "6210",
+        "city": "Sursee",
+        "lat": 47.17253,
+        "lng": 8.10678,
+        "openingHours": "Check venue for hours",
+        "fees": "Contact venue",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flip_DSC0903_%285057956082%29.jpg/960px-Flip_DSC0903_%285057956082%29.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flip_DSC0903_%285057956082%29.jpg/960px-Flip_DSC0903_%285057956082%29.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Indoor play space"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DVIkSi2Dntq/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120117206-52",
+        "name": "Swiss Holiday Park",
+        "type": "swimmingpool",
+        "description": "Holiday & leisure park with indoor waterpark",
+        "address": "Swiss Holiday Park, Morschach SZ, 6443 Morschach",
+        "zip": "6443",
+        "city": "Morschach",
+        "lat": 46.98096,
+        "lng": 8.61799,
+        "openingHours": "Check venue for hours",
+        "fees": "Contact venue",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Swiss_Holiday_Park_-_panoramio.jpg/960px-Swiss_Holiday_Park_-_panoramio.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Swiss_Holiday_Park_-_panoramio.jpg/960px-Swiss_Holiday_Park_-_panoramio.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Holiday & leisure park with indoor waterpark"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DVEdGO7j0U7/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120134099-60",
+        "name": "Winterspass ohne Zusatzkosten",
+        "type": "playpark",
+        "description": "Snow slide park at Trübsee above Engelberg",
+        "address": "Rutschpark Trübsee, Engelberg, 6390 Engelberg",
+        "zip": "6390",
+        "city": "Engelberg",
+        "lat": 46.82235,
+        "lng": 8.4044,
+        "openingHours": "Check venue for hours",
+        "fees": "Included with cable car ticket",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Engelberg%2C_Switzerland_-_panoramio_%283%29.jpg/960px-Engelberg%2C_Switzerland_-_panoramio_%283%29.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Engelberg%2C_Switzerland_-_panoramio_%283%29.jpg/960px-Engelberg%2C_Switzerland_-_panoramio_%283%29.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Snow slide park at Trübsee above Engelberg"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DUfkOpsDDl7/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120137237-61",
+        "name": "Masoala Regenwald",
+        "type": "playpark",
+        "description": "Tropical rainforest hall inside Zürich Zoo, free-roaming lemurs",
+        "address": "Masoala Regenwald, Zoo Zürich, 8044 Zurich",
+        "zip": "8044",
+        "city": "Zurich",
+        "lat": 47.38691,
+        "lng": 8.5776,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Antilope_cervicapra_in_Zurich.jpg/960px-Antilope_cervicapra_in_Zurich.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Antilope_cervicapra_in_Zurich.jpg/960px-Antilope_cervicapra_in_Zurich.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Tropical rainforest hall inside Zürich Zoo, free-roaming lemurs"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DUdfQ3KjmNL/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120146041-64",
+        "name": "Disney-Magie auf dem Eis",
+        "type": "playpark",
+        "description": "Disney on Ice touring show – check local dates",
+        "address": "Disney on Ice, Lausanne-Prilly, 1052 Le Mont-sur-Lausanne",
+        "zip": "1052",
+        "city": "Le Mont-sur-Lausanne",
+        "lat": 46.55296,
+        "lng": 6.63519,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Le_Mont-sur-Lausanne_Administration_Communale.jpg/960px-Le_Mont-sur-Lausanne_Administration_Communale.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Le_Mont-sur-Lausanne_Administration_Communale.jpg/960px-Le_Mont-sur-Lausanne_Administration_Communale.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Disney on Ice touring show – check local dates"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DUNlDMPjD1x/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120147313-65",
+        "name": "Einzigartiges Dinosaurier-Museum",
+        "type": "playpark",
+        "description": "One of Europe's unique dino museums with real fossil collection",
+        "address": "Sauriermuseum Aathal, Aathal-Seegräben ZH, 8607 Sack",
+        "zip": "8607",
+        "city": "Sack",
+        "lat": 47.33872,
+        "lng": 8.762,
+        "openingHours": "Check venue for hours",
+        "fees": "Free",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Aathal-Seegr%C3%A4ben_-_Siber%2BSiber_Mineralien-_und_Fossilienmuseum_2011-09-28_12-40-04_ShiftN.jpg/960px-Aathal-Seegr%C3%A4ben_-_Siber%2BSiber_Mineralien-_und_Fossilienmuseum_2011-09-28_12-40-04_ShiftN.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Aathal-Seegr%C3%A4ben_-_Siber%2BSiber_Mineralien-_und_Fossilienmuseum_2011-09-28_12-40-04_ShiftN.jpg/960px-Aathal-Seegr%C3%A4ben_-_Siber%2BSiber_Mineralien-_und_Fossilienmuseum_2011-09-28_12-40-04_ShiftN.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! One of Europe's unique dino museums with real fossil collection"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DULFYVUjJbb/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120148987-66",
+        "name": "Indoor-Freizeitpark – Swiss MEGA Park",
+        "type": "gamezone",
+        "description": "Indoor leisure park with action and variety",
+        "address": "Swiss MEGA Park, Frenkendorf BL, 4402 Frenkendorf",
+        "zip": "4402",
+        "city": "Frenkendorf",
+        "lat": 47.49942,
+        "lng": 7.71781,
+        "openingHours": "Check venue for hours",
+        "fees": "Contact venue",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ortsmuseum_Frenkendorf.jpg/960px-Ortsmuseum_Frenkendorf.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ortsmuseum_Frenkendorf.jpg/960px-Ortsmuseum_Frenkendorf.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Indoor leisure park with action and variety"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DUJO9SqDBMF/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
+    },
+    {
+        "id": "excel-spot-1784120155017-68",
+        "name": "Familien-Freizeitparadies – La Ruche",
+        "type": "gamezone",
+        "description": "Multi-activity leisure centre: bowling, trampolines, climbing, kids area",
+        "address": "La Ruche by FriBowling, Granges-Paccot FR, 1763 Granges-Paccot",
+        "zip": "1763",
+        "city": "Granges-Paccot",
+        "lat": 46.82397,
+        "lng": 7.14419,
+        "openingHours": "Check venue for hours",
+        "fees": "Contact venue",
+        "minAge": 0,
+        "maxAge": 14,
+        "amenities": [
+            "Toilets",
+            "Stroller Friendly"
+        ],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Derdorsch.jpg/960px-Derdorsch.jpg",
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Derdorsch.jpg/960px-Derdorsch.jpg"
+        ],
+        "ratings": [
+            5
+        ],
+        "comments": [
+            {
+                "author": "happy.kids.swiss",
+                "rating": 5,
+                "text": "Featured on @happy.kids.swiss Instagram! Multi-activity leisure centre: bowling, trampolines, climbing, kids area"
+            }
+        ],
+        "instagramUrl": "https://www.instagram.com/p/DUEHik-DNib/",
+        "imageSource": "Wikimedia Commons / CC BY-SA"
     }
 ]
