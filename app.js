@@ -1771,6 +1771,15 @@ async function handleFeedbackSubmit(e) {
 
 // --- Event Listeners Initialization ---
 document.addEventListener("DOMContentLoaded", () => {
+    // 0. Check admin mode to show marketing button
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('admin') === 'true') {
+        const marketingBtn = document.getElementById('marketing-btn');
+        if (marketingBtn) {
+            marketingBtn.style.display = 'inline-flex';
+        }
+    }
+
     // 1. Data load & maps bootstrap
     loadSpots();
     initializeMap();

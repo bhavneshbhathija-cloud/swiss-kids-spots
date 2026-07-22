@@ -495,6 +495,59 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
+    // API Endpoint: CORS image proxy to prevent tainted canvases when exporting posts
+    if (pathname === '/api/proxy-image') {
+        const imageUrl = parsedUrl.searchParams.get('url');
+        if (!imageUrl) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Missing url parameter' }));
+            return;
+        }
+
+        try {
+            const client = imageUrl.startsWith('https') ? https : http;
+            client.get(imageUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } }, (imageRes) => {
+                // If it is a redirect, follow it once (simple follow)
+                if (imageRes.statusCode >= 300 && imageRes.statusCode < 400 && imageRes.headers.location) {
+                    const redirectUrl = imageRes.headers.location.startsWith('http') 
+                        ? imageRes.headers.location 
+                        : new URL(imageRes.headers.location, imageUrl).href;
+                    
+                    const redirectClient = redirectUrl.startsWith('https') ? https : http;
+                    redirectClient.get(redirectUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } }, (redRes) => {
+                        res.writeHead(redRes.statusCode, {
+                            'Content-Type': redRes.headers['content-type'] || 'image/jpeg',
+                            'Access-Control-Allow-Origin': '*',
+                            'Cache-Control': 'public, max-age=86400'
+                        });
+                        redRes.pipe(res);
+                    }).on('error', (err) => {
+                        console.error('[Image Proxy Redirect Error]', err);
+                        res.writeHead(500);
+                        res.end('Proxy Redirect Error');
+                    });
+                    return;
+                }
+
+                res.writeHead(imageRes.statusCode, {
+                    'Content-Type': imageRes.headers['content-type'] || 'image/jpeg',
+                    'Access-Control-Allow-Origin': '*',
+                    'Cache-Control': 'public, max-age=86400'
+                });
+                imageRes.pipe(res);
+            }).on('error', (err) => {
+                console.error('[Image Proxy Error]', err);
+                res.writeHead(500);
+                res.end('Proxy Error');
+            });
+        } catch (e) {
+            console.error('[Image Proxy Exception]', e);
+            res.writeHead(500);
+            res.end('Proxy Exception');
+        }
+        return;
+    }
+
     // Serve Static Files
     let filePath;
     let isDataFile = false;

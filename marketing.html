@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Daily Post Creator - SwissKidsSpots</title>
+    
+    <!-- Google Fonts: Outfit & Caveat (for Polaroid handwritten effect) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --swiss-red: #d90429;
+            --swiss-red-hover: #ef233c;
+            --primary-blue: #2b2d42;
+            --accent-blue: #0077b6;
+            --bg-app: #f4f6f9;
+            --bg-card: #ffffff;
+            --text-primary: #2b2d42;
+            --text-secondary: #5c677d;
+            --text-light: #8d99ae;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .dark-theme {
+            --bg-app: #0e0f12;
+            --bg-card: #1a1d24;
+            --text-primary: #f1f3f5;
+            --text-secondary: #a1b0cb;
+            --text-light: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .swiss-cross {
+            background-color: var(--swiss-red);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .logo-text h1 span {
+            color: var(--swiss-red);
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .back-btn:hover {
+            color: var(--swiss-red);
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            height: calc(100vh - 65px);
+        }
+
+        /* Sidebar Spots List */
+        .sidebar {
+            width: 320px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .sidebar-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px 10px 35px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-app);
+            color: var(--text-primary);
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            border-color: var(--swiss-red);
+        }
+
+        .spots-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .spot-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-bottom: 5px;
+            border: 1px solid transparent;
+        }
+
+        .spot-item:hover {
+            background: var(--bg-app);
+        }
+
+        .spot-item.active {
+            background: rgba(217, 4, 41, 0.08);
+            border-color: rgba(217, 4, 41, 0.2);
+        }
+
+        .spot-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #e2e8f0;
+        }
+
+        .spot-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .spot-name-txt {
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 2px;
+        }
+
+        .spot-meta-txt {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .category-badge {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .cat-playpark { background: rgba(42, 157, 143, 0.15); color: #2a9d8f; }
+        .cat-gamezone { background: rgba(244, 162, 97, 0.15); color: #f4a261; }
+        .cat-swimmingpool { background: rgba(0, 119, 182, 0.15); color: #0077b6; }
+
+        /* Workspace Grid */
+        .workspace {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            overflow-y: auto;
+            background: var(--bg-app);
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        /* Panel Cards */
+        .workspace-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-medium);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            height: fit-content;
+        }
+
+        .workspace-card h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        /* Canvas Panel Styles */
+        .preview-box {
+            background: #111;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            aspect-ratio: 1;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        canvas {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .image-loading-indicator {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .image-loading-indicator.active {
+            display: flex;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .template-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .template-btn {
+            background: var(--bg-app);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .template-btn:hover {
+            border-color: var(--swiss-red);
+            color: var(--text-primary);
+        }
+
+        .template-btn.active {
+            background: var(--swiss-red);
+            color: white;
+            border-color: var(--swiss-red);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            outline: none;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--swiss-red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--swiss-red-hover);
+        }
+
+        .btn-secondary {
+            background: var(--bg-app);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        /* Caption Panel Styles */
+        .tone-selector {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tone-btn {
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-app);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .tone-btn:hover {
+            border-color: var(--swiss-red);
+        }
+
+        .tone-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .caption-textarea {
+            width: 100%;
+            height: 250px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-family: inherit;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            outline: none;
+            resize: vertical;
+            color: var(--text-primary);
+            background: var(--bg-app);
+        }
+
+        .caption-textarea:focus {
+            border-color: var(--swiss-red);
+        }
+
+        .hashtag-container {
+            background: var(--bg-app);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+            line-height: 1.4;
+            color: var(--accent-blue);
+            word-break: break-all;
+        }
+
+        .quick-settings {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--swiss-red);
+        }
+
+        .image-upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .image-upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .next-footer {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 1024px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+            .sidebar {
+                width: 100%;
+                height: 250px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .workspace {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="light-theme">
+
+    <header>
+        <div class="logo-area">
+            <div class="swiss-cross"><i class="fa-solid fa-plus"></i></div>
+            <div class="logo-text">
+                <h1>SwissKids<span>Spots</span></h1>
+            </div>
+            <span style="font-size: 0.8rem; background: var(--swiss-red); color: white; padding: 2px 6px; border-radius: 10px; margin-left: 8px; font-weight: 700;">ADMIN</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html?admin=true" class="back-btn">
+                <i class="fa-solid fa-chevron-left"></i> Back to Discovery
+            </a>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar Spots Selection -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="spot-search" class="search-input" placeholder="Search by name or city...">
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary);">
+                    <span id="spots-count">0 Curated Spots</span>
+                    <span>Daily Schedule</span>
+                </div>
+            </div>
+            <div class="spots-list" id="spots-list-container">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Working Workspace -->
+        <div class="workspace">
+            <!-- Left Card: Image Canvas Renderer -->
+            <div class="workspace-card">
+                <h2><i class="fa-regular fa-image"></i> Graphic Designer</h2>
+                
+                <div class="preview-box">
+                    <canvas id="instagram-canvas" width="1080" height="1080"></canvas>
+                    <div class="image-loading-indicator" id="loading-indicator">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i> Loading spot image...
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Design Template</label>
+                    <div class="template-selector">
+                        <button class="template-btn active" data-template="glass">Glassmorphic</button>
+                        <button class="template-btn" data-template="polaroid">Polaroid</button>
+                        <button class="template-btn" data-template="ticket">Travel Ticket</button>
+                    </div>
+                </div>
+
+                <div class="quick-settings">
+                    <div class="image-upload-btn-wrapper">
+                        <button class="btn btn-secondary"><i class="fa-solid fa-cloud-arrow-up"></i> Custom Image</button>
+                        <input type="file" id="custom-image-file" accept="image/*">
+                    </div>
+                    <button id="download-image-btn" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download Graphic</button>
+                </div>
+            </div>
+
+            <!-- Right Card: Captions and Hashtags Creator -->
+            <div class="workspace-card">
+                <h2><i class="fa-regular fa-paper-plane"></i> Instagram Caption</h2>
+                
+                <div class="quick-settings">
+                    <div class="control-group">
+                        <label>Calendar Day Number</label>
+                        <input type="number" id="post-day-number" value="1" min="1" max="100" class="search-input" style="padding: 6px 10px;">
+                    </div>
+                    <div class="control-group">
+                        <label>Post Tone Template</label>
+                        <div class="tone-selector">
+                            <button class="tone-btn active" data-tone="family">Family Fun</button>
+                            <button class="tone-btn" data-tone="adventure">Adventure</button>
+                            <button class="tone-btn" data-tone="info">Quick Specs</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Instagram Caption Text</label>
+                    <textarea id="caption-text" class="caption-textarea" placeholder="Caption goes here..."></textarea>
+                </div>
+
+                <div class="control-group">
+                    <label>Generated Hashtags</label>
+                    <div id="hashtag-list" class="hashtag-container">
+                        #SwissKidsSpots #SwitzerlandWithKids
+                    </div>
+                </div>
+
+                <div class="next-footer">
+                    <button id="copy-caption-btn" class="btn btn-secondary" style="flex: 1;"><i class="fa-solid fa-copy"></i> Copy Text & Tags</button>
+                    <button id="next-spot-btn" class="btn btn-primary" style="flex: 1;"><i class="fa-solid fa-arrow-right"></i> Next Day's Spot</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let allSpots = [];
+        let filteredSpots = [];
+        let selectedSpot = null;
+        let selectedTemplate = 'glass';
+        let selectedTone = 'family';
+        let userCustomImageSrc = null;
+
+        // Elements
+        const spotsContainer = document.getElementById('spots-list-container');
+        const spotSearchInput = document.getElementById('spot-search');
+        const spotsCountLabel = document.getElementById('spots-count');
+        const templateBtns = document.querySelectorAll('.template-btn');
+        const toneBtns = document.querySelectorAll('.tone-btn');
+        const captionTextArea = document.getElementById('caption-text');
+        const hashtagContainer = document.getElementById('hashtag-list');
+        const copyCaptionBtn = document.getElementById('copy-caption-btn');
+        const downloadImageBtn = document.getElementById('download-image-btn');
+        const nextSpotBtn = document.getElementById('next-spot-btn');
+        const postDayInput = document.getElementById('post-day-number');
+        const customImageFileInput = document.getElementById('custom-image-file');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const canvas = document.getElementById('instagram-canvas');
+        const ctx = canvas.getContext('2d');
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Theme Handling
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-theme');
+            themeToggle.querySelector('i').className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            // Redraw canvas with theme updates if needed (some templates adapt to theme)
+            drawPostGraphic();
+        });
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadSpotsData();
+            
+            // Search Input Listener
+            spotSearchInput.addEventListener('input', () => {
+                filterSpots(spotSearchInput.value);
+            });
+
+            // Template Selectors
+            templateBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    templateBtns.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    selectedTemplate = e.target.dataset.template;
+                    drawPostGraphic();
+                });
+            });
+
+            // Tone Selectors
+            toneBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    toneBtns.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    selectedTone = e.target.dataset.tone;
+                    generateCaption();
+                });
+            });
+
+            // Day change listener
+            postDayInput.addEventListener('input', () => {
+                generateCaption();
+                drawPostGraphic(); // Redraw since ticket includes day number
+            });
+
+            // Custom Image Upload
+            customImageFileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        userCustomImageSrc = event.target.result;
+                        drawPostGraphic();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Copy Caption Actions
+            copyCaptionBtn.addEventListener('click', () => {
+                const captionText = captionTextArea.value + "\n\n" + hashtagContainer.textContent.trim();
+                navigator.clipboard.writeText(captionText).then(() => {
+                    const originalText = copyCaptionBtn.innerHTML;
+                    copyCaptionBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                    copyCaptionBtn.style.background = '#2a9d8f';
+                    copyCaptionBtn.style.color = 'white';
+                    setTimeout(() => {
+                        copyCaptionBtn.innerHTML = originalText;
+                        copyCaptionBtn.style.background = '';
+                        copyCaptionBtn.style.color = '';
+                    }, 2000);
+                });
+            });
+
+            // Download Image Action
+            downloadImageBtn.addEventListener('click', () => {
+                if (!selectedSpot) return;
+                const link = document.createElement('a');
+                const cleanName = selectedSpot.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                link.download = `swisskidsspots-day${postDayInput.value}-${cleanName}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+
+            // Next Spot Action
+            nextSpotBtn.addEventListener('click', () => {
+                if (filteredSpots.length === 0) return;
+                const currentIndex = filteredSpots.findIndex(s => s.name === selectedSpot.name);
+                let nextIndex = currentIndex + 1;
+                if (nextIndex >= filteredSpots.length) {
+                    nextIndex = 0;
+                }
+                
+                // Increment day number
+                postDayInput.value = parseInt(postDayInput.value) + 1;
+                
+                selectSpot(filteredSpots[nextIndex]);
+            });
+        });
+
+        // Load JSON data
+        async function loadSpotsData() {
+            try {
+                // Fetch curated spots from JSON
+                const response = await fetch('/curated_spots_summary.json');
+                allSpots = await response.json();
+                
+                // Normalize some attributes
+                allSpots.forEach((spot, idx) => {
+                    spot.id = `curated-${idx + 1}`;
+                    if (!spot.ratings) {
+                        spot.ratings = [4.5, 5, 4.8, 4.7][idx % 4];
+                    }
+                });
+
+                filteredSpots = [...allSpots];
+                spotsCountLabel.textContent = `${allSpots.length} Curated Spots`;
+                
+                renderSpotsList();
+                
+                if (allSpots.length > 0) {
+                    selectSpot(allSpots[0]);
+                }
+            } catch (err) {
+                console.error("Failed to load spots data:", err);
+                spotsContainer.innerHTML = '<div style="padding: 1rem; color: var(--swiss-red);">Failed to load curated spots. Make sure the node server is running!</div>';
+            }
+        }
+
+        // Render Sidebar items
+        function renderSpotsList() {
+            spotsContainer.innerHTML = '';
+            filteredSpots.forEach((spot, idx) => {
+                const item = document.createElement('div');
+                item.className = 'spot-item';
+                if (selectedSpot && selectedSpot.name === spot.name) {
+                    item.classList.add('active');
+                }
+                
+                const categoryClass = `cat-${spot.type}`;
+                const categoryLabel = spot.type === 'playpark' ? 'Playpark' : (spot.type === 'gamezone' ? 'Game Zone' : 'Pool');
+                
+                item.innerHTML = `
+                    <img class="spot-thumb" src="${spot.imageUrl}" alt="${spot.name}" onerror="this.src='https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=100&auto=format&fit=crop&q=80'">
+                    <div class="spot-info">
+                        <div class="spot-name-txt">${spot.name}</div>
+                        <div class="spot-meta-txt">
+                            <span>${spot.city} (ZIP ${spot.zip})</span>
+                            <span class="category-badge ${categoryClass}">${categoryLabel}</span>
+                        </div>
+                    </div>
+                `;
+                
+                item.addEventListener('click', () => {
+                    // Update Day Number based on the natural index of the spot + 1
+                    const naturalIdx = allSpots.findIndex(s => s.name === spot.name);
+                    postDayInput.value = naturalIdx + 1;
+                    
+                    selectSpot(spot);
+                });
+                
+                spotsContainer.appendChild(item);
+            });
+        }
+
+        // Filter Sidebar items
+        function filterSpots(query) {
+            const cleanQuery = query.toLowerCase().trim();
+            filteredSpots = allSpots.filter(spot => 
+                spot.name.toLowerCase().includes(cleanQuery) || 
+                spot.city.toLowerCase().includes(cleanQuery)
+            );
+            renderSpotsList();
+        }
+
+        // Select spot and refresh workspace
+        function selectSpot(spot) {
+            selectedSpot = spot;
+            userCustomImageSrc = null; // reset custom uploads
+            
+            // Highlight selected in sidebar list
+            const items = spotsContainer.querySelectorAll('.spot-item');
+            const currentIndex = filteredSpots.findIndex(s => s.name === spot.name);
+            items.forEach((item, index) => {
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            generateCaption();
+            drawPostGraphic();
+        }
+
+        // Generate dynamic instagram captions
+        function generateCaption() {
+            if (!selectedSpot) return;
+
+            const spot = selectedSpot;
+            const dayNum = postDayInput.value;
+            const linkCTA = "👉 Find exact locations, routing, weather suitability & reviews at: swissforkids.ch";
+            
+            let caption = "";
+            let hashtags = "";
+
+            // 1. Hashtags generation
+            const baseHashtags = ["#SwissKidsSpots", "#SwissFamilyFun", "#SwitzerlandWithKids", "#ExploreSwitzerland", "#SwissPlaygrounds", "#SwissFamily"];
+            const categoryHashtags = spot.type === 'playpark' 
+                ? ["#SpielplatzSchweiz", "#SwissPlaygrounds", "#Playpark"] 
+                : (spot.type === 'gamezone' ? ["#IndoorPlayground", "#KidsArcade", "#IndoorSchweiz"] : ["#SwissBadi", "#FreibadSchweiz", "#Hallenbad", "#SwissPools"]);
+            const cityHashtag = `#${spot.city.replace(/[^a-zA-Z0-9]/g, '')}WithKids`;
+            const regionalHashtags = [`#Visit${spot.city.replace(/[^a-zA-Z0-9]/g, '')}`, `#Kanton${spot.city.replace(/[^a-zA-Z0-9]/g, '') || 'Zurich'}`];
+
+            hashtags = [...baseHashtags, ...categoryHashtags, cityHashtag, ...regionalHashtags].join(" ");
+
+            // 2. Caption Templates
+            if (selectedTone === 'family') {
+                caption = `🇨🇭 SWISS SPOTS FOR KIDS — DAY ${dayNum} 🇨🇭\n\nLooking for the perfect weekend escape or afternoon outing with the kids in ${spot.city}? Check out ${spot.name}! ✨\n\n🎈 What makes it special:\n${spot.desc}\n\n📍 Details you need to know:\n• 🗺️ Location: ${spot.city} (ZIP ${spot.zip})\n• 🎟️ Entry Fee: ${spot.fees}\n• ⏰ Opening Hours: ${spot.hours}\n• 🎒 Amenities: ${spot.amenities.join(", ")}\n\nWhether you're visiting with toddlers in a stroller or looking for a cool indoor hangout, this spot has it all! Save this post for your next trip planning 📌\n\n${linkCTA}`;
+            } 
+            else if (selectedTone === 'adventure') {
+                caption = `🔥 FAMILY ADVENTURE SPOT OF THE DAY: Day ${dayNum} 🔥\n\nReady to get active? Today we're highlighting ${spot.name} in ${spot.city}! 🏞️🛝\n\nIf you want the kids to run, climb, splash, or explore, this is the place to be. ${spot.desc}\n\n🎒 Features:\n• Amenities: ${spot.amenities.join(" | ")}\n• Fees: ${spot.fees}\n• Hours: ${spot.hours}\n\nPack your backpacks and head over to ZIP ${spot.zip}! Tag a family you want to go here with! 👇\n\n${linkCTA}`;
+            } 
+            else if (selectedTone === 'info') {
+                caption = `📍 SwissKidsSpots Day ${dayNum}: ${spot.name} (${spot.city})\n\nQuick details for families visiting Switzerland or locals looking for new spots:\n\n💬 Description: ${spot.desc}\n\n📋 Quick Specs:\n• City: ${spot.city}\n• ZIP: ${spot.zip}\n• Category: ${spot.type.toUpperCase()}\n• Fee: ${spot.fees}\n• Opening Hours: ${spot.hours}\n• Key Conveniences: ${spot.amenities.join(", ")}\n\n${linkCTA}`;
+            }
+
+            captionTextArea.value = caption;
+            hashtagContainer.textContent = hashtags;
+        }
+
+        // Draw Canvas Graphics
+        function drawPostGraphic() {
+            if (!selectedSpot) return;
+
+            const spot = selectedSpot;
+            const template = selectedTemplate;
+            const dayNum = postDayInput.value;
+
+            // Show loading
+            loadingIndicator.classList.add('active');
+
+            // Source Image
+            const bgImg = new Image();
+            bgImg.crossOrigin = 'anonymous';
+
+            // Use the proxy to avoid canvas tainting
+            if (userCustomImageSrc) {
+                bgImg.src = userCustomImageSrc;
+            } else {
+                bgImg.src = '/api/proxy-image?url=' + encodeURIComponent(spot.imageUrl);
+            }
+
+            bgImg.onload = () => {
+                loadingIndicator.classList.remove('active');
+                ctx.clearRect(0, 0, 1080, 1080);
+                
+                if (template === 'glass') {
+                    drawGlassmorphicTemplate(bgImg, spot);
+                } else if (template === 'polaroid') {
+                    drawPolaroidTemplate(bgImg, spot);
+                } else if (template === 'ticket') {
+                    drawTicketTemplate(bgImg, spot, dayNum);
+                }
+            };
+
+            bgImg.onerror = () => {
+                loadingIndicator.classList.remove('active');
+                // Draw fallback graphic if image load fails
+                ctx.clearRect(0, 0, 1080, 1080);
+                drawFallbackGraphic(spot, template, dayNum);
+            };
+        }
+
+        // Graphic helper: Draw a rating stars row
+        function drawStars(x, y, rating, starSize = 25) {
+            ctx.fillStyle = "#ffb703";
+            ctx.font = `${starSize}px sans-serif`;
+            const fullStars = Math.floor(rating);
+            let starsString = "";
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) starsString += "★";
+                else if (i === fullStars && rating % 1 >= 0.5) starsString += "★";
+                else starsString += "☆";
+            }
+            ctx.fillText(starsString, x, y);
+        }
+
+        // HELPER: Wrap Text on Canvas
+        function wrapText(context, text, x, y, maxWidth, lineHeight) {
+            const words = text.split(' ');
+            let line = '';
+            let currentY = y;
+            
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n] + ' ';
+                const metrics = context.measureText(testLine);
+                const testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    context.fillText(line, x, currentY);
+                    line = words[n] + ' ';
+                    currentY += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            context.fillText(line, x, currentY);
+            return currentY;
+        }
+
+        // TEMPLATE 1: Modern Glassmorphic Overlay
+        function drawGlassmorphicTemplate(img, spot) {
+            // Draw scaled background image
+            drawCoverImage(img);
+
+            // Dark Vignette/Gradient at bottom
+            const gradient = ctx.createLinearGradient(0, 500, 0, 1080);
+            gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+            gradient.addColorStop(0.4, 'rgba(0, 0, 0, 0.4)');
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0.85)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1080, 1080);
+
+            // Red SwissCross Logo Tag (Top Left)
+            ctx.save();
+            ctx.fillStyle = '#d90429';
+            // Round rect path
+            ctx.beginPath();
+            ctx.roundRect(50, 50, 310, 60, 12);
+            ctx.fill();
+            
+            // Draw Swiss Cross in badge
+            ctx.fillStyle = 'white';
+            ctx.fillRect(65, 68, 24, 24);
+            ctx.fillStyle = '#d90429';
+            // draw cross lines
+            ctx.fillRect(75, 71, 4, 18);
+            ctx.fillRect(68, 78, 18, 4);
+
+            // Brand Text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px "Outfit", sans-serif';
+            ctx.fillText('SwissKidsSpots', 105, 90);
+            ctx.restore();
+
+            // Category Badge (Top Right)
+            ctx.save();
+            let catColor = '#2a9d8f'; // playpark
+            let catLabel = 'PLAYPARK';
+            if (spot.type === 'gamezone') {
+                catColor = '#f4a261';
+                catLabel = 'GAME ZONE';
+            } else if (spot.type === 'swimmingpool') {
+                catColor = '#0077b6';
+                catLabel = 'SWIMMING POOL';
+            }
+
+            ctx.fillStyle = catColor;
+            ctx.beginPath();
+            ctx.roundRect(830, 50, 200, 50, 10);
+            ctx.fill();
+
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 20px "Outfit", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(catLabel, 930, 82);
+            ctx.restore();
+
+            // Glassmorphic Card (Bottom Section)
+            ctx.save();
+            // Card Container
+            ctx.fillStyle = 'rgba(15, 20, 30, 0.72)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.roundRect(50, 720, 980, 310, 24);
+            ctx.fill();
+            ctx.stroke();
+
+            // Content inside Card
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'left';
+            
+            // Name
+            ctx.font = 'bold 44px "Outfit", sans-serif';
+            ctx.fillText(spot.name, 90, 790);
+
+            // Location
+            ctx.font = '500 28px "Outfit", sans-serif';
+            ctx.fillStyle = '#e2e8f0';
+            ctx.fillText(`📍 ${spot.city}, Switzerland`, 90, 840);
+
+            // Rating
+            const ratingScore = spot.ratings || 4.7;
+            drawStars(90, 885, ratingScore, 30);
+            ctx.fillStyle = '#ffb703';
+            ctx.font = 'bold 24px "Outfit", sans-serif';
+            ctx.fillText(ratingScore.toString(), 260, 882);
+
+            // Line Separator
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.beginPath();
+            ctx.moveTo(90, 915);
+            ctx.lineTo(990, 915);
+            ctx.stroke();
+
+            // Key Amenities
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '500 20px "Outfit", sans-serif';
+            const amenitiesList = spot.amenities.slice(0, 4).join("  •  ");
+            ctx.fillText(`⚡ Amenities: ${amenitiesList}`, 90, 960);
+
+            // Call to Action
+            ctx.fillStyle = '#ef233c';
+            ctx.font = 'bold 20px "Outfit", sans-serif';
+            ctx.fillText(`🔗 Discover more at swissforkids.ch`, 90, 995);
+
+            ctx.restore();
+        }
+
+        // TEMPLATE 2: Classic Polaroid Postcard
+        function drawPolaroidTemplate(img, spot) {
+            // Polaroid Border Background
+            ctx.fillStyle = '#fbf9f4';
+            ctx.fillRect(0, 0, 1080, 1080);
+
+            // Add paper texture effect
+            ctx.save();
+            ctx.fillStyle = 'rgba(40,30,10,0.02)';
+            for (let i = 0; i < 100; i++) {
+                const rx = Math.random() * 1080;
+                const ry = Math.random() * 1080;
+                ctx.fillRect(rx, ry, Math.random() * 4 + 1, Math.random() * 4 + 1);
+            }
+            ctx.restore();
+
+            // Image Frame Box
+            ctx.fillStyle = '#111';
+            ctx.fillRect(60, 60, 960, 780);
+
+            // Draw Spot Image inside
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(60, 60, 960, 780);
+            ctx.clip();
+            
+            // Image cover drawing
+            const imgRatio = img.width / img.height;
+            const targetRatio = 960 / 780;
+            let w, h, x, y;
+            if (imgRatio > targetRatio) {
+                h = 780;
+                w = 780 * imgRatio;
+                x = 60 - (w - 960) / 2;
+                y = 60;
+            } else {
+                w = 960;
+                h = 960 / imgRatio;
+                x = 60;
+                y = 60 - (h - 780) / 2;
+            }
+            ctx.drawImage(img, x, y, w, h);
+
+            // Polaroid shadow inner overlay
+            const shadowGrad = ctx.createLinearGradient(60, 60, 60, 840);
+            shadowGrad.addColorStop(0, 'rgba(0,0,0,0.15)');
+            shadowGrad.addColorStop(0.1, 'rgba(0,0,0,0)');
+            shadowGrad.addColorStop(0.9, 'rgba(0,0,0,0)');
+            shadowGrad.addColorStop(1, 'rgba(0,0,0,0.2)');
+            ctx.fillStyle = shadowGrad;
+            ctx.fillRect(60, 60, 960, 780);
+            ctx.restore();
+
+            // Bottom Text Section (Polaroid Label)
+            ctx.save();
+            ctx.fillStyle = '#2b2d42';
+            
+            // Spot Title (Handwritten look)
+            ctx.font = '72px "Caveat", cursive';
+            ctx.textAlign = 'center';
+            ctx.fillText(spot.name, 540, 920);
+
+            // Sub-header (City / Date)
+            ctx.font = '500 24px "Outfit", sans-serif';
+            ctx.fillStyle = '#5c677d';
+            ctx.fillText(`📍 ${spot.city}, Switzerland  •  ⭐ ${spot.ratings || 4.7} / 5`, 540, 970);
+
+            // Tiny Brand Header
+            ctx.font = 'bold 20px "Outfit", sans-serif';
+            ctx.fillStyle = '#d90429';
+            ctx.fillText('swissforkids.ch', 540, 1015);
+            ctx.restore();
+        }
+
+        // TEMPLATE 3: Swiss Travel Ticket / Pass
+        function drawTicketTemplate(img, spot, dayNum) {
+            // Swiss Red Outer Boarder
+            ctx.fillStyle = '#d90429';
+            ctx.fillRect(0, 0, 1080, 1080);
+
+            // White Inner Ticket Card
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.roundRect(40, 40, 1000, 1000, 20);
+            ctx.fill();
+
+            // Draw Header
+            ctx.save();
+            ctx.fillStyle = '#2b2d42';
+            ctx.font = 'bold 36px "Outfit", sans-serif';
+            ctx.fillText('SWISS FAMILY PASS', 80, 100);
+
+            // Swiss Cross Logo in Header
+            ctx.fillStyle = '#d90429';
+            ctx.beginPath();
+            ctx.roundRect(900, 65, 60, 45, 8);
+            ctx.fill();
+            ctx.fillStyle = 'white';
+            ctx.fillRect(922, 73, 16, 29);
+            ctx.fillRect(915, 80, 30, 15);
+            ctx.restore();
+
+            // Serial Number
+            ctx.save();
+            ctx.fillStyle = '#d90429';
+            ctx.font = 'bold 24px "Outfit", sans-serif';
+            ctx.textAlign = 'right';
+            const numStr = String(dayNum).padStart(3, '0');
+            ctx.fillText(`SPOT NO. ${numStr} / 100`, 880, 97);
+            ctx.restore();
+
+            // Dotted Separator line
+            ctx.save();
+            ctx.strokeStyle = '#cbd5e1';
+            ctx.lineWidth = 4;
+            ctx.setLineDash([8, 8]);
+            ctx.beginPath();
+            ctx.moveTo(80, 140);
+            ctx.lineTo(1000, 140);
+            ctx.stroke();
+            ctx.restore();
+
+            // Half-bleed Spot Image
+            ctx.save();
+            ctx.beginPath();
+            ctx.roundRect(80, 180, 920, 440, 16);
+            ctx.clip();
+            // Scale and draw image
+            const imgRatio = img.width / img.height;
+            const targetRatio = 920 / 440;
+            let w, h, x, y;
+            if (imgRatio > targetRatio) {
+                h = 440;
+                w = 440 * imgRatio;
+                x = 80 - (w - 920) / 2;
+                y = 180;
+            } else {
+                w = 920;
+                h = 920 / imgRatio;
+                x = 80;
+                y = 180 - (h - 440) / 2;
+            }
+            ctx.drawImage(img, x, y, w, h);
+            ctx.restore();
+
+            // Ticket Details (Split columns)
+            ctx.save();
+            ctx.fillStyle = '#2b2d42';
+
+            // Left Column Titles
+            ctx.font = 'bold 22px "Outfit", sans-serif';
+            ctx.fillStyle = '#8d99ae';
+            ctx.fillText('DESTINATION', 80, 685);
+            ctx.fillText('LOCATION', 80, 775);
+            ctx.fillText('ENTRY FEE', 80, 865);
+
+            // Left Column Values
+            ctx.font = 'bold 32px "Outfit", sans-serif';
+            ctx.fillStyle = '#2b2d42';
+            ctx.fillText(spot.name, 80, 725);
+            ctx.fillText(`${spot.city}, CH (ZIP ${spot.zip})`, 80, 815);
+            ctx.fillText(spot.fees, 80, 905);
+
+            // Right Column Titles
+            ctx.font = 'bold 22px "Outfit", sans-serif';
+            ctx.fillStyle = '#8d99ae';
+            ctx.fillText('CATEGORY', 600, 685);
+            ctx.fillText('OPEN HOURS', 600, 775);
+            ctx.fillText('KEY AMENITY', 600, 865);
+
+            // Right Column Values
+            ctx.font = 'bold 32px "Outfit", sans-serif';
+            ctx.fillStyle = '#2a9d8f'; // Category color helper
+            if (spot.type === 'gamezone') ctx.fillStyle = '#f4a261';
+            if (spot.type === 'swimmingpool') ctx.fillStyle = '#0077b6';
+            ctx.fillText(spot.type.toUpperCase(), 600, 725);
+            
+            ctx.fillStyle = '#2b2d42';
+            ctx.fillText(spot.hours, 600, 815);
+            ctx.fillText(spot.amenities[0] || 'Stroller Friendly', 600, 905);
+
+            ctx.restore();
+
+            // Bottom Barcode Section & CTA
+            ctx.save();
+            // Barcode Lines Mock
+            ctx.fillStyle = '#111111';
+            let bx = 80;
+            for (let i = 0; i < 48; i++) {
+                let w = [2, 4, 6, 8][Math.floor(Math.random() * 4)];
+                ctx.fillRect(bx, 960, w, 50);
+                bx += w + [2, 4][Math.floor(Math.random() * 2)];
+                if (bx > 550) break;
+            }
+
+            // Ticket Brand CTA
+            ctx.fillStyle = '#d90429';
+            ctx.font = 'bold 20px "Outfit", sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText('DISCOVER MORE SWISS SPOTS ON:', 1000, 985);
+            ctx.font = 'bold 28px "Outfit", sans-serif';
+            ctx.fillStyle = '#2b2d42';
+            ctx.fillText('SWISSFORKIDS.CH', 1000, 1015);
+            ctx.restore();
+        }
+
+        // Draw fallback cover image scale helper
+        function drawCoverImage(img) {
+            const canvasRatio = canvas.width / canvas.height;
+            const imgRatio = img.width / img.height;
+            let drawWidth, drawHeight, drawX, drawY;
+
+            if (imgRatio > canvasRatio) {
+                drawHeight = canvas.height;
+                drawWidth = canvas.height * imgRatio;
+                drawX = -(drawWidth - canvas.width) / 2;
+                drawY = 0;
+            } else {
+                drawWidth = canvas.width;
+                drawHeight = canvas.width / imgRatio;
+                drawX = 0;
+                drawY = -(drawHeight - canvas.height) / 2;
+            }
+            ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+        }
+
+        // FALLBACK DRAWING: If external images fail to load completely
+        function drawFallbackGraphic(spot, template, dayNum) {
+            // Draw a colorful background gradient based on category
+            const grad = ctx.createLinearGradient(0, 0, 1080, 1080);
+            if (spot.type === 'playpark') {
+                grad.addColorStop(0, '#2a9d8f');
+                grad.addColorStop(1, '#264653');
+            } else if (spot.type === 'gamezone') {
+                grad.addColorStop(0, '#f4a261');
+                grad.addColorStop(1, '#e76f51');
+            } else {
+                grad.addColorStop(0, '#0077b6');
+                grad.addColorStop(1, '#03045e');
+            }
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 1080, 1080);
+
+            // Draw generic vector geometric overlay
+            ctx.fillStyle = 'rgba(255,255,255,0.06)';
+            ctx.beginPath();
+            ctx.arc(540, 540, 300, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(200, 800, 200, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Mock Image
+            ctx.save();
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.beginPath();
+            ctx.roundRect(140, 250, 800, 480, 24);
+            ctx.fill();
+
+            // Big Emoji for the category
+            ctx.font = '150px sans-serif';
+            ctx.textAlign = 'center';
+            let emoji = "🛝";
+            if (spot.type === 'gamezone') emoji = "🎮";
+            if (spot.type === 'swimmingpool') emoji = "🏊";
+            ctx.fillText(emoji, 540, 520);
+            
+            ctx.fillStyle = '#2b2d42';
+            ctx.font = 'bold 36px "Outfit", sans-serif';
+            ctx.fillText(spot.name, 540, 600);
+            ctx.font = '500 24px "Outfit", sans-serif';
+            ctx.fillText(`📍 ${spot.city}`, 540, 640);
+            ctx.restore();
+
+            // Draw the rest of the template elements on top
+            if (template === 'glass') {
+                // Glassmorphic Card (Bottom Section)
+                ctx.save();
+                ctx.fillStyle = 'rgba(15, 20, 30, 0.75)';
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.roundRect(50, 800, 980, 230, 24);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 40px "Outfit", sans-serif';
+                ctx.fillText(spot.name, 90, 860);
+
+                ctx.font = '500 26px "Outfit", sans-serif';
+                ctx.fillStyle = '#cbd5e1';
+                ctx.fillText(`📍 ${spot.city}, Switzerland  •  ${spot.fees}`, 90, 910);
+
+                ctx.fillStyle = '#ef233c';
+                ctx.font = 'bold 20px "Outfit", sans-serif';
+                ctx.fillText(`🔗 Discover more at swissforkids.ch`, 90, 995);
+                ctx.restore();
+            } else if (template === 'polaroid') {
+                // We'll draw the simplified polaroid text at bottom
+                ctx.save();
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 800, 1080, 280);
+                
+                ctx.fillStyle = '#2b2d42';
+                ctx.font = '64px "Caveat", cursive';
+                ctx.textAlign = 'center';
+                ctx.fillText(spot.name, 540, 920);
+
+                ctx.font = '500 22px "Outfit", sans-serif';
+                ctx.fillStyle = '#5c677d';
+                ctx.fillText(`📍 ${spot.city}, Switzerland  •  swissforkids.ch`, 540, 970);
+                ctx.restore();
+            } else {
+                // ticket
+                ctx.save();
+                ctx.fillStyle = 'white';
+                ctx.fillRect(80, 750, 920, 220);
+                ctx.fillStyle = '#2b2d42';
+                ctx.font = 'bold 32px "Outfit", sans-serif';
+                ctx.fillText(spot.name, 100, 820);
+                ctx.font = '22px "Outfit", sans-serif';
+                ctx.fillText(`📍 ${spot.city}  |  Fee: ${spot.fees}  |  swissforkids.ch`, 100, 870);
+                ctx.restore();
+            }
+        }
+    </script>
+</body>
+</html>

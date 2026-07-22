@@ -1,0 +1,1599 @@
+[
+  {
+    "name": "Zürich Horn Playground",
+    "type": "playpark",
+    "city": "Zürich",
+    "desc": "A spectacular adventure playground located directly on the shores of Lake Zürich. Features large wooden climbing structures, slides, rope bridges, a water play area with dams (great for warm days), swings, and plenty of space for parents to relax on the grass.",
+    "fees": "Free",
+    "hours": "07:00 - 22:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://landezine.com/wp-content/uploads/2011/02/Zurichhorn-Children-Playground-Zurich-vetschpartner-landschaftsarchitekten-05.jpg",
+    "zip": "8008"
+  },
+  {
+    "name": "FIFA Museum - Kids Game Zone",
+    "type": "gamezone",
+    "city": "Zürich",
+    "desc": "An indoor interactive playground located inside the FIFA Museum. Features physical football simulator games, arcade style panels, giant pinball, drawing stations, and physical skill-testing areas. Perfect for rainy days in Zürich.",
+    "fees": "14 CHF (Kids under 6 Free)",
+    "hours": "10:00 - 18:00 (Closed Monday)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/FIFA_Museum%2C_Zurich_01.jpg",
+    "zip": "8002"
+  },
+  {
+    "name": "Alpamare Indoor Water Park",
+    "type": "swimmingpool",
+    "city": "Pfäffikon",
+    "desc": "Europe's largest covered water park. Features 12 water slides (totaling 2.1km of sliding fun!), indoor and outdoor pools, wave pool, toddler splash paddling zone with mini slides, and beautiful views of Lake Zurich.",
+    "fees": "32 CHF (Kids 3-5: 12 CHF)",
+    "hours": "10:00 - 21:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://swissfamilyfun.com/wp-content/uploads/2021/03/alpamare-river-2023-e1689617422555.jpg",
+    "zip": "8808"
+  },
+  {
+    "name": "Gurten Playground & Toboggan",
+    "type": "playpark",
+    "city": "Wabern (Bern)",
+    "desc": "Situated on Bern's home mountain, Gurten. An enormous playground featuring a miniature train system, climbing grids, giant wood slides, water streams for splashing, a kids car driving circuit, and a spectacular summer toboggan run.",
+    "fees": "Free (Toboggan/Train costs extra)",
+    "hours": "08:30 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.bordersofadventure.com/wp-content/uploads/2020/08/Taboggan-on-Gurten-Peak-Bern-City-View-scaled.jpg",
+    "zip": "3084"
+  },
+  {
+    "name": "Bernaqua Water Park & Wave Pool",
+    "type": "swimmingpool",
+    "city": "Bern",
+    "desc": "A huge, futuristic indoor water park in Bern Westside. Offers a jungle wave pool, three large indoor slides with lights and sound, a wild river stream pool, and a dedicated, warm baby pool with interactive toys.",
+    "fees": "25 CHF (Kids under 6 Free)",
+    "hours": "09:00 - 22:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://meetings.ls2.ch/files/721/1905/img/2022015-bernaqua-lr-19_1540x.jpg",
+    "zip": "3027"
+  },
+  {
+    "name": "Parc des Bastions Playground",
+    "type": "playpark",
+    "city": "Geneva",
+    "desc": "A historic park in the heart of Geneva. Features a shaded kids' playground with sand pits, climbing towers, and wooden structures, plus giant chess sets that kids love. Fenced area makes it easy to monitor toddlers.",
+    "fees": "Free",
+    "hours": "06:00 - 22:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://wonderfulwanderings.com/wp-content/uploads/2023/12/16Parc-des-Bastions.webp",
+    "zip": "1205"
+  },
+  {
+    "name": "Yatouland Indoor Fun Park",
+    "type": "gamezone",
+    "city": "Plan-les-Ouates",
+    "desc": "A large indoor leisure arena in Geneva designed for kids. Features multiple bouncy castles, giant inflatables, a soft play obstacle course, a laser tag arena, and a mini trampoline section. Excellent for active energy burn.",
+    "fees": "15 CHF per child",
+    "hours": "13:30 - 18:00 (Wed/Sat/Sun)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.fondetec.ch/wp-content/uploads/2019/11/YatoulandHD-10.jpg",
+    "zip": "1228"
+  },
+  {
+    "name": "Park im Grünen & Dinosaur Park",
+    "type": "playpark",
+    "city": "Münchenstein (Basel)",
+    "desc": "A huge park near Basel featuring a fantastic wooden adventure playground, life-sized static dinosaur figures, a miniature lake with ducks, carousel rides, and a mini golf course. Extremely family-friendly with large picnic lawns.",
+    "fees": "Free (Carousel costs 1 CHF)",
+    "hours": "08:00 - 19:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.familienleben.ch/images/articles/1200/dino-neu-01.jpg",
+    "zip": "4142"
+  },
+  {
+    "name": "Aquabasilea Splash Pool",
+    "type": "swimmingpool",
+    "city": "Pratteln (Basel)",
+    "desc": "A premier water park in the Basel area. Includes a rapid outdoor river torrent, several high-thrill slides, an indoor wave pool, and a kids water village area equipped with spray nozzles, buckets, and low slides.",
+    "fees": "28 CHF (Kids 6-15: 18 CHF)",
+    "hours": "10:00 - 21:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.aquabasilea.ch/media/clients/client_169/totale_alt-1920x1080-aquabasilea_d89380447c255e9429d58fa91157c8a0.jpg",
+    "zip": "4133"
+  },
+  {
+    "name": "Lido Luzern Beach & Pool",
+    "type": "swimmingpool",
+    "city": "Lucerne",
+    "desc": "A gorgeous lake beach resort on Lake Lucerne. Offers a 250-meter long sandy beach, a large heated outdoor kids pool with fountains, water toys, an adventure playground, and vast grassy lawns for sunbathing.",
+    "fees": "7 CHF for Adults, 3 CHF for Kids",
+    "hours": "09:00 - 20:00 (Open May to September)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://lido-luzern.ch/pics/content/medium/Lido-Luzern-Becken-02.jpg",
+    "zip": "6006"
+  },
+  {
+    "name": "Swiss Transport Museum Roadwork Zone",
+    "type": "gamezone",
+    "city": "Lucerne",
+    "desc": "An interactive, educational kid zone inside the museum. Children can drive miniature dump trucks, operate diggers, load soft bricks, and build roads wearing high-visibility vests. A wonderful tactile experience.",
+    "fees": "12 CHF (Museum Ticket required)",
+    "hours": "10:00 - 17:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://swissfamilyfun.com/wp-content/uploads/2007/10/verkehrshaus-transportation-feature-800x500.jpg",
+    "zip": "6006"
+  },
+  {
+    "name": "Signal de Bougy Park",
+    "type": "playpark",
+    "city": "Aubonne (Lausanne)",
+    "desc": "A huge, free-access recreational park overlooking Lake Geneva. Contains large wooden play castles, ziplines, swings, a petting zoo with goats and pigs, a mini-golf course, and an amphitheater with kids' performances.",
+    "fees": "Free",
+    "hours": "09:00 - 18:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://holidays.tripfactory.com/blogs/wp-content/uploads/sites/6/2024/05/Signal-de-Bougy-Park-Prevert.webp",
+    "zip": "1170"
+  },
+  {
+    "name": "Splash & Spa Tamaro",
+    "type": "swimmingpool",
+    "city": "Rivera (Lugano)",
+    "desc": "A tropical-themed indoor water park in Ticino. Boasts a massive kids' splash paradise under glass domes, multiple wave generators, low-hazard spray parks, and slide networks. Heated year-round to 34°C.",
+    "fees": "29 CHF (Kids under 6: 10 CHF)",
+    "hours": "10:00 - 21:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.ourswissexperience.com/wp-content/uploads/2019/04/splash-e-spa-tamaro-rivera-1-600x399.jpg",
+    "zip": "6802"
+  },
+  {
+    "name": "Lido di Lugano Swimming Pool",
+    "type": "swimmingpool",
+    "city": "Lugano",
+    "desc": "Classic outdoor resort featuring an Olympic pool, diving towers, a dedicated heated kids' pool with mini-fountains and a slide, plus a grass playground area right next to the lake.",
+    "fees": "8 CHF for Adults, 4 CHF for Kids",
+    "hours": "09:00 - 19:30 (Open May to September)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.luganoregion.com/pictures/infoturistica/verybig4/1501-0365-1600x1067-1024x768.jpg",
+    "zip": "6900"
+  },
+  {
+    "name": "St. Gallen Wildlife & Playpark Peter & Paul",
+    "type": "playpark",
+    "city": "St. Gallen",
+    "desc": "A nature-themed forest park. Features a lovely woodland kids playground, walkable pathways where children can spot ibexes, deer, marmots, and wild boars. Very peaceful and educational.",
+    "fees": "Free",
+    "hours": "Open 24 hours daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.mamilade.ch/sites/default/files/field/image/wildpark-peter-paul-st-gallen-mamilade.jpg",
+    "zip": "9000"
+  },
+  {
+    "name": "Allmendhubel Flower Park",
+    "type": "playpark",
+    "city": "Mürren",
+    "desc": "One of the most iconic alpine playgrounds in Switzerland, featuring a water labyrinth, flower trail, wood zip line, climbing frames, and wooden alpine cows, all with the Eiger, Mönch, and Jungfrau peaks as a backdrop.",
+    "fees": "Free (Cable car tickets separate)",
+    "hours": "09:00 - 17:00 daily (Seasonal)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.squarespace-cdn.com/content/v1/5dcebad4982a736f03ca183c/91d3dc1f-9c92-4fae-a47c-1169bbb06cef/20210712_122206_print.jpg",
+    "zip": "3825"
+  },
+  {
+    "name": "Mooraculum Nature Playpark",
+    "type": "playpark",
+    "city": "Sörenberg",
+    "desc": "A massive nature adventure park focused on moorland ecosystems. Contains obstacle courses, suspended wooden walkways, a water play station with rafts, sound games, and a educational trail for curious minds.",
+    "fees": "Free (Gondola separate)",
+    "hours": "08:30 - 17:00 daily (May to October)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://blog.luzern.com/wp-content/uploads/2019/08/LU_Tourismus_SoerenbergMooraculum_BB_11.2017_01.jpg",
+    "zip": "6174"
+  },
+  {
+    "name": "Wolli's Adventure Park at Sunnegga",
+    "type": "playpark",
+    "city": "Zermatt",
+    "desc": "Located next to the scenic Leisee lake, this playground features wooden play boats, a water raft that kids can pull across the lake, climbing frames, slides, and sand pits with a direct view of the Matterhorn.",
+    "fees": "Free (Funicular ticket required)",
+    "hours": "08:30 - 17:00 daily (Summer Season)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://media.myswitzerland.com/image/fetch/c_lfill,g_auto,w_3200,h_1800/f_auto,q_80,fl_keep_iptc/https://www.myswitzerland.com/-/media/celum connect/2024/09/17/14/46/37/wolli-adventure-park-sunnegga.jpg",
+    "zip": "3920"
+  },
+  {
+    "name": "Bort Alpine Playground Grindelwald",
+    "type": "playpark",
+    "city": "Grindelwald",
+    "desc": "Nesting on Grindelwald-First slopes, this playground covers 700m2 with slides, balancing beams, climbing ropes, trampolines, and stream beds for water games, all with views of the Eiger north face.",
+    "fees": "Free (Cable car separate)",
+    "hours": "08:00 - 17:30 daily (Seasonal)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://media.jungfrau.ch/image/upload/ar_16:9,c_crop,fl_lossy,q_auto/c_scale,w_3284/v1479812875/fileadmin/Grindelwald_First_Sommer/Grindelwald-Alpenspielplatz-Bort-Kinder-Eiger-Sommer_.jpg",
+    "zip": "3818"
+  },
+  {
+    "name": "Kiddy Dome Indoor Adventure Park",
+    "type": "gamezone",
+    "city": "Rickenbach",
+    "desc": "One of Switzerland's largest indoor playgrounds. Features multi-level climbing labyrinths, vertical drop slides, donut-glider tracks, interactive play zones, jumping trampolines, and a dedicated toddler soft play section.",
+    "fees": "19 CHF (Kids under 2: 7 CHF)",
+    "hours": "10:00 - 18:30 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://media.myswitzerland.com/image/fetch/c_lfill,g_auto,w_3200,h_1800/f_auto,q_80,fl_keep_iptc/https://www.myswitzerland.com/-/media/celum connect/2022/03/15/12/58/37/swiss-family-center-kiddy-dome.jpg",
+    "zip": "6221"
+  },
+  {
+    "name": "Trampolino Indoor Funpark",
+    "type": "gamezone",
+    "city": "Dietikon",
+    "desc": "Known as the largest children's indoor playground in Switzerland. Packed with high-thrill trampolines, a giant climbing volcano, climbing walls, a mini ferris wheel, indoor go-karts, and a massive soft maze.",
+    "fees": "16 CHF per child",
+    "hours": "13:30 - 18:30 (Wed/Fri), 10:30 - 18:30 (Sat/Sun)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://kinderregion.ch/wp-content/uploads/2025/02/zt_56973-2000x1500.jpg",
+    "zip": "8953"
+  },
+  {
+    "name": "Spiez Indoor Funpark",
+    "type": "gamezone",
+    "city": "Spiez",
+    "desc": "An indoor play paradise with over 2000m² of space. Features bouncy castles, soft obstacles, climbing networks, table football, air hockey, and safe baby zones for the smallest kids.",
+    "fees": "12 CHF per child",
+    "hours": "10:00 - 18:30 Wed/Sat/Sun",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.squarespace-cdn.com/content/v1/648169fee1b5bb7e7a81ee65/2e140d49-6ca0-4642-b9fa-805e50e344ee/Beo_Funpark_Spiez.jpg",
+    "zip": "3700"
+  },
+  {
+    "name": "Urba Kids Indoor Adventure",
+    "type": "gamezone",
+    "city": "Orbe",
+    "desc": "A multi-level indoor play center located in Orbe. Boasts colorful bouncy castles, soft ball pools, electric mini-karts, rope slides, and interactive games. Organizes treasure hunts during winter.",
+    "fees": "14 CHF (Kids under 2: Free)",
+    "hours": "10:00 - 18:30 Wed/Sat/Sun",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.urba-kids.ch/wp-content/uploads/2021/04/urba-kids-03-scaled.jpeg",
+    "zip": "1350"
+  },
+  {
+    "name": "Leukerbad Therme Family Zone",
+    "type": "swimmingpool",
+    "city": "Leukerbad",
+    "desc": "The largest thermal baths alpine resort in Europe. Incorporates warm indoor and outdoor pools, two giant high-speed loop slides, and a dedicated kids splash paradise filled with water cannons and nozzles.",
+    "fees": "25 CHF (Kids under 8: Free)",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://media.myswitzerland.com/image/fetch/c_lfill,g_auto,w_3200,h_1800/f_auto,q_80,fl_keep_iptc/https://www.myswitzerland.com/-/media/st/gadmin/images/destinations/summer/various/sommer-tipp1_burgerbad_78423.jpg",
+    "zip": "3954"
+  },
+  {
+    "name": "Baar Lättich Indoor & Outdoor Pool",
+    "type": "swimmingpool",
+    "city": "Baar",
+    "desc": "A comprehensive family pool facility. Offers a 105-meter giant water slide, an indoor lazy river, heated wellness pools, kids' splash play yards, and massive outdoor swimming bays during the summer season.",
+    "fees": "8 CHF (Kids 6-16: 4 CHF)",
+    "hours": "08:00 - 21:30 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.schwimmschule-baar.ch/wp-content/uploads/Schwimmschule-Baar-Hero-Ueber-uns.jpg",
+    "zip": "6340"
+  },
+  {
+    "name": "MFO Park Climbing Pergola",
+    "type": "playpark",
+    "city": "Zürich",
+    "desc": "An architectural marvel in Zurich. The entire structure is a giant steel double-walled framework covered in green vines. Features integrated climbing stairs, skywalks, and lookouts that older kids love to climb and explore.",
+    "fees": "Free",
+    "hours": "Open 24 hours daily",
+    "amenities": [
+      "Shade",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://urbannext.net/wp-content/uploads/2018/03/Raderschall_MFO-Park_02_Jakob_G2.jpg",
+    "zip": "8050"
+  },
+  {
+    "name": "Irchelpark Nature Play Spaces",
+    "type": "playpark",
+    "city": "Zürich",
+    "desc": "A beautifully designed natural park in Zurich. Features vast green slopes, wide paved walking tracks, small wooden bridges over natural streams, duck ponds, and gravel playing zones ideal for outdoor active play.",
+    "fees": "Free",
+    "hours": "Open 24 hours daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.visionirchel.uzh.ch/apps/blog/wp-content/uploads/2022/11/Platte-6_Teich-Variante-1-scaled.jpg",
+    "zip": "8057"
+  },
+  {
+    "name": "Strandbad Zug Kids Beach & Pool",
+    "type": "swimmingpool",
+    "city": "Zug",
+    "desc": "A family-favorite lakeside beach on Lake Zug. Offers a flat, gently sloping sandy beach, a shaded baby paddling pool, a water trampoline, and a lovely kids playground on the lawns.",
+    "fees": "4 CHF for adults, 2 CHF for kids",
+    "hours": "09:00 - 20:00 (Open May to September)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://beachatlas.s3.us-east-2.amazonaws.com/strandbad-zug.jpg",
+    "zip": "6300"
+  },
+  {
+    "name": "Marzili Outdoor Swimming Pools",
+    "type": "swimmingpool",
+    "city": "Bern",
+    "desc": "Bern's famous riverside swimming spot. Provides huge, free-access grassy lawns, multiple children wading pools with fountains and animal sprinklers, a 50m lap pool, and a giant water slide.",
+    "fees": "Free",
+    "hours": "08:30 - 20:00 daily (Summer Season)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://c8.alamy.com/comp/2H7N7YF/marzili-open-air-swimming-pool-with-bathers-bern-switzerland-2H7N7YF.jpg",
+    "zip": "3005"
+  },
+  {
+    "name": "Play Village Zurich",
+    "type": "gamezone",
+    "city": "Zürich",
+    "desc": "A premium, beautifully crafted indoor play space where children engage in role-playing. Features miniature towns with a post office, supermarket, veterinarian clinic, and kitchen, letting kids imagine and play.",
+    "fees": "18 CHF per child",
+    "hours": "09:30 - 18:00 daily",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://indoorspielplaetze.ch/wp-content/uploads/2024/08/Play-Village-Zuerich.webp",
+    "zip": "8005"
+  },
+  {
+    "name": "Schluefweg Swimming Complex Kloten",
+    "type": "swimmingpool",
+    "city": "Kloten",
+    "desc": "A fantastic swimming complex for the whole family in Kloten. Features a spectacular outdoor pool with a giant 'rocket ship' water slide, kids splash paddling zone under sun protection, a 5m diving tower, and a year-round indoor pool with a warm 30°C non-swimmer area.",
+    "fees": "8 CHF (Kids 4 CHF)",
+    "hours": "09:00 - 21:00 daily (varies by season)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Shade",
+      "Stroller Friendly",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://www.rutscherlebnis.at/website/var/tmp/image-thumbnails/70000/79550/thumb__fullsize/2017-07-30-15-08-13_IMG_1386.JPG.jpeg",
+    "zip": "8302"
+  },
+  {
+    "name": "Entdeckerspielplatz Egetswil",
+    "type": "playpark",
+    "city": "Kloten",
+    "desc": "An outdoor adventure discovery playground in Egetswil, Kloten. Features wood-built climbing units, balance beams, swings, a water-stream play system with dams, and dedicated fireplace/grill installations for family BBQs.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://landsgemeinde-kloten.ch/images/projektbilder/2019/image1.jpeg",
+    "zip": "8302"
+  },
+  {
+    "name": "Seilpark Zürich (Forest Ropes Course)",
+    "type": "gamezone",
+    "city": "Kloten",
+    "desc": "An outdoor high ropes adventure course located in the forest next to Zentrum Schluefweg. Features 11 challenging trails of varying heights and difficulty, including kid-friendly trails with continuous safety belays. A perfect active family day out.",
+    "fees": "28 CHF (Kids 18 CHF)",
+    "hours": "10:00 - 18:00 (Wed-Sun, check seasonal schedule)",
+    "amenities": [
+      "Toilets",
+      "Cafe/Food",
+      "Parking"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://swissfamilyfun.com/wp-content/uploads/2018/08/kloten-feature-600x375.jpg",
+    "zip": "8302"
+  },
+  {
+    "name": "Stadtpark Playground Kloten",
+    "type": "playpark",
+    "city": "Kloten",
+    "desc": "A modern public playground located in the heart of Kloten Stadtpark near the Altbach stream. Offers custom wooden climbing towers, multi-lane slides, swings, and sandboxes in a nicely shaded green environment.",
+    "fees": "Free",
+    "hours": "07:00 - 21:00 daily",
+    "amenities": [
+      "Toilets",
+      "Shade",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://landsgemeinde-kloten.ch/media/com_convertforms/uploads/074fb6c1ab8f42ad_1000011491.jpg",
+    "zip": "8302"
+  },
+  {
+    "name": "Zurichhorn Park & Playground",
+    "type": "playpark",
+    "city": "Zurich",
+    "desc": "Beloved lakeside park with splash areas, picnic meadows, and great views of Lake Zurich. Free entry, perfect for all ages.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "8008"
+  },
+  {
+    "name": "Bellerivepark",
+    "type": "playpark",
+    "city": "Zurich",
+    "desc": "Charming lakefront park with water play features, swings, and open green spaces for children to run free.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "8008"
+  },
+  {
+    "name": "Elfenau Park",
+    "type": "playpark",
+    "city": "Bern",
+    "desc": "One of Bern's most beautiful playgrounds set in trees and meadows, with water features, slides, a wooden fort, sandbox, and swings.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "3006"
+  },
+  {
+    "name": "St. Johanns Park",
+    "type": "playpark",
+    "city": "Basel",
+    "desc": "Well-equipped family park with play facilities, clean toilets, lockers, nursing room, and a splash pool for little ones.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Cafe/Food"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "4056"
+  },
+  {
+    "name": "Parc La Grange",
+    "type": "playpark",
+    "city": "Geneva",
+    "desc": "Geneva's most popular family park with a rose garden, large playground, open lawns by Lake Geneva, and seasonal water jets.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "1207"
+  },
+  {
+    "name": "Bois de la Bâtie",
+    "type": "playpark",
+    "city": "Geneva",
+    "desc": "Popular woodland park with a small zoo, adventure playground, mini train, and mini-golf — a full day out for families.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "1213"
+  },
+  {
+    "name": "Parc de Sauvabelin",
+    "type": "playpark",
+    "city": "Lausanne",
+    "desc": "Enchanting forest park with a deer enclosure, lake, wooden tower, and nature playground — magical for children year-round.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "1018"
+  },
+  {
+    "name": "Inseli Park",
+    "type": "playpark",
+    "city": "Lucerne",
+    "desc": "Scenic lakeside park in central Lucerne with a great playground, paddleboat rentals nearby, and breathtaking mountain views.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6005"
+  },
+  {
+    "name": "Zugersee Lakeside Park",
+    "type": "playpark",
+    "city": "Zug",
+    "desc": "Gorgeous lake park with a children's playground, paddling area, seasonal beach, and views of the Alps across Lake Zug.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Picnic Area"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6300"
+  },
+  {
+    "name": "Stadtpark St. Gallen",
+    "type": "playpark",
+    "city": "St. Gallen",
+    "desc": "Central city park with a large playground, pond, wooded pathways, and open lawns great for family picnics.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "9000"
+  },
+  {
+    "name": "Stoos Alpine Playground",
+    "type": "playpark",
+    "city": "Other",
+    "desc": "Spectacular car-free alpine village with a fenced adventure playground at 1300m altitude, with stunning lake and mountain views.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6433"
+  },
+  {
+    "name": "Alpamare Water Park",
+    "type": "swimmingpool",
+    "city": "Other",
+    "desc": "Switzerland's largest water park! 12 slides spanning 2.1 km, children's paradise, wave pool, and wellness. 30 min from Zurich by train.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Cafe/Food"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "8808"
+  },
+  {
+    "name": "Dolder Bad",
+    "type": "swimmingpool",
+    "city": "Zurich",
+    "desc": "Historic lido in leafy grounds above Zurich. 50m outdoor pool, shaded paddling pool, and play area surrounded by forest.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Cafe/Food"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "8032"
+  },
+  {
+    "name": "Bernaqua Adventure Pool",
+    "type": "swimmingpool",
+    "city": "Bern",
+    "desc": "The largest adventure pool in Canton Bern — 2,000 m² of water, three giant slides, white-water canyon, and 18 different pools.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Cafe/Food"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "3007"
+  },
+  {
+    "name": "Marzili Freibad",
+    "type": "swimmingpool",
+    "city": "Bern",
+    "desc": "Among Switzerland's oldest baths, right in the shadow of the Parliament. Free entry, river swim on the Aare, massively popular in summer.",
+    "fees": "Free",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "3005"
+  },
+  {
+    "name": "Weyermannshaus Freibad",
+    "type": "swimmingpool",
+    "city": "Bern",
+    "desc": "Switzerland's largest outdoor pool by water surface — 16,000 m² across multiple pools with waterslides and a children's area.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "3018"
+  },
+  {
+    "name": "Genève-Plage",
+    "type": "swimmingpool",
+    "city": "Geneva",
+    "desc": "Iconic lakeside lido on Lake Geneva with an Olympic pool, beach area, water slides, and stunning views of Mont Blanc.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Cafe/Food"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "1223"
+  },
+  {
+    "name": "Piscine de Bellerive",
+    "type": "swimmingpool",
+    "city": "Lausanne",
+    "desc": "Outdoor lakeside pool complex with a 50m competition pool, children's pool, grass sunbathing areas, and Lake Geneva access.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Picnic Area",
+      "Cafe/Food"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "1007"
+  },
+  {
+    "name": "Lido Lucerne",
+    "type": "swimmingpool",
+    "city": "Lucerne",
+    "desc": "Beautiful outdoor pool and beach on Lake Lucerne with mountain backdrop. Lakeside swimming, pools for all ages, and a stunning Alpine setting.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "6006"
+  },
+  {
+    "name": "Lido di Lugano",
+    "type": "swimmingpool",
+    "city": "Other",
+    "desc": "Mediterranean-feel lido in Ticino with lake swimming, waterslides, sandy beach area, and palm trees — a taste of the Italian south.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "6906"
+  },
+  {
+    "name": "Flip Lab Zurich",
+    "type": "gamezone",
+    "city": "Zurich",
+    "desc": "Massive 3,000 m² trampoline park near Zurich airport with jump zones, dodge ball, foam pit, parkour, and trained instructors.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "8050"
+  },
+  {
+    "name": "Play Village Zürich",
+    "type": "gamezone",
+    "city": "Zurich",
+    "desc": "Creative indoor play world with themed rooms — supermarket, café, construction site, medical centre. Book a 2-hour slot. Ages 1–8.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "8048"
+  },
+  {
+    "name": "The Jump Spot Lausanne",
+    "type": "gamezone",
+    "city": "Lausanne",
+    "desc": "Switzerland's biggest indoor trampoline park — 150 trampolines across 3,300 m²! Foam pits, slam dunk zones, dodgeball, and ninja course.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "1020"
+  },
+  {
+    "name": "Jump Factory Basel",
+    "type": "gamezone",
+    "city": "Basel",
+    "desc": "Huge trampoline park with basketball trampolines, foam pit, free jump areas, and dodgeball court — great for all ages.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "4132"
+  },
+  {
+    "name": "Kids Arena Lucerne",
+    "type": "gamezone",
+    "city": "Lucerne",
+    "desc": "Lucerne's largest indoor playground for ages 0–10. Climbing wall, ball pit, electric go-kart track, trampolines, and a soft-play toddler zone.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "6048"
+  },
+  {
+    "name": "Freiruum Spielruum — Zug",
+    "type": "gamezone",
+    "city": "Zug",
+    "desc": "Indoor playground for children aged 2–7 inside the Freiruum complex, plus a 120 m² trampoline park. Café on site.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "6300"
+  },
+  {
+    "name": "Elevation Indoor Winterthur",
+    "type": "gamezone",
+    "city": "Winterthur",
+    "desc": "Creative indoor playground in Winterthur's Lagerplatz district — bouncy castles, swirly slides, trampolines, and a ball pit.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "8400"
+  },
+  {
+    "name": "Kindercity Bern",
+    "type": "gamezone",
+    "city": "Bern",
+    "desc": "Interactive children's city where kids role-play as doctors, firefighters, chefs, and more in themed rooms for imaginative play.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "3014"
+  },
+  {
+    "name": "X-Stream Trampoline Park",
+    "type": "gamezone",
+    "city": "Other",
+    "desc": "High-energy trampoline park east of Zurich with a ninja warrior course, slam dunk zones, foam pits, and dedicated toddler sections.",
+    "fees": "Entry fee applies",
+    "hours": "08:00 - 20:00 daily",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "zip": "8604"
+  },
+  {
+    "name": "Grosser Moorrundweg Gewinnspiel",
+    "type": "playpark",
+    "city": "Sörenberg",
+    "desc": "Gondola to Rossweid, Mooraculum playground, Moorrundweg hiking, Forscherbox, restaurant",
+    "fees": "Family Package CHF 94 (gondola + rodelbahn + Forscherbox); Kinder bis 8 Jahre kostenlos",
+    "hours": "Summer: 14 May–25 Oct, 08:15–17:15",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Wanderwegweiser_Rossweid_1465.jpg/960px-Wanderwegweiser_Rossweid_1465.jpg",
+    "zip": "6174"
+  },
+  {
+    "name": "Kostenloser Familienausflug – Wildnispark",
+    "type": "playpark",
+    "city": "Langnau am Albis",
+    "desc": "Bears, wolves, lynxes, deer, boars; playgrounds, BBQ, Restaurant Langenberg; stroller-friendly",
+    "fees": "FREE",
+    "hours": "Most areas 24/7; Facilities Mar–Oct 09:00–19:00",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Europ%C3%A4ischer_Braunb%C3%A4r_%28104589047%29.jpeg/960px-Europ%C3%A4ischer_Braunb%C3%A4r_%28104589047%29.jpeg",
+    "zip": "8135"
+  },
+  {
+    "name": "Freizeitpark wird völlig unterschätzt",
+    "type": "swimmingpool",
+    "city": "Payerne",
+    "desc": "Double go-karts (age 3+), climbing park, Tower, Laurapark, indoor adventure, indoor minigolf, water park (summer)",
+    "fees": "From CHF 5/child, CHF 7/adult; Karting 10min CHF 15",
+    "hours": "Wed–Sun 11:00–19:00; Karting varies",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Gymnase_intercantonal_de_la_Broye.JPG/960px-Gymnase_intercantonal_de_la_Broye.JPG",
+    "zip": "1551"
+  },
+  {
+    "name": "Familienausflug Vierwaldstättersee",
+    "type": "playpark",
+    "city": "Brunnen",
+    "desc": "Nessi sea-monster playground at lakeside, mini-golf, snack bar; combine with lake cruise to Luzern",
+    "fees": "FREE",
+    "hours": "Outdoor – all day",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Brunnen_Bundeskapelle_innen.jpg/960px-Brunnen_Bundeskapelle_innen.jpg",
+    "zip": "6440"
+  },
+  {
+    "name": "Familienfreundlicher Café-Tipp im Aargau",
+    "type": "playpark",
+    "city": "Schöftland",
+    "desc": "Kids play area, coffee, daily lunch buffet, vegan brunch 2x/month; inside garden centre",
+    "fees": "No entry fee (café prices apply)",
+    "hours": "09:00–17:30; reservation required",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Trevo_da_PFIFFNER_Messwandler_AG_-_panoramio.jpg/960px-Trevo_da_PFIFFNER_Messwandler_AG_-_panoramio.jpg",
+    "zip": "5040"
+  },
+  {
+    "name": "Schlechtwetter-Tipp – Challenge Arena",
+    "type": "gamezone",
+    "city": "Nuolen",
+    "desc": "3,000m² indoor hall: 9 slides, 800m² trampoline park, go-karts, laser tag, soccer court, bistro",
+    "fees": "Ages 6+: 1hr CHF 18, all-day CHF 42; Ages 1–2: CHF 8/hr; Kiddies (under 6): CHF 12",
+    "hours": "Mon 14:00–20:00; Tue/Sun 09:00–20:00; Wed/Thu 09:00–21:00; Fri/Sat 09:00–22:00",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Jona_%28SG%29_-_Obersee_-_Stampf_2012-01-15_15-12-57_%28GT-I9100%29.jpg/960px-Jona_%28SG%29_-_Obersee_-_Stampf_2012-01-15_15-12-57_%28GT-I9100%29.jpg",
+    "zip": "8855"
+  },
+  {
+    "name": "Neues Familiencafé in Luzern",
+    "type": "gamezone",
+    "city": "Lucerne",
+    "desc": "Family café with indoor play zones for toddlers and older kids, café menu",
+    "fees": "0–3yr: CHF 11.90 (play area); 4–10yr: see website",
+    "hours": "Mon–Thu 08:30–17:30; Fri 08:30–18:30; Sat 09:30–18:30",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/2012-08-24_10-34-13_Switzerland_Kanton_Luzern_Luzern.jpg/960px-2012-08-24_10-34-13_Switzerland_Kanton_Luzern_Luzern.jpg",
+    "zip": "6006"
+  },
+  {
+    "name": "Kleiner Familienhof im Zürcher Oberland",
+    "type": "playpark",
+    "city": "Illnau-Effretikon",
+    "desc": "Farm experience, animals, outdoor",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Bauernhaus_DSC2308.jpg/960px-Bauernhaus_DSC2308.jpg",
+    "zip": "8308"
+  },
+  {
+    "name": "Familienausflug Stoos",
+    "type": "playpark",
+    "city": "Stoos",
+    "desc": "Steepest funicular in the world, mountain views, hiking",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Brunnen.Schwyz.JPG/960px-Brunnen.Schwyz.JPG",
+    "zip": "6433"
+  },
+  {
+    "name": "Mini-Zugpark – Swiss Vapeur Parc",
+    "type": "playpark",
+    "city": "Port-Valais",
+    "desc": "Mini-train rides with 12 locomotives, 5 stations, restaurant, crêperie, picnic areas",
+    "fees": "Adults CHF 19; Children (3–15) CHF 15; Under 3 FREE",
+    "hours": "19 Mar–1 Nov 2026, daily 10:00–18:00",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Swiss_Vapeur_Parc_-_Isabelle_von_Siebenthal_-_MOB_Belle_%C3%89poque.jpg/960px-Swiss_Vapeur_Parc_-_Isabelle_von_Siebenthal_-_MOB_Belle_%C3%89poque.jpg",
+    "zip": "1897"
+  },
+  {
+    "name": "Familienausflug an den Walensee",
+    "type": "playpark",
+    "city": "Quarten",
+    "desc": "Lake walk, swimming, scenic villages along Walensee",
+    "fees": "FREE (outdoor)",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "8878"
+  },
+  {
+    "name": "ROSA KIDS Keramik Workshop",
+    "type": "playpark",
+    "city": "Zurich",
+    "desc": "Ceramic & creative workshops for kids, parents can join",
+    "fees": "CHF 35 incl. materials",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "8004"
+  },
+  {
+    "name": "Zugiblubbi Erlebnisweg – Zugerberg",
+    "type": "playpark",
+    "city": "Zug",
+    "desc": "Adventure trail for kids on Zugerberg, interactive stations",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6317"
+  },
+  {
+    "name": "Festival Regensdorf",
+    "type": "playpark",
+    "city": "Regensdorf",
+    "desc": "Outdoor family festival, barrier-free",
+    "fees": "Accessible for free",
+    "hours": "30 Apr–3 May",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "8105"
+  },
+  {
+    "name": "Ausflugstipp – Kinderparadies Sedel",
+    "type": "gamezone",
+    "city": "Herisau",
+    "desc": "Indoor play paradise",
+    "fees": "Contact venue",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80",
+    "zip": "9100"
+  },
+  {
+    "name": "SINNESPARK – Geheimtipp für Familien",
+    "type": "playpark",
+    "city": "Hilfikon",
+    "desc": "Sensory park, outdoor experience for families",
+    "fees": "FREE",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "5613"
+  },
+  {
+    "name": "Papiliorama – Zoo in Kerzers",
+    "type": "playpark",
+    "city": "Golaten",
+    "desc": "Tropical butterfly hall, nocturama, jungle trek, nature playground, picnic areas",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "3207"
+  },
+  {
+    "name": "Labyrinthe Aventure – Nicht nur ein Labyrinth",
+    "type": "playpark",
+    "city": "La Balmaz",
+    "desc": "Large outdoor labyrinth & adventure park in Valais",
+    "fees": "Free",
+    "hours": "Daily 10:00–18:00",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "1903"
+  },
+  {
+    "name": "Erlebnishof Jucker Farm – Bächlihof",
+    "type": "playpark",
+    "city": "Rapperswil-Jona",
+    "desc": "Farm animals, farm shop, seasonal displays, playground",
+    "fees": "FREE (bring CHF 2 for wooden ball; budget for farm shop)",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "8645"
+  },
+  {
+    "name": "Familientag am Bodensee – Rorschach",
+    "type": "playpark",
+    "city": "Rorschach",
+    "desc": "Lakeside playground on Lake Constance promenade",
+    "fees": "FREE",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "9400"
+  },
+  {
+    "name": "Grosser Spielplatz am See – Sarnen",
+    "type": "playpark",
+    "city": "Sarnen",
+    "desc": "Large lakeside playground with various elements",
+    "fees": "FREE",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6060"
+  },
+  {
+    "name": "Erlebnishof – LBBZ Schluechthof",
+    "type": "playpark",
+    "city": "Cham",
+    "desc": "Agricultural educational farm, playground nearby",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6330"
+  },
+  {
+    "name": "Indoortipp – Chocolarium Flawil",
+    "type": "playpark",
+    "city": "Flawil",
+    "desc": "Chocolate experience museum, interactive for all ages",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "9230"
+  },
+  {
+    "name": "Entdeckter Ort – Freizeitpark Niederbüren",
+    "type": "gamezone",
+    "city": "Niederbüren",
+    "desc": "Outdoor adventure world with 11m slide tower, trampolines, inflatables; indoor 4-floor play barn, bowling",
+    "fees": "Contact venue",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80",
+    "zip": "9246"
+  },
+  {
+    "name": "Oster-Erlebnis – Osterhasen-Werkstatt",
+    "type": "playpark",
+    "city": "Root",
+    "desc": "45-min chocolate Easter bunny workshop with treats",
+    "fees": "CHF 25/person; accompanying adult FREE (under 14); incl. CHF 5 voucher",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6039"
+  },
+  {
+    "name": "Erlebnishof Burgrain – Alberswil",
+    "type": "playpark",
+    "city": "Alberswil",
+    "desc": "Agro-experience farm with animals and interactive exhibits",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "6248"
+  },
+  {
+    "name": "Dino-Show – Basel",
+    "type": "playpark",
+    "city": "Basel",
+    "desc": "Live dinosaur show with animatronic dinos, dino rides, heated tent",
+    "fees": "Adults CHF 19; Children (2+) CHF 17 (cash only); Dino ride FREE",
+    "hours": "4–15 Mar, daily 16:00",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
+    "zip": "4005"
+  },
+  {
+    "name": "Spielplatz geöffnet – BOWI Willisau",
+    "type": "swimmingpool",
+    "city": "Willisau",
+    "desc": "Large playground with water area (summer), climbing elements for older kids, toddler areas",
+    "fees": "Adults CHF 5; Children CHF 7",
+    "hours": "Open until early Nov, daily 10:00–18:00",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
+    "zip": "6130"
+  },
+  {
+    "name": "Geheimtipp – Chärnsmatt Rothenburg",
+    "type": "gamezone",
+    "city": "Rothenburg",
+    "desc": "Inn with outdoor play paradise, indoor area, mini train rides",
+    "fees": "1 ride CHF 2.50; 6-pack CHF 12.50",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": false,
+    "imageUrl": "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80",
+    "zip": "6023"
+  },
+  {
+    "name": "Spielarium",
+    "type": "gamezone",
+    "city": "Sursee",
+    "desc": "Indoor play space",
+    "fees": "Contact venue",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flip_DSC0903_%285057956082%29.jpg/960px-Flip_DSC0903_%285057956082%29.jpg",
+    "zip": "6210"
+  },
+  {
+    "name": "Swiss Holiday Park",
+    "type": "swimmingpool",
+    "city": "Morschach",
+    "desc": "Holiday & leisure park with indoor waterpark",
+    "fees": "Contact venue",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Swiss_Holiday_Park_-_panoramio.jpg/960px-Swiss_Holiday_Park_-_panoramio.jpg",
+    "zip": "6443"
+  },
+  {
+    "name": "Winterspass ohne Zusatzkosten",
+    "type": "playpark",
+    "city": "Engelberg",
+    "desc": "Snow slide park at Trübsee above Engelberg",
+    "fees": "Included with cable car ticket",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Engelberg%2C_Switzerland_-_panoramio_%283%29.jpg/960px-Engelberg%2C_Switzerland_-_panoramio_%283%29.jpg",
+    "zip": "6390"
+  },
+  {
+    "name": "Masoala Regenwald",
+    "type": "playpark",
+    "city": "Zurich",
+    "desc": "Tropical rainforest hall inside Zürich Zoo, free-roaming lemurs",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Antilope_cervicapra_in_Zurich.jpg/960px-Antilope_cervicapra_in_Zurich.jpg",
+    "zip": "8044"
+  },
+  {
+    "name": "Disney-Magie auf dem Eis",
+    "type": "playpark",
+    "city": "Le Mont-sur-Lausanne",
+    "desc": "Disney on Ice touring show – check local dates",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Le_Mont-sur-Lausanne_Administration_Communale.jpg/960px-Le_Mont-sur-Lausanne_Administration_Communale.jpg",
+    "zip": "1052"
+  },
+  {
+    "name": "Einzigartiges Dinosaurier-Museum",
+    "type": "playpark",
+    "city": "Sack",
+    "desc": "One of Europe's unique dino museums with real fossil collection",
+    "fees": "Free",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Aathal-Seegr%C3%A4ben_-_Siber%2BSiber_Mineralien-_und_Fossilienmuseum_2011-09-28_12-40-04_ShiftN.jpg/960px-Aathal-Seegr%C3%A4ben_-_Siber%2BSiber_Mineralien-_und_Fossilienmuseum_2011-09-28_12-40-04_ShiftN.jpg",
+    "zip": "8607"
+  },
+  {
+    "name": "Indoor-Freizeitpark – Swiss MEGA Park",
+    "type": "gamezone",
+    "city": "Frenkendorf",
+    "desc": "Indoor leisure park with action and variety",
+    "fees": "Contact venue",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ortsmuseum_Frenkendorf.jpg/960px-Ortsmuseum_Frenkendorf.jpg",
+    "zip": "4402"
+  },
+  {
+    "name": "Familien-Freizeitparadies – La Ruche",
+    "type": "gamezone",
+    "city": "Granges-Paccot",
+    "desc": "Multi-activity leisure centre: bowling, trampolines, climbing, kids area",
+    "fees": "Contact venue",
+    "hours": "Check venue for hours",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly"
+    ],
+    "hasRealImage": true,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Derdorsch.jpg/960px-Derdorsch.jpg",
+    "zip": "1763"
+  }
+]
