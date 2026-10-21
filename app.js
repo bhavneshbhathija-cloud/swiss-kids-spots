@@ -1671,13 +1671,13 @@ function handleZipSearchInput(val) {
         if (zipMatches.length >= 4) break;
     }
 
-    // Also match Hiking Trails & Spots by name, German name, or Route Number
+    // Also match Hiking Trails & Spots by name, German name, Route Number, address or landmarks
     const spotMatches = [];
     for (const s of spots) {
-        const hay = `${s.name || ''} ${s.nameDe || ''} ${s.routeNumber ? 'route ' + s.routeNumber : ''} ${s.city || ''}`.toLowerCase();
+        const hay = `${s.name || ''} ${s.nameDe || ''} ${s.routeNumber ? 'route ' + s.routeNumber : ''} ${s.city || ''} ${s.address || ''} ${s.description || ''}`.toLowerCase();
         if (hay.includes(searchStr)) {
             spotMatches.push(s);
-            if (spotMatches.length >= 5) break;
+            if (spotMatches.length >= 6) break;
         }
     }
 
