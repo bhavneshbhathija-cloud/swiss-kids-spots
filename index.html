@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwissKidsSpots - Find Playparks, Pools & Game Zones in Switzerland</title>
+    <title>SwissKidsSpots - Find Playparks, Family Hiking Trails, Pools &amp; Game Zones in Switzerland</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Find the best playparks, indoor game zones, and swimming pools for kids in Switzerland. Check distance, amenities, user reviews, and live weather suitability before you go.">
-    <meta name="keywords" content="switzerland kids spots, swiss playparks, swiss playgrounds, swimming pools switzerland, kids game zones switzerland, family activities switzerland">
+    <meta name="description" content="Find the best playparks, family &amp; stroller-friendly hiking trails, indoor game zones, and swimming pools for kids in Switzerland. Check distance, elevation profiles, restaurants, parking, and live weather suitability before you go.">
+    <meta name="keywords" content="switzerland kids spots, swiss playparks, family hiking trails switzerland, stroller friendly hikes zurich lucerne, swiss playgrounds, swimming pools switzerland, kids game zones switzerland, family activities switzerland">
     <meta name="author" content="SwissKidsSpots">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook Meta Tags (for social sharing previews) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://swissforkids.ch/">
-    <meta property="og:title" content="SwissKidsSpots - Find Playparks, Pools & Game Zones in Switzerland">
-    <meta property="og:description" content="Find the best playparks, indoor game zones, and swimming pools for kids in Switzerland. Check distance, amenities, user reviews, and live weather suitability before you go.">
+    <meta property="og:title" content="SwissKidsSpots - Playparks, Family Hiking Trails, Pools &amp; Game Zones in Switzerland">
+    <meta property="og:description" content="Explore 6,000+ playparks, stroller-friendly &amp; family hiking trails, indoor game zones, and swimming pools in Switzerland with live MeteoSwiss weather suitability checks.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1200&h=630&q=80">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -23,8 +23,8 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://swissforkids.ch/">
-    <meta name="twitter:title" content="SwissKidsSpots - Find Playparks, Pools & Game Zones in Switzerland">
-    <meta name="twitter:description" content="Find the best playparks, indoor game zones, and swimming pools for kids in Switzerland. Check distance, amenities, user reviews, and live weather suitability before you go.">
+    <meta name="twitter:title" content="SwissKidsSpots - Playparks, Family Hiking Trails, Pools &amp; Game Zones in Switzerland">
+    <meta name="twitter:description" content="Explore 6,000+ playparks, stroller-friendly &amp; family hiking trails, indoor game zones, and swimming pools in Switzerland with live MeteoSwiss weather suitability checks.">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1200&h=630&q=80">
 
     <!-- Favicon and App Icons -->
@@ -39,12 +39,12 @@
       "name": "SwissKidsSpots",
       "url": "https://swissforkids.ch/",
       "logo": "https://swissforkids.ch/favicon.png",
-      "description": "Find and explore the best children's playparks, indoor game zones, and swimming pools in Switzerland with live weather warnings and suitability checks.",
+      "description": "Find and explore the best children's playparks, family & stroller-friendly hiking trails, indoor game zones, and swimming pools in Switzerland with live weather warnings and suitability checks.",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "genre": "Family & Kids",
-      "keywords": "switzerland playparks, swiss playgrounds, swimming pools switzerland, kids game zones switzerland, family activities switzerland",
+      "keywords": "switzerland playparks, family hiking trails switzerland, stroller friendly hikes zurich lucerne, swiss playgrounds, swimming pools switzerland, kids game zones switzerland, family activities switzerland",
       "about": [
         {
           "@type": "Place",
@@ -65,7 +65,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=9">
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
 <body class="light-theme">
     <!-- App Container -->
@@ -76,7 +76,7 @@
                 <div class="swiss-cross"><i class="fa-solid fa-plus"></i></div>
                 <div class="logo-text">
                     <h1>SwissKids<span>Spots</span></h1>
-                    <p class="tagline">Explore playparks, game zones & swimming pools for kids in Switzerland</p>
+                    <p class="tagline">Explore playparks, family &amp; stroller-friendly hiking trails, indoor game zones &amp; swimming pools in Switzerland</p>
                 </div>
             </div>
             <div class="header-actions">
@@ -102,10 +102,10 @@
                 <section class="search-section card">
                     <h2><i class="fa-solid fa-magnifying-glass"></i> Search Nearby</h2>
                     <div class="form-group search-zip-group">
-                        <label for="zip-input">Swiss ZIP Code or City</label>
+                        <label for="zip-input">Swiss ZIP, City, Trail Name or Route #</label>
                         <div class="input-with-icon">
                             <i class="fa-solid fa-location-dot input-icon"></i>
-                            <input type="text" id="zip-input" placeholder="e.g. 8000 (Zürich) or Bern" autocomplete="off">
+                            <input type="text" id="zip-input" placeholder="e.g. Oeschinensee, Route 988, 8000 Zürich" autocomplete="off">
                             <button id="clear-zip" class="clear-btn" style="display: none;" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
                             <button id="locate-me-btn" class="locate-btn" title="Search near my location"><i class="fa-solid fa-crosshairs"></i></button>
                         </div>
@@ -118,7 +118,7 @@
                             <label for="radius-slider">Distance Radius</label>
                             <span id="radius-value" class="badge">5 km</span>
                         </div>
-                        <input type="range" id="radius-slider" min="0" max="10" step="1" value="5">
+                        <input type="range" id="radius-slider" min="0" max="25" step="1" value="5">
                     </div>
 
                     <div class="weather-dashboard-widget" id="weather-widget" style="display: none;">
@@ -138,6 +138,11 @@
                                 <i class="fa-solid fa-child-reaching text-playpark"></i> Playparks
                             </label>
                             <label class="checkbox-container">
+                                <input type="checkbox" id="filter-hiking" value="hiking" checked>
+                                <span class="checkmark hiking-chk"></span>
+                                <i class="fa-solid fa-person-hiking text-hiking"></i> Hiking Trails <span class="badge badge-new-pill">1,470+ CH</span>
+                            </label>
+                            <label class="checkbox-container">
                                 <input type="checkbox" id="filter-gamezone" value="gamezone" checked>
                                 <span class="checkmark gamezone-chk"></span>
                                 <i class="fa-solid fa-gamepad text-gamezone"></i> Game Zones
@@ -146,6 +151,67 @@
                                 <input type="checkbox" id="filter-swimmingpool" value="swimmingpool" checked>
                                 <span class="checkmark swimmingpool-chk"></span>
                                 <i class="fa-solid fa-water-ladder text-swimmingpool"></i> Swimming Pools
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dedicated Hiking Trail Sub-Filters -->
+                    <div class="filter-group hiking-subfilters" id="hiking-subfilters-box">
+                        <div class="hiking-subfilter-header">
+                            <label><i class="fa-solid fa-mountain-sun"></i> Hiking Trail Options (EN / DE)</label>
+                        </div>
+
+                        <div class="hiking-subfilter-row">
+                            <label for="filter-hike-region" class="subfilter-label">Hiking Area</label>
+                            <select id="filter-hike-region" class="form-select form-select-sm">
+                                <option value="all" selected>All Switzerland (All 26 Cantons)</option>
+                                <option value="Zürich">Zürich Region (ZH)</option>
+                                <option value="Lucerne & Central">Lucerne &amp; Central Switzerland (LU/ZG/SZ/OW/NW/UR)</option>
+                                <option value="Bern & Oberland">Bern &amp; Bernese Oberland (BE)</option>
+                                <option value="Valais / Wallis">Valais / Wallis (VS)</option>
+                                <option value="Graubünden">Graubünden (GR)</option>
+                                <option value="Eastern Switzerland">Eastern Switzerland &amp; Appenzell (SG/TG/AR/AI/GL/SH)</option>
+                                <option value="Basel, Aargau & Jura">Basel, Aargau &amp; Jura (BS/BL/AG/SO/JU)</option>
+                                <option value="Lake Geneva & West">Lake Geneva &amp; Western CH (VD/GE/FR/NE)</option>
+                                <option value="Ticino">Ticino (TI)</option>
+                            </select>
+                        </div>
+
+                        <div class="hiking-subfilter-row">
+                            <label for="filter-hike-difficulty" class="subfilter-label">Hiking Level</label>
+                            <select id="filter-hike-difficulty" class="form-select form-select-sm">
+                                <option value="all" selected>All Levels (Easy, Moderate, Difficult)</option>
+                                <option value="easy">🟢 Easy (Family / T1 / WT1)</option>
+                                <option value="moderate">🟠 Moderate (Mountain / T2)</option>
+                                <option value="difficult">🔴 Difficult (Alpine Ridge / T3)</option>
+                            </select>
+                        </div>
+
+                        <div class="checkbox-group hiking-feature-checks">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-hike-stroller">
+                                <span class="checkmark"></span>
+                                <i class="fa-solid fa-baby-carriage"></i> Stroller Friendly Only
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-hike-winter">
+                                <span class="checkmark"></span>
+                                <i class="fa-solid fa-snowflake"></i> Winter Hiking Trails
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-hike-restaurant">
+                                <span class="checkmark"></span>
+                                <i class="fa-solid fa-utensils"></i> Restaurant on Route
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-hike-parking">
+                                <span class="checkmark"></span>
+                                <i class="fa-solid fa-square-parking"></i> Parking Available
+                            </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="toggle-swisstopo-layer">
+                                <span class="checkmark"></span>
+                                <i class="fa-solid fa-layer-group"></i> Show Official Swisstopo Trails on Map
                             </label>
                         </div>
                     </div>
@@ -257,6 +323,7 @@
                             <label for="new-spot-type">Type of Zone <span class="optional-tag">optional</span></label>
                             <select id="new-spot-type" class="form-select">
                                 <option value="playpark">Playpark (Outdoor)</option>
+                                <option value="hiking">Hiking Trail</option>
                                 <option value="gamezone">Game Zone (Indoor)</option>
                                 <option value="swimmingpool">Swimming Pool</option>
                             </select>
@@ -391,7 +458,7 @@
 
         <!-- Footer -->
         <footer class="app-footer">
-            <p>&copy; 2026 SwissKidsSpots. Made with <i class="fa-solid fa-heart text-red"></i> for families in Switzerland. Weather data via Open-Meteo API.</p>
+            <p>&copy; 2026 SwissKidsSpots. Made with <i class="fa-solid fa-heart text-red"></i> for families in Switzerland. Hiking data &copy; swisstopo / SchweizMobil / OpenStreetMap. Weather via MeteoSwiss &amp; Open-Meteo.</p>
         </footer>
     </div>
 
@@ -400,6 +467,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=8"></script>
+    <script src="app.js?v=15"></script>
 </body>
 </html>

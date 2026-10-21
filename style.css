@@ -1695,3 +1695,283 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .w-full {
     width: 100%;
 }
+
+/* --- Hiking Trails Category & Sub-Filters --- */
+:root {
+    --accent-hiking: #2d6a4f;
+    --accent-hiking-light: rgba(45, 106, 79, 0.12);
+}
+
+.checkbox-container input:checked ~ .hiking-chk {
+    background-color: var(--accent-hiking);
+    border-color: var(--accent-hiking);
+}
+
+.text-playpark { color: var(--accent-teal); margin-right: 6px; }
+.text-hiking { color: var(--accent-hiking); margin-right: 6px; }
+.text-gamezone { color: var(--accent-orange); margin-right: 6px; }
+.text-swimmingpool { color: var(--accent-blue); margin-right: 6px; }
+
+.badge-hiking {
+    background-color: var(--accent-hiking);
+}
+
+.custom-pin.pin-hiking {
+    background: var(--accent-hiking);
+}
+.custom-pin.pin-hiking i {
+    color: white;
+}
+
+.badge-new-pill {
+    margin-left: auto;
+    background: rgba(45, 106, 79, 0.15);
+    color: var(--accent-hiking);
+    font-size: 0.65rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 10px;
+}
+
+.hiking-subfilters {
+    background: var(--accent-hiking-light);
+    border: 1px solid rgba(45, 106, 79, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem;
+    margin-bottom: 1.2rem;
+    transition: var(--transition-smooth);
+}
+
+.hiking-subfilter-header label {
+    color: var(--accent-hiking);
+    font-size: 0.8rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.65rem;
+}
+
+.hiking-subfilter-row {
+    margin-bottom: 0.65rem;
+}
+
+.hiking-subfilter-row .subfilter-label {
+    font-size: 0.72rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+}
+
+.form-select-sm {
+    padding: 0.45rem 1.8rem 0.45rem 0.65rem;
+    font-size: 0.84rem;
+}
+
+.hiking-feature-checks {
+    margin-top: 0.5rem;
+    gap: 0.45rem;
+}
+
+.hiking-feature-checks .checkbox-container {
+    font-size: 0.85rem;
+}
+
+.hiking-feature-checks .checkbox-container i {
+    width: 18px;
+    text-align: center;
+    margin-right: 4px;
+    color: var(--accent-hiking);
+}
+
+/* --- Hiking Badges & Metrics on Cards --- */
+.spot-card-subtitle-de {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: -2px;
+}
+
+.hike-card-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+}
+
+.hike-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.18rem 0.5rem;
+    border-radius: 6px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.hike-pill-easy {
+    background: rgba(42, 157, 143, 0.15);
+    color: #1b7f72;
+    border-color: rgba(42, 157, 143, 0.3);
+}
+
+.hike-pill-moderate {
+    background: rgba(244, 162, 97, 0.2);
+    color: #c8641b;
+    border-color: rgba(244, 162, 97, 0.4);
+}
+
+.hike-pill-difficult {
+    background: rgba(230, 57, 70, 0.15);
+    color: var(--danger-red);
+    border-color: rgba(230, 57, 70, 0.35);
+}
+
+.hike-pill-stroller {
+    background: rgba(0, 119, 182, 0.12);
+    color: var(--accent-blue);
+    border-color: rgba(0, 119, 182, 0.25);
+}
+
+.hike-pill-winter {
+    background: rgba(56, 189, 248, 0.16);
+    color: #0284c7;
+    border-color: rgba(56, 189, 248, 0.35);
+}
+
+/* --- Hiking Detail Modal Sections --- */
+.hike-bilingual-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 0.15rem;
+}
+
+.hike-bilingual-desc-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.6rem;
+}
+
+@media (max-width: 640px) {
+    .hike-bilingual-desc-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hike-lang-card {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem;
+    font-size: 0.9rem;
+}
+
+.hike-lang-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.12rem 0.45rem;
+    border-radius: 4px;
+    background: var(--accent-hiking-light);
+    color: var(--accent-hiking);
+    margin-bottom: 0.4rem;
+}
+
+.elevation-profile-card {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.elevation-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.elevation-profile-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.elevation-stats-row {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.elevation-svg {
+    width: 100%;
+    height: 120px;
+    display: block;
+}
+
+.hike-logistics-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.hike-logistics-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.hike-logistics-row i {
+    color: var(--accent-hiking);
+    font-size: 1.05rem;
+    margin-top: 3px;
+    width: 20px;
+    text-align: center;
+}
+
+.nearby-playgrounds-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.4rem;
+}
+
+.nearby-spot-pill {
+    background: rgba(42, 157, 143, 0.12);
+    color: var(--accent-teal);
+    border: 1px solid rgba(42, 157, 143, 0.3);
+    border-radius: 20px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.nearby-spot-pill:hover {
+    background: var(--accent-teal);
+    color: #ffffff;
+}
+

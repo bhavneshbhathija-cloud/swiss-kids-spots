@@ -9,6 +9,9 @@ let SWISS_ZIPS = {};
 let spots = [];
 let activeMap = null;
 let mapMarkers = [];
+let mapPolylines = [];
+let swisstopoWanderlandLayer = null;
+let swisstopoWinterLayer = null;
 let currentSearchCenter = { lat: 46.8182, lng: 8.2275, name: "Switzerland" }; // Centered on Switzerland
 let currentSearchZip = "";
 let currentRadiusKm = 5;
@@ -32,21 +35,33 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
     return R * c;
 }
 
+// Compute minimum distance from a point to a spot (checks trail polyline if available)
+function calculateSpotDistance(lat, lng, spot) {
+    let minD = calculateDistance(lat, lng, spot.lat, spot.lng);
+    if (spot.type === "hiking" && Array.isArray(spot.coordinates)) {
+        for (const pt of spot.coordinates) {
+            const d = calculateDistance(lat, lng, pt[0], pt[1]);
+            if (d < minD) minD = d;
+        }
+    }
+    return minD;
+}
+
 // Compute average rating
 function getAvgRating(spot) {
-    if (!spot.ratings || spot.ratings.length === 0) return 0;
+    if (!spot.ratings || spot.ratings.length === 0) return spot.rating || 4.8;
     const sum = spot.ratings.reduce((acc, r) => acc + r, 0);
     return (sum / spot.ratings.length).toFixed(1);
 }
 
 // Check if a spot is "free"
 function isFreeSpot(spot) {
+    if (!spot.fees) return true;
     return spot.fees.toLowerCase().includes("free") || parseFloat(spot.fees) === 0;
 }
 
 // Retrieve Weather Code Info
 function getWeatherIconAndDesc(code) {
-    // Return FontAwesome icon and label based on WMO codes
     if (code === 0) return { icon: "fa-sun", desc: "Clear Sky" };
     if (code <= 3) return { icon: "fa-cloud-sun", desc: "Partly Cloudy" };
     if (code === 45 || code === 48) return { icon: "fa-smog", desc: "Foggy" };
@@ -59,9 +74,8 @@ function getWeatherIconAndDesc(code) {
     return { icon: "fa-cloud", desc: "Cloudy" };
 }
 
-// Determine if weather is suitable for kids playspots
-function evaluateWeatherSuitability(type, weather) {
-    // If no weather loaded, assume good
+// Determine if weather is suitable for kids playspots & hiking trails
+function evaluateWeatherSuitability(type, weather, spot = null) {
     if (!weather) return { suitable: true, status: "good", label: "Weather Suitable", advice: "" };
 
     const temp = weather.temperature;
@@ -70,29 +84,19 @@ function evaluateWeatherSuitability(type, weather) {
     const warnings = weather.warnings || [];
 
     const now = Date.now();
-    // Filter active warnings based on valid time range
     let activeWarnings = warnings.filter(w => 
         (!w.validFrom || now >= w.validFrom) && 
         (!w.validTo || now <= w.validTo)
     );
 
-    // Get today's forecast max temperature
     const todayMax = (weather.forecast && weather.forecast[0]) ? weather.forecast[0].temperatureMax : temp;
-
-    // Detect heatwave in active warnings
     const heatWarning = activeWarnings.find(w => w.warnType === 7 && w.warnLevel >= 2);
-    
-    // A heatwave is active if the current temp >= 32, or today's forecast max >= 30,
-    // or if there is an active official heatwave warning AND either current temp >= 28 or forecast max >= 30.
     const hasHeatwave = temp >= 32 || todayMax >= 30 || (!!heatWarning && (temp >= 28 || todayMax >= 30));
 
-    // If we determined it's NOT a heatwave, remove the heatwave warning from active warnings so it doesn't trigger alerts
     if (!hasHeatwave) {
         activeWarnings = activeWarnings.filter(w => w.warnType !== 7);
     }
 
-    // Detect severe weather warnings (wind, storm, rain, flood, snow, slippery roads, avalanche, earthquake)
-    // warnType 10 is forest fire, which we can exclude from immediate playspot danger unless specifically high.
     const severeWarning = activeWarnings.find(w => w.warnLevel >= 3 && w.warnType !== 10);
 
     // 1. Severe Weather Warning Active
@@ -108,13 +112,13 @@ function evaluateWeatherSuitability(type, weather) {
             11: "Flood Warning"
         }[severeWarning.warnType] || "Weather Warning";
 
-        if (type === "playpark") {
+        if (type === "playpark" || type === "hiking") {
             return {
                 suitable: false,
                 status: "warning",
                 icon: "fa-triangle-exclamation",
                 label: `⚠️ ${typeName} (Level ${severeWarning.warnLevel})`,
-                advice: `Not recommended: Severe weather active. Details: ${severeWarning.text || 'Seek shelter immediately.'}`
+                advice: `Not recommended for outdoor trails or play: Severe weather active. Details: ${severeWarning.text || 'Avoid exposed ridges and forest trails.'}`
             };
         } else if (type === "swimmingpool") {
             return {
@@ -149,6 +153,17 @@ function evaluateWeatherSuitability(type, weather) {
                 label: "🥵 Heat Wave: Avoid Outdoors",
                 advice: heatAdvice
             };
+        } else if (type === "hiking") {
+            const isHighAlt = spot && spot.maxElevationM && spot.maxElevationM >= 1300;
+            return {
+                suitable: isHighAlt,
+                status: isHighAlt ? "good" : "warning",
+                icon: isHighAlt ? "fa-mountain-sun" : "fa-temperature-high",
+                label: isHighAlt ? "⛰️ Cooler Mountain Altitude" : "🥵 Hot: Hike Early / Seek Shade",
+                advice: isHighAlt
+                    ? `Valley temperatures are hot (${temp}&deg;C), making this higher-elevation trail (${spot.maxElevationM}m) a refreshing alpine escape! Pack sun protection and plenty of water.`
+                    : `High temperatures (${temp}&deg;C). Start early in the morning, choose shaded forest or lakeside trails, and carry extra water for kids.`
+            };
         } else if (type === "swimmingpool") {
             let poolAdvice = `Excellent for cooling off! Remember to apply plenty of sunscreen, wear hats, and stay hydrated in the heat (${temp}&deg;C).`;
             if (heatWarning) {
@@ -173,6 +188,35 @@ function evaluateWeatherSuitability(type, weather) {
     }
 
     // 3. Normal weather checks
+    if (type === "hiking") {
+        const isSnow = (code >= 71 && code <= 77) || code === 85 || code === 86;
+        if (isSnow && spot && spot.isWinterTrail) {
+            return {
+                suitable: true,
+                status: "good",
+                icon: "fa-snowflake",
+                label: "❄️ Great for Winter Hiking",
+                advice: "Snowy conditions — ideal for this prepared winter hiking trail! Wear warm boots with good grip."
+            };
+        }
+        if (prec > 0.3 || code >= 61) {
+            return {
+                suitable: false,
+                status: "warning",
+                icon: "fa-cloud-showers-heavy",
+                label: "🌧️ Wet/Slippery Trails Today",
+                advice: "Rainy weather can make roots and mountain trails slippery. Check trail conditions or choose a paved lakeside promenade."
+            };
+        }
+        return {
+            suitable: true,
+            status: "good",
+            icon: "fa-person-hiking",
+            label: "🥾 Ideal Hiking Weather",
+            advice: "Dry conditions — great day for a family hike in Switzerland!"
+        };
+    }
+
     if (type === "playpark") {
         if (prec > 0.1 || temp < 12 || code >= 51) {
             return { 
@@ -296,17 +340,18 @@ async function loadSpots() {
         console.error("Error loading postal-codes.json:", e);
     }
 
-    // 1. Load hand-curated baseline from JSON file
+    // 1. Load hand-curated baseline from JSON file + All 1,134 SwitzerlandMobility Hiking Trails from hikes.json
     try {
-        const baseResponse = await fetch("base_spots.json?v=" + Date.now());
-        if (baseResponse.ok) {
-            const baseSpots = await baseResponse.json();
-            spots = [...baseSpots];
-        } else {
-            spots = [];
-        }
+        const [baseResponse, hikesResponse] = await Promise.all([
+            fetch("base_spots.json?v=15"),
+            fetch("hikes.json?v=15")
+        ]);
+        const baseSpots = baseResponse.ok ? await baseResponse.json() : [];
+        const hikeSpots = hikesResponse.ok ? await hikesResponse.json() : [];
+        spots = [...baseSpots, ...hikeSpots];
+        console.log(`Loaded ${baseSpots.length} baseline spots and ${hikeSpots.length} hiking trails.`);
     } catch (e) {
-        console.error("Error loading base_spots.json:", e);
+        console.error("Error loading baseline/hiking spots:", e);
         spots = [];
     }
     
@@ -332,8 +377,10 @@ async function loadSpots() {
         }
     }
     
-    // Merge reviews into baseline spots
+    // Merge reviews into baseline & hiking spots
     spots.forEach(spot => {
+        if (!spot.ratings) spot.ratings = [5, 5, 4];
+        if (!spot.comments) spot.comments = [];
         if (reviewsDict[spot.id]) {
             spot.ratings = spot.ratings.concat(reviewsDict[spot.id].ratings || []);
             spot.comments = spot.comments.concat(reviewsDict[spot.id].comments || []);
@@ -407,16 +454,78 @@ function initializeMap() {
     }).setView([46.8182, 8.2275], 8);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &bull; Trails &copy; swisstopo / SchweizMobil'
     }).addTo(activeMap);
 }
 
-// Plot Markers on Map
+// Toggle Official Swisstopo WMTS Hiking Overlay (Summer & Winter Trails)
+function toggleSwisstopoMapLayer(enabled) {
+    if (!activeMap) return;
+    if (enabled) {
+        if (!swisstopoWanderlandLayer) {
+            swisstopoWanderlandLayer = L.tileLayer(
+                'https://wmts.geo.admin.ch/1.0.0/ch.astra.wanderland/default/current/3857/{z}/{x}/{y}.png',
+                { opacity: 0.78, attribution: '&copy; swisstopo / SchweizMobil' }
+            );
+        }
+        if (!swisstopoWinterLayer) {
+            swisstopoWinterLayer = L.tileLayer(
+                'https://wmts.geo.admin.ch/1.0.0/ch.astra.winterwanderwege/default/current/3857/{z}/{x}/{y}.png',
+                { opacity: 0.78 }
+            );
+        }
+        swisstopoWanderlandLayer.addTo(activeMap);
+        swisstopoWinterLayer.addTo(activeMap);
+    } else {
+        if (swisstopoWanderlandLayer && activeMap.hasLayer(swisstopoWanderlandLayer)) {
+            activeMap.removeLayer(swisstopoWanderlandLayer);
+        }
+        if (swisstopoWinterLayer && activeMap.hasLayer(swisstopoWinterLayer)) {
+            activeMap.removeLayer(swisstopoWinterLayer);
+        }
+    }
+}
+
+// Build Google Maps Directions URL (Start-to-End walking route for hikes, destination for spots)
+function getSpotDirectionsUrl(spot) {
+    if (spot.type === "hiking" && Array.isArray(spot.coordinates) && spot.coordinates.length >= 2) {
+        const coords = spot.coordinates;
+        const startPt = coords[0];
+        const endPt = coords[coords.length - 1];
+        const origin = `${startPt[0]},${startPt[1]}`;
+        const destination = `${endPt[0]},${endPt[1]}`;
+        const waypoints = [];
+        if (coords.length >= 5) {
+            for (const f of [0.2, 0.4, 0.6, 0.8]) {
+                const idx = Math.min(coords.length - 2, Math.max(1, Math.round(f * (coords.length - 1))));
+                const ptStr = `${coords[idx][0]},${coords[idx][1]}`;
+                if (ptStr !== origin && ptStr !== destination && !waypoints.includes(ptStr)) {
+                    waypoints.push(ptStr);
+                }
+            }
+        } else if (coords.length >= 3) {
+            const midPt = coords[Math.floor(coords.length / 2)];
+            waypoints.push(`${midPt[0]},${midPt[1]}`);
+        }
+        let url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=walking`;
+        if (waypoints.length > 0) {
+            url += `&waypoints=${encodeURIComponent(waypoints.join("|"))}`;
+        }
+        return url;
+    }
+    return `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
+}
+
+let currentDisplayLimit = 80;
+
+// Plot Markers and Hiking Route Polylines on Map
 function updateMapMarkers(filteredSpots) {
     if (!activeMap) return;
-    // Clear existing markers
+    // Clear existing markers & polylines
     mapMarkers.forEach(m => activeMap.removeLayer(m));
     mapMarkers = [];
+    mapPolylines.forEach(p => activeMap.removeLayer(p));
+    mapPolylines = [];
 
     if (filteredSpots.length === 0) return;
 
@@ -427,10 +536,11 @@ function updateMapMarkers(filteredSpots) {
         
         let iconHtml = "";
         if (spot.type === "playpark") iconHtml = '<i class="fa-solid fa-child-reaching"></i>';
+        else if (spot.type === "hiking") iconHtml = '<i class="fa-solid fa-person-hiking"></i>';
         else if (spot.type === "gamezone") iconHtml = '<i class="fa-solid fa-gamepad"></i>';
         else if (spot.type === "swimmingpool") iconHtml = '<i class="fa-solid fa-water-ladder"></i>';
 
-        const weatherEval = evaluateWeatherSuitability(spot.type, liveWeatherData);
+        const weatherEval = evaluateWeatherSuitability(spot.type, liveWeatherData, spot);
         const weatherStyleClass = weatherEval.status === "warning" ? "pin-bad-weather" : "pin-good-weather";
 
         const customMarkerIcon = L.divIcon({
@@ -442,15 +552,24 @@ function updateMapMarkers(filteredSpots) {
         });
 
         const marker = L.marker([spot.lat, spot.lng], { icon: customMarkerIcon }).addTo(activeMap);
+        marker.spotId = spot.id;
         
-        const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
+        const directionsUrl = getSpotDirectionsUrl(spot);
+        const hikeSubInfo = spot.type === "hiking"
+            ? `<div style="font-size: 0.75rem; font-weight: 600; color: var(--accent-hiking); margin-bottom: 6px;">
+                 ${spot.nameDe ? `<div style="color: var(--text-secondary); font-weight: 500; margin-bottom: 2px;">🇩🇪 ${spot.nameDe}</div>` : ''}
+                 <span>📏 ${spot.distanceKm} km</span> &bull; <span>⏱️ ${spot.durationText}</span> &bull; <span>↑ ${spot.ascentM}m</span>
+               </div>`
+            : '';
+
         const popupContent = `
-            <div style="font-family: var(--font-primary); min-width: 160px; padding: 2px;">
+            <div style="font-family: var(--font-primary); min-width: 185px; padding: 2px;">
                 <h4 style="margin: 0 0 4px 0; font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">${spot.name}</h4>
-                <p style="margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-location-dot"></i> ${spot.city} (${spot.zip})</p>
+                ${hikeSubInfo}
+                <p style="margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-location-dot"></i> ${spot.city || spot.region} (${spot.zip || ''})</p>
                 <div style="display: flex; gap: 8px; margin-top: 4px;">
                     <button class="btn btn-outline" onclick="openDetails('${spot.id}')" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; flex: 1; min-height: auto; height: auto;">Details</button>
-                    <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex: 1; color: white; min-height: auto; height: auto; text-transform: none; letter-spacing: 0;"><i class="fa-solid fa-diamond-turn-right"></i> Route</a>
+                    <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex: 1; color: white; min-height: auto; height: auto; text-transform: none; letter-spacing: 0;"><i class="fa-solid fa-diamond-turn-right"></i> Start</a>
                 </div>
             </div>
         `;
@@ -458,49 +577,106 @@ function updateMapMarkers(filteredSpots) {
         marker.bindPopup(popupContent);
         mapMarkers.push(marker);
         bounds.push([spot.lat, spot.lng]);
+
+        // Draw Hiking Trail Polyline on Map
+        if (spot.type === "hiking" && Array.isArray(spot.coordinates) && spot.coordinates.length > 1) {
+            let strokeColor = "#2d6a4f"; // Easy green
+            if (spot.difficulty === "moderate") strokeColor = "#e76f51"; // Moderate orange
+            else if (spot.difficulty === "difficult") strokeColor = "#d90429"; // Difficult red
+            if (spot.isWinterTrail && spot.season === "winter") strokeColor = "#0284c7"; // Winter trail blue
+
+            const polyline = L.polyline(spot.coordinates, {
+                color: strokeColor,
+                weight: 4.5,
+                opacity: 0.85,
+                dashArray: (spot.isWinterTrail && spot.season === "winter") ? "8, 6" : null,
+                lineJoin: "round"
+            }).addTo(activeMap);
+
+            polyline.spotId = spot.id;
+            polyline.bindPopup(popupContent);
+            polyline.on("mouseover", function() {
+                this.setStyle({ weight: 7, opacity: 1 });
+            });
+            polyline.on("mouseout", function() {
+                this.setStyle({ weight: 4.5, opacity: 0.85 });
+            });
+
+            mapPolylines.push(polyline);
+        }
     });
 
-    // Fit map bounds if there are markers and search zip is specified
-    if (bounds.length > 0 && currentSearchZip !== "") {
+    // Fit map bounds if there are markers and search zip or region filter is specified
+    const hikeRegionFilter = document.getElementById("filter-hike-region") ? document.getElementById("filter-hike-region").value : "all";
+    if (bounds.length > 0 && (currentSearchZip !== "" || hikeRegionFilter !== "all")) {
         activeMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
     } else if (bounds.length > 0) {
         activeMap.setView([currentSearchCenter.lat, currentSearchCenter.lng], 9);
     }
 }
 
+let currentTextQuery = "";
+
 // --- Render Spot Card List ---
-function renderSpotsList() {
+window.loadMoreSpots = function() {
+    currentDisplayLimit += 100;
+    renderSpotsList(true);
+};
+
+function renderSpotsList(keepLimit = false) {
+    if (keepLimit !== true) {
+        currentDisplayLimit = 80;
+    }
     const listContainer = document.getElementById("spots-list");
     const countContainer = document.getElementById("results-count");
 
     // Gather search parameters & filters
     const typePlaypark = document.getElementById("filter-playpark").checked;
+    const typeHikingEl = document.getElementById("filter-hiking");
+    const typeHiking = typeHikingEl ? typeHikingEl.checked : true;
     const typeGamezone = document.getElementById("filter-gamezone").checked;
     const typeSwimmingpool = document.getElementById("filter-swimmingpool").checked;
+
+    // Show/hide hiking subfilters panel based on whether Hiking Trails is checked
+    const hikingSubfiltersBox = document.getElementById("hiking-subfilters-box");
+    if (hikingSubfiltersBox) {
+        hikingSubfiltersBox.style.display = typeHiking ? "block" : "none";
+    }
+
+    // Gather hiking sub-filters
+    const hikeRegion = document.getElementById("filter-hike-region") ? document.getElementById("filter-hike-region").value : "all";
+    const hikeDifficulty = document.getElementById("filter-hike-difficulty") ? document.getElementById("filter-hike-difficulty").value : "all";
+    const hikeStrollerOnly = document.getElementById("filter-hike-stroller") ? document.getElementById("filter-hike-stroller").checked : false;
+    const hikeWinterOnly = document.getElementById("filter-hike-winter") ? document.getElementById("filter-hike-winter").checked : false;
+    const hikeRestaurantOnly = document.getElementById("filter-hike-restaurant") ? document.getElementById("filter-hike-restaurant").checked : false;
+    const hikeParkingOnly = document.getElementById("filter-hike-parking") ? document.getElementById("filter-hike-parking").checked : false;
 
     const selectedFees = document.querySelector('input[name="filter-fees"]:checked').value;
     const weatherSuitableOnly = document.getElementById("filter-weather-suitable").checked;
     const sortBy = document.getElementById("sort-select").value;
 
     let filtered = spots.map(spot => {
-        // Calculate distance from search center if active search zip exists
+        // Calculate distance from search center if active search zip exists (checks trail polyline for hikes)
         let distance = null;
         if (currentSearchZip !== "") {
-            distance = calculateDistance(
+            distance = calculateSpotDistance(
                 currentSearchCenter.lat, 
                 currentSearchCenter.lng, 
-                spot.lat, 
-                spot.lng
+                spot
             );
         }
         return { ...spot, distance };
     });
 
-    // 1. Filter by Search Range:
-    // If ZIP search is active, filter by distance radius.
-    // If NO ZIP search is active, only show Tier 1 spots (Curated & User Custom spots) to prevent browser DOM congestion.
+    // 1. Filter by Search Range or Text Query (Trail Name / Route Number / Lake):
     if (currentSearchZip !== "") {
         filtered = filtered.filter(spot => spot.distance <= currentRadiusKm);
+    } else if (currentTextQuery !== "") {
+        const q = currentTextQuery.toLowerCase();
+        filtered = filtered.filter(spot => {
+            const hay = `${spot.name || ''} ${spot.nameDe || ''} ${spot.routeNumber ? 'route ' + spot.routeNumber : ''} ${spot.city || ''} ${spot.address || ''} ${spot.description || ''}`.toLowerCase();
+            return hay.includes(q);
+        });
     } else {
         filtered = filtered.filter(spot => {
             const isCustom = spot.id.startsWith("custom-spot-");
@@ -509,11 +685,21 @@ function renderSpotsList() {
         });
     }
 
-    // 2. Filter by Category
+    // 2. Filter by Category & Hiking Sub-Filters
     filtered = filtered.filter(spot => {
         if (spot.type === "playpark" && !typePlaypark) return false;
+        if (spot.type === "hiking" && !typeHiking) return false;
         if (spot.type === "gamezone" && !typeGamezone) return false;
         if (spot.type === "swimmingpool" && !typeSwimmingpool) return false;
+
+        if (spot.type === "hiking") {
+            if (hikeRegion !== "all" && spot.region !== hikeRegion) return false;
+            if (hikeDifficulty !== "all" && spot.difficulty !== hikeDifficulty) return false;
+            if (hikeStrollerOnly && spot.strollerFriendly !== "yes") return false;
+            if (hikeWinterOnly && !spot.isWinterTrail) return false;
+            if (hikeRestaurantOnly && (!spot.restaurants || spot.restaurants.length === 0)) return false;
+            if (hikeParkingOnly && !spot.parking) return false;
+        }
         return true;
     });
 
@@ -525,18 +711,13 @@ function renderSpotsList() {
     // 4. Filter by Weather Suitability
     if (weatherSuitableOnly && liveWeatherData) {
         filtered = filtered.filter(spot => {
-            const evaluation = evaluateWeatherSuitability(spot.type, liveWeatherData);
+            const evaluation = evaluateWeatherSuitability(spot.type, liveWeatherData, spot);
             return evaluation.suitable;
         });
     }
 
     // Sort Results
     if (sortBy === "featured") {
-        // Featured Sort (Quality/Curation Tier-Based):
-        // Tier 1: Curated baseline & user-added spots
-        // Tier 2: OSM spots with real scraped pictures
-        // Tier 3: OSM spots with placeholder pictures
-        // Within each tier: sort based on distance (if ZIP active) or rating/name
         filtered.sort((a, b) => {
             const getPriority = (spot) => {
                 const isCustom = spot.id.startsWith("custom-spot-");
@@ -556,7 +737,6 @@ function renderSpotsList() {
                 return pA - pB;
             }
 
-            // Secondary Sort: within the same tier
             if (currentSearchZip !== "") {
                 return (a.distance || 0) - (b.distance || 0);
             } else {
@@ -564,22 +744,19 @@ function renderSpotsList() {
             }
         });
     } else if (sortBy === "distance" && currentSearchZip !== "") {
-        // Pure Proximity Sort (strictly by distance, no tiers)
         filtered.sort((a, b) => (a.distance || 0) - (b.distance || 0));
     } else if (sortBy === "rating") {
-        // Pure User Rating Sort (strictly by rating, no tiers)
         filtered.sort((a, b) => getAvgRating(b) - getAvgRating(a));
     } else {
-        // Pure Alphabetical Name Sort (no tiers)
         filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     // Render count
     if (currentSearchZip !== "") {
         const zipCity = SWISS_ZIPS[currentSearchZip] ? SWISS_ZIPS[currentSearchZip].city : currentSearchZip;
-        countContainer.textContent = `${filtered.length} playspot${filtered.length === 1 ? '' : 's'} found near ${zipCity}`;
+        countContainer.textContent = `${filtered.length} spot${filtered.length === 1 ? '' : 's'} & trail${filtered.length === 1 ? '' : 's'} near ${zipCity}`;
     } else {
-        countContainer.textContent = "Featured playspots in Switzerland";
+        countContainer.textContent = `Showing ${filtered.length} Featured Spots & Hiking Trails in Switzerland`;
     }
 
     // Render Cards
@@ -588,15 +765,17 @@ function renderSpotsList() {
         listContainer.innerHTML = `
             <div class="card" style="text-align: center; padding: 2rem;">
                 <i class="fa-solid fa-face-frown" style="font-size: 2.5rem; color: var(--text-light); margin-bottom: 1rem;"></i>
-                <h3>No Spots Match Your Search</h3>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Try increasing your radius, typing another ZIP code, or clearing some filters.</p>
+                <h3>No Spots or Trails Match Your Search</h3>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Try increasing the distance radius slider (up to 25 km), selecting another region, or clearing some filters.</p>
             </div>
         `;
         updateMapMarkers([]);
         return;
     }
 
-    filtered.forEach(spot => {
+    const visibleSpots = filtered.slice(0, currentDisplayLimit);
+
+    visibleSpots.forEach(spot => {
         const avgR = getAvgRating(spot);
         const feeBadge = isFreeSpot(spot) ? '<span class="badge badge-free">Free</span>' : `<span class="badge badge-fee">${spot.fees}</span>`;
         
@@ -612,7 +791,7 @@ function renderSpotsList() {
         }
 
         // Weather Suitability Alert
-        const weatherEval = evaluateWeatherSuitability(spot.type, liveWeatherData);
+        const weatherEval = evaluateWeatherSuitability(spot.type, liveWeatherData, spot);
         const weatherClass = weatherEval.status === "warning" ? "weather-warning" : "weather-good";
         const weatherIcon = weatherEval.icon || (weatherEval.status === "warning" ? "fa-triangle-exclamation" : "fa-circle-check");
         const weatherHtml = liveWeatherData ? `
@@ -626,6 +805,50 @@ function renderSpotsList() {
             <span class="spot-card-distance">${spot.distance.toFixed(1)} km away</span>
         ` : '';
 
+        // Hiking-specific bilingual subtitle & metrics row
+        let hikeCardExtrasHtml = "";
+        let typeLabel = spot.type;
+        if (spot.type === "hiking") {
+            typeLabel = `hiking • ${spot.region || 'CH'}`;
+            const diffLabel = spot.difficulty === "easy"
+                ? "🟢 Easy"
+                : (spot.difficulty === "moderate" ? "🟠 Moderate" : "🔴 Difficult");
+            const strollerPill = spot.strollerFriendly === "yes"
+                ? `<span class="hike-pill hike-pill-stroller"><i class="fa-solid fa-baby-carriage"></i> Stroller Friendly</span>`
+                : "";
+            let winterLabel = "Winter Trail";
+            let winterIcon = "fa-snowflake";
+            if (spot.winterActivity === "snowshoe") {
+                winterLabel = "Snowshoe Trail";
+            } else if (spot.winterActivity === "sledge") {
+                winterLabel = "Sledging Run";
+                winterIcon = "fa-person-sledding";
+            }
+            const winterPill = spot.isWinterTrail
+                ? `<span class="hike-pill hike-pill-winter"><i class="fa-solid ${winterIcon}"></i> ${winterLabel}</span>`
+                : "";
+            const restCount = spot.restaurants ? spot.restaurants.length : 0;
+            const restPill = restCount > 0
+                ? `<span class="hike-pill"><i class="fa-solid fa-utensils"></i> ${restCount} Restaurant${restCount > 1 ? 's' : ''}</span>`
+                : "";
+            const eleChangePill = spot.winterActivity === "sledge"
+                ? `<span class="hike-pill"><i class="fa-solid fa-mountain"></i> ↓${spot.descentM}m</span>`
+                : `<span class="hike-pill"><i class="fa-solid fa-mountain"></i> ↑${spot.ascentM}m</span>`;
+
+            hikeCardExtrasHtml = `
+                ${spot.nameDe && spot.nameDe !== spot.name ? `<div class="spot-card-subtitle-de">🇩🇪 ${spot.nameDe}</div>` : ''}
+                <div class="hike-card-metrics">
+                    <span class="hike-pill hike-pill-${spot.difficulty || 'easy'}">${diffLabel}</span>
+                    <span class="hike-pill"><i class="fa-solid fa-route"></i> ${spot.distanceKm} km</span>
+                    <span class="hike-pill"><i class="fa-regular fa-clock"></i> ${spot.durationText}</span>
+                    ${eleChangePill}
+                    ${strollerPill}
+                    ${winterPill}
+                    ${restPill}
+                </div>
+            `;
+        }
+
         const card = document.createElement("div");
         const attributionHtml = spot.imageSource ? `<span class="image-attribution">📷 ${spot.imageSource}</span>` : '';
 
@@ -635,7 +858,7 @@ function renderSpotsList() {
             <div class="spot-card-img-container">
                 <img class="spot-card-img" src="${spot.imageUrl}" alt="${spot.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src=getDefaultSpotFallback('${spot.type}')">
                 <div class="spot-card-badges">
-                    <span class="badge-type badge-${spot.type}">${spot.type}</span>
+                    <span class="badge-type badge-${spot.type}">${typeLabel}</span>
                     ${weatherHtml}
                 </div>
                 ${distHtml}
@@ -643,17 +866,18 @@ function renderSpotsList() {
             </div>
             <div class="spot-card-info">
                 <h3 class="spot-card-title">${spot.name}</h3>
+                ${hikeCardExtrasHtml}
                 <p class="spot-card-area"><i class="fa-solid fa-location-dot"></i> ${spot.address}</p>
                 <div class="spot-card-meta">
                     <div class="spot-card-rating">
-                        ${starsHtml} <span>(${spot.ratings.length})</span>
+                        ${starsHtml} <span>(${spot.ratings ? spot.ratings.length : 1})</span>
                     </div>
                     ${feeBadge}
                 </div>
             </div>
             <div class="spot-card-footer">
-                <button class="btn btn-outline" onclick="openDetails('${spot.id}')">View Details</button>
-                <button class="btn btn-primary" onclick="focusOnMap('${spot.id}', ${spot.lat}, ${spot.lng})"><i class="fa-solid fa-location-crosshairs"></i> Map</button>
+                <button class="btn btn-outline" onclick="openDetails('${spot.id}')">${spot.type === 'hiking' ? 'Trail Info & Profile' : 'View Details'}</button>
+                <button class="btn btn-primary" onclick="focusOnMap('${spot.id}', ${spot.lat}, ${spot.lng})"><i class="fa-solid fa-location-crosshairs"></i> ${spot.type === 'hiking' ? 'Show Trail' : 'Map'}</button>
             </div>
         `;
 
@@ -667,31 +891,48 @@ function renderSpotsList() {
         listContainer.appendChild(card);
     });
 
-    updateMapMarkers(filtered);
+    if (filtered.length > visibleSpots.length) {
+        const loadMoreWrap = document.createElement("div");
+        loadMoreWrap.style.cssText = "grid-column: 1 / -1; text-align: center; padding: 1.25rem 0;";
+        loadMoreWrap.innerHTML = `
+            <button class="btn btn-primary" onclick="loadMoreSpots()" style="padding: 0.75rem 1.75rem; font-size: 0.9rem;">
+                <i class="fa-solid fa-plus"></i> Show More Spots & Trails (Showing ${visibleSpots.length} of ${filtered.length})
+            </button>
+        `;
+        listContainer.appendChild(loadMoreWrap);
+    }
+
+    updateMapMarkers(visibleSpots);
 }
 
-// Center Map on a Selected Spot from Card
+// Center Map on a Selected Spot or Hiking Trail Polyline from Card
 function focusOnMap(id, lat, lng) {
     if (!activeMap) return;
     
-    // Zoom closer to selected spot
-    activeMap.setView([lat, lng], 14);
-
-    // Find and trigger popup for the marker
-    const marker = mapMarkers.find(m => m.getLatLng().lat === lat && m.getLatLng().lng === lng);
-    if (marker) {
-        marker.openPopup();
+    const spot = spots.find(s => s.id === id);
+    if (spot && spot.type === "hiking" && Array.isArray(spot.coordinates) && spot.coordinates.length > 1) {
+        activeMap.fitBounds(spot.coordinates, { padding: [45, 45], maxZoom: 14 });
+        const poly = mapPolylines.find(p => p.spotId === id);
+        if (poly) poly.openPopup();
+    } else {
+        activeMap.setView([lat, lng], 14);
+        const marker = mapMarkers.find(m => m.spotId === id || (m.getLatLng().lat === lat && m.getLatLng().lng === lng));
+        if (marker) {
+            marker.openPopup();
+        }
     }
 
     // Scroll to map for mobile screens
     if (window.innerWidth <= 992) {
         document.getElementById("map-panel").style.display = "block";
+        setTimeout(() => activeMap.invalidateSize(), 100);
     }
 }
 
 // Helper for fallback images when scraped urls break or are blocked
 function getDefaultSpotFallback(type) {
     if (type === "playpark") return "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80";
+    if (type === "hiking") return "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=80";
     if (type === "gamezone") return "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80";
     return "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80";
 }
@@ -884,65 +1125,317 @@ async function openDetails(spotId) {
         `;
     }).join("") : '<p class="no-reviews-placeholder">No reviews yet. Be the first to share your thoughts!</p>';
 
-    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
+    let directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
+    if (spot.type === "hiking" && Array.isArray(spot.coordinates) && spot.coordinates.length >= 2) {
+        const coords = spot.coordinates;
+        const startPt = coords[0];
+        const endPt = coords[coords.length - 1];
+        const origin = `${startPt[0]},${startPt[1]}`;
+        const destination = `${endPt[0]},${endPt[1]}`;
+        const waypoints = [];
+        if (coords.length >= 5) {
+            for (const f of [0.2, 0.4, 0.6, 0.8]) {
+                const idx = Math.min(coords.length - 2, Math.max(1, Math.round(f * (coords.length - 1))));
+                const ptStr = `${coords[idx][0]},${coords[idx][1]}`;
+                if (ptStr !== origin && ptStr !== destination && !waypoints.includes(ptStr)) {
+                    waypoints.push(ptStr);
+                }
+            }
+        } else if (coords.length >= 3) {
+            const midPt = coords[Math.floor(coords.length / 2)];
+            waypoints.push(`${midPt[0]},${midPt[1]}`);
+        }
+        directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=walking`;
+        if (waypoints.length > 0) {
+            directionsUrl += `&waypoints=${encodeURIComponent(waypoints.join("|"))}`;
+        }
+    }
     const googleSearchUrl = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${spot.lat},${spot.lng}`;
     const detailAttributionHtml = spot.imageSource ? `<div class="image-attribution detail-attribution">📷 ${spot.imageSource}</div>` : '';
+
+    // Build SVG Elevation Profile chart for hiking routes
+    let hikingDetailSectionsHtml = "";
+    let metaGridHtml = "";
+    let actionButtonsHtml = "";
+    let subtitleDeHtml = "";
+
+    if (spot.type === "hiking") {
+        subtitleDeHtml = spot.nameDe ? `<div class="hike-bilingual-subtitle">🇩🇪 ${spot.nameDe}</div>` : '';
+        const diffBadgeText = spot.difficulty === "easy"
+            ? "🟢 Easy (Leicht)"
+            : (spot.difficulty === "moderate" ? "🟠 Moderate (Mittel)" : "🔴 Difficult (Schwer)");
+
+        actionButtonsHtml = `
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                ${spot.schweizMobilUrlEn ? `
+                <a href="${spot.schweizMobilUrlEn}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
+                    <i class="fa-solid fa-signs-post"></i> SchweizMobil (EN)
+                </a>` : ''}
+                ${spot.schweizMobilUrlDe ? `
+                <a href="${spot.schweizMobilUrlDe}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
+                    <i class="fa-solid fa-signs-post"></i> SchweizMobil (DE)
+                </a>` : ''}
+                ${spot.swisstopoMapUrl ? `
+                <a href="${spot.swisstopoMapUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
+                    <i class="fa-solid fa-map"></i> swisstopo Map
+                </a>` : ''}
+                <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
+                    <i class="fa-solid fa-person-walking"></i> Navigate to Start
+                </a>
+            </div>
+        `;
+
+        metaGridHtml = `
+            <div class="detail-meta-grid">
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Hiking Level / SAC Scale</h4>
+                        <p>${diffBadgeText}</p>
+                        <small style="color: var(--text-secondary); font-size: 0.75rem;">${spot.sacScale || 'T1 Wanderweg'}</small>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-route"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Distance &amp; Duration</h4>
+                        <p>${spot.distanceKm} km &bull; ${spot.durationText}</p>
+                        <small style="color: var(--text-secondary); font-size: 0.75rem;">Official Swiss hiking time</small>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-mountain"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Elevation Gain / Loss</h4>
+                        <p>↑ ${spot.ascentM} m &bull; ↓ ${spot.descentM} m</p>
+                        <small style="color: var(--text-secondary); font-size: 0.75rem;">Alt: ${spot.minElevationM}m – ${spot.maxElevationM}m</small>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-baby-carriage"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Stroller Friendly</h4>
+                        <p>${spot.strollerFriendly === 'yes' ? '✅ Yes (Kinderwagentauglich)' : '❌ No (Carrier/Hiking Boots)'}</p>
+                        <small style="color: var(--text-secondary); font-size: 0.75rem;">Max gradient: ~${spot.maxGradientPct || 6}%</small>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid ${spot.isWinterTrail ? 'fa-snowflake' : 'fa-calendar-check'}"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Season &amp; Winter</h4>
+                        <p>${spot.isWinterTrail ? '❄️ Winter &amp; Panorama Trail' : (spot.season === 'summer' ? '☀️ Summer / 3-Season' : '🌿 All-Season Trail')}</p>
+                        <small style="color: var(--text-secondary); font-size: 0.75rem;">${spot.openingHours}</small>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-star"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Rating &amp; Trail Fee</h4>
+                        <p>${avgR} ★ (${spot.ratings.length} reviews)</p>
+                        <small style="color: var(--text-secondary); font-size: 0.75rem;">${spot.fees}</small>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Build SVG Elevation Chart
+        let elevationSvgHtml = "";
+        if (Array.isArray(spot.elevationProfile) && spot.elevationProfile.length > 1) {
+            const prof = spot.elevationProfile;
+            const w = 640;
+            const h = 120;
+            const padL = 42;
+            const padR = 16;
+            const padT = 14;
+            const padB = 24;
+            const plotW = w - padL - padR;
+            const plotH = h - padT - padB;
+            const maxD = prof[prof.length - 1].d || spot.distanceKm || 5;
+            const minE = Math.min(...prof.map(p => p.ele));
+            const maxE = Math.max(...prof.map(p => p.ele));
+            const spanE = Math.max(40, maxE - minE);
+
+            const pts = prof.map((p, idx) => {
+                const x = padL + ((maxD > 0 ? p.d / maxD : idx / (prof.length - 1)) * plotW);
+                const y = padT + plotH - (((p.ele - minE) / spanE) * plotH);
+                return `${x.toFixed(1)},${y.toFixed(1)}`;
+            });
+            const areaPts = `${padL},${padT + plotH} ` + pts.join(" ") + ` ${padL + plotW},${padT + plotH}`;
+
+            elevationSvgHtml = `
+                <div class="elevation-profile-card">
+                    <div class="elevation-profile-header">
+                        <h3><i class="fa-solid fa-chart-area" style="color: var(--accent-hiking);"></i> Elevation Profile / Höhenprofil</h3>
+                        <div class="elevation-stats-row">
+                            <span>Min: ${minE} m</span>
+                            <span>Max: ${maxE} m</span>
+                            <span>↑ ${spot.ascentM} m</span>
+                            <span>↓ ${spot.descentM} m</span>
+                        </div>
+                    </div>
+                    <svg class="elevation-svg" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="hikeGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#2d6a4f" stop-opacity="0.45"/>
+                                <stop offset="100%" stop-color="#2d6a4f" stop-opacity="0.04"/>
+                            </linearGradient>
+                        </defs>
+                        <line x1="${padL}" y1="${padT}" x2="${w - padR}" y2="${padT}" stroke="rgba(141,153,174,0.25)" stroke-dasharray="3,3"/>
+                        <line x1="${padL}" y1="${padT + plotH / 2}" x2="${w - padR}" y2="${padT + plotH / 2}" stroke="rgba(141,153,174,0.25)" stroke-dasharray="3,3"/>
+                        <line x1="${padL}" y1="${padT + plotH}" x2="${w - padR}" y2="${padT + plotH}" stroke="rgba(141,153,174,0.4)"/>
+                        <text x="${padL - 6}" y="${padT + 4}" text-anchor="end" font-size="10" fill="currentColor" opacity="0.65">${maxE}m</text>
+                        <text x="${padL - 6}" y="${padT + plotH}" text-anchor="end" font-size="10" fill="currentColor" opacity="0.65">${minE}m</text>
+                        <text x="${padL}" y="${h - 5}" text-anchor="start" font-size="10" fill="currentColor" opacity="0.65">0 km</text>
+                        <text x="${padL + plotW / 2}" y="${h - 5}" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">${(maxD / 2).toFixed(1)} km</text>
+                        <text x="${w - padR}" y="${h - 5}" text-anchor="end" font-size="10" fill="currentColor" opacity="0.65">${maxD} km</text>
+                        <polygon points="${areaPts}" fill="url(#hikeGrad)"/>
+                        <polyline points="${pts.join(" ")}" fill="none" stroke="#2d6a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            `;
+        }
+
+        // Nearby cross-linked playgrounds buttons
+        const nearbySpotsHtml = (spot.nearbySpots && spot.nearbySpots.length > 0)
+            ? `<div class="nearby-playgrounds-pills">
+                 ${spot.nearbySpots.map(ns => `
+                    <button type="button" class="nearby-spot-pill" onclick="openNearbyKidsSpot('${ns.id}')">
+                        <i class="fa-solid ${ns.type === 'swimmingpool' ? 'fa-water-ladder' : 'fa-child-reaching'}"></i>
+                        ${ns.name} (${ns.distanceM}m from trail)
+                    </button>
+                 `).join('')}
+               </div>`
+            : '';
+
+        const restaurantsListHtml = (spot.restaurants && spot.restaurants.length > 0)
+            ? spot.restaurants.map(r => `<span class="amenities-badge"><i class="fa-solid fa-utensils"></i> ${r}</span>`).join(" ")
+            : '<span style="color: var(--text-secondary);">Pack a picnic — no restaurants directly on trail</span>';
+
+        hikingDetailSectionsHtml = `
+            ${elevationSvgHtml}
+
+            <div class="detail-description">
+                <h3>Route Description (English &amp; Deutsch)</h3>
+                <div class="hike-bilingual-desc-box">
+                    <div class="hike-lang-card">
+                        <span class="hike-lang-tag">🇬🇧 English</span>
+                        <p>${spot.descriptionEn || spot.description}</p>
+                    </div>
+                    <div class="hike-lang-card">
+                        <span class="hike-lang-tag">🇩🇪 Deutsch</span>
+                        <p>${spot.descriptionDe || spot.description}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hike-logistics-box">
+                <h3 style="margin: 0 0 0.25rem 0; font-size: 1.05rem;"><i class="fa-solid fa-compass" style="color: var(--accent-hiking);"></i> Trail Logistics, Restaurants, Parking &amp; Playgrounds</h3>
+                <div class="hike-logistics-row">
+                    <i class="fa-solid fa-train-tram"></i>
+                    <div>
+                        <strong>Start / End Public Transport:</strong><br>
+                        <span>Start: ${spot.startStop || spot.city} &rarr; End: ${spot.endStop || spot.city}</span>
+                    </div>
+                </div>
+                <div class="hike-logistics-row">
+                    <i class="fa-solid fa-square-parking"></i>
+                    <div>
+                        <strong>Parking Near Trailhead:</strong><br>
+                        <span>${spot.parking || 'Public parking available at start station'}</span>
+                    </div>
+                </div>
+                <div class="hike-logistics-row">
+                    <i class="fa-solid fa-utensils"></i>
+                    <div style="flex: 1;">
+                        <strong>Restaurants &amp; Mountain Inns Along the Route:</strong>
+                        <div class="amenities-badges-container" style="margin-top: 0.4rem;">
+                            ${restaurantsListHtml}
+                        </div>
+                    </div>
+                </div>
+                <div class="hike-logistics-row">
+                    <i class="fa-solid fa-children"></i>
+                    <div style="flex: 1;">
+                        <strong>Playgrounds &amp; Kids Highlights Along the Route:</strong><br>
+                        <span>${spot.playgroundsNote || 'Family-friendly nature trail'}</span>
+                        ${nearbySpotsHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        actionButtonsHtml = `
+            <div style="display: flex; gap: 8px;">
+                <a href="${googleSearchUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid var(--border-color);">
+                    <i class="fa-solid fa-map-location-dot"></i> Verify on Google Maps
+                </a>
+                <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                </a>
+            </div>
+        `;
+
+        metaGridHtml = `
+            <div class="detail-meta-grid">
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Opening Times</h4>
+                        <p>${spot.openingHours}</p>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-wallet"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Entry Fee</h4>
+                        <p>${spot.fees}</p>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-child"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Age Group</h4>
+                        <p>Ages ${spot.minAge} - ${spot.maxAge}</p>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-star"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Rating</h4>
+                        <p>${avgR} Stars (${spot.ratings.length} reviews)</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        hikingDetailSectionsHtml = `
+            <div class="detail-description">
+                <h3>Description &amp; Play Features</h3>
+                <p>${spot.description}</p>
+            </div>
+        `;
+    }
+
     container.innerHTML = `
         ${galleryHtml}
         ${detailAttributionHtml}
         <div class="detail-title-section">
             <div class="detail-title-row">
-                <h2>${spot.name}</h2>
+                <div>
+                    <h2>${spot.name}</h2>
+                    ${subtitleDeHtml}
+                </div>
                 <span class="badge-type badge-${spot.type}">${spot.type}</span>
             </div>
             <div class="detail-address-row" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; margin-bottom: 1.2rem;">
                 <p class="spot-card-area" style="margin: 0;"><i class="fa-solid fa-location-dot"></i> ${spot.address}</p>
-                <div style="display: flex; gap: 8px;">
-                    <a href="${googleSearchUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid var(--border-color);">
-                        <i class="fa-solid fa-map-location-dot"></i> Verify on Google Maps
-                    </a>
-                    <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
-                        <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
-                    </a>
-                </div>
+                ${actionButtonsHtml}
             </div>
         </div>
 
-        <div class="detail-meta-grid">
-            <div class="detail-meta-item">
-                <i class="fa-solid fa-clock"></i>
-                <div class="detail-meta-item-content">
-                    <h4>Opening Times</h4>
-                    <p>${spot.openingHours}</p>
-                </div>
-            </div>
-            <div class="detail-meta-item">
-                <i class="fa-solid fa-wallet"></i>
-                <div class="detail-meta-item-content">
-                    <h4>Entry Fee</h4>
-                    <p>${spot.fees}</p>
-                </div>
-            </div>
-            <div class="detail-meta-item">
-                <i class="fa-solid fa-child"></i>
-                <div class="detail-meta-item-content">
-                    <h4>Age Group</h4>
-                    <p>Ages ${spot.minAge} - ${spot.maxAge}</p>
-                </div>
-            </div>
-            <div class="detail-meta-item">
-                <i class="fa-solid fa-star"></i>
-                <div class="detail-meta-item-content">
-                    <h4>Rating</h4>
-                    <p>${avgR} Stars (${spot.ratings.length} reviews)</p>
-                </div>
-            </div>
-        </div>
+        ${metaGridHtml}
 
-        <div class="detail-description">
-            <h3>Description & Play Features</h3>
-            <p>${spot.description}</p>
-        </div>
+        ${hikingDetailSectionsHtml}
 
         <div class="detail-amenities">
             <h3>Amenities Available</h3>
@@ -1148,41 +1641,85 @@ function submitReview(e, spotId) {
     }
 }
 
-// --- ZIP Input & Autocomplete ---
+// --- ZIP / City / Trail Name / Route Number Search & Autocomplete ---
 function handleZipSearchInput(val) {
     const dropdown = document.getElementById("zip-autocomplete");
     const clearBtn = document.getElementById("clear-zip");
     
-    if (!val) {
+    if (!val || !val.trim()) {
         dropdown.style.display = "none";
         clearBtn.style.display = "none";
+        if (currentTextQuery !== "" || currentSearchZip !== "") {
+            currentTextQuery = "";
+            currentSearchZip = "";
+            renderSpotsList();
+        }
         return;
     }
 
     clearBtn.style.display = "inline-block";
 
     const searchStr = val.toLowerCase().trim();
-    const matches = [];
+    currentSearchZip = "";
+    currentTextQuery = searchStr;
 
-    // Search keys or city values
+    const zipMatches = [];
     for (const [zip, data] of Object.entries(SWISS_ZIPS)) {
         if (zip.includes(searchStr) || data.city.toLowerCase().includes(searchStr)) {
-            matches.push({ zip, ...data });
+            zipMatches.push({ zip, ...data });
         }
-        if (matches.length >= 6) break; // Limit suggestions
+        if (zipMatches.length >= 4) break;
     }
 
-    if (matches.length > 0) {
-        dropdown.innerHTML = matches.map(m => `
+    // Also match Hiking Trails & Spots by name, German name, or Route Number
+    const spotMatches = [];
+    for (const s of spots) {
+        const hay = `${s.name || ''} ${s.nameDe || ''} ${s.routeNumber ? 'route ' + s.routeNumber : ''} ${s.city || ''}`.toLowerCase();
+        if (hay.includes(searchStr)) {
+            spotMatches.push(s);
+            if (spotMatches.length >= 5) break;
+        }
+    }
+
+    let html = "";
+    if (spotMatches.length > 0) {
+        html += spotMatches.map(s => `
+            <div class="autocomplete-item" data-spot-id="${s.id}">
+                <span><i class="fa-solid ${s.type === 'hiking' ? 'fa-person-hiking' : 'fa-location-dot'}" style="color: var(--accent-hiking); margin-right: 4px;"></i> <strong>${s.name}</strong></span>
+                <span class="zip-canton">${s.canton || s.region || 'CH'}</span>
+            </div>
+        `).join("");
+    }
+    if (zipMatches.length > 0) {
+        html += zipMatches.map(m => `
             <div class="autocomplete-item" data-zip="${m.zip}">
-                <span><strong>${m.zip}</strong> - ${m.city}</span>
+                <span><i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i> <strong>${m.zip}</strong> - ${m.city}</span>
                 <span class="zip-canton">${m.canton}</span>
             </div>
         `).join("");
+    }
+
+    if (html) {
+        dropdown.innerHTML = html;
         dropdown.style.display = "block";
     } else {
         dropdown.style.display = "none";
     }
+
+    renderSpotsList();
+}
+
+// Select a specific Trail/Spot from Autocomplete dropdown
+function selectSpotFromSearch(spotId) {
+    const spot = spots.find(s => s.id === spotId);
+    if (!spot) return;
+    document.getElementById("zip-input").value = spot.name;
+    document.getElementById("zip-autocomplete").style.display = "none";
+    currentSearchZip = "";
+    currentTextQuery = spot.name.toLowerCase();
+    renderSpotsList();
+    focusOnMap(spot.id, spot.lat, spot.lng);
+    openDetails(spot.id);
 }
 
 // Select ZIP from Autocomplete dropdown
@@ -1195,6 +1732,7 @@ async function selectZip(zipCode) {
     document.getElementById("zip-input").value = `${zipCode} - ${data.city} (${data.canton})`;
     document.getElementById("zip-autocomplete").style.display = "none";
 
+    currentTextQuery = "";
     currentSearchZip = zipCode;
     currentSearchCenter = { lat: data.lat, lng: data.lng, name: data.city };
 
@@ -1427,6 +1965,7 @@ function clearSearch() {
     document.getElementById("weather-widget").style.display = "none";
     
     currentSearchZip = "";
+    currentTextQuery = "";
     currentSearchCenter = { lat: 46.8182, lng: 8.2275, name: "Switzerland" };
     liveWeatherData = null;
 
@@ -1795,11 +2334,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ZIP selection click
+    // ZIP or Trail/Spot selection click
     document.getElementById("zip-autocomplete").addEventListener("click", (e) => {
         const item = e.target.closest(".autocomplete-item");
         if (item) {
-            selectZip(item.dataset.zip);
+            if (item.dataset.spotId) {
+                selectSpotFromSearch(item.dataset.spotId);
+            } else if (item.dataset.zip) {
+                selectZip(item.dataset.zip);
+            }
         }
     });
 
@@ -1818,10 +2361,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. Filters & Sorters checkbox events
     document.getElementById("filter-playpark").addEventListener("change", renderSpotsList);
+    const filterHikingEl = document.getElementById("filter-hiking");
+    if (filterHikingEl) filterHikingEl.addEventListener("change", renderSpotsList);
     document.getElementById("filter-gamezone").addEventListener("change", renderSpotsList);
     document.getElementById("filter-swimmingpool").addEventListener("change", renderSpotsList);
     document.getElementById("filter-weather-suitable").addEventListener("change", renderSpotsList);
     document.getElementById("sort-select").addEventListener("change", renderSpotsList);
+
+    // Hiking sub-filter events
+    ["filter-hike-region", "filter-hike-difficulty", "filter-hike-stroller", "filter-hike-winter", "filter-hike-restaurant", "filter-hike-parking"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("change", renderSpotsList);
+    });
+
+    const swisstopoToggle = document.getElementById("toggle-swisstopo-layer");
+    if (swisstopoToggle) {
+        swisstopoToggle.addEventListener("change", (e) => {
+            toggleSwisstopoMapLayer(e.target.checked);
+        });
+    }
 
     // Fee radios
     document.querySelectorAll('input[name="filter-fees"]').forEach(r => {
@@ -1931,3 +2489,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // 8. Run initial render
     renderSpotsList();
 });
+
+// Open a cross-linked nearby playground/pool from inside a Hiking Trail detail modal
+window.openNearbyKidsSpot = async function(spotId) {
+    let target = spots.find(s => s.id === spotId);
+    if (!target) {
+        await loadOsmSpots();
+        target = spots.find(s => s.id === spotId);
+    }
+    if (target) {
+        openDetails(spotId);
+    }
+};
+
