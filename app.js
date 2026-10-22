@@ -1021,15 +1021,92 @@ function getSwisstopoUrlsForHike(spot) {
     // Official Swisstopo Universal Link / App Link (opens Swisstopo App on iOS & Android with the route)
     const appUrl = `https://swisstopo.app/u/${base64GpxUrl}`;
 
-    // Convert coordinates to Swiss LV95 (CH1903+) projection in meters required by map.geo.admin.ch
-    const [E, N] = wgs84ToLv95(spot.lat, spot.lng);
+    // Official interactive Swisstopo / SchweizMobil web route map:
+    // This renders the full vector trail line, elevation profile, waypoints, and distance directly on Swisstopo maps without needing the app installed!
+    const landParam = spot.isWinterTrail ? 'winterwandern' : 'wanderland';
+    const sid = String(spot.swisstopoId || '').trim();
+    let webUrl = '';
 
-    // Full interactive Swisstopo web viewer on map.geo.admin.ch with official hiking layer and GPX track
-    const layer = spot.isWinterTrail ? 'ch.swisstopo-karto.schneeschuhwandern' : 'ch.astra.wanderland';
-    const webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=${layer},KML%7C${encodeURIComponent(gpxTrackUrl)}&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en&crosshair=marker`;
+    if (/^\d+$/.test(sid)) {
+        webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&track=${encodeURIComponent(sid)}`;
+    } else {
+        const stageMatch = sid.match(/^(\d+)\.(\d+)$/);
+        if (stageMatch) {
+            webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&route=${stageMatch[1]}&stage=${parseInt(stageMatch[2], 10)}`;
+        } else if (spot.schweizMobilUrlEn && spot.schweizMobilUrlEn.includes('/route-')) {
+            const routeStageMatch = spot.schweizMobilUrlEn.match(/route-(\d+)(?:\/stage-(\d+))?/);
+            if (routeStageMatch) {
+                const rNum = routeStageMatch[1];
+                const sNum = routeStageMatch[2];
+                webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&route=${rNum}` + (sNum ? `&stage=${sNum}` : '');
+            }
+        }
+    }
 
-    return { appUrl, webUrl, gpxTrackUrl, E, N };
+    if (!webUrl) {
+        if (spot.routeNumber && !isNaN(Number(spot.routeNumber))) {
+            webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&route=${encodeURIComponent(spot.routeNumber)}`;
+        } else if (spot.schweizMobilUrlEn) {
+            webUrl = spot.schweizMobilUrlEn;
+        } else {
+            const [E, N] = wgs84ToLv95(spot.lat, spot.lng);
+            webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=ch.astra.wanderland&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en&crosshair=marker`;
+        }
+    }
+
+    return { appUrl, webUrl, gpxTrackUrl };
 }
+
+// Chooser modal for mobile devices to seamlessly choose App or Web Map
+window.openSwisstopoChooserModal = function(spot, urls) {
+    const existing = document.getElementById('swisstopo-chooser-modal');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'swisstopo-chooser-modal';
+    overlay.className = 'swisstopo-modal-overlay';
+    overlay.innerHTML = `
+        <div class="swisstopo-modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3 style="margin: 0; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">
+                    <i class="fa-solid fa-map-location-dot" style="color: #d90429;"></i> swisstopo Route Map
+                </h3>
+                <button type="button" class="btn-close-modal" onclick="document.getElementById('swisstopo-chooser-modal').remove()" style="background: none; border: none; font-size: 1.25rem; color: var(--text-secondary); cursor: pointer; padding: 4px;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 1rem 0; line-height: 1.35;">
+                <strong>${escapeHtml(spot.name)}</strong><br>
+                Choose how you'd like to view this trail:
+            </p>
+            <a href="${urls.appUrl}" target="_blank" rel="noopener" class="swisstopo-option-btn" onclick="document.getElementById('swisstopo-chooser-modal').remove()">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <div>
+                    <span class="opt-title">Open in swisstopo App</span>
+                    <span class="opt-desc">If the official app is installed on your phone, opens the route & GPS navigation directly</span>
+                </div>
+            </a>
+            <a href="${urls.webUrl}" target="_blank" rel="noopener" class="swisstopo-option-btn" onclick="document.getElementById('swisstopo-chooser-modal').remove()">
+                <i class="fa-solid fa-compass"></i>
+                <div>
+                    <span class="opt-title">Open swisstopo Web Map</span>
+                    <span class="opt-desc">Displays the complete trail line, elevation profile & topographic map directly in your browser</span>
+                </div>
+            </a>
+            <div style="text-align: right; margin-top: 0.75rem;">
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('swisstopo-chooser-modal').remove()" style="padding: 0.35rem 0.85rem; font-size: 0.8rem; border-radius: var(--radius-sm);">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    `;
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.remove();
+    });
+
+    document.body.appendChild(overlay);
+};
 
 window.handleSwisstopoClick = function(event, spotId) {
     const spot = spots.find(s => s.id === spotId);
@@ -1041,16 +1118,35 @@ window.handleSwisstopoClick = function(event, spotId) {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-        // On phone: https://swisstopo.app/u/... is the official Universal Link (iOS) & App Link (Android)
-        // 1. If swisstopo app is installed: Phone OS directly opens the Swisstopo App and shows the route!
-        // 2. If app is NOT installed: Mobile browser opens swisstopo.app web route page with map & install prompt.
-        return true;
+        event.preventDefault();
+        openSwisstopoChooserModal(spot, urls);
+        return false;
     } else {
-        // On desktop: open the full interactive desktop map viewer on map.geo.admin.ch in a new tab
+        // Desktop: open the official web map directly in a new tab
         event.preventDefault();
         window.open(urls.webUrl, '_blank', 'noopener,noreferrer');
         return false;
     }
+};
+
+window.handleSwisstopoAppClick = function(event, spotId) {
+    const spot = spots.find(s => s.id === spotId);
+    if (!spot) return;
+
+    const urls = getSwisstopoUrlsForHike(spot);
+    if (!urls) return;
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (!isMobile) {
+        // On desktop, the phone app is not installed anyway, so open the web map directly
+        event.preventDefault();
+        window.open(urls.webUrl, '_blank', 'noopener,noreferrer');
+        return false;
+    }
+
+    // On mobile phone: allow Universal Link to open app
+    return true;
 };
 
 // --- Detail View Loading ---
@@ -1235,22 +1331,21 @@ async function openDetails(spotId) {
 
         actionButtonsHtml = `
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                ${spot.schweizMobilUrlEn ? `
-                <a href="${spot.schweizMobilUrlEn}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
-                    <i class="fa-solid fa-signs-post"></i> SchweizMobil (EN)
-                </a>` : ''}
-                ${spot.schweizMobilUrlDe ? `
-                <a href="${spot.schweizMobilUrlDe}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
-                    <i class="fa-solid fa-signs-post"></i> SchweizMobil (DE)
-                </a>` : ''}
                 ${(() => {
                     const stUrls = getSwisstopoUrlsForHike(spot);
                     if (!stUrls) return '';
                     return `
-                    <a href="${stUrls.appUrl}" onclick="handleSwisstopoClick(event, '${spot.id}')" target="_blank" rel="noopener" class="btn btn-outline" title="Open hike route in swisstopo app (phone) or web map" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; cursor: pointer;">
-                        <i class="fa-solid fa-map-location-dot" style="color: #d90429;"></i> swisstopo Map
+                    <a href="${stUrls.appUrl}" onclick="handleSwisstopoAppClick(event, '${spot.id}')" target="_blank" rel="noopener" class="btn btn-outline" title="Open hike route directly in swisstopo app (phone)" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; cursor: pointer;">
+                        <i class="fa-solid fa-mobile-screen-button" style="color: #d90429;"></i> swisstopo App
+                    </a>
+                    <a href="${stUrls.webUrl}" target="_blank" rel="noopener" class="btn btn-outline" title="Open interactive route line & elevation profile in web browser" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
+                        <i class="fa-solid fa-map-location-dot" style="color: #d90429;"></i> swisstopo Web Map
                     </a>`;
                 })()}
+                ${spot.schweizMobilUrlEn ? `
+                <a href="${spot.schweizMobilUrlEn}" target="_blank" rel="noopener" class="btn btn-outline" title="Official SchweizMobil route description & photos" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
+                    <i class="fa-solid fa-signs-post"></i> SchweizMobil Guide
+                </a>` : ''}
                 <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
                     <i class="fa-solid fa-person-walking"></i> Navigate to Start
                 </a>
