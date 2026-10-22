@@ -391,6 +391,24 @@ async function loadSpots() {
     
     // Refresh lists and map markers once loaded
     renderSpotsList();
+
+    // Auto-open spot or Group Hike Invite if present in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetHike = urlParams.get('hike') || urlParams.get('spot');
+    if (targetHike) {
+        const found = spots.find(s => s.id === targetHike);
+        if (found) {
+            setTimeout(() => {
+                openDetails(targetHike, {
+                    groupPlan: urlParams.get('group') === '1',
+                    date: urlParams.get('date'),
+                    time: urlParams.get('time'),
+                    from: urlParams.get('from'),
+                    meetingPoint: urlParams.get('meetingPoint')
+                });
+            }, 300);
+        }
+    }
 }
 
 // Lazily load the large harvested OSM spots database only when user searches or geolocates
@@ -1150,7 +1168,7 @@ window.handleSwisstopoAppClick = function(event, spotId) {
 };
 
 // --- Detail View Loading ---
-async function openDetails(spotId) {
+async function openDetails(spotId, options = {}) {
     const spot = spots.find(s => s.id === spotId);
     if (!spot) return;
 
@@ -1331,6 +1349,9 @@ async function openDetails(spotId) {
 
         actionButtonsHtml = `
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <button type="button" class="btn btn-primary" onclick="openGroupHikePlanner('${spot.id}')" title="Coordinate travel, live SBB trains &amp; WhatsApp invite" style="padding: 0.45rem 0.9rem; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; background: linear-gradient(135deg, #2a9d8f, #264653); border: none; color: white; cursor: pointer;">
+                    <i class="fa-solid fa-users"></i> Plan Group Hike
+                </button>
                 ${(() => {
                     const stUrls = getSwisstopoUrlsForHike(spot);
                     if (!stUrls) return '';
@@ -1584,6 +1605,23 @@ async function openDetails(spotId) {
     }
 
     container.innerHTML = `
+        ${options.groupPlan ? `
+        <div class="gh-invite-banner">
+            <i class="fa-solid fa-users"></i>
+            <div style="flex: 1;">
+                <h4>👥 You're Invited to a Family Group Hike!</h4>
+                <p>
+                    <strong>📅 Date:</strong> ${options.date || 'Upcoming Weekend'} &nbsp;|&nbsp; 
+                    <strong>⏰ Meetup:</strong> ${options.time || '09:45'} at ${options.meetingPoint || spot.startStop || spot.city || spot.name}<br>
+                    <strong>🚆 SBB Travel:</strong> Recommended connection departing from ${options.from || 'Zürich HB'}
+                </p>
+                <div style="margin-top: 0.5rem;">
+                    <button type="button" class="btn btn-outline" onclick="openGroupHikePlanner('${spot.id}', { date: '${options.date || ''}', time: '${options.time || ''}', from: '${options.from || ''}', meetingPoint: '${escapeHtml(options.meetingPoint || '')}' })" style="padding: 0.25rem 0.65rem; font-size: 0.75rem; border-color: #2a9d8f; color: #2a9d8f; font-weight: 700; border-radius: 6px;">
+                        <i class="fa-solid fa-sliders"></i> Adjust Group SBB &amp; Times
+                    </button>
+                </div>
+            </div>
+        </div>` : ''}
         ${galleryHtml}
         ${detailAttributionHtml}
         <div class="detail-title-section">
@@ -2475,6 +2513,267 @@ async function handleFeedbackSubmit(e) {
     document.getElementById("feedback-modal").style.display = "none";
 }
 
+// --- Group Hike Logistics & SBB Planner ---
+let currentGroupHikeSpot = null;
+let currentGroupHikeSbbData = null;
+
+function getNextWeekendDay(dayOfWeek = 6) { // 6 = Saturday, 0 = Sunday
+    const d = new Date();
+    const currentDay = d.getDay();
+    let distance = (dayOfWeek + 7 - currentDay) % 7;
+    if (distance === 0) distance = 7;
+    d.setDate(d.getDate() + distance);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+}
+
+window.openGroupHikePlanner = function(spotId, prefill = {}) {
+    const spot = spots.find(s => s.id === spotId);
+    if (!spot) return;
+
+    currentGroupHikeSpot = spot;
+
+    const modal = document.getElementById('group-hike-modal');
+    if (!modal) return;
+
+    // Set title and subtitle
+    const titleEl = document.getElementById('group-hike-modal-title');
+    const subEl = document.getElementById('group-hike-modal-subtitle');
+    if (titleEl) {
+        titleEl.innerHTML = `<i class="fa-solid fa-users" style="color: #2a9d8f;"></i> Plan Group: ${escapeHtml(spot.name)}`;
+    }
+    if (subEl) {
+        subEl.textContent = `${spot.region || 'Switzerland'} • ${spot.distanceKm || '?'} km • ${spot.difficulty || 'Family'} • ${spot.durationText || ''}`;
+    }
+
+    // Set Date input (default to next Saturday or prefill)
+    const dateInput = document.getElementById('gh-date');
+    if (dateInput) {
+        dateInput.value = prefill.date || getNextWeekendDay(6);
+    }
+
+    // Set Time input
+    const timeInput = document.getElementById('gh-time');
+    if (timeInput) {
+        timeInput.value = prefill.time || '09:45';
+    }
+
+    // Set Meeting Point
+    const meetingInput = document.getElementById('gh-meeting-point');
+    if (meetingInput) {
+        meetingInput.value = prefill.meetingPoint || spot.startStop || spot.city || spot.name;
+    }
+
+    // Set From station input
+    const fromInput = document.getElementById('gh-from-input');
+    if (fromInput) {
+        fromInput.value = prefill.from || 'Zürich HB';
+    }
+
+    // Reset active city pill
+    const pills = document.querySelectorAll('.gh-city-pill');
+    pills.forEach(p => {
+        if (p.dataset.city === (fromInput ? fromInput.value : 'Zürich HB')) {
+            p.classList.add('active');
+        } else {
+            p.classList.remove('active');
+        }
+    });
+
+    modal.style.display = 'flex';
+
+    // Fetch SBB timetable
+    fetchGroupHikeSbb();
+};
+
+window.closeGroupHikeModal = function() {
+    const modal = document.getElementById('group-hike-modal');
+    if (modal) modal.style.display = 'none';
+};
+
+async function fetchGroupHikeSbb() {
+    if (!currentGroupHikeSpot) return;
+
+    const fromInput = document.getElementById('gh-from-input');
+    const dateInput = document.getElementById('gh-date');
+    const timeInput = document.getElementById('gh-time');
+    const statusEl = document.getElementById('gh-sbb-status');
+    const resultsContainer = document.getElementById('gh-sbb-results');
+
+    const from = fromInput ? fromInput.value.trim() : 'Zürich HB';
+    const to = currentGroupHikeSpot.startStop || currentGroupHikeSpot.city || currentGroupHikeSpot.name;
+    const date = dateInput ? dateInput.value : '';
+    const time = timeInput ? timeInput.value : '09:45';
+
+    if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking SBB...';
+    if (resultsContainer) {
+        resultsContainer.innerHTML = '<div style="text-align: center; padding: 1rem; color: var(--text-secondary);"><i class="fa-solid fa-train fa-bounce" style="color: #eb0000; font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>Finding best train connections from SBB...</div>';
+    }
+
+    try {
+        let data = null;
+        try {
+            const res = await fetch(`/api/transport/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&limit=2`);
+            if (res.ok) data = await res.json();
+        } catch (e) {
+            console.warn('Local transport proxy failed, using direct SBB OpenData:', e);
+        }
+
+        if (!data || !data.connections || data.connections.length === 0) {
+            const fallbackRes = await fetch(`https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&limit=2`);
+            if (fallbackRes.ok) data = await fallbackRes.json();
+        }
+
+        if (data && data.connections && data.connections.length > 0) {
+            currentGroupHikeSbbData = data.connections[0];
+            renderGroupHikeSbbResults(data.connections, from, to);
+            if (statusEl) statusEl.textContent = 'Live SBB Timetable';
+        } else {
+            currentGroupHikeSbbData = null;
+            if (resultsContainer) {
+                resultsContainer.innerHTML = `
+                    <div style="padding: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">
+                        <i class="fa-solid fa-circle-info" style="color: var(--accent-gold);"></i> 
+                        Could not find direct timetable between "${escapeHtml(from)}" and "${escapeHtml(to)}". 
+                        <a href="https://www.sbb.ch/en?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}" target="_blank" rel="noopener" style="color: #eb0000; font-weight: 700;">Open on sbb.ch &rarr;</a>
+                    </div>
+                `;
+            }
+            if (statusEl) statusEl.textContent = '';
+        }
+    } catch (err) {
+        console.error('SBB fetch error:', err);
+        currentGroupHikeSbbData = null;
+        if (resultsContainer) {
+            resultsContainer.innerHTML = `
+                <div style="padding: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">
+                    <i class="fa-solid fa-circle-exclamation" style="color: #d90429;"></i> Timetable service temporarily unavailable.
+                    <a href="https://www.sbb.ch/en" target="_blank" rel="noopener" style="color: #eb0000; font-weight: 700; margin-left: 5px;">Check sbb.ch directly &rarr;</a>
+                </div>
+            `;
+        }
+        if (statusEl) statusEl.textContent = '';
+    }
+
+    updateGroupHikePreview();
+}
+
+function renderGroupHikeSbbResults(connections, fromName, toName) {
+    const container = document.getElementById('gh-sbb-results');
+    if (!container) return;
+
+    const sbbUrl = `https://www.sbb.ch/en?from=${encodeURIComponent(fromName)}&to=${encodeURIComponent(toName)}`;
+
+    const html = connections.map((conn, idx) => {
+        const depTime = conn.from.departure ? conn.from.departure.slice(11, 16) : '--:--';
+        const arrTime = conn.to.arrival ? conn.to.arrival.slice(11, 16) : '--:--';
+        const platform = conn.from.platform ? `Pl. ${conn.from.platform}` : '';
+        const durationFormatted = conn.duration ? conn.duration.replace(/^00d/, '').slice(0, 5) : '';
+        const transfersText = conn.transfers === 0 ? 'Direct (No changes)' : `${conn.transfers} change${conn.transfers > 1 ? 's' : ''}`;
+        const trains = (conn.products || []).join(' &rarr; ') || 'Train';
+
+        const isRecommended = idx === 0;
+
+        return `
+            <div class="gh-sbb-conn">
+                <div>
+                    <div class="gh-sbb-conn-time">
+                        <span>${depTime}</span>
+                        <i class="fa-solid fa-arrow-right-long" style="font-size: 0.75rem; color: var(--text-secondary);"></i>
+                        <span>${arrTime}</span>
+                        ${isRecommended ? '<span class="gh-sbb-badge"><i class="fa-solid fa-star"></i> Recommended</span>' : ''}
+                    </div>
+                    <div class="gh-sbb-conn-sub">
+                        <span>${escapeHtml(conn.from.station.name || fromName)} ${platform ? `(<strong>${platform}</strong>)` : ''}</span>
+                        &bull;
+                        <span>${transfersText} (${durationFormatted})</span>
+                    </div>
+                    <div style="font-size: 0.72rem; color: #eb0000; font-weight: 600; margin-top: 3px;">
+                        <i class="fa-solid fa-train-subway"></i> ${escapeHtml(trains)}
+                    </div>
+                </div>
+                <div>
+                    <a href="${sbbUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.35rem 0.65rem; font-size: 0.75rem; border-color: #eb0000; color: #eb0000; white-space: nowrap; border-radius: 6px;">
+                        SBB Ticket &rarr;
+                    </a>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    container.innerHTML = html;
+}
+
+function generateGroupHikeInviteText() {
+    if (!currentGroupHikeSpot) return '';
+
+    const spot = currentGroupHikeSpot;
+    const dateInput = document.getElementById('gh-date');
+    const timeInput = document.getElementById('gh-time');
+    const meetingInput = document.getElementById('gh-meeting-point');
+    const fromInput = document.getElementById('gh-from-input');
+
+    const dateVal = dateInput ? dateInput.value : '';
+    const timeVal = timeInput ? timeInput.value : '09:45';
+    const meetingPoint = meetingInput ? meetingInput.value.trim() : (spot.startStop || spot.city || spot.name);
+    const fromStation = fromInput ? fromInput.value.trim() : 'Zürich HB';
+
+    let formattedDate = dateVal;
+    if (dateVal) {
+        try {
+            const d = new Date(dateVal + 'T12:00:00');
+            formattedDate = d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' });
+        } catch (e) {}
+    }
+
+    let sbbText = `🚂 *Public Transport (SBB):*\n• Meeting at: ${meetingPoint}\n• SBB Timetable: https://www.sbb.ch/en?from=${encodeURIComponent(fromStation)}&to=${encodeURIComponent(meetingPoint)}`;
+    if (currentGroupHikeSbbData) {
+        const c = currentGroupHikeSbbData;
+        const depTime = c.from.departure ? c.from.departure.slice(11, 16) : '';
+        const arrTime = c.to.arrival ? c.to.arrival.slice(11, 16) : '';
+        const plat = c.from.platform ? ` (Platform ${c.from.platform})` : '';
+        const dur = c.duration ? c.duration.replace(/^00d/, '').slice(0, 5) : '';
+        const chg = c.transfers === 0 ? 'direct' : `${c.transfers} change${c.transfers > 1 ? 's' : ''}`;
+        const trains = (c.products || []).join(' → ');
+
+        sbbText = `🚂 *Public Transport (SBB):*\n• Recommended from ${fromStation}: Departs ${depTime}${plat}\n• Arrives ${arrTime} (${chg}, ${dur})\n• Line: ${trains}`;
+    }
+
+    const canonicalHost = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'https://swissforkids.ch'
+        : window.location.origin;
+
+    const groupUrl = `${canonicalHost}/?hike=${encodeURIComponent(spot.id)}&group=1&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
+
+    const strollerText = spot.strollerFriendly ? '✅ Stroller Friendly' : '❌ Not for Strollers (Carrier recommended)';
+    const diffText = spot.difficulty === 'easy' ? '🟢 Easy' : (spot.difficulty === 'moderate' ? '🟠 Moderate' : '🔴 Demanding');
+
+    return `🥾 *Family Group Hike: ${spot.name}*
+📍 *Region:* ${spot.region || 'Switzerland'} (${spot.canton || ''})
+📅 *Date:* ${formattedDate}
+⏰ *Meetup:* ${timeVal} at ${meetingPoint}
+
+${sbbText}
+
+📊 *Trail Stats:*
+• Distance: ${spot.distanceKm || '?'} km | Duration: ~${spot.durationText || '?'}
+• Difficulty: ${diffText}
+• Strollers: ${strollerText}
+${spot.ascentM ? `• Ascent: +${spot.ascentM}m / Descent: -${spot.descentM || spot.ascentM}m` : ''}
+
+🗺️ *Interactive Trail Map, GPS & Details:*
+${groupUrl}`;
+}
+
+function updateGroupHikePreview() {
+    const previewEl = document.getElementById('gh-message-preview');
+    if (previewEl) {
+        previewEl.textContent = generateGroupHikeInviteText();
+    }
+}
+
 // --- Event Listeners Initialization ---
 document.addEventListener("DOMContentLoaded", () => {
     // 0. Check admin mode to show marketing button
@@ -2714,9 +3013,116 @@ document.addEventListener("DOMContentLoaded", () => {
         mapPanel.style.display = "none";
     });
 
-    // 8. Run initial render
+    // 8. Group Hike Planner Event Listeners
+    const closeGhBtn = document.getElementById("close-group-hike-modal");
+    if (closeGhBtn) closeGhBtn.addEventListener("click", closeGroupHikeModal);
+
+    const ghDateInput = document.getElementById("gh-date");
+    const ghTimeInput = document.getElementById("gh-time");
+    const ghMeetingInput = document.getElementById("gh-meeting-point");
+    const ghFromInput = document.getElementById("gh-from-input");
+
+    if (ghDateInput) ghDateInput.addEventListener("change", () => { fetchGroupHikeSbb(); updateGroupHikePreview(); });
+    if (ghTimeInput) ghTimeInput.addEventListener("change", () => { fetchGroupHikeSbb(); updateGroupHikePreview(); });
+    if (ghMeetingInput) ghMeetingInput.addEventListener("input", updateGroupHikePreview);
+    if (ghFromInput) {
+        ghFromInput.addEventListener("input", updateGroupHikePreview);
+        ghFromInput.addEventListener("change", fetchGroupHikeSbb);
+        ghFromInput.addEventListener("keydown", (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                fetchGroupHikeSbb();
+            }
+        });
+    }
+
+    const refreshSbbBtn = document.getElementById("gh-btn-refresh-sbb");
+    if (refreshSbbBtn) refreshSbbBtn.addEventListener("click", fetchGroupHikeSbb);
+
+    // City pills
+    const cityPills = document.querySelectorAll(".gh-city-pill");
+    cityPills.forEach(pill => {
+        pill.addEventListener("click", () => {
+            cityPills.forEach(p => p.classList.remove("active"));
+            pill.classList.add("active");
+            if (ghFromInput) {
+                ghFromInput.value = pill.dataset.city;
+                fetchGroupHikeSbb();
+            }
+        });
+    });
+
+    // Share buttons
+    const whatsappBtn = document.getElementById("gh-btn-whatsapp");
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener("click", () => {
+            const text = generateGroupHikeInviteText();
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
+        });
+    }
+
+    const copyTextBtn = document.getElementById("gh-btn-copy-text");
+    if (copyTextBtn) {
+        copyTextBtn.addEventListener("click", async () => {
+            const text = generateGroupHikeInviteText();
+            try {
+                await navigator.clipboard.writeText(text);
+                flashGroupCopyToast("Message copied to clipboard!");
+            } catch (err) {
+                fallbackCopyText(text);
+            }
+        });
+    }
+
+    const copyLinkBtn = document.getElementById("gh-btn-copy-link");
+    if (copyLinkBtn) {
+        copyLinkBtn.addEventListener("click", async () => {
+            if (!currentGroupHikeSpot) return;
+            const canonicalHost = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                ? 'https://swissforkids.ch'
+                : window.location.origin;
+            const dateVal = ghDateInput ? ghDateInput.value : '';
+            const timeVal = ghTimeInput ? ghTimeInput.value : '';
+            const fromStation = ghFromInput ? ghFromInput.value : '';
+            const meetingPoint = ghMeetingInput ? ghMeetingInput.value : '';
+            const link = `${canonicalHost}/?hike=${encodeURIComponent(currentGroupHikeSpot.id)}&group=1&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
+            try {
+                await navigator.clipboard.writeText(link);
+                flashGroupCopyToast("Invite link copied to clipboard!");
+            } catch (err) {
+                fallbackCopyText(link);
+            }
+        });
+    }
+
+    // 9. Run initial render
     renderSpotsList();
 });
+
+function flashGroupCopyToast(msg) {
+    const toast = document.getElementById("gh-copy-toast");
+    if (toast) {
+        toast.innerHTML = `<i class="fa-solid fa-check"></i> ${escapeHtml(msg)}`;
+        toast.style.display = "inline-block";
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 2500);
+    }
+}
+
+function fallbackCopyText(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+        document.execCommand("copy");
+        flashGroupCopyToast("Copied to clipboard!");
+    } catch (e) {
+        alert("Copy failed, please copy manually from the preview box.");
+    }
+    document.body.removeChild(ta);
+}
 
 // Open a cross-linked nearby playground/pool from inside a Hiking Trail detail modal
 window.openNearbyKidsSpot = async function(spotId) {

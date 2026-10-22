@@ -41,6 +41,8 @@ if (DATA_DIR !== PUBLIC_DIR) {
     }
 }
 
+const transportCache = {};
+
 // Helper to validate image URLs (including strict safety keywords)
 function isValidImageUrl(url) {
     if (!url || typeof url !== 'string') return false;
@@ -221,6 +223,58 @@ const server = http.createServer(async (req, res) => {
 
     const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
     const pathname = parsedUrl.pathname;
+
+    // API Endpoint: Swiss Public Transport (SBB / transport.opendata.ch) Proxy with 10-min in-memory cache
+    if (pathname === '/api/transport/connections') {
+        const from = parsedUrl.searchParams.get('from');
+        const to = parsedUrl.searchParams.get('to');
+        const date = parsedUrl.searchParams.get('date') || '';
+        const time = parsedUrl.searchParams.get('time') || '';
+        const limit = parsedUrl.searchParams.get('limit') || '3';
+
+        if (!from || !to) {
+            res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            return res.end(JSON.stringify({ error: 'Missing from or to parameter' }));
+        }
+
+        const cacheKey = `${from}__${to}__${date}__${time}__${limit}`;
+        if (transportCache[cacheKey] && (Date.now() - transportCache[cacheKey].timestamp < 600000)) {
+            res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=600'
+            });
+            return res.end(JSON.stringify(transportCache[cacheKey].data));
+        }
+
+        let targetUrl = `https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&limit=${encodeURIComponent(limit)}`;
+        if (date) targetUrl += `&date=${encodeURIComponent(date)}`;
+        if (time) targetUrl += `&time=${encodeURIComponent(time)}`;
+
+        https.get(targetUrl, (apiRes) => {
+            let data = '';
+            apiRes.on('data', chunk => data += chunk);
+            apiRes.on('end', () => {
+                try {
+                    const parsed = JSON.parse(data);
+                    transportCache[cacheKey] = { timestamp: Date.now(), data: parsed };
+                    res.writeHead(200, {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Cache-Control': 'public, max-age=600'
+                    });
+                    res.end(JSON.stringify(parsed));
+                } catch (err) {
+                    res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                    res.end(JSON.stringify({ error: 'Failed to parse SBB response' }));
+                }
+            });
+        }).on('error', (err) => {
+            res.writeHead(502, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            res.end(JSON.stringify({ error: 'Failed to contact SBB transport API', details: err.message }));
+        });
+        return;
+    }
 
     // API Endpoint: Dynamic GPX Route Track for Swisstopo App and Web Viewers
     if (pathname.startsWith('/api/hikes/') && pathname.endsWith('/track.gpx')) {
