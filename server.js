@@ -222,6 +222,79 @@ const server = http.createServer(async (req, res) => {
     const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
     const pathname = parsedUrl.pathname;
 
+    // API Endpoint: Dynamic GPX Route Track for Swisstopo App and Web Viewers
+    if (pathname.startsWith('/api/hikes/') && pathname.endsWith('/track.gpx')) {
+        const hikeId = decodeURIComponent(pathname.replace('/api/hikes/', '').replace('/track.gpx', ''));
+        const hikesFilePath = path.join(__dirname, 'hikes.json');
+        let hike = null;
+        if (fs.existsSync(hikesFilePath)) {
+            try {
+                const allHikes = JSON.parse(fs.readFileSync(hikesFilePath, 'utf-8'));
+                hike = allHikes.find(h => h.id === hikeId);
+            } catch (e) {
+                console.error('Error reading hikes.json for GPX export:', e);
+            }
+        }
+        if (!hike) {
+            res.writeHead(404, { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' });
+            return res.end('Hike not found');
+        }
+
+        const escapeXml = (unsafe) => {
+            if (!unsafe) return '';
+            return String(unsafe).replace(/[<>&'"]/g, c => {
+                switch (c) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '&': return '&amp;';
+                    case '\'': return '&apos;';
+                    case '"': return '&quot;';
+                }
+            });
+        };
+
+        const coords = (hike.coordinates && hike.coordinates.length > 0) ? hike.coordinates : [[hike.lat, hike.lng]];
+        const eleProf = hike.elevationProfile || [];
+        const startCoord = coords[0] || [hike.lat, hike.lng];
+        const endCoord = coords[coords.length - 1] || [hike.lat, hike.lng];
+
+        const gpxXml = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="SwissKidsSpots - https://swissforkids.ch" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>${escapeXml(hike.name)}</name>
+    <desc>${escapeXml(hike.description || hike.name)}</desc>
+    <author><name>swisstopo / SchweizMobil / SwissKidsSpots</name></author>
+  </metadata>
+  <wpt lat="${startCoord[0]}" lon="${startCoord[1]}">
+    <ele>${eleProf[0] ? eleProf[0].ele : (hike.minElevationM || 500)}</ele>
+    <name>Start: ${escapeXml(hike.startStop || hike.name)}</name>
+  </wpt>
+  <wpt lat="${endCoord[0]}" lon="${endCoord[1]}">
+    <ele>${eleProf[eleProf.length - 1] ? eleProf[eleProf.length - 1].ele : (hike.maxElevationM || 500)}</ele>
+    <name>Finish: ${escapeXml(hike.endStop || hike.name)}</name>
+  </wpt>
+  <trk>
+    <name>${escapeXml(hike.name)}</name>
+    <type>${hike.isWinterTrail ? 5 : 0}</type>
+    <trkseg>
+${coords.map((pt, i) => {
+    const ele = (eleProf[i] && eleProf[i].ele) ? eleProf[i].ele : (hike.minElevationM || 500);
+    return `      <trkpt lat="${pt[0]}" lon="${pt[1]}"><ele>${ele}</ele></trkpt>`;
+}).join('\n')}
+    </trkseg>
+  </trk>
+</gpx>`;
+
+        res.writeHead(200, {
+            'Content-Type': 'application/gpx+xml; charset=utf-8',
+            'Content-Disposition': `inline; filename="${hike.id}.gpx"`,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Cache-Control': 'public, max-age=86400'
+        });
+        return res.end(gpxXml);
+    }
+
     // API Endpoint: General Feedback Form
     if (pathname === '/api/feedback' && req.method === 'POST') {
         let body = '';

@@ -985,6 +985,74 @@ window.resetSpotImage = async function(spotId) {
     }
 };
 
+// Convert WGS84 [lat, lng] to official Swiss LV95 [E, N] (EPSG:2056) in meters for map.geo.admin.ch
+function wgs84ToLv95(lat, lng) {
+    if (!lat || !lng) return [2600000, 1200000];
+    const phi = (lat * 3600 - 169028.66) / 10000;
+    const lambda = (lng * 3600 - 26782.5) / 10000;
+
+    const E = 2600072.37
+        + 211455.93 * lambda
+        - 10938.51 * lambda * phi
+        - 0.36 * lambda * Math.pow(phi, 2)
+        - 44.54 * Math.pow(lambda, 3);
+
+    const N = 1200147.07
+        + 308807.95 * phi
+        + 3745.25 * Math.pow(lambda, 2)
+        + 76.63 * Math.pow(phi, 2)
+        - 194.56 * Math.pow(lambda, 2) * phi
+        + 119.57 * Math.pow(phi, 3);
+
+    return [Math.round(E), Math.round(N)];
+}
+
+// Build canonical Swisstopo App (Universal Link) and Web Map URLs for a hike
+function getSwisstopoUrlsForHike(spot) {
+    if (!spot || spot.type !== 'hiking') return null;
+
+    const canonicalHost = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'https://swissforkids.ch'
+        : window.location.origin;
+
+    const gpxTrackUrl = `${canonicalHost}/api/hikes/${encodeURIComponent(spot.id)}/track.gpx`;
+    const base64GpxUrl = btoa(unescape(encodeURIComponent(gpxTrackUrl)));
+
+    // Official Swisstopo Universal Link / App Link (opens Swisstopo App on iOS & Android with the route)
+    const appUrl = `https://swisstopo.app/u/${base64GpxUrl}`;
+
+    // Convert coordinates to Swiss LV95 (CH1903+) projection in meters required by map.geo.admin.ch
+    const [E, N] = wgs84ToLv95(spot.lat, spot.lng);
+
+    // Full interactive Swisstopo web viewer on map.geo.admin.ch with official hiking layer and GPX track
+    const layer = spot.isWinterTrail ? 'ch.swisstopo-karto.schneeschuhwandern' : 'ch.astra.wanderland';
+    const webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=${layer},KML%7C${encodeURIComponent(gpxTrackUrl)}&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en&crosshair=marker`;
+
+    return { appUrl, webUrl, gpxTrackUrl, E, N };
+}
+
+window.handleSwisstopoClick = function(event, spotId) {
+    const spot = spots.find(s => s.id === spotId);
+    if (!spot) return;
+
+    const urls = getSwisstopoUrlsForHike(spot);
+    if (!urls) return;
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // On phone: https://swisstopo.app/u/... is the official Universal Link (iOS) & App Link (Android)
+        // 1. If swisstopo app is installed: Phone OS directly opens the Swisstopo App and shows the route!
+        // 2. If app is NOT installed: Mobile browser opens swisstopo.app web route page with map & install prompt.
+        return true;
+    } else {
+        // On desktop: open the full interactive desktop map viewer on map.geo.admin.ch in a new tab
+        event.preventDefault();
+        window.open(urls.webUrl, '_blank', 'noopener,noreferrer');
+        return false;
+    }
+};
+
 // --- Detail View Loading ---
 async function openDetails(spotId) {
     const spot = spots.find(s => s.id === spotId);
@@ -1175,10 +1243,14 @@ async function openDetails(spotId) {
                 <a href="${spot.schweizMobilUrlDe}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
                     <i class="fa-solid fa-signs-post"></i> SchweizMobil (DE)
                 </a>` : ''}
-                ${spot.swisstopoMapUrl ? `
-                <a href="${spot.swisstopoMapUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0;">
-                    <i class="fa-solid fa-map"></i> swisstopo Map
-                </a>` : ''}
+                ${(() => {
+                    const stUrls = getSwisstopoUrlsForHike(spot);
+                    if (!stUrls) return '';
+                    return `
+                    <a href="${stUrls.appUrl}" onclick="handleSwisstopoClick(event, '${spot.id}')" target="_blank" rel="noopener" class="btn btn-outline" title="Open hike route in swisstopo app (phone) or web map" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; cursor: pointer;">
+                        <i class="fa-solid fa-map-location-dot" style="color: #d90429;"></i> swisstopo Map
+                    </a>`;
+                })()}
                 <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.45rem 0.9rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white;">
                     <i class="fa-solid fa-person-walking"></i> Navigate to Start
                 </a>
@@ -2368,10 +2440,71 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("filter-weather-suitable").addEventListener("change", renderSpotsList);
     document.getElementById("sort-select").addEventListener("change", renderSpotsList);
 
-    // Hiking sub-filter events
+    // Helper to deselect other spot categories (Playparks, Game zones, Swimming pools)
+    // when a specific type or option of hike is chosen
+    function deselectNonHikingCategories() {
+        const playpark = document.getElementById("filter-playpark");
+        const gamezone = document.getElementById("filter-gamezone");
+        const pool = document.getElementById("filter-swimmingpool");
+        const hiking = document.getElementById("filter-hiking");
+
+        if (playpark) playpark.checked = false;
+        if (gamezone) gamezone.checked = false;
+        if (pool) pool.checked = false;
+        if (hiking) hiking.checked = true;
+
+        const hikingSubfiltersBox = document.getElementById("hiking-subfilters-box");
+        if (hikingSubfiltersBox) {
+            hikingSubfiltersBox.style.display = "block";
+        }
+    }
+
+    // Hiking sub-filter events: when user selects any specific hike type/option,
+    // automatically deselect Playparks, Game zones, and Swimming pools
     ["filter-hike-region", "filter-hike-difficulty", "filter-hike-stroller", "filter-hike-winter", "filter-hike-restaurant", "filter-hike-parking"].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener("change", renderSpotsList);
+        if (el) {
+            el.addEventListener("change", (e) => {
+                const target = e.target;
+                const isSelected = (target.type === "checkbox" && target.checked) ||
+                                   (target.tagName === "SELECT" && target.value !== "all");
+                if (isSelected) {
+                    deselectNonHikingCategories();
+                }
+                renderSpotsList();
+            });
+        }
+    });
+
+    // Also support clicking Stroller or Winter trail pill badges on cards to filter directly
+    document.addEventListener("click", (e) => {
+        const strollerPill = e.target.closest(".hike-pill-stroller");
+        if (strollerPill) {
+            e.stopPropagation();
+            const strollerCb = document.getElementById("filter-hike-stroller");
+            if (strollerCb) {
+                strollerCb.checked = true;
+                deselectNonHikingCategories();
+                renderSpotsList();
+                const filterSection = document.querySelector(".filter-section");
+                if (filterSection) filterSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+            return;
+        }
+
+        const winterPill = e.target.closest(".hike-pill-winter");
+        if (winterPill) {
+            e.stopPropagation();
+            const winterCb = document.getElementById("filter-hike-winter");
+            if (winterCb) {
+                winterCb.checked = true;
+                deselectNonHikingCategories();
+                renderSpotsList();
+                const filterSection = document.querySelector(".filter-section");
+                if (filterSection) filterSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+            return;
+        }
     });
 
     const swisstopoToggle = document.getElementById("toggle-swisstopo-layer");
