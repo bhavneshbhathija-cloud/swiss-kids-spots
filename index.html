@@ -65,7 +65,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=23">
 </head>
 <body class="light-theme">
     <!-- App Container -->
@@ -457,8 +457,11 @@
         </div>
 
         <!-- Group Hike Logistics & SBB Planner Modal -->
-        <div id="group-hike-modal" class="modal" style="display: none;">
-            <div class="modal-content group-hike-modal-content">
+        <div id="group-hike-modal" class="modal-overlay" style="display: none; z-index: 3000;">
+            <div class="modal-content card group-hike-modal-content">
+                <button type="button" class="modal-close" id="close-group-hike-modal" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
                 <div class="modal-header">
                     <div>
                         <h3 id="group-hike-modal-title" style="display: flex; align-items: center; gap: 0.5rem; margin: 0; font-size: 1.15rem;">
@@ -468,11 +471,8 @@
                             Coordinate travel, live SBB trains &amp; WhatsApp invite
                         </p>
                     </div>
-                    <button type="button" class="btn-close-modal" id="close-group-hike-modal" aria-label="Close modal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
                 </div>
-                <div class="modal-body" style="padding: 1.25rem;">
+                <div class="modal-body">
                     <!-- Group Settings Form -->
                     <div class="group-planner-grid">
                         <div class="form-group">
@@ -480,48 +480,80 @@
                             <input type="date" id="gh-date" class="form-input">
                         </div>
                         <div class="form-group">
-                            <label for="gh-time"><i class="fa-solid fa-clock"></i> Meetup Time</label>
-                            <input type="time" id="gh-time" class="form-input" value="09:45">
+                            <label for="gh-time"><i class="fa-solid fa-flag-checkered"></i> Target Meetup Time at Trailhead</label>
+                            <input type="time" id="gh-time" class="form-input" value="09:00">
                         </div>
                     </div>
+                    <div style="font-size: 0.73rem; color: var(--text-secondary); margin-top: -0.3rem; margin-bottom: 0.75rem;">
+                        <i class="fa-solid fa-clock-rotate-left" style="color: #2a9d8f;"></i> Departure times for train and car calculate backwards to get you there on time!
+                    </div>
 
-                    <div class="form-group" style="margin-top: 0.75rem;">
-                        <label for="gh-meeting-point"><i class="fa-solid fa-location-dot"></i> Meeting Point</label>
+                    <div class="form-group">
+                        <label for="gh-meeting-point"><i class="fa-solid fa-location-dot"></i> Meeting Point / Trailhead</label>
                         <input type="text" id="gh-meeting-point" class="form-input" placeholder="e.g. Wasserauen Bahnhof or Ticket Gate">
                     </div>
 
-                    <!-- SBB Public Transport Section -->
-                    <div class="gh-sbb-section" style="margin-top: 1.2rem;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <h4 style="margin: 0; font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
-                                <i class="fa-solid fa-train" style="color: #eb0000;"></i> Live SBB Travel Connection
-                            </h4>
-                            <span id="gh-sbb-status" style="font-size: 0.75rem; color: var(--text-secondary);"></span>
-                        </div>
-
-                        <!-- Quick City Origin Pills -->
-                        <div class="gh-city-pills" id="gh-city-pills">
-                            <button type="button" class="gh-city-pill active" data-city="Zürich HB">Zürich HB</button>
-                            <button type="button" class="gh-city-pill" data-city="Bern">Bern</button>
-                            <button type="button" class="gh-city-pill" data-city="Basel SBB">Basel</button>
-                            <button type="button" class="gh-city-pill" data-city="Luzern">Luzern</button>
-                            <button type="button" class="gh-city-pill" data-city="St. Gallen">St. Gallen</button>
-                            <button type="button" class="gh-city-pill" data-city="Winterthur">Winterthur</button>
-                            <button type="button" class="gh-city-pill" data-city="Lausanne">Lausanne</button>
-                            <button type="button" class="gh-city-pill" data-city="Genève">Genève</button>
-                        </div>
-
-                        <!-- Origin Station Custom Input -->
-                        <div style="display: flex; gap: 0.5rem; margin-top: 0.6rem;">
-                            <input type="text" id="gh-from-input" class="form-input" placeholder="Departing from station..." value="Zürich HB">
-                            <button type="button" id="gh-btn-refresh-sbb" class="btn btn-outline" style="padding: 0 0.85rem; font-size: 0.82rem; white-space: nowrap;">
-                                <i class="fa-solid fa-rotate-right"></i> Check Times
+                    <!-- Travel Logistics Section (Train & Car) -->
+                    <div class="gh-travel-section" style="margin-top: 1.15rem;">
+                        <!-- Travel Mode Selector Tabs -->
+                        <div class="gh-travel-tabs">
+                            <button type="button" class="gh-travel-tab active" data-mode="both">
+                                <i class="fa-solid fa-layer-group"></i> Train &amp; Car
+                            </button>
+                            <button type="button" class="gh-travel-tab" data-mode="sbb">
+                                <i class="fa-solid fa-train" style="color: #eb0000;"></i> Train (SBB)
+                            </button>
+                            <button type="button" class="gh-travel-tab" data-mode="car">
+                                <i class="fa-solid fa-car" style="color: #2a9d8f;"></i> By Car
                             </button>
                         </div>
 
-                        <!-- Live SBB Result Card -->
-                        <div id="gh-sbb-results" class="gh-sbb-card" style="margin-top: 0.75rem;">
-                            <!-- Injected dynamically -->
+                        <!-- Origin Station / City Pills -->
+                        <div>
+                            <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">
+                                <i class="fa-solid fa-house-chimney"></i> Your Starting City / Home:
+                            </label>
+                            <div class="gh-city-pills" id="gh-city-pills">
+                                <button type="button" class="gh-city-pill active" data-city="Zürich HB">Zürich</button>
+                                <button type="button" class="gh-city-pill" data-city="Bern">Bern</button>
+                                <button type="button" class="gh-city-pill" data-city="Basel SBB">Basel</button>
+                                <button type="button" class="gh-city-pill" data-city="Luzern">Luzern</button>
+                                <button type="button" class="gh-city-pill" data-city="St. Gallen">St. Gallen</button>
+                                <button type="button" class="gh-city-pill" data-city="Winterthur">Winterthur</button>
+                                <button type="button" class="gh-city-pill" data-city="Lausanne">Lausanne</button>
+                                <button type="button" class="gh-city-pill" data-city="Genève">Genève</button>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                                <input type="text" id="gh-from-input" class="form-input" placeholder="Departing from station / city..." value="Zürich HB">
+                                <button type="button" id="gh-btn-refresh-sbb" class="btn btn-outline" style="padding: 0 0.85rem; font-size: 0.82rem; white-space: nowrap;">
+                                    <i class="fa-solid fa-rotate-right"></i> Recalculate
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Live SBB Result Box -->
+                        <div id="gh-sbb-wrapper" style="margin-top: 0.85rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                <h4 style="margin: 0; font-size: 0.88rem; display: flex; align-items: center; gap: 0.4rem; color: #eb0000;">
+                                    <i class="fa-solid fa-train"></i> SBB Train Connections (Arriving before meetup):
+                                </h4>
+                                <span id="gh-sbb-status" style="font-size: 0.72rem; color: var(--text-secondary);"></span>
+                            </div>
+                            <div id="gh-sbb-results" class="gh-sbb-card">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Car Driving Result Box -->
+                        <div id="gh-car-wrapper" style="margin-top: 0.85rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                <h4 style="margin: 0; font-size: 0.88rem; display: flex; align-items: center; gap: 0.4rem; color: #2a9d8f;">
+                                    <i class="fa-solid fa-car"></i> Driving by Car (With 15-min parking buffer):
+                                </h4>
+                            </div>
+                            <div id="gh-car-results" class="gh-car-card">
+                                <!-- Injected dynamically -->
+                            </div>
                         </div>
                     </div>
 
@@ -569,6 +601,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=20"></script>
+    <script src="app.js?v=23"></script>
 </body>
 </html>

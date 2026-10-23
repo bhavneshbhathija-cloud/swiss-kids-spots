@@ -22,6 +22,16 @@ let isOsmSpotsLoaded = false;
 
 // --- Utility Functions ---
 
+function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 // Calculate Haversine Distance (in km) between two points
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // Radius of the Earth in km
@@ -1039,40 +1049,49 @@ function getSwisstopoUrlsForHike(spot) {
     // Official Swisstopo Universal Link / App Link (opens Swisstopo App on iOS & Android with the route)
     const appUrl = `https://swisstopo.app/u/${base64GpxUrl}`;
 
-    // Official interactive Swisstopo / SchweizMobil web route map:
-    // This renders the full vector trail line, elevation profile, waypoints, and distance directly on Swisstopo maps without needing the app installed!
-    const landParam = spot.isWinterTrail ? 'winterwandern' : 'wanderland';
-    const sid = String(spot.swisstopoId || '').trim();
-    let webUrl = '';
+    // Compute Swiss LV95 coordinates for map centering
+    const [E, N] = wgs84ToLv95(spot.lat, spot.lng);
 
-    if (/^\d+$/.test(sid)) {
-        webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&track=${encodeURIComponent(sid)}`;
-    } else {
-        const stageMatch = sid.match(/^(\d+)\.(\d+)$/);
+    // Resolve official ASTRA / SwitzerlandMobility feature ID (e.g. 810.00, 1.13, 145.00)
+    let featureId = null;
+    const sid = String(spot.swisstopoId || '').trim();
+
+    if (/^\d+\.\d+$/.test(sid)) {
+        featureId = sid;
+    } else if (spot.schweizMobilUrlEn) {
+        const stageMatch = spot.schweizMobilUrlEn.match(/route-(\d+)\/stage-(\d+)/);
         if (stageMatch) {
-            webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&route=${stageMatch[1]}&stage=${parseInt(stageMatch[2], 10)}`;
-        } else if (spot.schweizMobilUrlEn && spot.schweizMobilUrlEn.includes('/route-')) {
-            const routeStageMatch = spot.schweizMobilUrlEn.match(/route-(\d+)(?:\/stage-(\d+))?/);
-            if (routeStageMatch) {
-                const rNum = routeStageMatch[1];
-                const sNum = routeStageMatch[2];
-                webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&route=${rNum}` + (sNum ? `&stage=${sNum}` : '');
+            featureId = `${stageMatch[1]}.${String(stageMatch[2]).padStart(2, '0')}`;
+        } else {
+            const routeMatch = spot.schweizMobilUrlEn.match(/route-(\d+)/);
+            if (routeMatch) {
+                featureId = `${routeMatch[1]}.00`;
             }
         }
     }
 
-    if (!webUrl) {
-        if (spot.routeNumber && !isNaN(Number(spot.routeNumber))) {
-            webUrl = `https://schweizmobil.ch/map/?lang=en&land=${landParam}&route=${encodeURIComponent(spot.routeNumber)}`;
-        } else if (spot.schweizMobilUrlEn) {
-            webUrl = spot.schweizMobilUrlEn;
-        } else {
-            const [E, N] = wgs84ToLv95(spot.lat, spot.lng);
-            webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=ch.astra.wanderland&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en&crosshair=marker`;
+    if (!featureId) {
+        if (/^\d+$/.test(sid) && Number(sid) < 100000) {
+            featureId = `${sid}.00`;
+        } else if (spot.routeNumber && /^\d+$/.test(String(spot.routeNumber).trim())) {
+            featureId = `${String(spot.routeNumber).trim()}.00`;
         }
     }
 
-    return { appUrl, webUrl, gpxTrackUrl };
+    let webUrl = '';
+    if (featureId) {
+        // Official Swisstopo / GeoAdmin Map with the exact vector trail route selected and highlighted in red
+        webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=ch.astra.wanderland@features=${featureId}&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en`;
+    } else if (spot.schweizMobilUrlEn && spot.schweizMobilUrlEn.includes('/tour/')) {
+        // For iconic tours (e.g. Ebenalp-Seealpsee, Bachalpsee), SchweizMobil's official tour page has the interactive route map
+        webUrl = spot.schweizMobilUrlEn;
+    } else {
+        // Fallback: Swisstopo map centered on coordinates with Wanderland trail network and search query
+        const searchParam = spot.startStop || spot.name || '';
+        webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=ch.astra.wanderland&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en&swisssearch=${encodeURIComponent(searchParam)}&swisssearch_autoselect=true`;
+    }
+
+    return { appUrl, webUrl, gpxTrackUrl, featureId };
 }
 
 // Chooser modal for mobile devices to seamlessly choose App or Web Map
@@ -1111,6 +1130,14 @@ window.openSwisstopoChooserModal = function(spot, urls) {
                     <span class="opt-desc">Displays the complete trail line, elevation profile & topographic map directly in your browser</span>
                 </div>
             </a>
+            ${spot.schweizMobilUrlEn ? `
+            <a href="${spot.schweizMobilUrlEn}" target="_blank" rel="noopener" class="swisstopo-option-btn" onclick="document.getElementById('swisstopo-chooser-modal').remove()">
+                <i class="fa-solid fa-signs-post"></i>
+                <div>
+                    <span class="opt-title">Open SchweizMobil Guide</span>
+                    <span class="opt-desc">Official photos, stage details, elevation profile & interactive map</span>
+                </div>
+            </a>` : ''}
             <div style="text-align: right; margin-top: 0.75rem;">
                 <button type="button" class="btn btn-outline" onclick="document.getElementById('swisstopo-chooser-modal').remove()" style="padding: 0.35rem 0.85rem; font-size: 0.8rem; border-radius: var(--radius-sm);">
                     Cancel
@@ -1133,18 +1160,10 @@ window.handleSwisstopoClick = function(event, spotId) {
     const urls = getSwisstopoUrlsForHike(spot);
     if (!urls) return;
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-        event.preventDefault();
-        openSwisstopoChooserModal(spot, urls);
-        return false;
-    } else {
-        // Desktop: open the official web map directly in a new tab
-        event.preventDefault();
-        window.open(urls.webUrl, '_blank', 'noopener,noreferrer');
-        return false;
-    }
+    // Directly open the official Swisstopo Web Map with highlighted route
+    event.preventDefault();
+    window.open(urls.webUrl, '_blank', 'noopener,noreferrer');
+    return false;
 };
 
 window.handleSwisstopoAppClick = function(event, spotId) {
@@ -1155,7 +1174,6 @@ window.handleSwisstopoAppClick = function(event, spotId) {
     if (!urls) return;
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
     if (!isMobile) {
         // On desktop, the phone app is not installed anyway, so open the web map directly
         event.preventDefault();
@@ -1609,15 +1627,15 @@ async function openDetails(spotId, options = {}) {
         <div class="gh-invite-banner">
             <i class="fa-solid fa-users"></i>
             <div style="flex: 1;">
-                <h4>👥 You're Invited to a Family Group Hike!</h4>
+                <h4>👥 You're Invited to a Group Hike!</h4>
                 <p>
                     <strong>📅 Date:</strong> ${options.date || 'Upcoming Weekend'} &nbsp;|&nbsp; 
-                    <strong>⏰ Meetup:</strong> ${options.time || '09:45'} at ${options.meetingPoint || spot.startStop || spot.city || spot.name}<br>
-                    <strong>🚆 SBB Travel:</strong> Recommended connection departing from ${options.from || 'Zürich HB'}
+                    <strong>⏰ Meetup:</strong> ${options.time || '09:00'} at ${options.meetingPoint || spot.startStop || spot.city || spot.name}<br>
+                    <strong>🚆 Train &amp; 🚗 Car:</strong> Departure times run backwards so you arrive on time from ${options.from || 'Zürich HB'}!
                 </p>
                 <div style="margin-top: 0.5rem;">
                     <button type="button" class="btn btn-outline" onclick="openGroupHikePlanner('${spot.id}', { date: '${options.date || ''}', time: '${options.time || ''}', from: '${options.from || ''}', meetingPoint: '${escapeHtml(options.meetingPoint || '')}' })" style="padding: 0.25rem 0.65rem; font-size: 0.75rem; border-color: #2a9d8f; color: #2a9d8f; font-weight: 700; border-radius: 6px;">
-                        <i class="fa-solid fa-sliders"></i> Adjust Group SBB &amp; Times
+                        <i class="fa-solid fa-sliders"></i> Adjust Group Travel &amp; Times
                     </button>
                 </div>
             </div>
@@ -2513,9 +2531,118 @@ async function handleFeedbackSubmit(e) {
     document.getElementById("feedback-modal").style.display = "none";
 }
 
-// --- Group Hike Logistics & SBB Planner ---
+// --- Group Hike Logistics & SBB / Car Travel Planner ---
 let currentGroupHikeSpot = null;
 let currentGroupHikeSbbData = null;
+let currentGroupHikeCarData = null;
+let currentGroupHikeTravelMode = 'both'; // 'both' | 'sbb' | 'car'
+
+const SWISS_CITIES_COORDS = {
+    'Zürich HB': { lat: 47.3779, lng: 8.5402, name: 'Zürich HB' },
+    'Zürich': { lat: 47.3769, lng: 8.5417, name: 'Zürich' },
+    'Bern': { lat: 46.9480, lng: 7.4474, name: 'Bern' },
+    'Basel SBB': { lat: 47.5474, lng: 7.5896, name: 'Basel SBB' },
+    'Basel': { lat: 47.5596, lng: 7.5886, name: 'Basel' },
+    'Luzern': { lat: 47.0502, lng: 8.3103, name: 'Luzern' },
+    'St. Gallen': { lat: 47.4245, lng: 9.3767, name: 'St. Gallen' },
+    'Winterthur': { lat: 47.5004, lng: 8.7241, name: 'Winterthur' },
+    'Lausanne': { lat: 46.5197, lng: 6.6323, name: 'Lausanne' },
+    'Genève': { lat: 46.2100, lng: 6.1432, name: 'Genève' },
+    'Lugano': { lat: 46.0037, lng: 8.9511, name: 'Lugano' },
+    'Aarau': { lat: 47.3925, lng: 8.0442, name: 'Aarau' },
+    'Chur': { lat: 46.8534, lng: 9.5298, name: 'Chur' },
+    'Biel/Bienne': { lat: 47.1368, lng: 7.2468, name: 'Biel/Bienne' },
+    'Biel': { lat: 47.1368, lng: 7.2468, name: 'Biel' },
+    'Zug': { lat: 47.1662, lng: 8.5155, name: 'Zug' },
+    'Thun': { lat: 46.7580, lng: 7.6280, name: 'Thun' },
+    'Schaffhausen': { lat: 47.6973, lng: 8.6349, name: 'Schaffhausen' },
+    'Neuchâtel': { lat: 46.9928, lng: 6.9319, name: 'Neuchâtel' },
+    'Fribourg': { lat: 46.8065, lng: 7.1619, name: 'Fribourg' },
+    'Bellinzona': { lat: 46.1928, lng: 9.0170, name: 'Bellinzona' },
+    'Sion': { lat: 46.2331, lng: 7.3606, name: 'Sion' },
+    'Interlaken': { lat: 46.6863, lng: 7.8632, name: 'Interlaken' }
+};
+
+function resolveCityCoords(cityName) {
+    if (!cityName) return { lat: 47.3779, lng: 8.5402, name: 'Zürich' };
+    const clean = cityName.trim();
+    if (SWISS_CITIES_COORDS[clean]) return SWISS_CITIES_COORDS[clean];
+
+    const withoutSuffix = clean.replace(/\s*(HB|SBB|Bahnhof|Station|Gare)$/i, '').trim();
+    if (SWISS_CITIES_COORDS[withoutSuffix]) return SWISS_CITIES_COORDS[withoutSuffix];
+
+    const lower = withoutSuffix.toLowerCase();
+    for (const key of Object.keys(SWISS_CITIES_COORDS)) {
+        if (key.toLowerCase() === lower || key.toLowerCase() === clean.toLowerCase()) {
+            return SWISS_CITIES_COORDS[key];
+        }
+    }
+
+    if (typeof currentSearchCenter !== 'undefined' && currentSearchCenter && currentSearchCenter.lat) {
+        return { lat: currentSearchCenter.lat, lng: currentSearchCenter.lng, name: clean };
+    }
+    return { lat: 47.3779, lng: 8.5402, name: clean };
+}
+
+function calculateCarTravel(fromCityName, spot, targetTimeStr) {
+    if (!spot || !spot.lat || !spot.lng) return null;
+    const origin = resolveCityCoords(fromCityName);
+    const straightDistKm = calculateDistance(origin.lat, origin.lng, spot.lat, spot.lng);
+    // Road travel in Switzerland averages ~1.28x straight distance due to valleys/highways
+    const roadKm = Math.max(5, Math.round(straightDistKm * 1.28));
+
+    // Autobahn corridors > 60km avg ~85km/h; mountain/regional roads avg ~55km/h
+    const driveMinutes = roadKm > 60
+        ? Math.round((roadKm / 85) * 60)
+        : Math.round((roadKm / 55) * 60);
+
+    const parkingBufferMinutes = 15; // 15-min buffer for parking, boots, gear & reaching trailhead
+    const totalTravelMinutes = driveMinutes + parkingBufferMinutes;
+
+    let targetH = 9;
+    let targetM = 0;
+    if (targetTimeStr && targetTimeStr.includes(':')) {
+        const parts = targetTimeStr.split(':').map(Number);
+        if (!isNaN(parts[0])) targetH = parts[0];
+        if (!isNaN(parts[1])) targetM = parts[1];
+    }
+    const targetTotalMins = targetH * 60 + targetM;
+
+    // Leave time: calculated backwards from meetup time
+    let leaveTotalMins = targetTotalMins - totalTravelMinutes;
+    while (leaveTotalMins < 0) leaveTotalMins += 24 * 60;
+    const leaveH = Math.floor(leaveTotalMins / 60) % 24;
+    const leaveM = leaveTotalMins % 60;
+    const leaveTimeStr = `${String(leaveH).padStart(2, '0')}:${String(leaveM).padStart(2, '0')}`;
+
+    // Expected arrival at parking: 15 mins before meetup
+    let parkTotalMins = targetTotalMins - parkingBufferMinutes;
+    while (parkTotalMins < 0) parkTotalMins += 24 * 60;
+    const parkH = Math.floor(parkTotalMins / 60) % 24;
+    const parkM = parkTotalMins % 60;
+    const parkTimeStr = `${String(parkH).padStart(2, '0')}:${String(parkM).padStart(2, '0')}`;
+
+    const driveH = Math.floor(driveMinutes / 60);
+    const driveRemainingM = driveMinutes % 60;
+    const driveDurationText = driveH > 0
+        ? `${driveH}h ${driveRemainingM > 0 ? driveRemainingM + 'm' : ''}`.trim()
+        : `${driveMinutes} min`;
+
+    const gmapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(fromCityName + ', Switzerland')}&destination=${spot.lat},${spot.lng}`;
+
+    return {
+        originName: origin.name || fromCityName,
+        roadKm,
+        driveMinutes,
+        driveDurationText,
+        parkingBufferMinutes,
+        leaveTimeStr,
+        parkTimeStr,
+        targetTimeStr: `${String(targetH).padStart(2, '0')}:${String(targetM).padStart(2, '0')}`,
+        gmapsUrl,
+        parkingInfo: spot.parking || 'Parking available near trailhead / cable car station'
+    };
+}
 
 function getNextWeekendDay(dayOfWeek = 6) { // 6 = Saturday, 0 = Sunday
     const d = new Date();
@@ -2554,10 +2681,10 @@ window.openGroupHikePlanner = function(spotId, prefill = {}) {
         dateInput.value = prefill.date || getNextWeekendDay(6);
     }
 
-    // Set Time input
+    // Set Target Meetup Time input (default 09:00 or prefill)
     const timeInput = document.getElementById('gh-time');
     if (timeInput) {
-        timeInput.value = prefill.time || '09:45';
+        timeInput.value = prefill.time || '09:00';
     }
 
     // Set Meeting Point
@@ -2566,7 +2693,7 @@ window.openGroupHikePlanner = function(spotId, prefill = {}) {
         meetingInput.value = prefill.meetingPoint || spot.startStop || spot.city || spot.name;
     }
 
-    // Set From station input
+    // Set From station / city input
     const fromInput = document.getElementById('gh-from-input');
     if (fromInput) {
         fromInput.value = prefill.from || 'Zürich HB';
@@ -2582,10 +2709,22 @@ window.openGroupHikePlanner = function(spotId, prefill = {}) {
         }
     });
 
+    // Reset travel tabs to 'both'
+    const travelTabs = document.querySelectorAll('.gh-travel-tab');
+    travelTabs.forEach(t => {
+        if (t.dataset.mode === 'both') t.classList.add('active');
+        else t.classList.remove('active');
+    });
+    currentGroupHikeTravelMode = 'both';
+    const sbbWrapper = document.getElementById('gh-sbb-wrapper');
+    const carWrapper = document.getElementById('gh-car-wrapper');
+    if (sbbWrapper) sbbWrapper.style.display = 'block';
+    if (carWrapper) carWrapper.style.display = 'block';
+
     modal.style.display = 'flex';
 
-    // Fetch SBB timetable
-    fetchGroupHikeSbb();
+    // Fetch and compute all travel logistics
+    fetchGroupHikeTravel();
 };
 
 window.closeGroupHikeModal = function() {
@@ -2593,47 +2732,52 @@ window.closeGroupHikeModal = function() {
     if (modal) modal.style.display = 'none';
 };
 
-async function fetchGroupHikeSbb() {
+async function fetchGroupHikeTravel() {
     if (!currentGroupHikeSpot) return;
 
     const fromInput = document.getElementById('gh-from-input');
     const dateInput = document.getElementById('gh-date');
     const timeInput = document.getElementById('gh-time');
     const statusEl = document.getElementById('gh-sbb-status');
-    const resultsContainer = document.getElementById('gh-sbb-results');
+    const sbbContainer = document.getElementById('gh-sbb-results');
 
     const from = fromInput ? fromInput.value.trim() : 'Zürich HB';
     const to = currentGroupHikeSpot.startStop || currentGroupHikeSpot.city || currentGroupHikeSpot.name;
     const date = dateInput ? dateInput.value : '';
-    const time = timeInput ? timeInput.value : '09:45';
+    const time = timeInput ? timeInput.value : '09:00';
 
+    // 1. Instantly calculate car travel backwards
+    currentGroupHikeCarData = calculateCarTravel(from, currentGroupHikeSpot, time);
+    renderGroupHikeCarResults(currentGroupHikeCarData);
+
+    // 2. Fetch SBB train timetable arriving BEFORE target time
     if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking SBB...';
-    if (resultsContainer) {
-        resultsContainer.innerHTML = '<div style="text-align: center; padding: 1rem; color: var(--text-secondary);"><i class="fa-solid fa-train fa-bounce" style="color: #eb0000; font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>Finding best train connections from SBB...</div>';
+    if (sbbContainer) {
+        sbbContainer.innerHTML = '<div style="text-align: center; padding: 1rem; color: var(--text-secondary);"><i class="fa-solid fa-train fa-bounce" style="color: #eb0000; font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>Finding trains arriving before ' + escapeHtml(time) + '...</div>';
     }
 
     try {
         let data = null;
         try {
-            const res = await fetch(`/api/transport/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&limit=2`);
+            const res = await fetch(`/api/transport/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&isArrivalTime=1&limit=4`);
             if (res.ok) data = await res.json();
         } catch (e) {
             console.warn('Local transport proxy failed, using direct SBB OpenData:', e);
         }
 
         if (!data || !data.connections || data.connections.length === 0) {
-            const fallbackRes = await fetch(`https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&limit=2`);
+            const fallbackRes = await fetch(`https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&isArrivalTime=1&limit=4`);
             if (fallbackRes.ok) data = await fallbackRes.json();
         }
 
         if (data && data.connections && data.connections.length > 0) {
-            currentGroupHikeSbbData = data.connections[0];
-            renderGroupHikeSbbResults(data.connections, from, to);
+            // Find recommended connection: the latest arrival that is <= target time (or the last connection in list)
+            renderGroupHikeSbbResults(data.connections, from, to, time);
             if (statusEl) statusEl.textContent = 'Live SBB Timetable';
         } else {
             currentGroupHikeSbbData = null;
-            if (resultsContainer) {
-                resultsContainer.innerHTML = `
+            if (sbbContainer) {
+                sbbContainer.innerHTML = `
                     <div style="padding: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">
                         <i class="fa-solid fa-circle-info" style="color: var(--accent-gold);"></i> 
                         Could not find direct timetable between "${escapeHtml(from)}" and "${escapeHtml(to)}". 
@@ -2646,8 +2790,8 @@ async function fetchGroupHikeSbb() {
     } catch (err) {
         console.error('SBB fetch error:', err);
         currentGroupHikeSbbData = null;
-        if (resultsContainer) {
-            resultsContainer.innerHTML = `
+        if (sbbContainer) {
+            sbbContainer.innerHTML = `
                 <div style="padding: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">
                     <i class="fa-solid fa-circle-exclamation" style="color: #d90429;"></i> Timetable service temporarily unavailable.
                     <a href="https://www.sbb.ch/en" target="_blank" rel="noopener" style="color: #eb0000; font-weight: 700; margin-left: 5px;">Check sbb.ch directly &rarr;</a>
@@ -2660,13 +2804,75 @@ async function fetchGroupHikeSbb() {
     updateGroupHikePreview();
 }
 
-function renderGroupHikeSbbResults(connections, fromName, toName) {
+function renderGroupHikeCarResults(carData) {
+    const container = document.getElementById('gh-car-results');
+    if (!container) return;
+
+    if (!carData) {
+        container.innerHTML = '<div style="font-size: 0.8rem; color: var(--text-secondary);">Unable to estimate car travel coordinates.</div>';
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="gh-car-row">
+            <div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                    <span class="gh-leave-badge">
+                        <i class="fa-solid fa-car-side"></i> Leave by ${carData.leaveTimeStr}
+                    </span>
+                    <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-primary);">
+                        Arrive parking ~${carData.parkTimeStr} (for ${carData.targetTimeStr} meetup)
+                    </span>
+                </div>
+                <div style="font-size: 0.77rem; color: var(--text-secondary); margin-top: 0.35rem;">
+                    <span>From <strong>${escapeHtml(carData.originName)}</strong> &bull; ~${carData.roadKm} km drive (~${carData.driveDurationText}) + 15m buffer</span>
+                </div>
+                <div style="font-size: 0.72rem; color: #2a9d8f; font-weight: 600; margin-top: 3px;">
+                    <i class="fa-solid fa-square-parking"></i> ${escapeHtml(carData.parkingInfo)}
+                </div>
+            </div>
+            <div>
+                <a href="${carData.gmapsUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.35rem 0.65rem; font-size: 0.75rem; border-color: #2a9d8f; color: #2a9d8f; white-space: nowrap; border-radius: 6px;">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Google Maps &rarr;
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+function renderGroupHikeSbbResults(connections, fromName, toName, targetTimeStr) {
     const container = document.getElementById('gh-sbb-results');
     if (!container) return;
 
     const sbbUrl = `https://www.sbb.ch/en?from=${encodeURIComponent(fromName)}&to=${encodeURIComponent(toName)}`;
 
-    const html = connections.map((conn, idx) => {
+    // Parse target meetup minutes for comparison
+    let targetMins = 9 * 60;
+    if (targetTimeStr && targetTimeStr.includes(':')) {
+        const parts = targetTimeStr.split(':').map(Number);
+        targetMins = parts[0] * 60 + parts[1];
+    }
+
+    // Determine the recommended connection: the latest one that arrives before or exactly at target time
+    let recommendedIdx = connections.length - 1;
+    for (let i = connections.length - 1; i >= 0; i--) {
+        const arrStr = connections[i].to.arrival ? connections[i].to.arrival.slice(11, 16) : '';
+        if (arrStr) {
+            const [ah, am] = arrStr.split(':').map(Number);
+            const arrMins = ah * 60 + am;
+            if (arrMins <= targetMins) {
+                recommendedIdx = i;
+                break;
+            }
+        }
+    }
+
+    currentGroupHikeSbbData = connections[recommendedIdx] || connections[0];
+
+    // Show up to 2 most relevant connections (the recommended one and the one right before it)
+    const displayConnections = connections.slice(Math.max(0, recommendedIdx - 1), recommendedIdx + 1);
+
+    const html = displayConnections.map((conn) => {
         const depTime = conn.from.departure ? conn.from.departure.slice(11, 16) : '--:--';
         const arrTime = conn.to.arrival ? conn.to.arrival.slice(11, 16) : '--:--';
         const platform = conn.from.platform ? `Pl. ${conn.from.platform}` : '';
@@ -2674,16 +2880,31 @@ function renderGroupHikeSbbResults(connections, fromName, toName) {
         const transfersText = conn.transfers === 0 ? 'Direct (No changes)' : `${conn.transfers} change${conn.transfers > 1 ? 's' : ''}`;
         const trains = (conn.products || []).join(' &rarr; ') || 'Train';
 
-        const isRecommended = idx === 0;
+        // Calculate arrival buffer before meetup
+        let bufferText = '';
+        if (arrTime !== '--:--') {
+            const [ah, am] = arrTime.split(':').map(Number);
+            const arrMins = ah * 60 + am;
+            const diff = targetMins - arrMins;
+            if (diff >= 0) {
+                bufferText = `${diff}m before meetup`;
+            } else {
+                bufferText = `${Math.abs(diff)}m after meetup`;
+            }
+        }
+
+        const isRecommended = (conn === currentGroupHikeSbbData);
 
         return `
-            <div class="gh-sbb-conn">
+            <div class="gh-sbb-conn" style="${isRecommended ? 'background: rgba(235, 0, 0, 0.04); padding: 0.5rem; border-radius: 6px;' : ''}">
                 <div>
                     <div class="gh-sbb-conn-time">
-                        <span>${depTime}</span>
+                        <span style="color: #eb0000; font-weight: 800;">Catch ${depTime}</span>
                         <i class="fa-solid fa-arrow-right-long" style="font-size: 0.75rem; color: var(--text-secondary);"></i>
-                        <span>${arrTime}</span>
-                        ${isRecommended ? '<span class="gh-sbb-badge"><i class="fa-solid fa-star"></i> Recommended</span>' : ''}
+                        <span>Arrives ${arrTime}</span>
+                        ${isRecommended 
+                            ? `<span class="gh-sbb-badge"><i class="fa-solid fa-star"></i> Recommended (${bufferText})</span>` 
+                            : `<span style="font-size: 0.72rem; color: var(--text-secondary); font-weight: 600;">Earlier option (${bufferText})</span>`}
                     </div>
                     <div class="gh-sbb-conn-sub">
                         <span>${escapeHtml(conn.from.station.name || fromName)} ${platform ? `(<strong>${platform}</strong>)` : ''}</span>
@@ -2716,7 +2937,7 @@ function generateGroupHikeInviteText() {
     const fromInput = document.getElementById('gh-from-input');
 
     const dateVal = dateInput ? dateInput.value : '';
-    const timeVal = timeInput ? timeInput.value : '09:45';
+    const timeVal = timeInput ? timeInput.value : '09:00';
     const meetingPoint = meetingInput ? meetingInput.value.trim() : (spot.startStop || spot.city || spot.name);
     const fromStation = fromInput ? fromInput.value.trim() : 'Zürich HB';
 
@@ -2728,17 +2949,25 @@ function generateGroupHikeInviteText() {
         } catch (e) {}
     }
 
+    // 1. SBB Travel Section
     let sbbText = `🚂 *Public Transport (SBB):*\n• Meeting at: ${meetingPoint}\n• SBB Timetable: https://www.sbb.ch/en?from=${encodeURIComponent(fromStation)}&to=${encodeURIComponent(meetingPoint)}`;
     if (currentGroupHikeSbbData) {
         const c = currentGroupHikeSbbData;
         const depTime = c.from.departure ? c.from.departure.slice(11, 16) : '';
         const arrTime = c.to.arrival ? c.to.arrival.slice(11, 16) : '';
-        const plat = c.from.platform ? ` (Platform ${c.from.platform})` : '';
+        const plat = c.from.platform ? ` (Pl. ${c.from.platform})` : '';
         const dur = c.duration ? c.duration.replace(/^00d/, '').slice(0, 5) : '';
         const chg = c.transfers === 0 ? 'direct' : `${c.transfers} change${c.transfers > 1 ? 's' : ''}`;
         const trains = (c.products || []).join(' → ');
 
-        sbbText = `🚂 *Public Transport (SBB):*\n• Recommended from ${fromStation}: Departs ${depTime}${plat}\n• Arrives ${arrTime} (${chg}, ${dur})\n• Line: ${trains}`;
+        sbbText = `🚂 *Public Transport (SBB):*\n• Recommended from ${fromStation}: Catch *${depTime}* train${plat}\n• Arrives *${arrTime}* (${chg}, ${dur})\n• Line: ${trains}\n• Buy Ticket: https://www.sbb.ch/en?from=${encodeURIComponent(fromStation)}&to=${encodeURIComponent(meetingPoint)}`;
+    }
+
+    // 2. Car Travel Section (running backwards)
+    let carText = '';
+    if (currentGroupHikeCarData) {
+        const car = currentGroupHikeCarData;
+        carText = `🚗 *Driving by Car:*\n• Recommended from ${car.originName}: Leave by *${car.leaveTimeStr}*\n• Arrives at parking ~*${car.parkTimeStr}* (~${car.roadKm} km, ~${car.driveDurationText} drive + 15m parking/prep buffer)\n• Parking Info: ${car.parkingInfo}\n• Google Maps Navigation: ${car.gmapsUrl}`;
     }
 
     const canonicalHost = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
@@ -2750,12 +2979,21 @@ function generateGroupHikeInviteText() {
     const strollerText = spot.strollerFriendly ? '✅ Stroller Friendly' : '❌ Not for Strollers (Carrier recommended)';
     const diffText = spot.difficulty === 'easy' ? '🟢 Easy' : (spot.difficulty === 'moderate' ? '🟠 Moderate' : '🔴 Demanding');
 
-    return `🥾 *Family Group Hike: ${spot.name}*
+    // Filter sections according to current travel mode
+    let travelSections = [];
+    if (currentGroupHikeTravelMode === 'both' || currentGroupHikeTravelMode === 'sbb') {
+        travelSections.push(sbbText);
+    }
+    if (currentGroupHikeTravelMode === 'both' || currentGroupHikeTravelMode === 'car') {
+        if (carText) travelSections.push(carText);
+    }
+
+    return `🥾 *Group Hike: ${spot.name}*
 📍 *Region:* ${spot.region || 'Switzerland'} (${spot.canton || ''})
 📅 *Date:* ${formattedDate}
 ⏰ *Meetup:* ${timeVal} at ${meetingPoint}
 
-${sbbText}
+${travelSections.join('\n\n')}
 
 📊 *Trail Stats:*
 • Distance: ${spot.distanceKm || '?'} km | Duration: ~${spot.durationText || '?'}
@@ -3017,27 +3255,58 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeGhBtn = document.getElementById("close-group-hike-modal");
     if (closeGhBtn) closeGhBtn.addEventListener("click", closeGroupHikeModal);
 
+    const ghModal = document.getElementById("group-hike-modal");
+    if (ghModal) {
+        ghModal.addEventListener("click", (e) => {
+            if (e.target === ghModal) closeGroupHikeModal();
+        });
+    }
+
+    // Travel tabs (Train & Car / Train / Car)
+    const travelTabs = document.querySelectorAll(".gh-travel-tab");
+    travelTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            travelTabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            const mode = tab.dataset.mode;
+            currentGroupHikeTravelMode = mode;
+            const sbbWrapper = document.getElementById("gh-sbb-wrapper");
+            const carWrapper = document.getElementById("gh-car-wrapper");
+            if (mode === "both") {
+                if (sbbWrapper) sbbWrapper.style.display = "block";
+                if (carWrapper) carWrapper.style.display = "block";
+            } else if (mode === "sbb") {
+                if (sbbWrapper) sbbWrapper.style.display = "block";
+                if (carWrapper) carWrapper.style.display = "none";
+            } else if (mode === "car") {
+                if (sbbWrapper) sbbWrapper.style.display = "none";
+                if (carWrapper) carWrapper.style.display = "block";
+            }
+            updateGroupHikePreview();
+        });
+    });
+
     const ghDateInput = document.getElementById("gh-date");
     const ghTimeInput = document.getElementById("gh-time");
     const ghMeetingInput = document.getElementById("gh-meeting-point");
     const ghFromInput = document.getElementById("gh-from-input");
 
-    if (ghDateInput) ghDateInput.addEventListener("change", () => { fetchGroupHikeSbb(); updateGroupHikePreview(); });
-    if (ghTimeInput) ghTimeInput.addEventListener("change", () => { fetchGroupHikeSbb(); updateGroupHikePreview(); });
+    if (ghDateInput) ghDateInput.addEventListener("change", () => { fetchGroupHikeTravel(); updateGroupHikePreview(); });
+    if (ghTimeInput) ghTimeInput.addEventListener("change", () => { fetchGroupHikeTravel(); updateGroupHikePreview(); });
     if (ghMeetingInput) ghMeetingInput.addEventListener("input", updateGroupHikePreview);
     if (ghFromInput) {
         ghFromInput.addEventListener("input", updateGroupHikePreview);
-        ghFromInput.addEventListener("change", fetchGroupHikeSbb);
+        ghFromInput.addEventListener("change", fetchGroupHikeTravel);
         ghFromInput.addEventListener("keydown", (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                fetchGroupHikeSbb();
+                fetchGroupHikeTravel();
             }
         });
     }
 
-    const refreshSbbBtn = document.getElementById("gh-btn-refresh-sbb");
-    if (refreshSbbBtn) refreshSbbBtn.addEventListener("click", fetchGroupHikeSbb);
+    const refreshTravelBtn = document.getElementById("gh-btn-refresh-sbb");
+    if (refreshTravelBtn) refreshTravelBtn.addEventListener("click", fetchGroupHikeTravel);
 
     // City pills
     const cityPills = document.querySelectorAll(".gh-city-pill");
@@ -3047,7 +3316,7 @@ document.addEventListener("DOMContentLoaded", () => {
             pill.classList.add("active");
             if (ghFromInput) {
                 ghFromInput.value = pill.dataset.city;
-                fetchGroupHikeSbb();
+                fetchGroupHikeTravel();
             }
         });
     });

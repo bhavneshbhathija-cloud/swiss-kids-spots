@@ -231,13 +231,14 @@ const server = http.createServer(async (req, res) => {
         const date = parsedUrl.searchParams.get('date') || '';
         const time = parsedUrl.searchParams.get('time') || '';
         const limit = parsedUrl.searchParams.get('limit') || '3';
+        const isArrivalTime = parsedUrl.searchParams.get('isArrivalTime') || '1';
 
         if (!from || !to) {
             res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
             return res.end(JSON.stringify({ error: 'Missing from or to parameter' }));
         }
 
-        const cacheKey = `${from}__${to}__${date}__${time}__${limit}`;
+        const cacheKey = `${from}__${to}__${date}__${time}__${limit}__${isArrivalTime}`;
         if (transportCache[cacheKey] && (Date.now() - transportCache[cacheKey].timestamp < 600000)) {
             res.writeHead(200, {
                 'Content-Type': 'application/json',
@@ -247,7 +248,7 @@ const server = http.createServer(async (req, res) => {
             return res.end(JSON.stringify(transportCache[cacheKey].data));
         }
 
-        let targetUrl = `https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&limit=${encodeURIComponent(limit)}`;
+        let targetUrl = `https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&limit=${encodeURIComponent(limit)}&isArrivalTime=${encodeURIComponent(isArrivalTime)}`;
         if (date) targetUrl += `&date=${encodeURIComponent(date)}`;
         if (time) targetUrl += `&time=${encodeURIComponent(time)}`;
 
@@ -347,6 +348,91 @@ ${coords.map((pt, i) => {
             'Cache-Control': 'public, max-age=86400'
         });
         return res.end(gpxXml);
+    }
+
+    // API Endpoint: Dynamic KML Route Track for Swisstopo Web and Google Earth Viewers
+    if (pathname.startsWith('/api/hikes/') && pathname.endsWith('/track.kml')) {
+        const hikeId = decodeURIComponent(pathname.replace('/api/hikes/', '').replace('/track.kml', ''));
+        const hikesFilePath = path.join(__dirname, 'hikes.json');
+        let hike = null;
+        if (fs.existsSync(hikesFilePath)) {
+            try {
+                const allHikes = JSON.parse(fs.readFileSync(hikesFilePath, 'utf-8'));
+                hike = allHikes.find(h => h.id === hikeId);
+            } catch (e) {
+                console.error('Error reading hikes.json for KML export:', e);
+            }
+        }
+        if (!hike) {
+            res.writeHead(404, { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' });
+            return res.end('Hike not found');
+        }
+
+        const escapeXml = (unsafe) => {
+            if (!unsafe) return '';
+            return String(unsafe).replace(/[<>&'"]/g, c => {
+                switch (c) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '&': return '&amp;';
+                    case '\'': return '&apos;';
+                    case '"': return '&quot;';
+                }
+            });
+        };
+
+        const coords = (hike.coordinates && hike.coordinates.length > 0) ? hike.coordinates : [[hike.lat, hike.lng]];
+        const eleProf = hike.elevationProfile || [];
+        const startCoord = coords[0] || [hike.lat, hike.lng];
+        const endCoord = coords[coords.length - 1] || [hike.lat, hike.lng];
+
+        const kmlCoordString = coords.map((pt, i) => {
+            const ele = (eleProf[i] && eleProf[i].ele) ? eleProf[i].ele : (hike.minElevationM || 500);
+            return `${pt[1]},${pt[0]},${ele}`;
+        }).join(' ');
+
+        const kmlXml = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>${escapeXml(hike.name)}</name>
+    <description>${escapeXml(hike.description || hike.name)}</description>
+    <Style id="trailLine">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Placemark>
+      <name>Start: ${escapeXml(hike.startStop || hike.name)}</name>
+      <Point>
+        <coordinates>${startCoord[1]},${startCoord[0]},${eleProf[0] ? eleProf[0].ele : (hike.minElevationM || 500)}</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Finish: ${escapeXml(hike.endStop || hike.name)}</name>
+      <Point>
+        <coordinates>${endCoord[1]},${endCoord[0]},${eleProf[eleProf.length - 1] ? eleProf[eleProf.length - 1].ele : (hike.maxElevationM || 500)}</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>${escapeXml(hike.name)}</name>
+      <styleUrl>#trailLine</styleUrl>
+      <LineString>
+        <tessellate>1</tessellate>
+        <coordinates>${kmlCoordString}</coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>`;
+
+        res.writeHead(200, {
+            'Content-Type': 'application/vnd.google-earth.kml+xml; charset=utf-8',
+            'Content-Disposition': `inline; filename="${hike.id}.kml"`,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'Cache-Control': 'public, max-age=86400'
+        });
+        return res.end(kmlXml);
     }
 
     // API Endpoint: General Feedback Form

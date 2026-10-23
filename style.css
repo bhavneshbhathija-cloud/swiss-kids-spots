@@ -2068,10 +2068,63 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 /* Group Hike Planner & SBB Timetable */
 .group-hike-modal-content {
-    max-width: 580px;
+    max-width: 620px;
     width: 95%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
     border-radius: var(--radius-lg, 16px);
     overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.group-hike-modal-content .modal-header {
+    flex-shrink: 0;
+    padding: 1.25rem 3.5rem 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
+    background: var(--bg-card, #ffffff);
+    z-index: 10;
+}
+
+.group-hike-modal-content .modal-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.25rem;
+    overscroll-behavior: contain;
+}
+
+/* Styled scrollbar for group hike modal */
+.group-hike-modal-content .modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.group-hike-modal-content .modal-body::-webkit-scrollbar-track {
+    background: var(--bg-secondary, #f8fafc);
+    border-radius: 4px;
+}
+
+.group-hike-modal-content .modal-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.group-hike-modal-content .modal-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+@media (max-width: 600px) {
+    .group-hike-modal-content {
+        max-height: 94vh;
+        width: 98%;
+    }
+    .group-hike-modal-content .modal-header {
+        padding: 1rem 3rem 0.75rem 1rem;
+    }
+    .group-hike-modal-content .modal-body {
+        padding: 1rem 0.85rem;
+    }
 }
 
 .group-planner-grid {
@@ -2114,6 +2167,71 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background: #eb0000;
     color: #ffffff;
     border-color: #eb0000;
+}
+
+/* Travel Tabs (SBB vs Car) */
+.gh-travel-tabs {
+    display: flex;
+    background: var(--bg-secondary, #f1f5f9);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.gh-travel-tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary, #64748b);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.gh-travel-tab:hover {
+    color: var(--text-primary, #0f172a);
+}
+
+.gh-travel-tab.active {
+    background: var(--bg-card, #ffffff);
+    color: var(--text-primary, #0f172a);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.gh-car-card {
+    background: var(--bg-secondary, #f8fafc);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: 0.85rem;
+}
+
+.gh-car-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.gh-leave-badge {
+    background: rgba(42, 157, 143, 0.12);
+    color: #2a9d8f;
+    border: 1px solid rgba(42, 157, 143, 0.3);
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
 }
 
 .gh-sbb-card {
