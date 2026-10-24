@@ -570,8 +570,25 @@
                         </div>
                     </div>
 
+                    <!-- Live Trail Radar Promo Card -->
+                    <div class="gh-radar-promo-card" style="margin-top: 1.15rem; background: linear-gradient(135deg, rgba(42, 157, 143, 0.08), rgba(2, 132, 199, 0.08)); border: 1.5px solid rgba(42, 157, 143, 0.35); border-radius: var(--radius-md, 10px); padding: 0.75rem 0.9rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <h4 style="margin: 0; font-size: 0.92rem; color: #2a9d8f; display: flex; align-items: center; gap: 0.4rem;">
+                                    <i class="fa-solid fa-tower-broadcast"></i> Live Trail Radar &amp; Check-In Board
+                                </h4>
+                                <p style="margin: 3px 0 0; font-size: 0.76rem; color: var(--text-secondary); line-height: 1.35;">
+                                    Track progress at key checkpoints &amp; broadcast your location if taking a break or separated. No app install needed!
+                                </p>
+                            </div>
+                            <button type="button" id="gh-btn-open-radar" class="btn btn-primary" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; font-weight: 700; background: linear-gradient(135deg, #2a9d8f, #264653); border: none; white-space: nowrap;">
+                                <i class="fa-solid fa-satellite-dish"></i> Open Live Radar
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- One-Click Group Sharing Bar -->
-                    <div class="gh-share-section" style="margin-top: 1.35rem;">
+                    <div class="gh-share-section" style="margin-top: 1.15rem;">
                         <h4 style="margin: 0 0 0.6rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
                             <i class="fa-solid fa-share-nodes"></i> Share with Hiking Group
                         </h4>
@@ -602,6 +619,107 @@
             </div>
         </div>
 
+        <!-- Live Trail Radar & Milestone Check-Ins Modal -->
+        <div id="group-radar-modal" class="modal-overlay" style="display: none; z-index: 3050;">
+            <div class="modal-content card gh-radar-modal-content">
+                <button type="button" class="modal-close" id="close-group-radar-modal" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="modal-header">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                            <h3 id="gh-radar-modal-title" style="margin: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fa-solid fa-tower-broadcast" style="color: #2a9d8f;"></i> Live Trail Radar &amp; Check-Ins
+                            </h3>
+                            <span id="gh-radar-sync-status" class="gh-radar-sync-pill">
+                                <span class="radar-dot"></span> Live Sync
+                            </span>
+                        </div>
+                        <p id="gh-radar-modal-subtitle" style="margin: 3px 0 0; font-size: 0.8rem; color: var(--text-secondary);">
+                            Milestone check-ins &amp; live group pings for your trail
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Family Identity Bar -->
+                    <div class="gh-member-bar">
+                        <label for="gh-member-name-input" style="font-size: 0.82rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-id-card-clip" style="color: #2a9d8f;"></i> Your Family / Member Name:
+                        </label>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 0.35rem;">
+                            <input type="text" id="gh-member-name-input" class="form-input" placeholder="e.g. Müller Family" maxlength="40">
+                            <button type="button" id="gh-member-save-btn" class="btn btn-outline" style="padding: 0 0.85rem; font-size: 0.8rem; white-space: nowrap;">
+                                <i class="fa-solid fa-check"></i> Set
+                            </button>
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.3rem;">
+                            <i class="fa-solid fa-shield-halved" style="color: #2a9d8f;"></i> Zero app downloads. 100% web-based and shared only with your hiking group.
+                        </div>
+                    </div>
+
+                    <!-- Milestones Check-In Timeline -->
+                    <div style="margin-top: 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <h4 style="margin: 0; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem;">
+                                <i class="fa-solid fa-map-pin" style="color: #2a9d8f;"></i> Trail Checkpoints &amp; Progress
+                            </h4>
+                            <span id="gh-milestones-summary" style="font-size: 0.74rem; color: var(--text-secondary); font-weight: 600;"></span>
+                        </div>
+
+                        <div id="gh-milestones-list" class="gh-milestones-list">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Live Radar Ping & "Lost / Waiting Here" Section -->
+                    <div class="gh-ping-panel" style="margin-top: 1.35rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                            <h4 style="margin: 0; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem; color: #0284c7;">
+                                <i class="fa-solid fa-satellite-dish"></i> "Lost / Waiting Here" Location Broadcast
+                            </h4>
+                            <span id="gh-ping-status" style="font-size: 0.72rem; color: var(--text-secondary);"></span>
+                        </div>
+                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0 0 0.6rem 0;">
+                            Taking a break, toddler walking slow, or separated? Broadcast your GPS position with a note to everyone on the trail map.
+                        </p>
+
+                        <!-- Quick Note Preset Chips -->
+                        <div class="gh-ping-presets" id="gh-ping-presets">
+                            <button type="button" class="gh-preset-chip active" data-note="Taking a snack break 🥪">🥪 Snack break</button>
+                            <button type="button" class="gh-preset-chip" data-note="Toddler walking slow - take your time! 🚸">🚸 Toddler pace</button>
+                            <button type="button" class="gh-preset-chip" data-note="Waiting at the trail fork 🧭">🧭 Waiting at fork</button>
+                            <button type="button" class="gh-preset-chip" data-note="Separated / Lost - waiting here 🆘">🆘 Need help / lost</button>
+                        </div>
+
+                        <div style="display: flex; gap: 0.5rem; margin-top: 0.6rem;">
+                            <input type="text" id="gh-ping-custom-note" class="form-input" placeholder="Or custom note (e.g. at the fountain)..." maxlength="120">
+                            <button type="button" id="gh-btn-broadcast-ping" class="btn btn-primary" style="background: linear-gradient(135deg, #0284c7, #0369a1); border: none; white-space: nowrap; font-size: 0.82rem; padding: 0 0.9rem; font-weight: 700;">
+                                <i class="fa-solid fa-tower-broadcast"></i> Ping Group
+                            </button>
+                        </div>
+                        <div id="gh-ping-feedback" style="display: none; margin-top: 0.4rem; font-size: 0.75rem;"></div>
+                    </div>
+
+                    <!-- Live Member Pins / Recent Pings Feed -->
+                    <div style="margin-top: 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+                            <h4 style="margin: 0; font-size: 0.88rem; display: flex; align-items: center; gap: 0.4rem;">
+                                <i class="fa-solid fa-bullhorn"></i> Live Group Activity &amp; Pings
+                            </h4>
+                            <button type="button" id="gh-btn-show-pins-map" class="btn btn-outline" style="padding: 0.2rem 0.55rem; font-size: 0.73rem; border-color: #0284c7; color: #0284c7;">
+                                <i class="fa-solid fa-map-location-dot"></i> View on Map &rarr;
+                            </button>
+                        </div>
+                        <div id="gh-pings-feed" class="gh-pings-feed">
+                            <div style="padding: 0.8rem; text-align: center; color: var(--text-secondary); font-size: 0.8rem;">
+                                No location pings yet. Families can tap "Ping Group" anytime they take a break!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer class="app-footer">
@@ -614,6 +732,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=26"></script>
+    <script src="app.js?v=27"></script>
 </body>
 </html>

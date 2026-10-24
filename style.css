@@ -2447,6 +2447,328 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: #b91c1c;
 }
 
+/* ========================================================
+   Phase 4: Live Trail Radar & Milestone Check-Ins Styles
+   ======================================================== */
+
+.gh-radar-modal-content {
+    max-width: 650px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.gh-radar-sync-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #059669;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.radar-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    display: inline-block;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0.5);
+    animation: radar-pulse 2s infinite;
+}
+
+@keyframes radar-pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+.gh-member-bar {
+    background: var(--bg-secondary, #f8fafc);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: 0.75rem 0.9rem;
+}
+
+/* Milestone Step Timeline */
+.gh-milestones-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-left: 0.5rem;
+}
+
+.gh-milestones-list::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 25px;
+    left: 20px;
+    width: 3px;
+    background: linear-gradient(to bottom, #2a9d8f, #0284c7);
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.gh-milestone-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    z-index: 2;
+}
+
+.gh-milestone-marker {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--bg-card, #ffffff);
+    border: 2.5px solid #2a9d8f;
+    color: #2a9d8f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+}
+
+.gh-milestone-item.checked-in .gh-milestone-marker {
+    background: #2a9d8f;
+    color: #ffffff;
+    border-color: #264653;
+}
+
+.gh-milestone-card {
+    flex: 1;
+    background: var(--bg-card, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: 0.75rem 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.gh-milestone-card:hover {
+    border-color: #2a9d8f;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.gh-milestone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.gh-milestone-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary, #0f172a);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.gh-milestone-km {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #2a9d8f;
+    background: rgba(42, 157, 143, 0.1);
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.gh-milestone-desc {
+    font-size: 0.78rem;
+    color: var(--text-secondary, #64748b);
+    margin: 3px 0 0.5rem 0;
+    line-height: 1.35;
+}
+
+.gh-milestone-checkins-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border-color, #e2e8f0);
+}
+
+.gh-checkin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.73rem;
+    font-weight: 700;
+    color: #065f46;
+    background: #d1fae5;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.gh-checkin-btn {
+    padding: 0.32rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #2a9d8f;
+    color: #2a9d8f;
+    background: transparent;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.gh-checkin-btn:hover {
+    background: #2a9d8f;
+    color: #ffffff;
+}
+
+.gh-checkin-btn.is-checked {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #10b981;
+}
+
+/* Radar Location Broadcast Panel */
+.gh-ping-panel {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.06), rgba(56, 189, 248, 0.04));
+    border: 1.5px solid rgba(2, 132, 199, 0.3);
+    border-radius: var(--radius-md, 10px);
+    padding: 0.85rem;
+}
+
+.gh-ping-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.gh-preset-chip {
+    background: var(--bg-card, #ffffff);
+    border: 1px solid var(--border-color, #cbd5e1);
+    color: var(--text-primary, #1e293b);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.28rem 0.65rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.gh-preset-chip:hover {
+    border-color: #0284c7;
+    color: #0284c7;
+}
+
+.gh-preset-chip.active {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+}
+
+/* Pings Feed */
+.gh-pings-feed {
+    background: var(--bg-secondary, #f8fafc);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.gh-ping-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.gh-ping-item:last-child {
+    border-bottom: none;
+}
+
+.gh-ping-author {
+    font-weight: 700;
+    color: #0284c7;
+}
+
+.gh-ping-time {
+    font-size: 0.7rem;
+    color: var(--text-secondary, #64748b);
+}
+
+.gh-ping-text {
+    font-size: 0.78rem;
+    color: var(--text-primary, #0f172a);
+    margin-top: 2px;
+}
+
+/* Custom Leaflet Map Pin for Member Radar */
+.radar-map-beacon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.radar-beacon-center {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #0284c7;
+    border: 2.5px solid #ffffff;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    z-index: 2;
+}
+
+.radar-beacon-ripple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(2, 132, 199, 0.4);
+    animation: beacon-ripple 1.8s infinite;
+    z-index: 1;
+}
+
+@keyframes beacon-ripple {
+    0% {
+        transform: scale(0.6);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
 
 
 

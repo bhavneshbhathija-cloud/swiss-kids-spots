@@ -10,6 +10,27 @@ const PUBLIC_DIR = __dirname;
 const DATA_DIR = process.env.DATA_DIR || (fs.existsSync('/opt/render/project/src/data') ? '/opt/render/project/src/data' : PUBLIC_DIR);
 
 const harvestedPath = path.join(DATA_DIR, 'spots_harvested.json');
+const groupCheckinsPath = path.join(DATA_DIR, 'group_checkins.json');
+
+function loadGroupCheckins() {
+    if (fs.existsSync(groupCheckinsPath)) {
+        try {
+            const data = JSON.parse(fs.readFileSync(groupCheckinsPath, 'utf-8'));
+            if (data && typeof data === 'object' && data.groups) return data;
+        } catch (e) {
+            console.error('Error reading group_checkins.json:', e);
+        }
+    }
+    return { groups: {} };
+}
+
+function saveGroupCheckins(data) {
+    try {
+        fs.writeFileSync(groupCheckinsPath, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (e) {
+        console.error('Error writing group_checkins.json:', e);
+    }
+}
 
 // Ensure spots_harvested.json in DATA_DIR is up-to-date with repo version
 const repoHarvestedPath = path.join(PUBLIC_DIR, 'spots_harvested.json');
@@ -580,6 +601,168 @@ ${coords.map((pt, i) => {
         return;
     }
 
+    // API Endpoint: Group Hike Live Radar & Milestone Check-Ins
+    if (pathname.startsWith('/api/group/')) {
+        // Handle CORS preflight
+        if (req.method === 'OPTIONS') {
+            res.writeHead(204, {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type'
+            });
+            return res.end();
+        }
+
+        const pathWithoutPrefix = pathname.replace(/^\/api\/group\/?/, '');
+        const parts = pathWithoutPrefix.split('/').filter(Boolean);
+        const groupId = decodeURIComponent(parts[0] || 'default').trim();
+        const action = (parts[1] || 'state').toLowerCase();
+
+        const store = loadGroupCheckins();
+        if (!store.groups) store.groups = {};
+        if (!store.groups[groupId]) {
+            store.groups[groupId] = {
+                groupId,
+                spotId: '',
+                date: '',
+                checkins: [],
+                pings: [],
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+        }
+        const group = store.groups[groupId];
+
+        if (req.method === 'GET' && action === 'state') {
+            res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'no-cache, no-store, must-revalidate'
+            });
+            return res.end(JSON.stringify({ success: true, group }));
+        }
+
+        if (req.method === 'POST' && action === 'checkin') {
+            let body = '';
+            req.on('data', chunk => body += chunk);
+            req.on('end', () => {
+                try {
+                    const data = JSON.parse(body || '{}');
+                    const memberName = (data.memberName || 'Family Member').trim().slice(0, 50);
+                    const milestoneId = (data.milestoneId || 'm0').trim();
+                    const milestoneTitle = (data.milestoneTitle || 'Milestone').trim().slice(0, 100);
+                    const note = (data.note || '').trim().slice(0, 200);
+                    const spotId = (data.spotId || '').trim();
+                    if (spotId && !group.spotId) group.spotId = spotId;
+
+                    const now = new Date();
+                    const timeStr = now.toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit' });
+                    const timestamp = data.timestamp || Date.now();
+
+                    const entry = {
+                        id: `chk-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+                        memberName,
+                        milestoneId,
+                        milestoneTitle,
+                        note,
+                        timestamp,
+                        timeStr
+                    };
+
+                    const existingIdx = group.checkins.findIndex(c => c.memberName.toLowerCase() === memberName.toLowerCase() && c.milestoneId === milestoneId);
+                    if (existingIdx !== -1) {
+                        group.checkins[existingIdx] = entry;
+                    } else {
+                        group.checkins.push(entry);
+                    }
+
+                    group.updatedAt = now.toISOString();
+                    saveGroupCheckins(store);
+                    console.log(`[Group Radar] Check-in for group ${groupId}: ${memberName} @ ${milestoneId} ("${milestoneTitle}") [${timeStr}]`);
+
+                    res.writeHead(200, {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    });
+                    return res.end(JSON.stringify({ success: true, group, entry }));
+                } catch (e) {
+                    console.error('[Group Radar] Error processing checkin:', e);
+                    res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                    return res.end(JSON.stringify({ error: 'Failed to record checkin' }));
+                }
+            });
+            return;
+        }
+
+        if (req.method === 'POST' && action === 'ping') {
+            let body = '';
+            req.on('data', chunk => body += chunk);
+            req.on('end', () => {
+                try {
+                    const data = JSON.parse(body || '{}');
+                    const memberName = (data.memberName || 'Family Member').trim().slice(0, 50);
+                    const lat = parseFloat(data.lat);
+                    const lng = parseFloat(data.lng);
+                    const note = (data.note || 'Active on trail').trim().slice(0, 200);
+                    const spotId = (data.spotId || '').trim();
+                    if (spotId && !group.spotId) group.spotId = spotId;
+
+                    if (isNaN(lat) || isNaN(lng)) {
+                        res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                        return res.end(JSON.stringify({ error: 'Invalid coordinates' }));
+                    }
+
+                    const now = new Date();
+                    const timeStr = now.toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit' });
+                    const timestamp = data.timestamp || Date.now();
+
+                    const entry = {
+                        id: `png-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+                        memberName,
+                        lat,
+                        lng,
+                        accuracy: data.accuracy || null,
+                        note,
+                        timestamp,
+                        timeStr
+                    };
+
+                    group.pings.unshift(entry);
+                    if (group.pings.length > 30) {
+                        group.pings = group.pings.slice(0, 30);
+                    }
+
+                    group.updatedAt = now.toISOString();
+                    saveGroupCheckins(store);
+                    console.log(`[Group Radar] Ping for group ${groupId}: ${memberName} (${lat.toFixed(4)}, ${lng.toFixed(4)}) - "${note}" [${timeStr}]`);
+
+                    res.writeHead(200, {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    });
+                    return res.end(JSON.stringify({ success: true, group, entry }));
+                } catch (e) {
+                    console.error('[Group Radar] Error processing ping:', e);
+                    res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                    return res.end(JSON.stringify({ error: 'Failed to record ping' }));
+                }
+            });
+            return;
+        }
+
+        if (req.method === 'POST' && action === 'clear') {
+            group.checkins = [];
+            group.pings = [];
+            group.updatedAt = new Date().toISOString();
+            saveGroupCheckins(store);
+            res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            return res.end(JSON.stringify({ success: true, group }));
+        }
+
+        res.writeHead(404, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        return res.end(JSON.stringify({ error: 'Unknown group action' }));
+    }
+
     // API Endpoint: Dynamic Image Scraper and Spot Enricher
     if (pathname === '/api/scrape-images') {
         const action = parsedUrl.searchParams.get('action');
@@ -866,6 +1049,9 @@ ${coords.map((pt, i) => {
         isDataFile = true;
     } else if (pathname === '/feedback.json') {
         filePath = path.join(DATA_DIR, 'feedback.json');
+        isDataFile = true;
+    } else if (pathname === '/group_checkins.json') {
+        filePath = path.join(DATA_DIR, 'group_checkins.json');
         isDataFile = true;
     } else {
         filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);

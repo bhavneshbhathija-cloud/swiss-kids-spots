@@ -409,13 +409,24 @@ async function loadSpots() {
         const found = spots.find(s => s.id === targetHike);
         if (found) {
             setTimeout(() => {
+                const groupId = urlParams.get('groupId') || '';
+                const isGroup = urlParams.get('group') === '1' || !!groupId;
+                const openRadarDirectly = urlParams.get('radar') === '1' || (isGroup && !!groupId);
+
                 openDetails(targetHike, {
-                    groupPlan: urlParams.get('group') === '1',
+                    groupPlan: isGroup,
+                    groupId: groupId,
                     date: urlParams.get('date'),
                     time: urlParams.get('time'),
                     from: urlParams.get('from'),
                     meetingPoint: urlParams.get('meetingPoint')
                 });
+
+                if (openRadarDirectly) {
+                    setTimeout(() => {
+                        openGroupRadar(targetHike, groupId);
+                    }, 400);
+                }
             }, 300);
         }
     }
@@ -1524,6 +1535,9 @@ async function openDetails(spotId, options = {}) {
                 <button type="button" class="btn btn-primary" onclick="openGroupHikePlanner('${spot.id}')" title="Coordinate travel, live SBB trains &amp; WhatsApp invite" style="padding: 0.45rem 0.9rem; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; background: linear-gradient(135deg, #2a9d8f, #264653); border: none; color: white; cursor: pointer;">
                     <i class="fa-solid fa-users"></i> Plan Group Hike
                 </button>
+                <button type="button" class="btn btn-outline" onclick="openGroupRadar('${spot.id}')" title="Live Milestone Check-Ins &amp; Trail Radar" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border-color: #2a9d8f; color: #2a9d8f; cursor: pointer;">
+                    <i class="fa-solid fa-tower-broadcast"></i> Trail Radar
+                </button>
                 ${(() => {
                     const stUrls = getSwisstopoUrlsForHike(spot);
                     if (!stUrls) return '';
@@ -1809,9 +1823,12 @@ async function openDetails(spotId, options = {}) {
                     <strong>⏰ Meetup:</strong> ${options.time || '09:00'} at ${options.meetingPoint || spot.startStop || spot.city || spot.name}<br>
                     <strong>🚆 Train &amp; 🚗 Car:</strong> Departure times run backwards so you arrive on time from ${options.from || 'Zürich HB'}!
                 </p>
-                <div style="margin-top: 0.5rem;">
-                    <button type="button" class="btn btn-outline" onclick="openGroupHikePlanner('${spot.id}', { date: '${options.date || ''}', time: '${options.time || ''}', from: '${options.from || ''}', meetingPoint: '${escapeHtml(options.meetingPoint || '')}' })" style="padding: 0.25rem 0.65rem; font-size: 0.75rem; border-color: #2a9d8f; color: #2a9d8f; font-weight: 700; border-radius: 6px;">
-                        <i class="fa-solid fa-sliders"></i> Adjust Group Travel &amp; Times
+                <div style="margin-top: 0.6rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button type="button" class="btn btn-primary" onclick="openGroupRadar('${spot.id}', '${options.groupId || ''}')" style="padding: 0.35rem 0.75rem; font-size: 0.76rem; background: linear-gradient(135deg, #2a9d8f, #264653); border: none; color: white; font-weight: 700; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem;">
+                        <i class="fa-solid fa-tower-broadcast"></i> Open Live Radar &amp; Check-Ins
+                    </button>
+                    <button type="button" class="btn btn-outline" onclick="openGroupHikePlanner('${spot.id}', { date: '${options.date || ''}', time: '${options.time || ''}', from: '${options.from || ''}', meetingPoint: '${escapeHtml(options.meetingPoint || '')}', groupId: '${options.groupId || ''}' })" style="padding: 0.35rem 0.75rem; font-size: 0.76rem; border-color: #2a9d8f; color: #2a9d8f; font-weight: 700; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem;">
+                        <i class="fa-solid fa-sliders"></i> Travel &amp; Times
                     </button>
                 </div>
             </div>
@@ -2940,8 +2957,16 @@ window.openGroupHikePlanner = function(spotId, prefill = {}) {
 
     // Set Date input (default to next Saturday or prefill)
     const dateInput = document.getElementById('gh-date');
+    const selectedDate = prefill.date || getNextWeekendDay(6);
     if (dateInput) {
-        dateInput.value = prefill.date || getNextWeekendDay(6);
+        dateInput.value = selectedDate;
+    }
+
+    if (prefill.groupId) {
+        window.currentGroupHikeGroupId = prefill.groupId;
+    } else {
+        const dateStr = selectedDate.replace(/-/g, '');
+        window.currentGroupHikeGroupId = 'gh-' + spot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + dateStr;
     }
 
     // Set Target Meetup Time input (default 09:00 or prefill)
@@ -3423,7 +3448,10 @@ ${info.operatorUrl ? `• Lift Tariffs & Details: ${info.operatorUrl}` : ''}`;
         ? 'https://swissforkids.ch'
         : window.location.origin;
 
-    const groupUrl = `${canonicalHost}/?hike=${encodeURIComponent(spot.id)}&group=1&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
+    const activeGroupId = window.currentGroupHikeGroupId || ('gh-' + spot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + (dateVal ? dateVal.replace(/-/g, '') : 'weekend'));
+    window.currentGroupHikeGroupId = activeGroupId;
+
+    const groupUrl = `${canonicalHost}/?hike=${encodeURIComponent(spot.id)}&group=1&groupId=${encodeURIComponent(activeGroupId)}&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
 
     const isStroller = (spot.strollerFriendly === 'yes' || spot.strollerFriendly === true || spot.stroller === 'yes' || spot.stroller === true);
     const strollerText = isStroller ? '✅ Stroller Friendly' : '❌ Not for Strollers (Carrier recommended)';
@@ -3455,7 +3483,10 @@ ${travelSections.join('\n\n')}
 ${spot.ascentM ? `• Ascent: +${spot.ascentM}m / Descent: -${spot.descentM || spot.ascentM}m` : ''}
 
 🗺️ *Interactive Trail Map, GPS & Details:*
-${groupUrl}`;
+${groupUrl}
+
+📡 *Live Group Trail Radar & Check-Ins (No App Needed):*
+${groupUrl}&radar=1`;
 }
 
 function updateGroupHikePreview() {
@@ -3464,6 +3495,484 @@ function updateGroupHikePreview() {
         previewEl.textContent = generateGroupHikeInviteText();
     }
 }
+
+// ========================================================
+// Phase 4: Live Trail Radar & Milestone Check-Ins Engine
+// ========================================================
+
+let currentGroupRadarSpot = null;
+let currentGroupRadarId = null;
+let currentGroupRadarData = { checkins: [], pings: [] };
+let currentRadarPollTimer = null;
+let groupRadarMapLayer = null;
+
+function getStoredMemberName() {
+    let name = localStorage.getItem('sfk_family_name');
+    if (!name || !name.trim()) {
+        name = 'Family ' + (Math.floor(Math.random() * 89) + 10);
+    }
+    return name.trim();
+}
+
+function setStoredMemberName(name) {
+    if (!name || !name.trim()) return;
+    localStorage.setItem('sfk_family_name', name.trim());
+}
+
+function formatTimeAgo(ts) {
+    if (!ts) return '';
+    const diffSec = Math.floor((Date.now() - ts) / 1000);
+    if (diffSec < 45) return 'just now';
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return `${diffMin}m ago`;
+    const diffH = Math.floor(diffMin / 60);
+    if (diffH < 24) return `${diffH}h ${diffMin % 60}m ago`;
+    return 'earlier today';
+}
+
+function generateHikeMilestones(spot) {
+    if (!spot) return [];
+    const totalKm = spot.distanceKm || 5;
+    const milestones = [];
+
+    // Milestone 0: Start
+    milestones.push({
+        id: 'm0',
+        title: 'Start Trailhead',
+        desc: spot.startStop || spot.address || spot.name || 'Start Trailhead',
+        km: 0,
+        icon: 'fa-person-hiking'
+    });
+
+    let rests = (spot.restaurants || []).map(r => r.replace(/\s*\([^)]*\)/g, '').trim()).filter(Boolean);
+    if (rests.length > 2 && spot.startStop && rests[0].toLowerCase().includes(spot.startStop.toLowerCase().split(' ')[0])) {
+        rests = rests.slice(1);
+    }
+    const hasPeak = spot.maxElevationM && spot.maxElevationM > (spot.minElevationM || 0) + 120;
+
+    if (rests.length >= 2) {
+        milestones.push({
+            id: 'm1',
+            title: 'Hut / Viewpoint',
+            desc: rests[0],
+            km: Math.round(totalKm * 0.35 * 10) / 10,
+            icon: 'fa-mug-hot'
+        });
+        milestones.push({
+            id: 'm2',
+            title: hasPeak ? 'Peak / Rest Stop' : 'Mountain Inn / Rest',
+            desc: rests[1],
+            km: Math.round(totalKm * 0.70 * 10) / 10,
+            icon: hasPeak ? 'fa-mountain' : 'fa-utensils'
+        });
+    } else if (rests.length === 1) {
+        milestones.push({
+            id: 'm1',
+            title: 'Mountain Hut / Rest Stop',
+            desc: rests[0],
+            km: Math.round(totalKm * 0.5 * 10) / 10,
+            icon: 'fa-utensils'
+        });
+    } else if (hasPeak) {
+        milestones.push({
+            id: 'm1',
+            title: 'Summit / High Point',
+            desc: `${spot.maxElevationM} m altitude peak`,
+            km: Math.round(totalKm * 0.5 * 10) / 10,
+            icon: 'fa-mountain'
+        });
+    } else {
+        milestones.push({
+            id: 'm1',
+            title: 'Trail Midpoint',
+            desc: 'Scenic Break & Snack Spot',
+            km: Math.round(totalKm * 0.5 * 10) / 10,
+            icon: 'fa-mountain-sun'
+        });
+    }
+
+    // Finish
+    milestones.push({
+        id: 'm_finish',
+        title: 'Trail Finish',
+        desc: spot.endStop || spot.startStop || 'Trail Finish Destination',
+        km: totalKm,
+        icon: 'fa-flag-checkered'
+    });
+
+    return milestones;
+}
+
+window.openGroupRadar = async function(spotId, customGroupId = null) {
+    const spot = spots.find(s => s.id === spotId) || currentGroupHikeSpot;
+    if (!spot) return;
+
+    currentGroupRadarSpot = spot;
+
+    // Determine groupId
+    if (customGroupId && customGroupId.trim()) {
+        currentGroupRadarId = customGroupId.trim();
+    } else if (window.currentGroupHikeGroupId) {
+        currentGroupRadarId = window.currentGroupHikeGroupId;
+    } else {
+        const dateInput = document.getElementById('gh-date');
+        const dateStr = dateInput ? dateInput.value.replace(/-/g, '') : 'today';
+        currentGroupRadarId = 'gh-' + spot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + dateStr;
+    }
+    window.currentGroupHikeGroupId = currentGroupRadarId;
+
+    const modal = document.getElementById('group-radar-modal');
+    if (!modal) return;
+
+    const titleEl = document.getElementById('gh-radar-modal-title');
+    const subEl = document.getElementById('gh-radar-modal-subtitle');
+    if (titleEl) {
+        titleEl.innerHTML = `<i class="fa-solid fa-tower-broadcast" style="color: #2a9d8f;"></i> Live Radar: ${escapeHtml(spot.name)}`;
+    }
+    if (subEl) {
+        subEl.textContent = `Group ID: ${currentGroupRadarId} • ${spot.distanceKm || '?'} km • ${spot.durationText || ''}`;
+    }
+
+    // Family Member Name input
+    const memberInput = document.getElementById('gh-member-name-input');
+    if (memberInput) {
+        memberInput.value = getStoredMemberName();
+    }
+
+    modal.style.display = 'flex';
+
+    // Render initial milestones from cached state if any
+    const cached = localStorage.getItem('sfk_radar_' + currentGroupRadarId);
+    if (cached) {
+        try {
+            currentGroupRadarData = JSON.parse(cached);
+        } catch (e) {}
+    }
+    renderGroupRadarUI();
+
+    // Fetch live state from server
+    await fetchGroupRadarState();
+
+    // Start 20s polling for battery-friendly live updates while open
+    if (currentRadarPollTimer) clearInterval(currentRadarPollTimer);
+    currentRadarPollTimer = setInterval(fetchGroupRadarState, 20000);
+};
+
+window.closeGroupRadarModal = function() {
+    const modal = document.getElementById('group-radar-modal');
+    if (modal) modal.style.display = 'none';
+    if (currentRadarPollTimer) {
+        clearInterval(currentRadarPollTimer);
+        currentRadarPollTimer = null;
+    }
+};
+
+async function fetchGroupRadarState() {
+    if (!currentGroupRadarId) return;
+    const syncStatusEl = document.getElementById('gh-radar-sync-status');
+    try {
+        const res = await fetch(`/api/group/${encodeURIComponent(currentGroupRadarId)}/state`);
+        if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.group) {
+                currentGroupRadarData = data.group;
+                localStorage.setItem('sfk_radar_' + currentGroupRadarId, JSON.stringify(data.group));
+                renderGroupRadarUI();
+                renderRadarMapPins(data.group.pings || []);
+                if (syncStatusEl) {
+                    syncStatusEl.innerHTML = '<span class="radar-dot"></span> Live Sync';
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('Group radar sync error (offline fallback in use):', e);
+        if (syncStatusEl) {
+            syncStatusEl.innerHTML = '<i class="fa-solid fa-cloud-arrow-down" style="color: #f59e0b;"></i> Offline Cache';
+        }
+    }
+}
+
+function renderGroupRadarUI() {
+    if (!currentGroupRadarSpot) return;
+    const milestones = generateHikeMilestones(currentGroupRadarSpot);
+    const container = document.getElementById('gh-milestones-list');
+    const summaryEl = document.getElementById('gh-milestones-summary');
+    if (!container) return;
+
+    const myName = getStoredMemberName().toLowerCase();
+    const checkins = currentGroupRadarData.checkins || [];
+
+    // Milestone summary text
+    if (summaryEl) {
+        const completedCount = milestones.filter(m => checkins.some(c => c.milestoneId === m.id)).length;
+        summaryEl.innerHTML = `<i class="fa-solid fa-check-double" style="color: #2a9d8f;"></i> ${completedCount} of ${milestones.length} checkpoints reached`;
+    }
+
+    container.innerHTML = milestones.map((m) => {
+        const stageCheckins = checkins.filter(c => c.milestoneId === m.id);
+        const isMyCheckin = stageCheckins.some(c => (c.memberName || '').toLowerCase() === myName);
+        const isCompleted = stageCheckins.length > 0;
+
+        return `
+            <div class="gh-milestone-item ${isCompleted ? 'checked-in' : ''}">
+                <div class="gh-milestone-marker">
+                    <i class="fa-solid ${m.icon}"></i>
+                </div>
+                <div class="gh-milestone-card">
+                    <div class="gh-milestone-header">
+                        <div class="gh-milestone-title">
+                            <span>${escapeHtml(m.title)}</span>
+                        </div>
+                        <span class="gh-milestone-km">${m.km} km</span>
+                    </div>
+                    <div class="gh-milestone-desc">${escapeHtml(m.desc)}</div>
+
+                    <div class="gh-milestone-checkins-row">
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center;">
+                            ${stageCheckins.length > 0 ? stageCheckins.map(c => `
+                                <span class="gh-checkin-badge" title="${c.note ? escapeHtml(c.note) : ''}">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <strong>${escapeHtml(c.memberName)}</strong>
+                                    <span style="opacity: 0.8; font-size: 0.68rem;">(${c.timeStr || formatTimeAgo(c.timestamp)})</span>
+                                </span>
+                            `).join('') : `<span style="font-size: 0.73rem; color: var(--text-secondary); font-style: italic;">Awaiting arrival...</span>`}
+                        </div>
+                        <div>
+                            <button type="button" class="gh-checkin-btn ${isMyCheckin ? 'is-checked' : ''}" onclick="handleMilestoneCheckIn('${m.id}', '${escapeHtml(m.title)}')" title="One-tap check-in">
+                                <i class="fa-solid ${isMyCheckin ? 'fa-check' : 'fa-location-crosshairs'}"></i>
+                                ${isMyCheckin ? 'Checked In' : 'Arrived Here'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    renderGroupPings(currentGroupRadarData.pings || []);
+}
+
+function renderGroupPings(pings) {
+    const feed = document.getElementById('gh-pings-feed');
+    if (!feed) return;
+
+    if (!pings || pings.length === 0) {
+        feed.innerHTML = `
+            <div style="padding: 0.8rem; text-align: center; color: var(--text-secondary); font-size: 0.8rem;">
+                No location pings yet. Families can tap "Ping Group" anytime they take a break!
+            </div>
+        `;
+        return;
+    }
+
+    feed.innerHTML = pings.slice(0, 15).map(p => {
+        return `
+            <div class="gh-ping-item">
+                <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 0.45rem;">
+                        <span class="gh-ping-author"><i class="fa-solid fa-person-walking-arrow-right"></i> ${escapeHtml(p.memberName)}</span>
+                        <span class="gh-ping-time">${p.timeStr || ''} • ${formatTimeAgo(p.timestamp)}</span>
+                    </div>
+                    <div class="gh-ping-text">${escapeHtml(p.note || 'Active on trail')}</div>
+                </div>
+                ${p.lat && p.lng ? `
+                <div>
+                    <button type="button" class="btn btn-outline" onclick="focusPingOnMap(${p.lat}, ${p.lng}, '${escapeHtml(p.memberName)}', '${escapeHtml(p.note)}')" style="padding: 0.25rem 0.55rem; font-size: 0.72rem; border-color: #0284c7; color: #0284c7; white-space: nowrap; border-radius: 6px;">
+                        <i class="fa-solid fa-crosshairs"></i> Map &rarr;
+                    </button>
+                </div>` : ''}
+            </div>
+        `;
+    }).join('');
+}
+
+window.handleMilestoneCheckIn = async function(milestoneId, milestoneTitle) {
+    if (!currentGroupRadarId || !currentGroupRadarSpot) return;
+    const memberName = getStoredMemberName();
+
+    // Optimistic update
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit' });
+    const checkins = currentGroupRadarData.checkins || [];
+    const existingIdx = checkins.findIndex(c => (c.memberName || '').toLowerCase() === memberName.toLowerCase() && c.milestoneId === milestoneId);
+    const mockEntry = {
+        id: `chk-local-${Date.now()}`,
+        memberName,
+        milestoneId,
+        milestoneTitle,
+        note: '',
+        timestamp: Date.now(),
+        timeStr
+    };
+    if (existingIdx !== -1) {
+        checkins[existingIdx] = mockEntry;
+    } else {
+        checkins.push(mockEntry);
+    }
+    currentGroupRadarData.checkins = checkins;
+    renderGroupRadarUI();
+
+    try {
+        const res = await fetch(`/api/group/${encodeURIComponent(currentGroupRadarId)}/checkin`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                memberName,
+                milestoneId,
+                milestoneTitle,
+                spotId: currentGroupRadarSpot.id,
+                timestamp: Date.now()
+            })
+        });
+        if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.group) {
+                currentGroupRadarData = data.group;
+                localStorage.setItem('sfk_radar_' + currentGroupRadarId, JSON.stringify(data.group));
+                renderGroupRadarUI();
+            }
+        }
+    } catch (e) {
+        console.warn('Check-in saved locally, will sync when online:', e);
+    }
+};
+
+window.handleBroadcastPing = function() {
+    if (!currentGroupRadarId || !currentGroupRadarSpot) return;
+    const memberName = getStoredMemberName();
+    const customInput = document.getElementById('gh-ping-custom-note');
+    const activeChip = document.querySelector('.gh-preset-chip.active');
+
+    let note = (customInput && customInput.value.trim()) ? customInput.value.trim() : (activeChip ? activeChip.dataset.note : 'Active on trail');
+
+    const feedbackEl = document.getElementById('gh-ping-feedback');
+    const btn = document.getElementById('gh-btn-broadcast-ping');
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Getting GPS...';
+    }
+
+    const sendPing = async (lat, lng, accuracy = null) => {
+        try {
+            const res = await fetch(`/api/group/${encodeURIComponent(currentGroupRadarId)}/ping`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    memberName,
+                    lat,
+                    lng,
+                    accuracy,
+                    note,
+                    spotId: currentGroupRadarSpot.id,
+                    timestamp: Date.now()
+                })
+            });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && data.group) {
+                    currentGroupRadarData = data.group;
+                    localStorage.setItem('sfk_radar_' + currentGroupRadarId, JSON.stringify(data.group));
+                    renderGroupRadarUI();
+                    renderRadarMapPins(data.group.pings || []);
+                    if (feedbackEl) {
+                        feedbackEl.innerHTML = `<span style="color: #10b981; font-weight: 700;"><i class="fa-solid fa-check"></i> Location &amp; note broadcast to group map!</span>`;
+                        feedbackEl.style.display = 'block';
+                        setTimeout(() => { if (feedbackEl) feedbackEl.style.display = 'none'; }, 4000);
+                    }
+                    if (customInput) customInput.value = '';
+                }
+            }
+        } catch (e) {
+            console.error('Failed to post ping:', e);
+            if (feedbackEl) {
+                feedbackEl.innerHTML = `<span style="color: #ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> Network error, please try again.</span>`;
+                feedbackEl.style.display = 'block';
+            }
+        } finally {
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-tower-broadcast"></i> Ping Group';
+            }
+        }
+    };
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                sendPing(pos.coords.latitude, pos.coords.longitude, pos.coords.accuracy);
+            },
+            (err) => {
+                console.warn('Geolocation unavailable, fallback to trailhead:', err);
+                sendPing(currentGroupRadarSpot.lat, currentGroupRadarSpot.lng, null);
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+        );
+    } else {
+        sendPing(currentGroupRadarSpot.lat, currentGroupRadarSpot.lng, null);
+    }
+};
+
+function renderRadarMapPins(pings) {
+    if (!activeMap || !pings || pings.length === 0) return;
+
+    if (!groupRadarMapLayer) {
+        groupRadarMapLayer = L.layerGroup().addTo(activeMap);
+    } else {
+        groupRadarMapLayer.clearLayers();
+    }
+
+    const seenMembers = new Set();
+    pings.forEach(p => {
+        if (!p.lat || !p.lng) return;
+        const lowerName = (p.memberName || '').toLowerCase();
+        if (seenMembers.has(lowerName)) return;
+        seenMembers.add(lowerName);
+
+        const icon = L.divIcon({
+            className: 'radar-map-beacon',
+            html: '<div class="radar-beacon-ripple"></div><div class="radar-beacon-center"></div>',
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+        });
+
+        const marker = L.marker([p.lat, p.lng], { icon }).addTo(groupRadarMapLayer);
+        marker.bindPopup(`
+            <div style="font-family: inherit; font-size: 0.82rem; min-width: 160px;">
+                <div style="font-weight: 800; color: #0284c7; display: flex; align-items: center; gap: 0.35rem;">
+                    <i class="fa-solid fa-tower-broadcast"></i> ${escapeHtml(p.memberName)}
+                </div>
+                <div style="margin: 3px 0; color: #1e293b; font-weight: 600;">${escapeHtml(p.note || 'Active on trail')}</div>
+                <div style="font-size: 0.7rem; color: #64748b;">${p.timeStr || ''} (${formatTimeAgo(p.timestamp)})</div>
+            </div>
+        `);
+    });
+}
+
+window.focusPingOnMap = function(lat, lng, memberName, note) {
+    closeGroupRadarModal();
+    const detailModal = document.getElementById('spot-detail-modal');
+    if (detailModal) detailModal.style.display = 'none';
+
+    const mapPanel = document.getElementById('map-panel');
+    if (mapPanel) {
+        mapPanel.style.display = 'block';
+    }
+
+    if (activeMap) {
+        setTimeout(() => {
+            activeMap.invalidateSize();
+            activeMap.flyTo([lat, lng], 15, { duration: 1.2 });
+            if (groupRadarMapLayer) {
+                groupRadarMapLayer.eachLayer(layer => {
+                    const ll = layer.getLatLng();
+                    if (Math.abs(ll.lat - lat) < 0.0002 && Math.abs(ll.lng - lng) < 0.0002) {
+                        layer.openPopup();
+                    }
+                });
+            }
+        }, 150);
+    }
+};
 
 // --- Event Listeners Initialization ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -3643,6 +4152,7 @@ document.addEventListener("DOMContentLoaded", () => {
             addSpotModal.style.display = "none";
             detailModal.style.display = "none";
             feedbackModal.style.display = "none";
+            closeGroupRadarModal();
         });
     });
 
@@ -3651,6 +4161,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === addSpotModal) addSpotModal.style.display = "none";
         if (e.target === detailModal) detailModal.style.display = "none";
         if (e.target === feedbackModal) feedbackModal.style.display = "none";
+        const radarModal = document.getElementById("group-radar-modal");
+        if (e.target === radarModal) closeGroupRadarModal();
     });
 
     // Add Spot Form Submission
@@ -3827,12 +4339,78 @@ document.addEventListener("DOMContentLoaded", () => {
             const timeVal = ghTimeInput ? ghTimeInput.value : '';
             const fromStation = ghFromInput ? ghFromInput.value : '';
             const meetingPoint = ghMeetingInput ? ghMeetingInput.value : '';
-            const link = `${canonicalHost}/?hike=${encodeURIComponent(currentGroupHikeSpot.id)}&group=1&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
+            const activeGroupId = window.currentGroupHikeGroupId || ('gh-' + currentGroupHikeSpot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + (dateVal ? dateVal.replace(/-/g, '') : 'weekend'));
+            const link = `${canonicalHost}/?hike=${encodeURIComponent(currentGroupHikeSpot.id)}&group=1&groupId=${encodeURIComponent(activeGroupId)}&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
             try {
                 await navigator.clipboard.writeText(link);
                 flashGroupCopyToast("Invite link copied to clipboard!");
             } catch (err) {
                 fallbackCopyText(link);
+            }
+        });
+    }
+
+    // --- Phase 4 Radar & Milestone Event Listeners ---
+    const openRadarBtn = document.getElementById("gh-btn-open-radar");
+    if (openRadarBtn) {
+        openRadarBtn.addEventListener("click", () => {
+            if (currentGroupHikeSpot) {
+                openGroupRadar(currentGroupHikeSpot.id, window.currentGroupHikeGroupId);
+            }
+        });
+    }
+
+    const closeRadarBtn = document.getElementById("close-group-radar-modal");
+    if (closeRadarBtn) {
+        closeRadarBtn.addEventListener("click", closeGroupRadarModal);
+    }
+
+    const memberSaveBtn = document.getElementById("gh-member-save-btn");
+    const memberNameInput = document.getElementById("gh-member-name-input");
+    if (memberSaveBtn && memberNameInput) {
+        const doSave = () => {
+            const val = memberNameInput.value.trim();
+            if (val) {
+                setStoredMemberName(val);
+                renderGroupRadarUI();
+                memberSaveBtn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
+                setTimeout(() => {
+                    memberSaveBtn.innerHTML = '<i class="fa-solid fa-check"></i> Set';
+                }, 2000);
+            }
+        };
+        memberSaveBtn.addEventListener("click", doSave);
+        memberNameInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                doSave();
+            }
+        });
+    }
+
+    const broadcastBtn = document.getElementById("gh-btn-broadcast-ping");
+    if (broadcastBtn) {
+        broadcastBtn.addEventListener("click", handleBroadcastPing);
+    }
+
+    const presetChips = document.querySelectorAll(".gh-preset-chip");
+    presetChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+            presetChips.forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
+            const customInput = document.getElementById("gh-ping-custom-note");
+            if (customInput) customInput.value = chip.dataset.note;
+        });
+    });
+
+    const showPinsMapBtn = document.getElementById("gh-btn-show-pins-map");
+    if (showPinsMapBtn) {
+        showPinsMapBtn.addEventListener("click", () => {
+            const pings = (currentGroupRadarData && currentGroupRadarData.pings) ? currentGroupRadarData.pings : [];
+            if (pings.length > 0 && pings[0].lat && pings[0].lng) {
+                focusPingOnMap(pings[0].lat, pings[0].lng, pings[0].memberName, pings[0].note);
+            } else if (currentGroupRadarSpot) {
+                focusPingOnMap(currentGroupRadarSpot.lat, currentGroupRadarSpot.lng, currentGroupRadarSpot.name, "Trailhead");
             }
         });
     }
