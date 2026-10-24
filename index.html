@@ -65,7 +65,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="stylesheet" href="style.css?v=24">
 </head>
 <body class="light-theme">
     <!-- App Container -->
@@ -555,6 +555,19 @@
                                 <!-- Injected dynamically -->
                             </div>
                         </div>
+
+                        <!-- Mountain Gondola / Lift & Last Descent Result Box -->
+                        <div id="gh-lift-wrapper" style="margin-top: 0.85rem; display: none;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                <h4 style="margin: 0; font-size: 0.88rem; display: flex; align-items: center; gap: 0.4rem; color: #0284c7;">
+                                    <i class="fa-solid fa-cable-car"></i> Mountain Gondola / Lift &amp; Last Descent:
+                                </h4>
+                                <span id="gh-lift-status" style="font-size: 0.72rem; color: var(--text-secondary);"></span>
+                            </div>
+                            <div id="gh-lift-results" class="gh-lift-card">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
                     </div>
 
                     <!-- One-Click Group Sharing Bar -->
@@ -601,6 +614,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=23"></script>
+    <script src="app.js?v=24"></script>
 </body>
 </html>

@@ -277,6 +277,102 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
+    // API Endpoint: Mountain Lift Timetable & Last Descent Intelligence
+    if (pathname === '/api/transport/mountain-lift') {
+        const valley = parsedUrl.searchParams.get('valley');
+        const mountain = parsedUrl.searchParams.get('mountain');
+        const date = parsedUrl.searchParams.get('date') || '';
+
+        if (!valley || !mountain) {
+            res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            return res.end(JSON.stringify({ error: 'Missing valley or mountain parameter' }));
+        }
+
+        const cacheKey = `lift__${valley}__${mountain}__${date}`;
+        if (transportCache[cacheKey] && (Date.now() - transportCache[cacheKey].timestamp < 3600000)) {
+            res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=3600'
+            });
+            return res.end(JSON.stringify(transportCache[cacheKey].data));
+        }
+
+        const fetchJson = (url) => new Promise((resolve, reject) => {
+            https.get(url, (apiRes) => {
+                let data = '';
+                apiRes.on('data', chunk => data += chunk);
+                apiRes.on('end', () => {
+                    try { resolve(JSON.parse(data)); } catch(e) { resolve({}); }
+                });
+            }).on('error', reject);
+        });
+
+        try {
+            const ascUrl = `https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(valley)}&to=${encodeURIComponent(mountain)}&date=${encodeURIComponent(date)}&time=07:00&limit=3`;
+            const descUrl = `https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(mountain)}&to=${encodeURIComponent(valley)}&date=${encodeURIComponent(date)}&time=16:30&limit=6`;
+
+            const [ascData, descData] = await Promise.all([
+                fetchJson(ascUrl).catch(() => ({})),
+                fetchJson(descUrl).catch(() => ({}))
+            ]);
+
+            const firstAscent = ascData.connections?.[0]?.from?.departure?.slice(11, 16) || '07:30';
+            let frequency = 'Every 15–30 min';
+            if (ascData.connections && ascData.connections.length >= 2) {
+                const dep0 = ascData.connections[0].from.departure.slice(11, 16).split(':').map(Number);
+                const dep1 = ascData.connections[1].from.departure.slice(11, 16).split(':').map(Number);
+                const diff = (dep1[0] * 60 + dep1[1]) - (dep0[0] * 60 + dep0[1]);
+                if (diff > 0 && diff <= 60) frequency = `Every ${diff} min`;
+            }
+
+            let lastDescent = '17:00';
+            let nextDayJump = false;
+            if (descData.connections && descData.connections.length > 0) {
+                const conns = descData.connections;
+                const baseDate = conns[0].from.departure ? conns[0].from.departure.slice(0, 10) : '';
+                for (let i = 1; i < conns.length; i++) {
+                    const cDate = conns[i].from.departure ? conns[i].from.departure.slice(0, 10) : '';
+                    const prevTime = conns[i - 1].from.departure ? conns[i - 1].from.departure.slice(11, 16) : '';
+                    const currTime = conns[i].from.departure ? conns[i].from.departure.slice(11, 16) : '';
+                    
+                    // Next day jump if date changes OR departure time drops (e.g. 17:15 -> 07:30)
+                    if ((baseDate && cDate && cDate !== baseDate) || (prevTime && currTime && currTime < prevTime)) {
+                        lastDescent = prevTime;
+                        nextDayJump = true;
+                        break;
+                    }
+                }
+                if (!nextDayJump) {
+                    lastDescent = conns[conns.length - 1].from.departure.slice(11, 16);
+                }
+            }
+
+            const payload = {
+                valley,
+                mountain,
+                date,
+                firstAscent,
+                frequency,
+                lastDescent,
+                nextDayJump,
+                advisory: `Aim to reach ${mountain} station at least 20 minutes before ${lastDescent} to guarantee boarding.`
+            };
+
+            transportCache[cacheKey] = { timestamp: Date.now(), data: payload };
+            res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=3600'
+            });
+            return res.end(JSON.stringify(payload));
+        } catch(err) {
+            console.error('Mountain lift fetch error:', err);
+            res.writeHead(502, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            return res.end(JSON.stringify({ error: 'Failed to fetch mountain lift schedule' }));
+        }
+    }
+
     // API Endpoint: Dynamic GPX Route Track for Swisstopo App and Web Viewers
     if (pathname.startsWith('/api/hikes/') && pathname.endsWith('/track.gpx')) {
         const hikeId = decodeURIComponent(pathname.replace('/api/hikes/', '').replace('/track.gpx', ''));

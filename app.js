@@ -1185,6 +1185,160 @@ window.handleSwisstopoAppClick = function(event, spotId) {
     return true;
 };
 
+// --- Swiss Mountain Gondolas, Cable Cars & Mountain Railways Intelligence ---
+const SWISS_MOUNTAIN_LIFTS = [
+    {
+        id: 'ebenalp',
+        match: /ebenalp|seealpsee|wildkirchli|äscher|wasserauen/i,
+        name: 'Luftseilbahn Wasserauen–Ebenalp',
+        type: 'Cable Car (Luftseilbahn)',
+        valley: 'Wasserauen',
+        mountain: 'Ebenalp',
+        operatorUrl: 'https://www.ebenalp.ch/en/timetable-tariffs'
+    },
+    {
+        id: 'first',
+        match: /bachalpsee|first cliff|firstbahn|grindelwald-first/i,
+        name: 'Firstbahn Gondelbahn',
+        type: 'Gondola (Gondelbahn)',
+        valley: 'Grindelwald, Firstbahn',
+        mountain: 'First (Grindelwald)',
+        operatorUrl: 'https://www.jungfrau.ch/en-gb/grindelwaldfirst/'
+    },
+    {
+        id: 'oeschinen',
+        match: /oeschinensee|oeschinen/i,
+        name: 'Gondelbahn Kandersteg–Oeschinensee',
+        type: 'Gondola (Gondelbahn)',
+        valley: 'Kandersteg',
+        mountain: 'Oeschinen',
+        operatorUrl: 'https://www.oeschinensee.ch/en/'
+    },
+    {
+        id: 'maennlichen',
+        match: /männlichen|maennlichen/i,
+        name: 'Luftseilbahn Wengen–Männlichen',
+        type: 'Cable Car (Luftseilbahn)',
+        valley: 'Wengen',
+        mountain: 'Männlichen',
+        operatorUrl: 'https://www.maennlichen.ch/en/'
+    },
+    {
+        id: 'gornergrat',
+        match: /gornergrat|riffelsee/i,
+        name: 'Gornergrat Bahn (Zahnradbahn)',
+        type: 'Cogwheel Railway (Zahnradbahn)',
+        valley: 'Zermatt',
+        mountain: 'Gornergrat',
+        operatorUrl: 'https://www.gornergrat.ch/en/'
+    },
+    {
+        id: 'staubern',
+        match: /saxer lücke|saxer luecke|staubern|frümsen/i,
+        name: 'Luftseilbahn Frümsen–Staubern',
+        type: 'Solar Cable Car (Luftseilbahn)',
+        valley: 'Frümsen (Luftseilbahn)',
+        mountain: 'Staubern',
+        operatorUrl: 'https://www.staubern.ch/'
+    },
+    {
+        id: 'gelmerbahn',
+        match: /gelmersee|gelmerbahn|handegg/i,
+        name: 'Gelmerbahn (Europe\'s Steepest Funicular)',
+        type: 'Open Funicular (Standseilbahn)',
+        valley: 'Handegg, Gelmerbahn',
+        mountain: 'Gelmersee',
+        operatorUrl: 'https://www.grimselwelt.ch/en/bahnen/gelmerbahn/'
+    },
+    {
+        id: 'stoos',
+        match: /stoos|fronalpstock/i,
+        name: 'Stoosbahn (World\'s Steepest Funicular)',
+        type: 'Funicular (Standseilbahn)',
+        valley: 'Schwyz, Stoosbahn',
+        mountain: 'Stoos SZ',
+        operatorUrl: 'https://stoos.ch/en/'
+    },
+    {
+        id: 'pilatus',
+        match: /pilatus|dragon path|kriens.*pilatus|alpnachstad.*pilatus/i,
+        name: 'Pilatus Panorama-Gondelbahn',
+        type: 'Panorama Gondola & Cable Car',
+        valley: 'Kriens, Pilatus-Bahnen',
+        mountain: 'Pilatus Kulm',
+        operatorUrl: 'https://www.pilatus.ch/en/'
+    },
+    {
+        id: 'rigi',
+        match: /rigi kulm|vitznau.*rigi|arth-goldau.*rigi|weggis.*rigi/i,
+        name: 'Rigi Bahnen (Historic Cogwheel)',
+        type: 'Cogwheel Railway (Zahnradbahn)',
+        valley: 'Vitznau',
+        mountain: 'Rigi Kulm',
+        operatorUrl: 'https://www.rigi.ch/en'
+    },
+    {
+        id: 'titlis',
+        match: /titlis|trübsee/i,
+        name: 'Titlis Rotair Cable Car',
+        type: 'Rotating Cable Car (Luftseilbahn)',
+        valley: 'Engelberg',
+        mountain: 'Titlis',
+        operatorUrl: 'https://www.titlis.ch/en'
+    },
+    {
+        id: 'braunwald',
+        match: /braunwald|linthal braunwald/i,
+        name: 'Braunwaldbahn Funicular',
+        type: 'Funicular (Standseilbahn)',
+        valley: 'Linthal Braunwaldbahn',
+        mountain: 'Braunwald',
+        operatorUrl: 'https://www.braunwald.ch/en/'
+    },
+    {
+        id: 'bettmeralp',
+        match: /bettmeralp|eggishorn|betten talstation/i,
+        name: 'Aletsch Arena Bettmeralp Seilbahn',
+        type: 'Cable Car (Luftseilbahn)',
+        valley: 'Betten Talstation',
+        mountain: 'Bettmeralp',
+        operatorUrl: 'https://www.aletscharena.ch/en'
+    },
+    {
+        id: 'schilthorn',
+        match: /schilthorn|birg|stechelberg.*schilthorn|mürren.*schilthorn/i,
+        name: 'Schilthornbahn',
+        type: 'Cable Car (Luftseilbahn)',
+        valley: 'Stechelberg, Schilthornbahn',
+        mountain: 'Mürren',
+        operatorUrl: 'https://schilthorn.ch/en/'
+    },
+    {
+        id: 'harderkulm',
+        match: /harder kulm|harderbahn/i,
+        name: 'Harderbahn Funicular',
+        type: 'Funicular (Standseilbahn)',
+        valley: 'Interlaken Ost',
+        mountain: 'Harder Kulm',
+        operatorUrl: 'https://www.jungfrau.ch/en-gb/harder-kulm/'
+    }
+];
+
+function detectMountainLiftForSpot(spot) {
+    if (!spot) return null;
+    if (spot.mountainLift) return spot.mountainLift;
+    // Don't detect for valley floor hikes like Lauterbrunnental waterfalls
+    if (spot.id === 'hike-iconic-lauterbrunnen-waterfalls-stechelberg') return null;
+
+    const text = `${spot.name || ''} ${spot.startStop || ''} ${spot.endStop || ''} ${spot.city || ''} ${spot.description || ''}`;
+    for (const lift of SWISS_MOUNTAIN_LIFTS) {
+        if (lift.match.test(text)) {
+            return lift;
+        }
+    }
+    return null;
+}
+
 // --- Detail View Loading ---
 async function openDetails(spotId, options = {}) {
     const spot = spots.find(s => s.id === spotId);
@@ -1517,6 +1671,27 @@ async function openDetails(spotId, options = {}) {
             ? spot.restaurants.map(r => `<span class="amenities-badge"><i class="fa-solid fa-utensils"></i> ${r}</span>`).join(" ")
             : '<span style="color: var(--text-secondary);">Pack a picnic — no restaurants directly on trail</span>';
 
+        const detectedLift = detectMountainLiftForSpot(spot);
+        const liftLogisticsHtml = detectedLift ? `
+            <div class="hike-logistics-row" style="background: rgba(2, 132, 199, 0.06); border-radius: 8px; padding: 0.65rem 0.8rem; border-left: 3px solid #0284c7;">
+                <i class="fa-solid fa-cable-car" style="color: #0284c7; font-size: 1.15rem; margin-top: 3px;"></i>
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem;">
+                        <strong>${escapeHtml(detectedLift.name)}</strong>
+                        <span style="font-size: 0.72rem; color: #0284c7; font-weight: 700; background: rgba(2, 132, 199, 0.12); padding: 2px 7px; border-radius: 10px;">
+                            <i class="fa-solid fa-mountain"></i> ${escapeHtml(detectedLift.type)}
+                        </span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px;">
+                        <span>Route: <strong>${escapeHtml(detectedLift.valley)}</strong> &harr; <strong>${escapeHtml(detectedLift.mountain)}</strong></span>
+                    </div>
+                    <div id="detail-lift-timetable-${spot.id}" style="margin-top: 6px; font-size: 0.78rem; color: var(--text-secondary);">
+                        <i class="fa-solid fa-spinner fa-spin"></i> Checking live lift timetable &amp; last descent...
+                    </div>
+                </div>
+            </div>
+        ` : '';
+
         hikingDetailSectionsHtml = `
             ${elevationSvgHtml}
 
@@ -1550,6 +1725,7 @@ async function openDetails(spotId, options = {}) {
                         <span>${spot.parking || 'Public parking available at start station'}</span>
                     </div>
                 </div>
+                ${liftLogisticsHtml}
                 <div class="hike-logistics-row">
                     <i class="fa-solid fa-utensils"></i>
                     <div style="flex: 1;">
@@ -1820,6 +1996,33 @@ async function openDetails(spotId, options = {}) {
                 if (loadingBadge) loadingBadge.style.display = "none";
             }
         })();
+    }
+
+    // Fetch live mountain lift timetable for hiking spot if lift detected
+    if (spot.type === 'hiking') {
+        const detectedLift = detectMountainLiftForSpot(spot);
+        if (detectedLift) {
+            fetch(`/api/transport/mountain-lift?valley=${encodeURIComponent(detectedLift.valley)}&mountain=${encodeURIComponent(detectedLift.mountain)}`)
+                .then(r => r.json())
+                .then(lData => {
+                    const el = document.getElementById(`detail-lift-timetable-${spot.id}`);
+                    if (!el) return;
+                    el.innerHTML = `
+                        <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; align-items: center; margin-top: 4px; font-size: 0.8rem;">
+                            <span><i class="fa-solid fa-sun" style="color: #f59e0b;"></i> First Ascent: <strong>${lData.firstAscent}</strong></span>
+                            <span><i class="fa-solid fa-rotate" style="color: #0284c7;"></i> Runs: <strong>${lData.frequency}</strong></span>
+                            <span style="color: #dc2626; font-weight: 800; background: rgba(220, 38, 38, 0.08); padding: 2px 6px; border-radius: 4px;"><i class="fa-solid fa-bell"></i> Last Descent: <strong>${lData.lastDescent}</strong></span>
+                        </div>
+                        <div style="margin-top: 4px; font-size: 0.72rem; color: var(--text-secondary); font-style: italic;">
+                            <i class="fa-solid fa-circle-info"></i> ${lData.advisory || `Aim to reach ${detectedLift.mountain} station at least 20 min before last descent.`}
+                        </div>
+                    `;
+                })
+                .catch(() => {
+                    const el = document.getElementById(`detail-lift-timetable-${spot.id}`);
+                    if (el) el.innerHTML = `<span style="color: var(--text-secondary); font-size: 0.75rem;">Seasonal operating timetable applies. Check sbb.ch or on-site.</span>`;
+                });
+        }
     }
 }
 
@@ -2535,6 +2738,8 @@ async function handleFeedbackSubmit(e) {
 let currentGroupHikeSpot = null;
 let currentGroupHikeSbbData = null;
 let currentGroupHikeCarData = null;
+let currentGroupHikeLiftData = null;
+let currentGroupHikeLiftInfo = null;
 let currentGroupHikeTravelMode = 'both'; // 'both' | 'sbb' | 'car'
 
 const SWISS_CITIES_COORDS = {
@@ -2718,8 +2923,13 @@ window.openGroupHikePlanner = function(spotId, prefill = {}) {
     currentGroupHikeTravelMode = 'both';
     const sbbWrapper = document.getElementById('gh-sbb-wrapper');
     const carWrapper = document.getElementById('gh-car-wrapper');
+    const liftWrapper = document.getElementById('gh-lift-wrapper');
     if (sbbWrapper) sbbWrapper.style.display = 'block';
     if (carWrapper) carWrapper.style.display = 'block';
+    if (liftWrapper) liftWrapper.style.display = 'none';
+
+    currentGroupHikeLiftData = null;
+    currentGroupHikeLiftInfo = null;
 
     modal.style.display = 'flex';
 
@@ -2799,6 +3009,52 @@ async function fetchGroupHikeTravel() {
             `;
         }
         if (statusEl) statusEl.textContent = '';
+    }
+
+    // 3. Fetch Mountain Gondola / Lift Timetable & Last Descent Intelligence
+    const liftWrapper = document.getElementById('gh-lift-wrapper');
+    const liftContainer = document.getElementById('gh-lift-results');
+    const liftStatusEl = document.getElementById('gh-lift-status');
+    const detectedLift = detectMountainLiftForSpot(currentGroupHikeSpot);
+
+    if (detectedLift) {
+        currentGroupHikeLiftInfo = detectedLift;
+        if (liftWrapper) liftWrapper.style.display = 'block';
+        if (liftStatusEl) liftStatusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking Lift Timetable...';
+        if (liftContainer) {
+            liftContainer.innerHTML = '<div style="text-align: center; padding: 0.75rem; color: var(--text-secondary);"><i class="fa-solid fa-cable-car fa-bounce" style="color: #0284c7; font-size: 1.3rem; margin-bottom: 0.35rem; display: block;"></i>Checking live mountain lift schedule &amp; last descent...</div>';
+        }
+
+        try {
+            const liftUrl = `/api/transport/mountain-lift?valley=${encodeURIComponent(detectedLift.valley)}&mountain=${encodeURIComponent(detectedLift.mountain)}&date=${encodeURIComponent(date)}`;
+            const lRes = await fetch(liftUrl);
+            if (lRes.ok) {
+                const lData = await lRes.json();
+                currentGroupHikeLiftData = lData;
+                renderGroupHikeLiftResults(detectedLift, lData, time, currentGroupHikeSpot);
+                if (liftStatusEl) liftStatusEl.textContent = 'Live Bergbahn Data';
+            } else {
+                throw new Error('Lift endpoint status ' + lRes.status);
+            }
+        } catch (err) {
+            console.warn('Could not fetch mountain lift data:', err);
+            // Fallback standard schedule
+            currentGroupHikeLiftData = {
+                valley: detectedLift.valley,
+                mountain: detectedLift.mountain,
+                firstAscent: '07:30',
+                frequency: 'Every 15–30 min',
+                lastDescent: '17:00',
+                advisory: `Aim to reach ${detectedLift.mountain} station at least 20 min before last descent.`
+            };
+            renderGroupHikeLiftResults(detectedLift, currentGroupHikeLiftData, time, currentGroupHikeSpot);
+            if (liftStatusEl) liftStatusEl.textContent = 'Standard Schedule';
+        }
+    } else {
+        currentGroupHikeLiftInfo = null;
+        currentGroupHikeLiftData = null;
+        if (liftWrapper) liftWrapper.style.display = 'none';
+        if (liftContainer) liftContainer.innerHTML = '';
     }
 
     updateGroupHikePreview();
@@ -2927,6 +3183,129 @@ function renderGroupHikeSbbResults(connections, fromName, toName, targetTimeStr)
     container.innerHTML = html;
 }
 
+function renderGroupHikeLiftResults(liftInfo, liftData, targetMeetupTimeStr, spot) {
+    const container = document.getElementById('gh-lift-results');
+    if (!container || !liftData) return;
+
+    // Parse target meetup time (default 09:00 -> 540 min)
+    let meetupMins = 9 * 60;
+    if (targetMeetupTimeStr && targetMeetupTimeStr.includes(':')) {
+        const [h, m] = targetMeetupTimeStr.split(':').map(Number);
+        meetupMins = h * 60 + m;
+    }
+
+    // Parse spot duration (e.g. "2 h 45 min", "3h 15m", or default 3h = 180 min)
+    let hikeDurationMins = 180;
+    if (spot && spot.durationText) {
+        const dStr = spot.durationText.toLowerCase();
+        let hMatch = dStr.match(/(\d+)\s*h/);
+        let mMatch = dStr.match(/(\d+)\s*min/);
+        if (hMatch || mMatch) {
+            hikeDurationMins = (hMatch ? parseInt(hMatch[1], 10) * 60 : 0) + (mMatch ? parseInt(mMatch[1], 10) : 0);
+        }
+    }
+    const familyRestBufferMins = 60; // 1 hr buffer for family lunch, photos, rest
+    const estimatedFinishMins = meetupMins + hikeDurationMins + familyRestBufferMins;
+
+    // Parse last descent time (e.g. "17:15")
+    let lastDescentMins = 17 * 60;
+    if (liftData.lastDescent && liftData.lastDescent.includes(':')) {
+        const [dh, dm] = liftData.lastDescent.split(':').map(Number);
+        lastDescentMins = dh * 60 + dm;
+    }
+
+    const bufferMins = lastDescentMins - estimatedFinishMins;
+
+    const formatMinsToHHMM = (m) => {
+        const norm = (m % 1440 + 1440) % 1440;
+        const hh = String(Math.floor(norm / 60)).padStart(2, '0');
+        const mm = String(norm % 60).padStart(2, '0');
+        return `${hh}:${mm}`;
+    };
+
+    const estFinishStr = formatMinsToHHMM(estimatedFinishMins);
+
+    let statusType = 'safe';
+    let statusIcon = 'fa-circle-check';
+    let statusTitle = '';
+    let statusMsg = '';
+
+    if (bufferMins >= 75) {
+        statusType = 'safe';
+        statusIcon = 'fa-circle-check';
+        const hoursBuf = Math.floor(bufferMins / 60);
+        const minsBuf = bufferMins % 60;
+        const bufText = hoursBuf > 0 ? `${hoursBuf}h ${minsBuf}m` : `${minsBuf}m`;
+        statusTitle = `Safe Timing: ~${bufText} buffer before last descent`;
+        statusMsg = `Estimated return ~${estFinishStr} (includes ${spot.durationText || 'hike'} + 1h lunch/rest). Plenty of time for the ${liftData.lastDescent} descent.`;
+    } else if (bufferMins >= 0) {
+        statusType = 'tight';
+        statusIcon = 'fa-triangle-exclamation';
+        statusTitle = `Tight Timing: only ~${bufferMins} min margin!`;
+        statusMsg = `Estimated return ~${estFinishStr}. Last descent is at ${liftData.lastDescent}. Consider meeting 30–60 mins earlier so you don't feel rushed!`;
+    } else {
+        statusType = 'danger';
+        statusIcon = 'fa-skull-crossbones';
+        const overdueMins = Math.abs(bufferMins);
+        const overdueHours = Math.floor(overdueMins / 60);
+        const overdueRem = overdueMins % 60;
+        const overdueText = overdueHours > 0 ? `${overdueHours}h ${overdueRem}m` : `${overdueRem}m`;
+        const suggestedMeetup = formatMinsToHHMM(meetupMins - overdueMins - 45);
+        statusTitle = `STRANDING WARNING: Return is ${overdueText} AFTER last descent!`;
+        statusMsg = `With a ${targetMeetupTimeStr} start, you will finish around ~${estFinishStr}, but the LAST GONDOLA DOWN is at ${liftData.lastDescent}. You risk being stranded! <strong>Recommend meeting by ${suggestedMeetup}</strong> or preparing for a steep foot descent.`;
+    }
+
+    container.innerHTML = `
+        <div class="gh-lift-row">
+            <div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                    <span style="font-size: 0.95rem; font-weight: 800; color: #0284c7;">
+                        <i class="fa-solid fa-cable-car"></i> ${escapeHtml(liftInfo.name)}
+                    </span>
+                    <span style="font-size: 0.72rem; color: var(--text-secondary); background: var(--bg-card); border: 1px solid var(--border-color); padding: 1px 6px; border-radius: 6px;">
+                        ${escapeHtml(liftInfo.type)}
+                    </span>
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px;">
+                    ${escapeHtml(liftInfo.valley)} &harr; ${escapeHtml(liftInfo.mountain)}
+                </div>
+            </div>
+            <div>
+                ${liftInfo.operatorUrl ? `
+                <a href="${liftInfo.operatorUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.74rem; border-color: #0284c7; color: #0284c7; white-space: nowrap; border-radius: 6px;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Lift Tariffs &rarr;
+                </a>` : ''}
+            </div>
+        </div>
+
+        <div class="gh-lift-metrics">
+            <div class="gh-lift-chip">
+                <span class="gh-lift-chip-label"><i class="fa-solid fa-sun" style="color: #f59e0b;"></i> First Ascent</span>
+                <span class="gh-lift-chip-val">${liftData.firstAscent}</span>
+            </div>
+            <div class="gh-lift-chip">
+                <span class="gh-lift-chip-label"><i class="fa-solid fa-rotate" style="color: #0284c7;"></i> Frequency</span>
+                <span class="gh-lift-chip-val" style="font-size: 0.85rem;">${liftData.frequency}</span>
+            </div>
+            <div class="gh-lift-chip highlight-danger">
+                <span class="gh-lift-chip-label" style="color: #dc2626;"><i class="fa-solid fa-bell"></i> Last Descent</span>
+                <span class="gh-lift-chip-val" style="color: #dc2626;">${liftData.lastDescent}</span>
+            </div>
+        </div>
+
+        <div class="gh-lift-buffer-box ${statusType}">
+            <i class="fa-solid ${statusIcon}" style="font-size: 1.15rem; flex-shrink: 0;"></i>
+            <div>
+                <div style="font-weight: 800; font-size: 0.82rem;">${statusTitle}</div>
+                <div style="font-size: 0.74rem; line-height: 1.3; margin-top: 2px;">${statusMsg}</div>
+            </div>
+        </div>
+        <div style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.35rem; font-style: italic;">
+            <i class="fa-solid fa-circle-info"></i> ${liftData.advisory || `Aim to arrive at ${liftInfo.mountain} station at least 20 min before last descent.`}
+        </div>
+    `;
+}
+
 function generateGroupHikeInviteText() {
     if (!currentGroupHikeSpot) return '';
 
@@ -2970,6 +3349,18 @@ function generateGroupHikeInviteText() {
         carText = `🚗 *Driving by Car:*\n• Recommended from ${car.originName}: Leave by *${car.leaveTimeStr}*\n• Arrives at parking ~*${car.parkTimeStr}* (~${car.roadKm} km, ~${car.driveDurationText} drive + 15m parking/prep buffer)\n• Parking Info: ${car.parkingInfo}\n• Google Maps Navigation: ${car.gmapsUrl}`;
     }
 
+    // 3. Mountain Gondola / Lift Section
+    let liftText = '';
+    if (currentGroupHikeLiftData && currentGroupHikeLiftInfo) {
+        const l = currentGroupHikeLiftData;
+        const info = currentGroupHikeLiftInfo;
+        liftText = `🚡 *Mountain Gondola / Lift:*
+• Lift: ${info.name} (${info.valley} ⇄ ${info.mountain})
+• First Ascent: *${l.firstAscent}* | Frequency: *${l.frequency}*
+• ⚠️ *CRITICAL LAST DESCENT DOWN: ${l.lastDescent}* (Don't get stranded!)
+${info.operatorUrl ? `• Lift Tariffs & Details: ${info.operatorUrl}` : ''}`;
+    }
+
     const canonicalHost = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
         ? 'https://swissforkids.ch'
         : window.location.origin;
@@ -2986,6 +3377,9 @@ function generateGroupHikeInviteText() {
     }
     if (currentGroupHikeTravelMode === 'both' || currentGroupHikeTravelMode === 'car') {
         if (carText) travelSections.push(carText);
+    }
+    if (liftText) {
+        travelSections.push(liftText);
     }
 
     return `🥾 *Group Hike: ${spot.name}*
