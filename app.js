@@ -3367,7 +3367,8 @@ ${info.operatorUrl ? `• Lift Tariffs & Details: ${info.operatorUrl}` : ''}`;
 
     const groupUrl = `${canonicalHost}/?hike=${encodeURIComponent(spot.id)}&group=1&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
 
-    const strollerText = spot.strollerFriendly ? '✅ Stroller Friendly' : '❌ Not for Strollers (Carrier recommended)';
+    const isStroller = (spot.strollerFriendly === 'yes' || spot.strollerFriendly === true || spot.stroller === 'yes' || spot.stroller === true);
+    const strollerText = isStroller ? '✅ Stroller Friendly' : '❌ Not for Strollers (Carrier recommended)';
     const diffText = spot.difficulty === 'easy' ? '🟢 Easy' : (spot.difficulty === 'moderate' ? '🟠 Moderate' : '🔴 Demanding');
 
     // Filter sections according to current travel mode
