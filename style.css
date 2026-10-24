@@ -424,25 +424,31 @@ textarea:focus {
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--bg-card-hover);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
-    max-height: 200px;
+    max-height: 280px;
     overflow-y: auto;
     z-index: 1010;
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
 .autocomplete-item {
-    padding: 0.75rem 1rem;
+    padding: 0.65rem 0.9rem;
     cursor: pointer;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     transition: var(--transition-smooth);
 }
 
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
 .autocomplete-item:hover {
-    background-color: var(--swiss-red-light);
+    background-color: rgba(235, 0, 0, 0.06);
     color: var(--swiss-red);
 }
 

@@ -2067,6 +2067,35 @@ function submitReview(e, spotId) {
     }
 }
 
+function normalizeSearchText(s) {
+    if (!s) return '';
+    return s.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/ae/g, 'a')
+        .replace(/oe/g, 'o')
+        .replace(/ue/g, 'u')
+        .trim();
+}
+
+const SWISS_CITY_ALIASES = {
+    'zurich': 'zurich',
+    'zuerich': 'zurich',
+    'zürich': 'zurich',
+    'geneva': 'geneve',
+    'genf': 'geneve',
+    'geneve': 'geneve',
+    'genève': 'geneve',
+    'lucerne': 'luzern',
+    'luzern': 'luzern',
+    'basle': 'basel',
+    'bale': 'basel',
+    'bâle': 'basel',
+    'basel': 'basel',
+    'berne': 'bern',
+    'bern': 'bern'
+};
+
 // --- ZIP / City / Trail Name / Route Number Search & Autocomplete ---
 function handleZipSearchInput(val) {
     const dropdown = document.getElementById("zip-autocomplete");
@@ -2085,44 +2114,70 @@ function handleZipSearchInput(val) {
 
     clearBtn.style.display = "inline-block";
 
-    const searchStr = val.toLowerCase().trim();
-    currentSearchZip = "";
-    currentTextQuery = searchStr;
+    const searchRaw = val.trim();
+    const searchNorm = normalizeSearchText(searchRaw);
+    const searchAlias = SWISS_CITY_ALIASES[searchNorm] || searchNorm;
+    const isDigits = /^\d+$/.test(searchRaw);
 
-    const zipMatches = [];
+    currentSearchZip = "";
+    currentTextQuery = searchNorm;
+
+    const exactZip = [];
+    const prefixZip = [];
+    const cityZip = [];
+    const subZip = [];
+
     for (const [zip, data] of Object.entries(SWISS_ZIPS)) {
-        if (zip.includes(searchStr) || data.city.toLowerCase().includes(searchStr)) {
-            zipMatches.push({ zip, ...data });
+        const cityNorm = normalizeSearchText(data.city);
+        if (zip === searchRaw) {
+            exactZip.push({ zip, ...data });
+        } else if (isDigits && zip.startsWith(searchRaw)) {
+            prefixZip.push({ zip, ...data });
+        } else if (!isDigits && (cityNorm === searchNorm || cityNorm === searchAlias || cityNorm.startsWith(searchNorm) || cityNorm.startsWith(searchAlias))) {
+            cityZip.push({ zip, ...data });
+        } else if (!isDigits && (cityNorm.includes(searchNorm) || cityNorm.includes(searchAlias))) {
+            cityZip.push({ zip, ...data });
+        } else if (isDigits && zip.includes(searchRaw)) {
+            subZip.push({ zip, ...data });
         }
-        if (zipMatches.length >= 4) break;
     }
+
+    // Sort prefix & city matches numerically by zip code
+    prefixZip.sort((a, b) => parseInt(a.zip, 10) - parseInt(b.zip, 10));
+    cityZip.sort((a, b) => parseInt(a.zip, 10) - parseInt(b.zip, 10));
+
+    // Allow up to 25 zip matches so all Zurich postal codes (8000 to 8099) are accessible
+    const zipMatches = [...exactZip, ...prefixZip, ...cityZip, ...subZip].slice(0, 25);
 
     // Also match Hiking Trails & Spots by name, German name, Route Number, address or landmarks
     const spotMatches = [];
     for (const s of spots) {
-        const hay = `${s.name || ''} ${s.nameDe || ''} ${s.routeNumber ? 'route ' + s.routeNumber : ''} ${s.city || ''} ${s.address || ''} ${s.description || ''}`.toLowerCase();
-        if (hay.includes(searchStr)) {
+        const hay = normalizeSearchText(`${s.name || ''} ${s.nameDe || ''} ${s.routeNumber ? 'route ' + s.routeNumber : ''} ${s.city || ''} ${s.address || ''} ${s.description || ''}`);
+        if (hay.includes(searchNorm) || (isDigits && s.zip === searchRaw)) {
             spotMatches.push(s);
             if (spotMatches.length >= 6) break;
         }
     }
 
     let html = "";
-    if (spotMatches.length > 0) {
-        html += spotMatches.map(s => `
-            <div class="autocomplete-item" data-spot-id="${s.id}">
-                <span><i class="fa-solid ${s.type === 'hiking' ? 'fa-person-hiking' : 'fa-location-dot'}" style="color: var(--accent-hiking); margin-right: 4px;"></i> <strong>${s.name}</strong></span>
-                <span class="zip-canton">${s.canton || s.region || 'CH'}</span>
-            </div>
-        `).join("");
-    }
-    if (zipMatches.length > 0) {
-        html += zipMatches.map(m => `
-            <div class="autocomplete-item" data-zip="${m.zip}">
-                <span><i class="fa-solid fa-map-pin" style="margin-right: 4px;"></i> <strong>${m.zip}</strong> - ${m.city}</span>
-                <span class="zip-canton">${m.canton}</span>
-            </div>
-        `).join("");
+    const zipHtml = zipMatches.map(m => `
+        <div class="autocomplete-item" data-zip="${m.zip}">
+            <span><i class="fa-solid fa-map-pin" style="margin-right: 6px; color: #eb0000;"></i> <strong>${m.zip}</strong> - ${m.city}</span>
+            <span class="zip-canton">${m.canton}</span>
+        </div>
+    `).join("");
+
+    const spotHtml = spotMatches.map(s => `
+        <div class="autocomplete-item" data-spot-id="${s.id}">
+            <span><i class="fa-solid ${s.type === 'hiking' ? 'fa-person-hiking' : 'fa-location-dot'}" style="color: var(--accent-hiking); margin-right: 6px;"></i> <strong>${s.name}</strong></span>
+            <span class="zip-canton">${s.canton || s.region || 'CH'}</span>
+        </div>
+    `).join("");
+
+    if (isDigits || cityZip.length > 0) {
+        html = zipHtml + spotHtml;
+    } else {
+        html = spotHtml + zipHtml;
     }
 
     if (html) {
@@ -2771,6 +2826,9 @@ const SWISS_CITIES_COORDS = {
 function resolveCityCoords(cityName) {
     if (!cityName) return { lat: 47.3779, lng: 8.5402, name: 'Zürich' };
     const clean = cityName.trim();
+    if (typeof SWISS_ZIPS !== 'undefined' && SWISS_ZIPS && SWISS_ZIPS[clean]) {
+        return { lat: SWISS_ZIPS[clean].lat, lng: SWISS_ZIPS[clean].lng, name: `${clean} ${SWISS_ZIPS[clean].city}` };
+    }
     if (SWISS_CITIES_COORDS[clean]) return SWISS_CITIES_COORDS[clean];
 
     const withoutSuffix = clean.replace(/\s*(HB|SBB|Bahnhof|Station|Gare)$/i, '').trim();
@@ -3425,6 +3483,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Search Event Handlers
     const zipInput = document.getElementById("zip-input");
     zipInput.addEventListener("input", (e) => handleZipSearchInput(e.target.value));
+    zipInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            const rawVal = zipInput.value.trim();
+            // 1. If user typed an exact 4-digit Swiss ZIP code, e.g. 8002:
+            if (/^\d{4}$/.test(rawVal) && SWISS_ZIPS[rawVal]) {
+                selectZip(rawVal);
+                return;
+            }
+            // 2. Otherwise pick the first autocomplete item if dropdown has results:
+            const firstItem = document.querySelector("#zip-autocomplete .autocomplete-item");
+            if (firstItem) {
+                if (firstItem.dataset.zip) {
+                    selectZip(firstItem.dataset.zip);
+                } else if (firstItem.dataset.spotId) {
+                    selectSpotFromSearch(firstItem.dataset.spotId);
+                }
+            }
+        }
+    });
 
     // Hide dropdown if clicked outside
     document.addEventListener("click", (e) => {
