@@ -2936,6 +2936,13 @@ function getNextWeekendDay(dayOfWeek = 6) { // 6 = Saturday, 0 = Sunday
     return `${yyyy}-${mm}-${dd}`;
 }
 
+function generateUniqueGroupId(spotId, dateVal) {
+    const cleanId = (spotId || 'hike').replace(/[^a-zA-Z0-9]/g, '').slice(0, 8);
+    const dateStr = dateVal ? dateVal.replace(/-/g, '') : 'today';
+    const randomSuffix = Math.random().toString(36).slice(2, 6);
+    return `gh-${cleanId}-${dateStr}-${randomSuffix}`;
+}
+
 window.openGroupHikePlanner = function(spotId, prefill = {}) {
     const spot = spots.find(s => s.id === spotId);
     if (!spot) return;
@@ -2965,8 +2972,7 @@ window.openGroupHikePlanner = function(spotId, prefill = {}) {
     if (prefill.groupId) {
         window.currentGroupHikeGroupId = prefill.groupId;
     } else {
-        const dateStr = selectedDate.replace(/-/g, '');
-        window.currentGroupHikeGroupId = 'gh-' + spot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + dateStr;
+        window.currentGroupHikeGroupId = generateUniqueGroupId(spot.id, selectedDate);
     }
 
     // Set Target Meetup Time input (default 09:00 or prefill)
@@ -3448,7 +3454,7 @@ ${info.operatorUrl ? `• Lift Tariffs & Details: ${info.operatorUrl}` : ''}`;
         ? 'https://swissforkids.ch'
         : window.location.origin;
 
-    const activeGroupId = window.currentGroupHikeGroupId || ('gh-' + spot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + (dateVal ? dateVal.replace(/-/g, '') : 'weekend'));
+    const activeGroupId = window.currentGroupHikeGroupId || generateUniqueGroupId(spot.id, dateVal);
     window.currentGroupHikeGroupId = activeGroupId;
 
     const groupUrl = `${canonicalHost}/?hike=${encodeURIComponent(spot.id)}&group=1&groupId=${encodeURIComponent(activeGroupId)}&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
@@ -3616,8 +3622,8 @@ window.openGroupRadar = async function(spotId, customGroupId = null) {
         currentGroupRadarId = window.currentGroupHikeGroupId;
     } else {
         const dateInput = document.getElementById('gh-date');
-        const dateStr = dateInput ? dateInput.value.replace(/-/g, '') : 'today';
-        currentGroupRadarId = 'gh-' + spot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + dateStr;
+        const dateVal = dateInput ? dateInput.value : '';
+        currentGroupRadarId = generateUniqueGroupId(spot.id, dateVal);
     }
     window.currentGroupHikeGroupId = currentGroupRadarId;
 
@@ -4338,8 +4344,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const dateVal = ghDateInput ? ghDateInput.value : '';
             const timeVal = ghTimeInput ? ghTimeInput.value : '';
             const fromStation = ghFromInput ? ghFromInput.value : '';
-            const meetingPoint = ghMeetingInput ? ghMeetingInput.value : '';
-            const activeGroupId = window.currentGroupHikeGroupId || ('gh-' + currentGroupHikeSpot.id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 8) + '-' + (dateVal ? dateVal.replace(/-/g, '') : 'weekend'));
+            const activeGroupId = window.currentGroupHikeGroupId || generateUniqueGroupId(currentGroupHikeSpot.id, dateVal);
             const link = `${canonicalHost}/?hike=${encodeURIComponent(currentGroupHikeSpot.id)}&group=1&groupId=${encodeURIComponent(activeGroupId)}&date=${encodeURIComponent(dateVal)}&time=${encodeURIComponent(timeVal)}&from=${encodeURIComponent(fromStation)}&meetingPoint=${encodeURIComponent(meetingPoint)}`;
             try {
                 await navigator.clipboard.writeText(link);
