@@ -1073,14 +1073,12 @@ function getSwisstopoUrlsForHike(spot) {
     const isWinter = !isSnowshoe && (isSledging || spot.isWinterTrail || tags.includes('winter-hiking') || id.includes('winter') || url.includes('winter-hiking'));
 
     let trailLayer = 'ch.astra.wanderland';
-    let bgLayer = 'ch.swisstopo.pixelkarte-farbe';
     if (isSnowshoe) {
         trailLayer = 'ch.astra.schneeschuhwanderwege';
-        bgLayer = 'ch.swisstopo.pixelkarte-farbe-winter';
     } else if (isWinter) {
         trailLayer = 'ch.astra.winterwanderwege';
-        bgLayer = 'ch.swisstopo.pixelkarte-farbe-winter';
     }
+    const bgLayer = 'ch.swisstopo.pixelkarte-farbe';
 
     // Resolve official ASTRA / SwitzerlandMobility feature ID only for summer hiking trails (e.g. 810.00, 1.13, 988.00)
     let featureId = null;
