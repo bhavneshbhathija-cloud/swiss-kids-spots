@@ -1055,6 +1055,7 @@ function getSwisstopoUrlsForHike(spot) {
         : window.location.origin;
 
     const gpxTrackUrl = `${canonicalHost}/api/hikes/${encodeURIComponent(spot.id)}/track.gpx`;
+    const kmlTrackUrl = `${canonicalHost}/api/hikes/${encodeURIComponent(spot.id)}/track.kml`;
     const base64GpxUrl = btoa(unescape(encodeURIComponent(gpxTrackUrl)));
 
     // Official Swisstopo Universal Link / App Link (opens Swisstopo App on iOS & Android with the route)
@@ -1063,46 +1064,64 @@ function getSwisstopoUrlsForHike(spot) {
     // Compute Swiss LV95 coordinates for map centering
     const [E, N] = wgs84ToLv95(spot.lat, spot.lng);
 
-    // Resolve official ASTRA / SwitzerlandMobility feature ID (e.g. 810.00, 1.13, 145.00)
-    let featureId = null;
-    const sid = String(spot.swisstopoId || '').trim();
+    const url = spot.schweizMobilUrlEn || '';
+    const id = spot.id || '';
+    const tags = Array.isArray(spot.tags) ? spot.tags : [];
 
-    if (/^\d+\.\d+$/.test(sid)) {
-        featureId = sid;
-    } else if (spot.schweizMobilUrlEn) {
-        const stageMatch = spot.schweizMobilUrlEn.match(/route-(\d+)\/stage-(\d+)/);
-        if (stageMatch) {
-            featureId = `${stageMatch[1]}.${String(stageMatch[2]).padStart(2, '0')}`;
-        } else {
-            const routeMatch = spot.schweizMobilUrlEn.match(/route-(\d+)/);
-            if (routeMatch) {
-                featureId = `${routeMatch[1]}.00`;
-            }
-        }
+    const isSnowshoe = spot.isSnowshoe || tags.includes('snowshoe') || id.includes('snowshoe') || url.includes('snowshoe');
+    const isSledging = tags.includes('sledging') || id.includes('sledging') || url.includes('sledging');
+    const isWinter = !isSnowshoe && (isSledging || spot.isWinterTrail || tags.includes('winter-hiking') || id.includes('winter') || url.includes('winter-hiking'));
+
+    let trailLayer = 'ch.astra.wanderland';
+    let bgLayer = 'ch.swisstopo.pixelkarte-farbe';
+    if (isSnowshoe) {
+        trailLayer = 'ch.astra.schneeschuhwanderwege';
+        bgLayer = 'ch.swisstopo.pixelkarte-farbe-winter';
+    } else if (isWinter) {
+        trailLayer = 'ch.astra.winterwanderwege';
+        bgLayer = 'ch.swisstopo.pixelkarte-farbe-winter';
     }
 
-    if (!featureId) {
-        if (/^\d+$/.test(sid) && Number(sid) < 100000) {
-            featureId = `${sid}.00`;
-        } else if (spot.routeNumber && /^\d+$/.test(String(spot.routeNumber).trim())) {
-            featureId = `${String(spot.routeNumber).trim()}.00`;
+    // Resolve official ASTRA / SwitzerlandMobility feature ID only for summer hiking trails (e.g. 810.00, 1.13, 988.00)
+    let featureId = null;
+    const isSummerWanderland = !isSnowshoe && !isWinter && (url.includes('/hiking-in-switzerland/') || (!url.includes('/tour/') && !url.includes('winter') && !url.includes('snowshoe')));
+
+    if (isSummerWanderland) {
+        const sid = String(spot.swisstopoId || '').trim();
+        if (/^\d+\.\d+$/.test(sid)) {
+            featureId = sid;
+        } else if (spot.schweizMobilUrlEn) {
+            const stageMatch = spot.schweizMobilUrlEn.match(/route-(\d+)\/stage-(\d+)/);
+            if (stageMatch) {
+                featureId = `${stageMatch[1]}.${String(stageMatch[2]).padStart(2, '0')}`;
+            } else {
+                const routeMatch = spot.schweizMobilUrlEn.match(/route-(\d+)/);
+                if (routeMatch) {
+                    featureId = `${routeMatch[1]}.00`;
+                }
+            }
+        }
+
+        if (!featureId) {
+            if (/^\d+$/.test(sid) && Number(sid) < 100000) {
+                featureId = `${sid}.00`;
+            } else if (spot.routeNumber && /^\d+$/.test(String(spot.routeNumber).trim())) {
+                featureId = `${String(spot.routeNumber).trim()}.00`;
+            }
         }
     }
 
     let webUrl = '';
     if (featureId) {
         // Official Swisstopo / GeoAdmin Map with the exact vector trail route selected and highlighted in red
-        webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=ch.astra.wanderland@features=${featureId}&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en`;
-    } else if (spot.schweizMobilUrlEn && spot.schweizMobilUrlEn.includes('/tour/')) {
-        // For iconic tours (e.g. Ebenalp-Seealpsee, Bachalpsee), SchweizMobil's official tour page has the interactive route map
-        webUrl = spot.schweizMobilUrlEn;
+        webUrl = `https://map.geo.admin.ch/?lang=en&center=${E},${N}&z=9&layers=ch.astra.wanderland@features=${featureId}&bgLayer=ch.swisstopo.pixelkarte-farbe`;
     } else {
-        // Fallback: Swisstopo map centered on coordinates with Wanderland trail network and search query
-        const searchParam = spot.startStop || spot.name || '';
-        webUrl = `https://map.geo.admin.ch/#/map?center=${E},${N}&z=8.5&layers=ch.astra.wanderland&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en&swisssearch=${encodeURIComponent(searchParam)}&swisssearch_autoselect=true`;
+        // Winter, snowshoe, sledging, iconic tours, or custom routes:
+        // Use GeoAdmin's official KML overlay parameter with the appropriate Swiss trail network layer and topographic base map.
+        webUrl = `https://map.geo.admin.ch/?lang=en&center=${E},${N}&z=9&layers=${trailLayer},KML%7C${encodeURIComponent(kmlTrackUrl)}&bgLayer=${bgLayer}`;
     }
 
-    return { appUrl, webUrl, gpxTrackUrl, featureId };
+    return { appUrl, webUrl, gpxTrackUrl, kmlTrackUrl, featureId };
 }
 
 // Chooser modal for mobile devices to seamlessly choose App or Web Map
@@ -1184,15 +1203,8 @@ window.handleSwisstopoAppClick = function(event, spotId) {
     const urls = getSwisstopoUrlsForHike(spot);
     if (!urls) return;
 
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (!isMobile) {
-        // On desktop, the phone app is not installed anyway, so open the web map directly
-        event.preventDefault();
-        window.open(urls.webUrl, '_blank', 'noopener,noreferrer');
-        return false;
-    }
-
-    // On mobile phone: allow Universal Link to open app
+    // On mobile: opens swisstopo App directly via Universal Link.
+    // On desktop: opens swisstopo web portal displaying QR code to scan with phone & GPX download.
     return true;
 };
 

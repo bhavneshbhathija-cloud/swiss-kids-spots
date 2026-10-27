@@ -396,6 +396,15 @@ const server = http.createServer(async (req, res) => {
 
     // API Endpoint: Dynamic GPX Route Track for Swisstopo App and Web Viewers
     if (pathname.startsWith('/api/hikes/') && pathname.endsWith('/track.gpx')) {
+        if (req.method === 'OPTIONS') {
+            res.writeHead(204, {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': '*'
+            });
+            return res.end();
+        }
+
         const hikeId = decodeURIComponent(pathname.replace('/api/hikes/', '').replace('/track.gpx', ''));
         const hikesFilePath = path.join(__dirname, 'hikes.json');
         let hike = null;
@@ -469,6 +478,15 @@ ${coords.map((pt, i) => {
 
     // API Endpoint: Dynamic KML Route Track for Swisstopo Web and Google Earth Viewers
     if (pathname.startsWith('/api/hikes/') && pathname.endsWith('/track.kml')) {
+        if (req.method === 'OPTIONS') {
+            res.writeHead(204, {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': '*'
+            });
+            return res.end();
+        }
+
         const hikeId = decodeURIComponent(pathname.replace('/api/hikes/', '').replace('/track.kml', ''));
         const hikesFilePath = path.join(__dirname, 'hikes.json');
         let hike = null;
