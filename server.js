@@ -570,6 +570,53 @@ ${coords.map((pt, i) => {
         return res.end(kmlXml);
     }
 
+    // API Endpoint: Swiss Kids & Family Events
+    if (pathname === '/api/events') {
+        if (req.method === 'OPTIONS') {
+            res.writeHead(204, {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': '*'
+            });
+            return res.end();
+        }
+
+        const eventsFilePath = path.join(__dirname, 'events.json');
+        let events = [];
+        if (fs.existsSync(eventsFilePath)) {
+            try {
+                events = JSON.parse(fs.readFileSync(eventsFilePath, 'utf-8'));
+            } catch (e) {
+                console.error('Error reading events.json:', e);
+            }
+        }
+
+        // Optional query filtering
+        const cantonFilter = parsedUrl.searchParams.get('canton') ? parsedUrl.searchParams.get('canton').trim().toUpperCase() : null;
+        const categoryFilter = parsedUrl.searchParams.get('category') ? parsedUrl.searchParams.get('category').trim().toLowerCase() : null;
+        const weatherFilter = parsedUrl.searchParams.get('weather') ? parsedUrl.searchParams.get('weather').trim().toLowerCase() : null;
+
+        let filtered = events;
+        if (cantonFilter && cantonFilter !== 'ALL') {
+            filtered = filtered.filter(ev => ev.canton === cantonFilter);
+        }
+        if (categoryFilter) {
+            filtered = filtered.filter(ev => ev.category === categoryFilter);
+        }
+        if (weatherFilter === 'indoor') {
+            filtered = filtered.filter(ev => ev.isRainyDayFriendly === true);
+        } else if (weatherFilter === 'outdoor') {
+            filtered = filtered.filter(ev => ev.isRainyDayFriendly === false);
+        }
+
+        res.writeHead(200, {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            'Cache-Control': 'public, max-age=3600'
+        });
+        return res.end(JSON.stringify(filtered));
+    }
+
     // API Endpoint: General Feedback Form
     if (pathname === '/api/feedback' && req.method === 'POST') {
         let body = '';
@@ -1065,6 +1112,9 @@ ${coords.map((pt, i) => {
     if (pathname === '/spots_harvested.json') {
         filePath = path.join(DATA_DIR, 'spots_harvested.json');
         isDataFile = true;
+    } else if (pathname === '/events.json') {
+        filePath = path.join(__dirname, 'events.json');
+        isDataFile = true;
     } else if (pathname === '/feedback.json') {
         filePath = path.join(DATA_DIR, 'feedback.json');
         isDataFile = true;
@@ -1111,4 +1161,21 @@ ${coords.map((pt, i) => {
 
 server.listen(PORT, () => {
     console.log(`Dynamic Kids Spots Server listening on http://localhost:${PORT}`);
+
+    // Automated daily refresh for Swiss Kids Events (Phase 1)
+    try {
+        const { collectAndSaveEvents } = require('./collect_events');
+        const eventsPath = path.join(__dirname, 'events.json');
+        if (!fs.existsSync(eventsPath)) {
+            console.log('[Server Startup] events.json missing, triggering initial event collection...');
+            collectAndSaveEvents().catch(e => console.error('[Collector] Startup collection error:', e.message));
+        }
+        // Recurring 24-hour sync
+        setInterval(() => {
+            console.log('[Events Cron] Running daily events refresh...');
+            collectAndSaveEvents().catch(e => console.error('[Events Cron] Daily refresh error:', e.message));
+        }, 24 * 60 * 60 * 1000);
+    } catch (e) {
+        console.error('[Collector] Could not initialize events cron:', e.message);
+    }
 });

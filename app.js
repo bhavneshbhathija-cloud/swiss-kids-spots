@@ -66,8 +66,48 @@ function getAvgRating(spot) {
 
 // Check if a spot is "free"
 function isFreeSpot(spot) {
+    if (spot.type === 'event') return spot.isFree === true;
     if (!spot.fees) return true;
     return spot.fees.toLowerCase().includes("free") || parseFloat(spot.fees) === 0;
+}
+
+// Helpers for event date filtering
+function isEventToday(ev) {
+    if (ev.recurrence === 'daily') return true;
+    const today = new Date().toISOString().split('T')[0];
+    const s = ev.startDate || '2026-01-01';
+    const e = ev.endDate || s;
+    return s <= today && e >= today;
+}
+
+function isEventThisWeekend(ev) {
+    if (ev.recurrence === 'daily' || ev.recurrence === 'weekends') return true;
+    const now = new Date();
+    const day = now.getDay(); // 0 is Sun, 6 is Sat
+    const diffToSat = (6 - day + 7) % 7;
+    const sat = new Date(now);
+    sat.setDate(now.getDate() + (diffToSat === 0 && day === 6 ? 0 : diffToSat));
+    const sun = new Date(sat);
+    sun.setDate(sat.getDate() + 1);
+
+    const satStr = sat.toISOString().split('T')[0];
+    const sunStr = sun.toISOString().split('T')[0];
+    const s = ev.startDate || '2026-01-01';
+    const e = ev.endDate || s;
+    return s <= sunStr && e >= satStr;
+}
+
+function isEventNext7Days(ev) {
+    if (ev.recurrence === 'daily' || ev.recurrence === 'weekends') return true;
+    const now = new Date();
+    const future = new Date(now);
+    future.setDate(now.getDate() + 7);
+
+    const todayStr = now.toISOString().split('T')[0];
+    const futureStr = future.toISOString().split('T')[0];
+    const s = ev.startDate || '2026-01-01';
+    const e = ev.endDate || s;
+    return s <= futureStr && e >= todayStr;
 }
 
 // Retrieve Weather Code Info
@@ -278,6 +318,34 @@ function evaluateWeatherSuitability(type, weather, spot = null) {
         };
     }
 
+    if (type === "event") {
+        if (spot && spot.isRainyDayFriendly) {
+            return {
+                suitable: true,
+                status: "good",
+                icon: "fa-umbrella",
+                label: "🏛️ Weatherproof / Great Indoor Choice",
+                advice: "Indoor / protected venue — perfect regardless of rain or cold weather outside!"
+            };
+        }
+        if (prec > 0.3 || code >= 61) {
+            return {
+                suitable: false,
+                status: "warning",
+                icon: "fa-cloud-rain",
+                label: "🌧️ Open-Air Event (Check weather)",
+                advice: "This is an outdoor activity. Bring rain jackets and an umbrella!"
+            };
+        }
+        return {
+            suitable: true,
+            status: "good",
+            icon: "fa-calendar-check",
+            label: "☀️ Good Weather for Outdoor Event",
+            advice: "Clear skies — wonderful day to enjoy this family event!"
+        };
+    }
+
     return { suitable: true, status: "good", label: "Open today", advice: "" };
 }
 
@@ -350,18 +418,77 @@ async function loadSpots() {
         console.error("Error loading postal-codes.json:", e);
     }
 
-    // 1. Load hand-curated baseline from JSON file + All 1,134 SwitzerlandMobility Hiking Trails from hikes.json
+    // 1. Load hand-curated baseline from JSON file + All SwitzerlandMobility Hiking Trails + Kids Events
     try {
-        const [baseResponse, hikesResponse] = await Promise.all([
+        const [baseResponse, hikesResponse, eventsResponse] = await Promise.all([
             fetch("base_spots.json?v=15"),
-            fetch("hikes.json?v=15")
+            fetch("hikes.json?v=15"),
+            fetch("/api/events?v=" + Date.now()).catch(() => fetch("events.json?v=1"))
         ]);
         const baseSpots = baseResponse.ok ? await baseResponse.json() : [];
         const hikeSpots = hikesResponse.ok ? await hikesResponse.json() : [];
-        spots = [...baseSpots, ...hikeSpots];
-        console.log(`Loaded ${baseSpots.length} baseline spots and ${hikeSpots.length} hiking trails.`);
+        let rawEvents = [];
+        if (eventsResponse && eventsResponse.ok) {
+            try {
+                rawEvents = await eventsResponse.json();
+            } catch (e) {
+                console.warn("Could not parse events:", e);
+            }
+        }
+
+        const eventSpots = rawEvents.map(ev => ({
+            id: ev.id,
+            name: ev.title,
+            nameDe: ev.titleDe || ev.title,
+            type: 'event',
+            category: ev.category || 'festival',
+            lat: ev.lat,
+            lng: ev.lng,
+            address: ev.address || `${ev.canton || 'CH'}, Switzerland`,
+            canton: ev.canton || 'ZH',
+            city: ev.locationName || ev.address,
+            locationName: ev.locationName,
+            description: ev.description || '',
+            descriptionDe: ev.descriptionDe || ev.description || '',
+            startDate: ev.startDate,
+            endDate: ev.endDate || ev.startDate,
+            timeText: ev.timeText || '',
+            recurrence: ev.recurrence || 'single-day',
+            ageMin: ev.ageMin || 0,
+            ageMax: ev.ageMax || 18,
+            ageLabel: ev.ageLabel || 'Kids & Families',
+            isRainyDayFriendly: ev.isRainyDayFriendly !== false,
+            isFree: ev.isFree || false,
+            priceText: ev.priceText || (ev.isFree ? 'Free Admission' : ''),
+            fees: ev.isFree ? 'Free' : (ev.priceText || 'Paid Entry'),
+            openingHours: ev.timeText || 'See website',
+            minAge: ev.ageMin || 0,
+            maxAge: ev.ageMax || 18,
+            officialUrl: ev.officialUrl,
+            ticketUrl: ev.ticketUrl || ev.officialUrl,
+            imageUrl: ev.imageUrl || getDefaultSpotFallback('event'),
+            tags: ev.tags || [],
+            organizer: ev.organizer || '',
+            ratings: [5, 5, 5, 4.8],
+            comments: [],
+            features: [
+                ev.isRainyDayFriendly ? 'Indoor / Weatherproof' : 'Outdoor',
+                ev.isFree ? 'Free Admission' : (ev.priceText || 'Tickets apply'),
+                ev.ageLabel || 'Kids & Families'
+            ],
+            amenities: [
+                ev.isRainyDayFriendly ? 'Indoor / Weatherproof' : 'Outdoor Event',
+                ev.isFree ? 'Free Admission' : (ev.priceText || 'Ticket Admission'),
+                ev.ageLabel || 'Kids & Families',
+                'Family Friendly'
+            ],
+            verified: true
+        }));
+
+        spots = [...baseSpots, ...hikeSpots, ...eventSpots];
+        console.log(`Loaded ${baseSpots.length} baseline spots, ${hikeSpots.length} hiking trails, and ${eventSpots.length} kids events.`);
     } catch (e) {
-        console.error("Error loading baseline/hiking spots:", e);
+        console.error("Error loading baseline/hiking/event spots:", e);
         spots = [];
     }
     
@@ -578,6 +705,7 @@ function updateMapMarkers(filteredSpots) {
         else if (spot.type === "hiking") iconHtml = '<i class="fa-solid fa-person-hiking"></i>';
         else if (spot.type === "gamezone") iconHtml = '<i class="fa-solid fa-gamepad"></i>';
         else if (spot.type === "swimmingpool") iconHtml = '<i class="fa-solid fa-water-ladder"></i>';
+        else if (spot.type === "event") iconHtml = '<i class="fa-solid fa-calendar-star"></i>';
 
         const weatherEval = evaluateWeatherSuitability(spot.type, liveWeatherData, spot);
         const weatherStyleClass = weatherEval.status === "warning" ? "pin-bad-weather" : "pin-good-weather";
@@ -601,13 +729,22 @@ function updateMapMarkers(filteredSpots) {
                </div>`
             : '';
 
+        const eventSubInfo = spot.type === "event"
+            ? `<div style="font-size: 0.75rem; font-weight: 600; color: #8338ec; margin-bottom: 6px;">
+                 ${spot.nameDe && spot.nameDe !== spot.name ? `<div style="color: var(--text-secondary); font-weight: 500; margin-bottom: 2px;">🇩🇪 ${spot.nameDe}</div>` : ''}
+                 <span>📅 ${spot.startDate}${spot.endDate && spot.endDate !== spot.startDate ? ' – ' + spot.endDate : ''}</span> &bull; 
+                 <span>${spot.ageLabel || 'Kids'}</span>
+               </div>`
+            : '';
+
         const popupContent = `
             <div style="font-family: var(--font-primary); min-width: 185px; padding: 2px;">
                 <h4 style="margin: 0 0 4px 0; font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">${spot.name}</h4>
                 ${hikeSubInfo}
-                <p style="margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-location-dot"></i> ${spot.city || spot.region} (${spot.zip || ''})</p>
+                ${eventSubInfo}
+                <p style="margin: 0 0 8px 0; font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-location-dot"></i> ${spot.city || spot.region || spot.locationName || ''} (${spot.canton || ''})</p>
                 <div style="display: flex; gap: 8px; margin-top: 4px;">
-                    <button class="btn btn-outline" onclick="openDetails('${spot.id}')" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; flex: 1; min-height: auto; height: auto;">Details</button>
+                    <button class="btn btn-outline" onclick="openDetails('${spot.id}')" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; flex: 1; min-height: auto; height: auto;">${spot.type === 'event' ? 'Tickets' : 'Details'}</button>
                     <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.35rem 0.6rem; font-size: 0.75rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; flex: 1; color: white; min-height: auto; height: auto; text-transform: none; letter-spacing: 0;"><i class="fa-solid fa-diamond-turn-right"></i> Start</a>
                 </div>
             </div>
@@ -675,11 +812,19 @@ function renderSpotsList(keepLimit = false) {
     const typeHiking = typeHikingEl ? typeHikingEl.checked : true;
     const typeGamezone = document.getElementById("filter-gamezone").checked;
     const typeSwimmingpool = document.getElementById("filter-swimmingpool").checked;
+    const typeEventEl = document.getElementById("filter-event");
+    const typeEvent = typeEventEl ? typeEventEl.checked : true;
 
     // Show/hide hiking subfilters panel based on whether Hiking Trails is checked
     const hikingSubfiltersBox = document.getElementById("hiking-subfilters-box");
     if (hikingSubfiltersBox) {
         hikingSubfiltersBox.style.display = typeHiking ? "block" : "none";
+    }
+
+    // Show/hide event subfilters panel based on whether Kids Events is checked
+    const eventSubfiltersBox = document.getElementById("event-subfilters-box");
+    if (eventSubfiltersBox) {
+        eventSubfiltersBox.style.display = typeEvent ? "block" : "none";
     }
 
     // Gather hiking sub-filters
@@ -689,6 +834,11 @@ function renderSpotsList(keepLimit = false) {
     const hikeWinterOnly = document.getElementById("filter-hike-winter") ? document.getElementById("filter-hike-winter").checked : false;
     const hikeRestaurantOnly = document.getElementById("filter-hike-restaurant") ? document.getElementById("filter-hike-restaurant").checked : false;
     const hikeParkingOnly = document.getElementById("filter-hike-parking") ? document.getElementById("filter-hike-parking").checked : false;
+
+    // Gather event sub-filters
+    const eventTiming = document.getElementById("filter-event-timing") ? document.getElementById("filter-event-timing").value : "all";
+    const eventCategory = document.getElementById("filter-event-category") ? document.getElementById("filter-event-category").value : "all";
+    const eventFreeOnly = document.getElementById("filter-event-free") ? document.getElementById("filter-event-free").checked : false;
 
     const selectedFees = document.querySelector('input[name="filter-fees"]:checked').value;
     const weatherSuitableOnly = document.getElementById("filter-weather-suitable").checked;
@@ -718,18 +868,20 @@ function renderSpotsList(keepLimit = false) {
         });
     } else {
         filtered = filtered.filter(spot => {
+            if (spot.type === "event") return true;
             const isCustom = spot.id.startsWith("custom-spot-");
             const isCurated = !spot.id.startsWith("osm-spot-") && !isCustom;
             return isCurated || isCustom;
         });
     }
 
-    // 2. Filter by Category & Hiking Sub-Filters
+    // 2. Filter by Category & Sub-Filters
     filtered = filtered.filter(spot => {
         if (spot.type === "playpark" && !typePlaypark) return false;
         if (spot.type === "hiking" && !typeHiking) return false;
         if (spot.type === "gamezone" && !typeGamezone) return false;
         if (spot.type === "swimmingpool" && !typeSwimmingpool) return false;
+        if (spot.type === "event" && !typeEvent) return false;
 
         if (spot.type === "hiking") {
             if (hikeRegion !== "all" && spot.region !== hikeRegion) return false;
@@ -739,6 +891,15 @@ function renderSpotsList(keepLimit = false) {
             if (hikeRestaurantOnly && (!spot.restaurants || spot.restaurants.length === 0)) return false;
             if (hikeParkingOnly && !spot.parking) return false;
         }
+
+        if (spot.type === "event") {
+            if (eventCategory !== "all" && spot.category !== eventCategory) return false;
+            if (eventFreeOnly && !spot.isFree) return false;
+            if (eventTiming === "today" && !isEventToday(spot)) return false;
+            if (eventTiming === "weekend" && !isEventThisWeekend(spot)) return false;
+            if (eventTiming === "next7" && !isEventNext7Days(spot)) return false;
+        }
+
         return true;
     });
 
@@ -793,9 +954,9 @@ function renderSpotsList(keepLimit = false) {
     // Render count
     if (currentSearchZip !== "") {
         const zipCity = SWISS_ZIPS[currentSearchZip] ? SWISS_ZIPS[currentSearchZip].city : currentSearchZip;
-        countContainer.textContent = `${filtered.length} spot${filtered.length === 1 ? '' : 's'} & trail${filtered.length === 1 ? '' : 's'} near ${zipCity}`;
+        countContainer.textContent = `${filtered.length} spot${filtered.length === 1 ? '' : 's'}, trail${filtered.length === 1 ? '' : 's'} & event${filtered.length === 1 ? '' : 's'} near ${zipCity}`;
     } else {
-        countContainer.textContent = `Showing ${filtered.length} Featured Spots & Hiking Trails in Switzerland`;
+        countContainer.textContent = `Showing ${filtered.length} Featured Spots, Hiking Trails & Kids Events in Switzerland`;
     }
 
     // Render Cards
@@ -844,8 +1005,9 @@ function renderSpotsList(keepLimit = false) {
             <span class="spot-card-distance">${spot.distance.toFixed(1)} km away</span>
         ` : '';
 
-        // Hiking-specific bilingual subtitle & metrics row
+        // Hiking & Event-specific bilingual subtitle & metrics row
         let hikeCardExtrasHtml = "";
+        let eventCardExtrasHtml = "";
         let typeLabel = spot.type;
         if (spot.type === "hiking") {
             typeLabel = `hiking • ${spot.region || 'CH'}`;
@@ -886,6 +1048,28 @@ function renderSpotsList(keepLimit = false) {
                     ${restPill}
                 </div>
             `;
+        } else if (spot.type === "event") {
+            typeLabel = `event • ${spot.canton || 'CH'}`;
+            const timingBadge = isEventToday(spot) 
+                ? '<span class="event-pill event-pill-today">🎉 Today</span>' 
+                : (isEventThisWeekend(spot) ? '<span class="event-pill event-pill-weekend">⭐ This Weekend</span>' : '');
+            const weatherBadge = spot.isRainyDayFriendly 
+                ? '<span class="event-pill event-pill-indoor"><i class="fa-solid fa-umbrella"></i> Weatherproof</span>' 
+                : '<span class="event-pill"><i class="fa-solid fa-cloud-sun"></i> Open-Air</span>';
+            const freeBadgePill = spot.isFree 
+                ? '<span class="event-pill event-pill-free">🎟️ Free</span>' 
+                : (spot.priceText ? `<span class="event-pill">${escapeHtml(spot.priceText)}</span>` : '');
+
+            eventCardExtrasHtml = `
+                ${spot.nameDe && spot.nameDe !== spot.name ? `<div class="spot-card-subtitle-de">🇩🇪 ${spot.nameDe}</div>` : ''}
+                <div class="hike-card-metrics" style="margin-top: 6px;">
+                    <span class="event-pill event-pill-date"><i class="fa-solid fa-calendar-days"></i> ${spot.startDate}${spot.endDate && spot.endDate !== spot.startDate ? ' – ' + spot.endDate : ''}</span>
+                    <span class="event-pill"><i class="fa-solid fa-child"></i> ${spot.ageLabel || 'Kids & Family'}</span>
+                    ${timingBadge}
+                    ${weatherBadge}
+                    ${freeBadgePill}
+                </div>
+            `;
         }
 
         const card = document.createElement("div");
@@ -906,6 +1090,7 @@ function renderSpotsList(keepLimit = false) {
             <div class="spot-card-info">
                 <h3 class="spot-card-title">${spot.name}</h3>
                 ${hikeCardExtrasHtml}
+                ${eventCardExtrasHtml}
                 <p class="spot-card-area"><i class="fa-solid fa-location-dot"></i> ${spot.address}</p>
                 <div class="spot-card-meta">
                     <div class="spot-card-rating">
@@ -915,8 +1100,8 @@ function renderSpotsList(keepLimit = false) {
                 </div>
             </div>
             <div class="spot-card-footer">
-                <button class="btn btn-outline" onclick="openDetails('${spot.id}')">${spot.type === 'hiking' ? 'Trail Info & Profile' : 'View Details'}</button>
-                <button class="btn btn-primary" onclick="focusOnMap('${spot.id}', ${spot.lat}, ${spot.lng})"><i class="fa-solid fa-location-crosshairs"></i> ${spot.type === 'hiking' ? 'Show Trail' : 'Map'}</button>
+                <button class="btn btn-outline" onclick="openDetails('${spot.id}')">${spot.type === 'hiking' ? 'Trail Info & Profile' : (spot.type === 'event' ? 'Event Info & Tickets' : 'View Details')}</button>
+                <button class="btn btn-primary" onclick="focusOnMap('${spot.id}', ${spot.lat}, ${spot.lng})"><i class="fa-solid fa-location-crosshairs"></i> ${spot.type === 'hiking' ? 'Show Trail' : (spot.type === 'event' ? 'Venue Map' : 'Map')}</button>
             </div>
         `;
 
@@ -973,6 +1158,7 @@ function getDefaultSpotFallback(type) {
     if (type === "playpark") return "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80";
     if (type === "hiking") return "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=80";
     if (type === "gamezone") return "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80";
+    if (type === "event") return "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80";
     return "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80";
 }
 
@@ -1471,7 +1657,8 @@ async function openDetails(spotId, options = {}) {
             : '<i class="fa-regular fa-star star-empty"></i>';
     }
 
-    const amenitiesHtml = spot.amenities.map(a => {
+    const amenitiesList = spot.amenities || spot.features || [];
+    const amenitiesHtml = amenitiesList.map(a => {
         let aIcon = "fa-check";
         if (a === "Toilets") aIcon = "fa-restroom";
         else if (a.includes("Cafe") || a.includes("Food")) aIcon = "fa-mug-hot";
@@ -1766,6 +1953,104 @@ async function openDetails(spotId, options = {}) {
                         <span>${spot.playgroundsNote || 'Family-friendly nature trail'}</span>
                         ${nearbySpotsHtml}
                     </div>
+                </div>
+            </div>
+        `;
+    } else if (spot.type === "event") {
+        const sbbUrl = `https://www.sbb.ch/en?to=${encodeURIComponent(spot.locationName || spot.address)}`;
+        const ticketBtnHtml = spot.ticketUrl ? `
+            <a href="${spot.ticketUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; color: white; background: linear-gradient(135deg, #8338ec, #ff006e); border: none;">
+                <i class="fa-solid fa-ticket"></i> Tickets &amp; Registration
+            </a>
+        ` : '';
+
+        const websiteBtnHtml = (spot.officialUrl && spot.officialUrl !== spot.ticketUrl) ? `
+            <a href="${spot.officialUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid var(--border-color);">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Official Website
+            </a>
+        ` : '';
+
+        actionButtonsHtml = `
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                ${ticketBtnHtml}
+                ${websiteBtnHtml}
+                <a href="${sbbUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid #eb0000; color: #eb0000;">
+                    <i class="fa-solid fa-train"></i> SBB Timetable
+                </a>
+                <a href="${directionsUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid var(--border-color);">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Directions
+                </a>
+            </div>
+        `;
+
+        const dateRangeStr = `${spot.startDate}${spot.endDate && spot.endDate !== spot.startDate ? ' &ndash; ' + spot.endDate : ''}`;
+        metaGridHtml = `
+            <div class="detail-meta-grid">
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-calendar-days" style="color: #8338ec;"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Event Schedule</h4>
+                        <p style="font-weight: 700;">${dateRangeStr}</p>
+                        ${spot.timeText ? `<small style="color: var(--text-secondary);">${escapeHtml(spot.timeText)}</small>` : ''}
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-ticket" style="color: #ff006e;"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Admission / Price</h4>
+                        <p style="font-weight: 700;">${spot.isFree ? '🎟️ Free Admission' : escapeHtml(spot.priceText || spot.fees || 'Paid Entry')}</p>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid fa-child" style="color: #3a86ff;"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Age Group</h4>
+                        <p style="font-weight: 700;">${escapeHtml(spot.ageLabel || 'Kids & Families')}</p>
+                    </div>
+                </div>
+                <div class="detail-meta-item">
+                    <i class="fa-solid ${spot.isRainyDayFriendly ? 'fa-umbrella' : 'fa-sun'}" style="color: ${spot.isRainyDayFriendly ? '#2a9d8f' : '#f4a261'};"></i>
+                    <div class="detail-meta-item-content">
+                        <h4>Weather Status</h4>
+                        <p style="font-weight: 700;">${spot.isRainyDayFriendly ? '🏛️ Indoor / Weatherproof' : '☀️ Open-Air Activity'}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const descEn = spot.description || '';
+        const descDe = spot.descriptionDe || '';
+        const hasDe = descDe && descDe.trim() !== '' && descDe !== descEn;
+
+        hikingDetailSectionsHtml = `
+            <div class="detail-description">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h3 style="margin: 0;">Event Details &amp; Highlights</h3>
+                    ${spot.organizer ? `<span style="font-size: 0.8rem; color: var(--text-secondary);"><i class="fa-solid fa-building"></i> ${escapeHtml(spot.organizer)}</span>` : ''}
+                </div>
+                <div class="hike-bilingual-desc">
+                    <div class="hike-lang-card">
+                        <span class="hike-lang-tag">🇬🇧 English</span>
+                        <p style="white-space: pre-line; line-height: 1.6;">${escapeHtml(descEn)}</p>
+                    </div>
+                    ${hasDe ? `
+                    <div class="hike-lang-card">
+                        <span class="hike-lang-tag">🇩🇪 Deutsch</span>
+                        <p style="white-space: pre-line; line-height: 1.6;">${escapeHtml(descDe)}</p>
+                    </div>` : ''}
+                </div>
+
+                <div style="background: rgba(235, 0, 0, 0.05); border: 1px solid rgba(235, 0, 0, 0.2); border-radius: 8px; padding: 0.85rem 1.1rem; margin-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fa-solid fa-train" style="color: #eb0000; font-size: 1.3rem;"></i>
+                        <div>
+                            <strong style="font-size: 0.92rem; color: var(--text-primary);">SBB Swiss Federal Railways Timetable</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary);">Direct public transport connections to ${escapeHtml(spot.locationName || spot.city || 'venue')}</div>
+                        </div>
+                    </div>
+                    <a href="${sbbUrl}" target="_blank" rel="noopener" class="btn" style="background: #eb0000; color: white; border: none; padding: 0.45rem 0.9rem; font-size: 0.82rem; text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Check SBB Connections
+                    </a>
                 </div>
             </div>
         `;
@@ -4067,20 +4352,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (filterHikingEl) filterHikingEl.addEventListener("change", renderSpotsList);
     document.getElementById("filter-gamezone").addEventListener("change", renderSpotsList);
     document.getElementById("filter-swimmingpool").addEventListener("change", renderSpotsList);
+    const filterEventEl = document.getElementById("filter-event");
+    if (filterEventEl) filterEventEl.addEventListener("change", renderSpotsList);
+
     document.getElementById("filter-weather-suitable").addEventListener("change", renderSpotsList);
     document.getElementById("sort-select").addEventListener("change", renderSpotsList);
 
-    // Helper to deselect other spot categories (Playparks, Game zones, Swimming pools)
+    // Helper to deselect other spot categories (Playparks, Game zones, Swimming pools, Events)
     // when a specific type or option of hike is chosen
     function deselectNonHikingCategories() {
         const playpark = document.getElementById("filter-playpark");
         const gamezone = document.getElementById("filter-gamezone");
         const pool = document.getElementById("filter-swimmingpool");
         const hiking = document.getElementById("filter-hiking");
+        const eventEl = document.getElementById("filter-event");
 
         if (playpark) playpark.checked = false;
         if (gamezone) gamezone.checked = false;
         if (pool) pool.checked = false;
+        if (eventEl) eventEl.checked = false;
         if (hiking) hiking.checked = true;
 
         const hikingSubfiltersBox = document.getElementById("hiking-subfilters-box");
@@ -4088,6 +4378,42 @@ document.addEventListener("DOMContentLoaded", () => {
             hikingSubfiltersBox.style.display = "block";
         }
     }
+
+    // Helper to deselect other spot categories when an event subfilter is activated
+    function deselectNonEventCategories() {
+        const playpark = document.getElementById("filter-playpark");
+        const gamezone = document.getElementById("filter-gamezone");
+        const pool = document.getElementById("filter-swimmingpool");
+        const hiking = document.getElementById("filter-hiking");
+        const eventEl = document.getElementById("filter-event");
+
+        if (playpark) playpark.checked = false;
+        if (gamezone) gamezone.checked = false;
+        if (pool) pool.checked = false;
+        if (hiking) hiking.checked = false;
+        if (eventEl) eventEl.checked = true;
+
+        const eventSubfiltersBox = document.getElementById("event-subfilters-box");
+        if (eventSubfiltersBox) {
+            eventSubfiltersBox.style.display = "block";
+        }
+    }
+
+    // Event sub-filter events
+    ["filter-event-timing", "filter-event-category", "filter-event-free"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener("change", (e) => {
+                const target = e.target;
+                const isSelected = (target.type === "checkbox" && target.checked) ||
+                                   (target.tagName === "SELECT" && target.value !== "all");
+                if (isSelected) {
+                    deselectNonEventCategories();
+                }
+                renderSpotsList();
+            });
+        }
+    });
 
     // Hiking sub-filter events: when user selects any specific hike type/option,
     // automatically deselect Playparks, Game zones, and Swimming pools

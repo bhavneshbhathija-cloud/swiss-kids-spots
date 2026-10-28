@@ -620,6 +620,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .badge-playpark { background-color: var(--accent-teal); }
 .badge-gamezone { background-color: var(--accent-orange); }
 .badge-swimmingpool { background-color: var(--accent-blue); }
+.badge-event { background: linear-gradient(135deg, #8338ec, #3a86ff); color: white; }
 
 .badge-free {
     background-color: rgba(42, 157, 143, 0.15);
@@ -1717,6 +1718,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .text-hiking { color: var(--accent-hiking); margin-right: 6px; }
 .text-gamezone { color: var(--accent-orange); margin-right: 6px; }
 .text-swimmingpool { color: var(--accent-blue); margin-right: 6px; }
+.text-event { color: #8338ec; margin-right: 6px; }
 
 .badge-hiking {
     background-color: var(--accent-hiking);
@@ -1727,6 +1729,59 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 .custom-pin.pin-hiking i {
     color: white;
+}
+
+.custom-pin.pin-event {
+    background: linear-gradient(135deg, #8338ec, #3a86ff);
+    box-shadow: 0 0 10px rgba(131, 56, 236, 0.55);
+}
+.custom-pin.pin-event i {
+    color: white;
+}
+
+.event-subfilters {
+    background: rgba(131, 56, 236, 0.05);
+    border: 1px solid rgba(131, 56, 236, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem;
+    margin-bottom: 1.2rem;
+    transition: var(--transition-smooth);
+}
+.event-subfilter-header label {
+    color: #8338ec;
+    font-size: 0.8rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.65rem;
+}
+.event-subfilter-row {
+    margin-bottom: 0.65rem;
+}
+.event-subfilter-row:last-child {
+    margin-bottom: 0;
+}
+.event-subfilter-row .subfilter-label {
+    font-size: 0.72rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+}
+.event-chk {
+    border-color: #8338ec;
+}
+.checkbox-container input:checked ~ .event-chk {
+    background-color: #8338ec;
+    border-color: #8338ec;
+}
+.badge-event-pill {
+    margin-left: auto;
+    background: linear-gradient(135deg, #8338ec, #ff006e);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 700;
 }
 
 .badge-new-pill {
@@ -1860,6 +1915,53 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background: rgba(56, 189, 248, 0.28);
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(56, 189, 248, 0.25);
+}
+
+/* --- Kids Event Pills & Badges --- */
+.event-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.18rem 0.5rem;
+    border-radius: 6px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.event-pill-date {
+    background: rgba(131, 56, 236, 0.12);
+    color: #8338ec;
+    border-color: rgba(131, 56, 236, 0.3);
+}
+
+.event-pill-today {
+    background: linear-gradient(135deg, rgba(255, 0, 110, 0.15), rgba(131, 56, 236, 0.15));
+    color: #ff006e;
+    border-color: rgba(255, 0, 110, 0.35);
+    font-weight: 800;
+}
+
+.event-pill-weekend {
+    background: rgba(255, 183, 3, 0.2);
+    color: #b07d00;
+    border-color: rgba(255, 183, 3, 0.45);
+    font-weight: 800;
+}
+
+.event-pill-indoor {
+    background: rgba(42, 157, 143, 0.14);
+    color: #1b7f72;
+    border-color: rgba(42, 157, 143, 0.3);
+}
+
+.event-pill-free {
+    background: rgba(76, 175, 80, 0.15);
+    color: #2e7d32;
+    border-color: rgba(76, 175, 80, 0.35);
+    font-weight: 800;
 }
 
 /* --- Hiking Detail Modal Sections --- */

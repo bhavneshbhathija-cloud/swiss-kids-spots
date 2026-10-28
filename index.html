@@ -65,7 +65,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=26">
+    <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body class="light-theme">
     <!-- App Container -->
@@ -152,6 +152,11 @@
                                 <span class="checkmark swimmingpool-chk"></span>
                                 <i class="fa-solid fa-water-ladder text-swimmingpool"></i> Swimming Pools
                             </label>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="filter-event" value="event" checked>
+                                <span class="checkmark event-chk"></span>
+                                <i class="fa-solid fa-calendar-star text-event"></i> Kids Events &amp; Activities <span class="badge badge-event-pill">New!</span>
+                            </label>
                         </div>
                     </div>
 
@@ -212,6 +217,45 @@
                                 <input type="checkbox" id="toggle-swisstopo-layer">
                                 <span class="checkmark"></span>
                                 <i class="fa-solid fa-layer-group"></i> Show Official Swisstopo Trails on Map
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dedicated Kids Events Sub-Filters -->
+                    <div class="filter-group event-subfilters" id="event-subfilters-box">
+                        <div class="event-subfilter-header">
+                            <label><i class="fa-solid fa-calendar-days"></i> Kids Events &amp; Activities</label>
+                        </div>
+
+                        <div class="event-subfilter-row">
+                            <label for="filter-event-timing" class="subfilter-label">When</label>
+                            <select id="filter-event-timing" class="form-select form-select-sm">
+                                <option value="all" selected>All Upcoming &amp; Ongoing</option>
+                                <option value="weekend">This Weekend (Sat / Sun)</option>
+                                <option value="today">Today</option>
+                                <option value="next7">Next 7 Days</option>
+                            </select>
+                        </div>
+
+                        <div class="event-subfilter-row">
+                            <label for="filter-event-category" class="subfilter-label">Type</label>
+                            <select id="filter-event-category" class="form-select form-select-sm">
+                                <option value="all" selected>All Event Types</option>
+                                <option value="festival">Festivals &amp; Light Shows</option>
+                                <option value="workshop">Hands-On Labs &amp; Science</option>
+                                <option value="museum">Museums &amp; Castles</option>
+                                <option value="animals">Animals &amp; Zoos</option>
+                                <option value="seasonal">Seasonal &amp; Traditions</option>
+                                <option value="sports">Sports &amp; Games</option>
+                                <option value="outdoor">Outdoor Adventures</option>
+                            </select>
+                        </div>
+
+                        <div class="checkbox-group" style="margin-top: 0.4rem;">
+                            <label class="checkbox-container" style="font-size: 0.82rem;">
+                                <input type="checkbox" id="filter-event-free">
+                                <span class="checkmark"></span>
+                                <i class="fa-solid fa-tag" style="color: #2a9d8f;"></i> Free Admission Only
                             </label>
                         </div>
                     </div>
@@ -732,6 +776,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=29"></script>
+    <script src="app.js?v=31"></script>
 </body>
 </html>
