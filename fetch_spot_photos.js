@@ -21,7 +21,8 @@ function isValidImageUrl(url) {
         'adsystem', 'analytics', 'pixel', 'tracker', 'adserver', 'advertisement', 'doubleclick', 'telemetry', 'statcounter',
         'porn', 'nude', 'naked', 'sexy', 'adult', 'erotic', 'nsfw', 'xxx', 'boobs', 'sex', 'lingerie', 'playboy', 'sensual',
         'girls', 'model', 'bikini', 'nackt', 'nackte', 'nude-photo', 'strip', 'nudephoto', 'playmate',
-        'spital', 'hospital', 'klinik', 'logo', 'icon', 'avatar', 'placeholder', 'map', 'karte', 'grundriss'
+        'spital', 'hospital', 'klinik', 'logo', 'icon', 'avatar', 'placeholder', 'map', 'karte', 'grundriss',
+        'badi-info'
     ];
     for (const kw of badKeywords) {
         if (lower.includes(kw)) return false;
