@@ -1712,8 +1712,11 @@ async function openDetails(spotId, options = {}) {
             directionsUrl += `&waypoints=${encodeURIComponent(waypoints.join("|"))}`;
         }
     }
-    const googleSearchUrl = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${spot.lat},${spot.lng}`;
-    const detailAttributionHtml = spot.imageSource ? `<div class="image-attribution detail-attribution">📷 ${spot.imageSource}</div>` : '';
+    const safeSpotName = (spot.name || '').replace(/'/g, "\\'");
+    const safeSpotImg = encodeURIComponent(spot.imageUrl || '');
+    const detailAttributionHtml = spot.imageSource 
+        ? `<div class="image-attribution detail-attribution">📷 ${spot.imageSource} <button type="button" class="spot-detail-report-link" onclick="openTakedownModal('${safeSpotName}', '${safeSpotImg}')"><i class="fa-solid fa-flag"></i> Report</button></div>` 
+        : `<div style="margin-top: 4px;"><button type="button" class="spot-detail-report-link" style="margin-left: 0;" onclick="openTakedownModal('${safeSpotName}', '${safeSpotImg}')"><i class="fa-solid fa-flag"></i> Report photo</button></div>`;
 
     // Build SVG Elevation Profile chart for hiking routes
     let hikingDetailSectionsHtml = "";
@@ -4488,12 +4491,94 @@ document.addEventListener("DOMContentLoaded", () => {
         feedbackModal.style.display = "flex";
     });
 
+    const impressumModal = document.getElementById("impressum-modal");
+    const takedownModal = document.getElementById("takedown-modal");
+
+    // Impressum & Notice & Takedown Modal Handlers
+    window.openImpressumModal = function() {
+        if (impressumModal) impressumModal.style.display = "flex";
+    };
+    window.closeImpressumModal = function() {
+        if (impressumModal) impressumModal.style.display = "none";
+    };
+
+    window.openTakedownModal = function(spotName = '', imageUrl = '') {
+        if (!takedownModal) return;
+        if (impressumModal) impressumModal.style.display = "none";
+
+        const spotNameInput = document.getElementById("takedown-spot-name");
+        const imageInput = document.getElementById("takedown-image-url");
+
+        if (spotNameInput && spotName) spotNameInput.value = spotName;
+        if (imageInput && imageUrl) imageInput.value = decodeURIComponent(imageUrl);
+
+        takedownModal.style.display = "flex";
+    };
+    window.closeTakedownModal = function() {
+        if (takedownModal) takedownModal.style.display = "none";
+    };
+
+    const btnOpenImpressum = document.getElementById("btn-open-impressum");
+    if (btnOpenImpressum) btnOpenImpressum.addEventListener("click", openImpressumModal);
+
+    const btnOpenTakedown = document.getElementById("btn-open-takedown");
+    if (btnOpenTakedown) btnOpenTakedown.addEventListener("click", () => openTakedownModal());
+
+    const btnOpenReport = document.getElementById("btn-open-report");
+    if (btnOpenReport) btnOpenReport.addEventListener("click", () => openTakedownModal());
+
+    const btnImpToTakedown = document.getElementById("impressum-to-takedown-btn");
+    if (btnImpToTakedown) btnImpToTakedown.addEventListener("click", () => openTakedownModal());
+
+    // Takedown Form Submission
+    const takedownForm = document.getElementById("takedown-form");
+    if (takedownForm) {
+        takedownForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const spotName = document.getElementById("takedown-spot-name").value.trim();
+            const imageUrl = document.getElementById("takedown-image-url").value.trim();
+            const reason = document.getElementById("takedown-reason").value;
+            const contact = document.getElementById("takedown-contact").value.trim();
+            const notes = document.getElementById("takedown-notes").value.trim();
+
+            const payload = {
+                id: 'takedown-' + Date.now(),
+                type: 'copyright_takedown',
+                spotName,
+                imageUrl,
+                reason,
+                email: contact,
+                comments: `TAKEDOWN REQUEST for spot: ${spotName}. Reason: ${reason}. Image: ${imageUrl}. Notes: ${notes}`,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                await fetch("/api/feedback", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.warn("Takedown logged locally:", err);
+                const local = JSON.parse(localStorage.getItem("sfk_takedown_logs") || "[]");
+                local.push(payload);
+                localStorage.setItem("sfk_takedown_logs", JSON.stringify(local));
+            }
+
+            alert("Vielen Dank für Ihre Mitteilung. Wir haben Ihre Takedown-Meldung erhalten. Der betroffene Inhalt wird unverzüglich von unserem Team geprüft und innerhalb von 24–48 Stunden entfernt bzw. angepasst.");
+            takedownForm.reset();
+            closeTakedownModal();
+        });
+    }
+
     // Modal Close triggers
     document.querySelectorAll(".modal-close, #add-spot-cancel, #feedback-cancel").forEach(btn => {
         btn.addEventListener("click", () => {
             addSpotModal.style.display = "none";
             detailModal.style.display = "none";
             feedbackModal.style.display = "none";
+            if (impressumModal) impressumModal.style.display = "none";
+            if (takedownModal) takedownModal.style.display = "none";
             closeGroupRadarModal();
         });
     });
@@ -4503,6 +4588,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === addSpotModal) addSpotModal.style.display = "none";
         if (e.target === detailModal) detailModal.style.display = "none";
         if (e.target === feedbackModal) feedbackModal.style.display = "none";
+        if (e.target === impressumModal) impressumModal.style.display = "none";
+        if (e.target === takedownModal) takedownModal.style.display = "none";
         const radarModal = document.getElementById("group-radar-modal");
         if (e.target === radarModal) closeGroupRadarModal();
     });

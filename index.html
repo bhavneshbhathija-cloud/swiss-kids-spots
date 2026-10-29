@@ -765,9 +765,144 @@
             </div>
         </div>
 
+        <!-- Impressum / Legal Notice Modal -->
+        <div id="impressum-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content card max-w-lg">
+                <button class="modal-close" id="impressum-close"><i class="fa-solid fa-xmark"></i></button>
+                <h2><i class="fa-solid fa-file-contract text-primary"></i> Impressum &amp; Legal Notice</h2>
+                <p class="modal-subtitle">Angaben gemäss Art. 3 Abs. 1 lit. s UWG (Schweizer Recht)</p>
+
+                <div class="legal-modal-body scroll-form">
+                    <section class="legal-section">
+                        <h3>1. Betreiber &amp; Kontakt</h3>
+                        <p><strong>Plattform:</strong> SwissKidsSpots (swissforkids.ch)</p>
+                        <p><strong>Projektart:</strong> Unabhängige, nicht-kommerzielle Gemeinschaftsinitiative zur Entdeckung familienfreundlicher Spielplätze, Badis und Wanderrouten in der Schweiz.</p>
+                        <p><strong>Standort:</strong> Zürich, Schweiz</p>
+                        <p><strong>Kontakt &amp; E-Mail:</strong> <a href="mailto:contact@swissforkids.ch" class="legal-link">contact@swissforkids.ch</a></p>
+                    </section>
+
+                    <section class="legal-section">
+                        <h3>2. Zweck &amp; Haftungsausschluss (Disclaimer)</h3>
+                        <p>SwissKidsSpots stellt öffentlich zugängliche Informationen und Routenvorschläge für Familien zur Verfügung. Obwohl alle Daten mit grösster Sorgfalt zusammengetragen werden, übernehmen wir keine Gewähr für die Richtigkeit, Vollständigkeit oder Aktualität von Öffnungszeiten, Eintrittspreisen, Wasserständen oder Wegsicherheiten.</p>
+                        <p><strong>Aufsichtspflicht:</strong> Die Aufsicht über Kinder verbleibt zu jeder Zeit bei den Eltern bzw. Begleitpersonen. Bitte prüfen Sie stets die aktuellen Wetter-, Lawinen- und Sicherheitsbedingungen vor Ort.</p>
+                    </section>
+
+                    <section class="legal-section">
+                        <h3>3. Urheberrecht &amp; Bildnachweise (Attribution)</h3>
+                        <p>Wir respektieren geistiges Eigentum und verwenden ausschliesslich frei lizenzierte, gemeinfreie oder von der Community beigesteuerte Inhalte:</p>
+                        <ul class="legal-list">
+                            <li><strong>Kartografie &amp; Geodaten:</strong> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap-Mitwirkende</a> (ODbL) sowie amtliche Routendaten von swisstopo / SchweizMobil.</li>
+                            <li><strong>Wettervorhersagen:</strong> Bundesamt für Meteorologie und Klimatologie MeteoSwiss &amp; Open-Meteo.</li>
+                            <li><strong>Fotografien:</strong> Wikimedia Commons (Creative Commons CC BY / CC BY-SA / Public Domain), Unsplash (Unsplash License), Mapillary (CC BY-SA 4.0) sowie autorisierte Community-Einsendungen.</li>
+                        </ul>
+                    </section>
+
+                    <section class="legal-section">
+                        <h3>4. Verweise &amp; Externe Links</h3>
+                        <p>Unsere Plattform enthält Links zu externen Webseiten Dritter (z. B. SBB Fahrplan, Google Maps). Auf den Inhalt dieser Webseiten haben wir keinen Einfluss; für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.</p>
+                    </section>
+                </div>
+
+                <div class="form-actions" style="margin-top: 1rem;">
+                    <button type="button" class="btn btn-secondary modal-close">Schliessen</button>
+                    <button type="button" class="btn btn-outline" id="impressum-to-takedown-btn">
+                        <i class="fa-solid fa-scale-balanced"></i> Notice &amp; Takedown Policy
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notice & Takedown (Copyright Policy) Modal -->
+        <div id="takedown-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content card max-w-lg">
+                <button class="modal-close" id="takedown-close"><i class="fa-solid fa-xmark"></i></button>
+                <h2><i class="fa-solid fa-scale-balanced text-primary"></i> Notice &amp; Takedown Policy</h2>
+                <p class="modal-subtitle">Urheberrecht, Bildrechte &amp; Schnellverfahren zur Entfernung von Inhalten</p>
+
+                <div class="legal-modal-body scroll-form">
+                    <section class="legal-section">
+                        <h3>Verpflichtung zum Urheberrechtsschutz</h3>
+                        <p>SwissKidsSpots respektiert die Urheber- und Persönlichkeitsrechte von Fotografen, Autoren und Rechteinhabern vollumfänglich. Sollte ein Bild oder Inhalt irrtümlich oder ohne ausreichende Lizenz publiziert worden sein, <strong>reagieren wir unverzüglich und entfernen den Inhalt ohne bürokratische Verzögerung</strong>.</p>
+                    </section>
+
+                    <section class="legal-section">
+                        <h3>Sofortiges Takedown-Verfahren (Notice &amp; Takedown)</h3>
+                        <p>Falls Sie Urheber oder bevollmächtigter Vertreter sind und ein auf SwissKidsSpots angezeigtes Foto oder Element beanstanden möchten:</p>
+                        <ol class="legal-list">
+                            <li>Füllen Sie das untenstehende Schnellformular aus oder schreiben Sie direkt an <a href="mailto:contact@swissforkids.ch?subject=Urgent:%20Copyright%20Notice%20and%20Takedown%20Request" class="legal-link">contact@swissforkids.ch</a>.</li>
+                            <li>Nennen Sie uns den Namen des Spots / Wanderung und idealerweise die URL oder Beschreibung des Bildes.</li>
+                            <li>Nach Prüfung wird das beanstandete Bild <strong>innerhalb von 24–48 Stunden dauerhaft gelöscht</strong>.</li>
+                        </ol>
+                    </section>
+
+                    <form id="takedown-form" class="takedown-form-box">
+                        <h4 style="margin: 0 0 0.8rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
+                            <i class="fa-solid fa-flag text-red"></i> Bild- / Inhaltsmeldung einreichen
+                        </h4>
+
+                        <div class="form-group">
+                            <label for="takedown-spot-name">Betroffener Ort / Wanderung *</label>
+                            <input type="text" id="takedown-spot-name" required placeholder="z. B. Badi Kloten oder Oeschinensee Trail">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="takedown-image-url">Bild-URL oder Beschreibung (optional)</label>
+                            <input type="text" id="takedown-image-url" placeholder="https://... oder 'Hauptbild beim Spielplatz'">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="takedown-reason">Grund der Meldung *</label>
+                                <select id="takedown-reason" class="form-select" required>
+                                    <option value="copyright">Urheberrechtsverletzung / Fehlende Bildlizenz</option>
+                                    <option value="privacy">Persönlichkeitsrecht / Datenschutz (Person erkennbar)</option>
+                                    <option value="outdated">Irreführendes oder veraltetes Bild</option>
+                                    <option value="other">Sonstiger Grund</option>
+                                </select>
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="takedown-contact">Ihre E-Mail für Rückmeldung *</label>
+                                <input type="email" id="takedown-contact" required placeholder="name@beispiel.ch">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="takedown-notes">Zusätzliche Angaben / Nachweis der Rechteinhaberschaft (optional)</label>
+                            <textarea id="takedown-notes" rows="2" placeholder="Kurzer Hinweis zur Rechteinhaberschaft oder Anmerkungen"></textarea>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 0.8rem; margin-top: 1rem;">
+                            <button type="button" class="btn btn-secondary modal-close">Abbrechen</button>
+                            <button type="submit" class="btn btn-primary" style="background: #e63946; border-color: #e63946;">
+                                <i class="fa-solid fa-paper-plane"></i> Takedown-Meldung senden
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="app-footer">
-            <p>&copy; 2026 SwissKidsSpots. Made with <i class="fa-solid fa-heart text-red"></i> for families in Switzerland. Hiking data &copy; swisstopo / SchweizMobil / OpenStreetMap. Weather via MeteoSwiss &amp; Open-Meteo.</p>
+            <div class="footer-inner">
+                <div class="footer-legal-links">
+                    <button type="button" id="btn-open-impressum" class="footer-link">
+                        <i class="fa-solid fa-file-contract"></i> Impressum &amp; Legal Notice
+                    </button>
+                    <span class="footer-sep">&bull;</span>
+                    <button type="button" id="btn-open-takedown" class="footer-link">
+                        <i class="fa-solid fa-scale-balanced"></i> Notice &amp; Takedown Policy
+                    </button>
+                    <span class="footer-sep">&bull;</span>
+                    <button type="button" id="btn-open-report" class="footer-link footer-link-report">
+                        <i class="fa-solid fa-flag"></i> Report an Image / Content
+                    </button>
+                </div>
+                <p class="footer-copy">
+                    &copy; 2026 SwissKidsSpots. Made with <i class="fa-solid fa-heart text-red"></i> for families in Switzerland.
+                    Hiking data &copy; swisstopo / SchweizMobil / OpenStreetMap. Weather via MeteoSwiss &amp; Open-Meteo.
+                </p>
+            </div>
         </footer>
     </div>
 
