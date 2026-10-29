@@ -1,5 +1,470 @@
 [
   {
+    "id": "hike-custom-trubsee-lake-loop",
+    "swisstopoId": "trubsee-loop",
+    "routeNumber": "Trübsee Loop",
+    "segmentNumber": 0,
+    "category": "local",
+    "isFeatured": true,
+    "name": "Trübsee Circular Trail & Smugglers Walk: Engelberg (Trübsee Loop)",
+    "nameEn": "Trübsee Circular Trail & Smugglers Walk: Engelberg (Trübsee Loop)",
+    "nameDe": "Trübsee-Rundweg & Schmugglerweg: Engelberg (Trübsee)",
+    "type": "hiking",
+    "region": "Lucerne & Central",
+    "city": "Engelberg",
+    "zip": "6390",
+    "canton": "OW",
+    "lat": 46.79799,
+    "lng": 8.38896,
+    "address": "Trübsee Bergstation, 6390 Engelberg (OW)",
+    "openingHours": "May – Oct (Also maintained as winter trail Nov – Apr)",
+    "fees": "Free (Titlis cable car ticket applies to reach Trübsee)",
+    "minAge": 2,
+    "maxAge": 99,
+    "amenities": [
+      "Stroller Friendly",
+      "Playground",
+      "Rowing Boats",
+      "Firepits",
+      "Toilets",
+      "Cafe/Food",
+      "Cable Car"
+    ],
+    "rating": 4.9,
+    "reviews": 42,
+    "ratings": [
+      5,
+      5,
+      5,
+      5,
+      4.8
+    ],
+    "comments": [
+      {
+        "author": "Familie Keller",
+        "rating": 5,
+        "text": "One of the best family hikes in Switzerland! Completely flat around the lake, stroller-friendly, and the free wooden rowing boats with lifejackets for kids were an absolute highlight."
+      },
+      {
+        "author": "Sarah M.",
+        "rating": 5,
+        "text": "The Schmugglerland playground and campfire barbecue spots with free firewood made for a full day of family fun at 1,800m altitude."
+      }
+    ],
+    "environment": "Alpine Lake & Glacier Panorama",
+    "stroller": "yes",
+    "strollerFriendly": "yes",
+    "wheelchairAccessible": "yes",
+    "difficulty": "easy",
+    "sacScale": "T1 – Hiking Trail (Wanderweg)",
+    "season": "May – Oct",
+    "isWinterTrail": false,
+    "winterActivity": null,
+    "distanceKm": 3.2,
+    "durationMin": 60,
+    "durationText": "1h 00m",
+    "ascentM": 35,
+    "descentM": 35,
+    "minElevationM": 1764,
+    "maxElevationM": 1795,
+    "maxGradientPct": 3.5,
+    "elevationProfile": [
+      {
+        "d": 0,
+        "ele": 1764
+      },
+      {
+        "d": 0.4,
+        "ele": 1768
+      },
+      {
+        "d": 0.8,
+        "ele": 1775
+      },
+      {
+        "d": 1.2,
+        "ele": 1782
+      },
+      {
+        "d": 1.6,
+        "ele": 1795
+      },
+      {
+        "d": 2,
+        "ele": 1788
+      },
+      {
+        "d": 2.4,
+        "ele": 1775
+      },
+      {
+        "d": 2.8,
+        "ele": 1769
+      },
+      {
+        "d": 3.2,
+        "ele": 1764
+      }
+    ],
+    "startStop": "Engelberg, Trübsee Station",
+    "endStop": "Engelberg, Trübsee Station",
+    "parking": "Titlis Bergbahnen Valley Station parking lot (Gerschnistrasse 12, 6390 Engelberg)",
+    "restaurants": [
+      "Berghotel Trübsee (Lake terrace)",
+      "Alpstübli am Trübsee (Alpine cheese & rosti)",
+      "Trübsee Grill & Lounge"
+    ],
+    "playgroundsNote": "Schmugglerland adventure playground, free wooden rowing boats on Lake Trübsee, Rutschpark & BagJump tower",
+    "nearbySpots": [
+      {
+        "id": "excel-spot-1784120134099-60",
+        "name": "Rutschpark & Snowfun Trübsee",
+        "type": "playpark",
+        "distanceM": 80
+      }
+    ],
+    "firepits": "Multiple equipped barbecue fireplaces along the lake shore with free dry firewood supplied daily",
+    "toilets": "Available at Trübsee Cable Car Station, Berghotel Trübsee, and Alpstübli",
+    "schweizMobilUrlEn": "https://www.engelberg.ch/en/activities/hiking/summer-hiking/truebsee-circular-trail",
+    "schweizMobilUrlDe": "https://www.engelberg.ch/aktivitaeten/wandern/sommerwandern/truebsee-rundweg",
+    "swisstopoMapUrl": "https://map.geo.admin.ch/?layers=ch.astra.wanderland&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en",
+    "imageUrl": "https://images.schweizmobil.ch/image/WL_574_213_vor_Truebsee_F_900x720.jpg",
+    "images": [
+      "https://images.schweizmobil.ch/image/WL_574_213_vor_Truebsee_F_900x720.jpg",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=900&auto=format&fit=crop&q=80"
+    ],
+    "imageSource": "Titlis Engelberg Tourismus",
+    "imageCredit": "Titlis Bergbahnen / SchweizMobil",
+    "description": "The Trübsee circular trail is Central Switzerland's premier family lake walk. Take the Titlis Xpress cable car from Engelberg up to Trübsee (1,764m), where a flat, 100% stroller-friendly gravel path loops gently around the turquoise alpine lake directly beneath Mount Titlis. Kids will love the \"Smugglers & Pack Mule\" adventure trail (Schmugglerland) with playful riddles, free wooden rowing boats on the lake (lifejackets provided), the Rutschpark, and barbecue spots equipped with free dry firewood.",
+    "descriptionEn": "The Trübsee circular trail is Central Switzerland's premier family lake walk. Take the Titlis Xpress cable car from Engelberg up to Trübsee (1,764m), where a flat, 100% stroller-friendly gravel path loops gently around the turquoise alpine lake directly beneath Mount Titlis. Kids will love the \"Smugglers & Pack Mule\" adventure trail (Schmugglerland) with playful riddles, free wooden rowing boats on the lake (lifejackets provided), the Rutschpark, and barbecue spots equipped with free dry firewood.",
+    "descriptionDe": "Der Trübsee-Rundweg ist einer der beliebtesten Familienausflüge der Zentralschweiz. Mit der Titlis Xpress Gondelbahn geht es von Engelberg hinauf zur Station Trübsee (1'764 m). Der ebene, kinderwagengerechte Rundweg führt einmal um den türkisblauen Bergsee mit atemberaubendem Blick auf den Titlis-Gletscher. Zu den Highlights zählen der Schmuggler-Erlebnisweg mit Rätselposten, die kostenlosen Ruderboote auf dem See (Schwimmwesten vorhanden), der Rutschpark sowie gemütliche Grillstellen mit Gratis-Holz.",
+    "sourceAttribution": "Engelberg-Titlis Tourismus & SchweizMobil",
+    "coordinates": [
+      [
+        46.79388,
+        8.39761
+      ],
+      [
+        46.79294,
+        8.39494
+      ],
+      [
+        46.7939,
+        8.39381
+      ],
+      [
+        46.79526,
+        8.3932
+      ],
+      [
+        46.79607,
+        8.39164
+      ],
+      [
+        46.79698,
+        8.39097
+      ],
+      [
+        46.79799,
+        8.38896
+      ],
+      [
+        46.79842,
+        8.38679
+      ],
+      [
+        46.79851,
+        8.38052
+      ],
+      [
+        46.79968,
+        8.37583
+      ],
+      [
+        46.80026,
+        8.37501
+      ],
+      [
+        46.80169,
+        8.3765
+      ],
+      [
+        46.80147,
+        8.37963
+      ],
+      [
+        46.80263,
+        8.38211
+      ],
+      [
+        46.80182,
+        8.38488
+      ],
+      [
+        46.80126,
+        8.38715
+      ],
+      [
+        46.80046,
+        8.38822
+      ],
+      [
+        46.79868,
+        8.38738
+      ],
+      [
+        46.79799,
+        8.38896
+      ],
+      [
+        46.79698,
+        8.39097
+      ],
+      [
+        46.79608,
+        8.3917
+      ],
+      [
+        46.79526,
+        8.3932
+      ],
+      [
+        46.7939,
+        8.39381
+      ],
+      [
+        46.79294,
+        8.39494
+      ],
+      [
+        46.79388,
+        8.39761
+      ]
+    ]
+  },
+  {
+    "id": "hike-custom-engelberg-to-trubsee",
+    "swisstopoId": "engelberg-trubsee",
+    "routeNumber": "Engelberg–Trübsee",
+    "segmentNumber": 0,
+    "category": "local",
+    "isFeatured": true,
+    "name": "Engelberg to Trübsee Ascent: via Untertrübsee & Pfaffenwand",
+    "nameEn": "Engelberg to Trübsee Ascent: via Untertrübsee & Pfaffenwand",
+    "nameDe": "Wanderung Engelberg – Untertrübsee – Trübsee (Pfaffenwand)",
+    "type": "hiking",
+    "region": "Lucerne & Central",
+    "city": "Engelberg",
+    "zip": "6390",
+    "canton": "OW",
+    "lat": 46.81971,
+    "lng": 8.40279,
+    "address": "Titlis Talstation (Gerschnistrasse 12) → Trübsee (6390 Engelberg, OW)",
+    "openingHours": "Jun – Oct (Alpine mountain trail)",
+    "fees": "Free (Cable car ticket optional for descent)",
+    "minAge": 7,
+    "maxAge": 99,
+    "amenities": [
+      "Mountain Trail",
+      "Cafe/Food",
+      "Toilets",
+      "Picnic Area",
+      "Cable Car Descent"
+    ],
+    "rating": 4.8,
+    "reviews": 28,
+    "ratings": [
+      5,
+      5,
+      4,
+      5,
+      5
+    ],
+    "comments": [
+      {
+        "author": "Beat R.",
+        "rating": 5,
+        "text": "A steep but very rewarding hike! Stopping at the Untertrübsee cheese dairy for fresh alpine milk and cheese gave us energy for the Pfaffenwand climb. Arriving at Lake Trübsee felt amazing."
+      },
+      {
+        "author": "Family Fischer",
+        "rating": 5,
+        "text": "Great workout for older kids (8+). We hiked up on foot, had a picnic and rowed on the lake, then took the Titlis Xpress gondola back down."
+      }
+    ],
+    "environment": "Mountain Valley, Alpine Forest & Lake Summit",
+    "stroller": "no",
+    "strollerFriendly": "no",
+    "wheelchairAccessible": "no",
+    "difficulty": "moderate",
+    "sacScale": "T2 – Mountain Hiking Trail (Bergwanderweg)",
+    "season": "Jun – Oct",
+    "isWinterTrail": false,
+    "winterActivity": null,
+    "distanceKm": 6.8,
+    "durationMin": 165,
+    "durationText": "2h 45m",
+    "ascentM": 785,
+    "descentM": 25,
+    "minElevationM": 1002,
+    "maxElevationM": 1764,
+    "maxGradientPct": 18,
+    "elevationProfile": [
+      {
+        "d": 0,
+        "ele": 1002
+      },
+      {
+        "d": 0.8,
+        "ele": 1080
+      },
+      {
+        "d": 1.5,
+        "ele": 1190
+      },
+      {
+        "d": 2.2,
+        "ele": 1260
+      },
+      {
+        "d": 3,
+        "ele": 1245
+      },
+      {
+        "d": 3.8,
+        "ele": 1310
+      },
+      {
+        "d": 4.5,
+        "ele": 1420
+      },
+      {
+        "d": 5.2,
+        "ele": 1560
+      },
+      {
+        "d": 6,
+        "ele": 1710
+      },
+      {
+        "d": 6.8,
+        "ele": 1764
+      }
+    ],
+    "startStop": "Engelberg, Titlis Talstation (or Engelberg Train Station)",
+    "endStop": "Engelberg, Trübsee Station",
+    "parking": "Titlis Bergbahnen Valley Station parking lot (Gerschnistrasse 12, 6390 Engelberg)",
+    "restaurants": [
+      "Restaurant Untertrübsee (Alpkäserei & Garden)",
+      "Gasthaus Gerschnialp",
+      "Berghotel Trübsee (Summit)",
+      "Alpstübli am Trübsee"
+    ],
+    "playgroundsNote": "Untertrübsee alpine cheese dairy & cheese tasting, followed by Smugglerland playground & rowing boats at Lake Trübsee summit",
+    "nearbySpots": [
+      {
+        "id": "excel-spot-1784120134099-60",
+        "name": "Rutschpark & Snowfun Trübsee",
+        "type": "playpark",
+        "distanceM": 120
+      }
+    ],
+    "firepits": "Fireplaces near Untertrübsee and several equipped spots around Lake Trübsee",
+    "toilets": "Available at Engelberg valley station, Restaurant Untertrübsee, and Trübsee summit station",
+    "schweizMobilUrlEn": "https://www.engelberg.ch/en/activities/hiking/summer-hiking/engelberg-untertruebsee-truebsee",
+    "schweizMobilUrlDe": "https://www.engelberg.ch/aktivitaeten/wandern/sommerwandern/engelberg-untertruebsee-truebsee",
+    "swisstopoMapUrl": "https://map.geo.admin.ch/?layers=ch.astra.wanderland&bgLayer=ch.swisstopo.pixelkarte-farbe&lang=en",
+    "imageUrl": "https://images.schweizmobil.ch/image/WL_574_213_vor_Truebsee_F_900x720.jpg",
+    "images": [
+      "https://images.schweizmobil.ch/image/WL_574_213_vor_Truebsee_F_900x720.jpg",
+      "https://images.schweizmobil.ch/image/WL_574_150_Hintern_Soeimboden_F_900x720.jpg"
+    ],
+    "imageSource": "Titlis Engelberg Tourismus",
+    "imageCredit": "Titlis Bergbahnen / SchweizMobil",
+    "description": "The classic climb from the Engelberg valley floor up to Lake Trübsee on foot. Starting from the Titlis valley station, the trail ascends through scenic mountain forests to the Gerschnialp plateau and past the Untertrübsee alpine cheese dairy. The trail then tackles the steep and dramatic Pfaffenwand zigzag path, rewarded by emerging directly onto the shores of shimmering Lake Trübsee beneath Mount Titlis. Families can reward themselves with a dip or row boat ride, and take the Titlis Xpress gondola back down to Engelberg!",
+    "descriptionEn": "The classic climb from the Engelberg valley floor up to Lake Trübsee on foot. Starting from the Titlis valley station, the trail ascends through scenic mountain forests to the Gerschnialp plateau and past the Untertrübsee alpine cheese dairy. The trail then tackles the steep and dramatic Pfaffenwand zigzag path, rewarded by emerging directly onto the shores of shimmering Lake Trübsee beneath Mount Titlis. Families can reward themselves with a dip or row boat ride, and take the Titlis Xpress gondola back down to Engelberg!",
+    "descriptionDe": "Der klassische Fussaufstieg vom Talboden Engelberg hinauf zum Trübsee. Von der Titlis Talstation führt der Bergwanderweg zunächst durch schattigen Wald hinauf auf die Hochebene Gerschnialp und an der Alpkäserei Untertrübsee vorbei. Anschliessend überwindet der Weg die eindrückliche Pfaffenwand im Zickzack, bevor sich das Panorama auf den glitzernden Trübsee und die Titlis-Nordwand öffnet. Zurück nach Engelberg kann man gemütlich mit der Titlis Xpress Gondelbahn schweben!",
+    "sourceAttribution": "Engelberg-Titlis Tourismus & SchweizMobil",
+    "coordinates": [
+      [
+        46.81971,
+        8.40279
+      ],
+      [
+        46.81641,
+        8.40768
+      ],
+      [
+        46.8145,
+        8.4082
+      ],
+      [
+        46.81377,
+        8.40896
+      ],
+      [
+        46.81227,
+        8.40449
+      ],
+      [
+        46.8005,
+        8.4032
+      ],
+      [
+        46.80807,
+        8.40104
+      ],
+      [
+        46.8055,
+        8.4018
+      ],
+      [
+        46.80346,
+        8.40203
+      ],
+      [
+        46.8012,
+        8.4015
+      ],
+      [
+        46.79885,
+        8.39968
+      ],
+      [
+        46.7978,
+        8.3998
+      ],
+      [
+        46.79738,
+        8.39974
+      ],
+      [
+        46.79681,
+        8.39773
+      ],
+      [
+        46.7962,
+        8.3975
+      ],
+      [
+        46.79583,
+        8.3976
+      ],
+      [
+        46.79511,
+        8.39833
+      ],
+      [
+        46.79405,
+        8.39839
+      ],
+      [
+        46.79388,
+        8.39761
+      ]
+    ]
+  },
+  {
     "id": "hike-iconic-ebenalp-seealpsee-wasserauen",
     "swisstopoId": "212067908",
     "routeNumber": "Ebenalp",

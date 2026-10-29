@@ -422,7 +422,7 @@ async function loadSpots() {
     try {
         const [baseResponse, hikesResponse, eventsResponse] = await Promise.all([
             fetch("base_spots.json?v=15"),
-            fetch("hikes.json?v=15"),
+            fetch("hikes.json?v=16"),
             fetch("/api/events?v=" + Date.now()).catch(() => fetch("events.json?v=1"))
         ]);
         const baseSpots = baseResponse.ok ? await baseResponse.json() : [];
