@@ -1712,6 +1712,7 @@ async function openDetails(spotId, options = {}) {
             directionsUrl += `&waypoints=${encodeURIComponent(waypoints.join("|"))}`;
         }
     }
+    const googleSearchUrl = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${spot.lat},${spot.lng}`;
     const safeSpotName = (spot.name || '').replace(/'/g, "\\'");
     const safeSpotImg = encodeURIComponent(spot.imageUrl || '');
     const detailAttributionHtml = spot.imageSource 
