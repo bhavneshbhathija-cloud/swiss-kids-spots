@@ -6,11 +6,88 @@ const https = require('https');
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = __dirname;
 
+// Load .env file if present
+const envPath = path.join(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+    try {
+        const envContent = fs.readFileSync(envPath, 'utf-8');
+        envContent.split('\n').forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+                const idx = trimmed.indexOf('=');
+                const key = trimmed.slice(0, idx).trim();
+                const val = trimmed.slice(idx + 1).trim();
+                if (!process.env[key]) {
+                    process.env[key] = val;
+                }
+            }
+        });
+    } catch (e) {
+        console.warn('Failed to parse .env in server.js:', e.message);
+    }
+}
+const ADMIN_PIN = process.env.ADMIN_PIN || 'Getgoing42!';
+
+function checkAdminAuth(req, parsedUrl) {
+    const pinHeader = req.headers['x-admin-pin'];
+    const pinQuery = parsedUrl ? parsedUrl.searchParams.get('adminPin') : null;
+    return (pinHeader && pinHeader === ADMIN_PIN) || (pinQuery && pinQuery === ADMIN_PIN);
+}
+
 // Determine persistent data directory (default to public dir, but support persistent disk on Render/Railway)
 const DATA_DIR = process.env.DATA_DIR || (fs.existsSync('/opt/render/project/src/data') ? '/opt/render/project/src/data' : PUBLIC_DIR);
 
 const harvestedPath = path.join(DATA_DIR, 'spots_harvested.json');
 const groupCheckinsPath = path.join(DATA_DIR, 'group_checkins.json');
+const communitySubmissionsPath = path.join(DATA_DIR, 'community_submissions.json');
+const uploadsDir = path.join(DATA_DIR, 'uploads');
+
+if (!fs.existsSync(uploadsDir)) {
+    try {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+    } catch (e) {
+        console.error('Failed to create uploads directory:', e);
+    }
+}
+
+function loadCommunitySubmissions() {
+    if (fs.existsSync(communitySubmissionsPath)) {
+        try {
+            const data = JSON.parse(fs.readFileSync(communitySubmissionsPath, 'utf-8'));
+            if (data && typeof data === 'object') {
+                if (!Array.isArray(data.spots)) data.spots = [];
+                if (!data.photosBySpotId || typeof data.photosBySpotId !== 'object') data.photosBySpotId = {};
+                return data;
+            }
+        } catch (e) {
+            console.error('Error reading community_submissions.json:', e);
+        }
+    }
+    return { spots: [], photosBySpotId: {} };
+}
+
+function saveCommunitySubmissions(data) {
+    try {
+        fs.writeFileSync(communitySubmissionsPath, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (e) {
+        console.error('Error writing community_submissions.json:', e);
+    }
+}
+
+function saveBase64ImageToUploads(dataUri, prefix = 'photo') {
+    if (!dataUri || typeof dataUri !== 'string') return null;
+    const match = dataUri.match(/^data:image\/(jpeg|jpg|png|webp);base64,(.+)$/i);
+    if (!match) return null;
+    const ext = match[1].toLowerCase() === 'jpeg' ? 'jpg' : match[1].toLowerCase();
+    const base64Data = match[2];
+    const buffer = Buffer.from(base64Data, 'base64');
+    if (buffer.length > 6 * 1024 * 1024) return null; // Max 6MB per image
+    const cleanPrefix = (prefix || 'photo').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 30) || 'photo';
+    const filename = `${cleanPrefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}.${ext}`;
+    const fullPath = path.join(uploadsDir, filename);
+    fs.writeFileSync(fullPath, buffer);
+    return `/uploads/${filename}`;
+}
 
 function loadGroupCheckins() {
     if (fs.existsSync(groupCheckinsPath)) {
@@ -67,6 +144,7 @@ const transportCache = {};
 // Helper to validate image URLs (including strict safety keywords)
 function isValidImageUrl(url) {
     if (!url || typeof url !== 'string') return false;
+    if (url.startsWith('/uploads/')) return true;
     const badKeywords = [
         'adsystem', 'analytics', 'pixel', 'tracker', 'adserver', 'advertisement', 'doubleclick', 'telemetry', 'statcounter',
         'porn', 'nude', 'naked', 'sexy', 'adult', 'erotic', 'nsfw', 'xxx', 'boobs', 'sex', 'lingerie', 'playboy', 'sensual',
@@ -79,7 +157,7 @@ function isValidImageUrl(url) {
     if (!url.startsWith('https://')) return false;
     const lower = url.toLowerCase();
     const hasImageExt = lower.includes('.jpg') || lower.includes('.jpeg') || lower.includes('.png') || lower.includes('.webp') || lower.includes('.gif');
-    if (!hasImageExt && !lower.includes('unsplash.com') && !lower.includes('static')) {
+    if (!hasImageExt && !lower.includes('unsplash.com') && !lower.includes('googleusercontent.com') && !lower.includes('static')) {
         return false;
     }
     return true;
@@ -418,6 +496,10 @@ const server = http.createServer(async (req, res) => {
             }
         }
         if (!hike) {
+            const comm = loadCommunitySubmissions();
+            hike = (comm.spots || []).find(h => h.id === hikeId);
+        }
+        if (!hike) {
             res.writeHead(404, { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' });
             return res.end('Hike not found');
         }
@@ -498,6 +580,10 @@ ${coords.map((pt, i) => {
             } catch (e) {
                 console.error('Error reading hikes.json for KML export:', e);
             }
+        }
+        if (!hike) {
+            const comm = loadCommunitySubmissions();
+            hike = (comm.spots || []).find(h => h.id === hikeId);
         }
         if (!hike) {
             res.writeHead(404, { 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*' });
@@ -662,6 +748,328 @@ ${coords.map((pt, i) => {
             } catch (e) {
                 res.writeHead(500, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ error: 'Failed to process feedback' }));
+            }
+        });
+        return;
+    }
+
+    // API Endpoint: Get Community Submitted Spots, Trails, Events & User-Uploaded Photos (ONLY APPROVED)
+    if (pathname === '/api/community/submissions' && req.method === 'GET') {
+        const comm = loadCommunitySubmissions();
+        const approvedSpots = (comm.spots || []).filter(s => s.status === 'approved' || s.approved === true);
+        const approvedPhotosBySpotId = {};
+        for (const [spotId, list] of Object.entries(comm.photosBySpotId || {})) {
+            if (Array.isArray(list)) {
+                const approved = list.filter(p => p.status === 'approved' || p.approved === true);
+                if (approved.length > 0) {
+                    approvedPhotosBySpotId[spotId] = approved;
+                }
+            }
+        }
+        res.writeHead(200, {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            'Cache-Control': 'no-cache'
+        });
+        return res.end(JSON.stringify({ spots: approvedSpots, photosBySpotId: approvedPhotosBySpotId }));
+    }
+
+    // API Endpoint: Submit a New Community Spot, Hiking Trail, or Family Event (requires admin approval)
+    if (pathname === '/api/community/submit' && req.method === 'POST') {
+        let body = '';
+        let aborted = false;
+        req.on('data', chunk => {
+            body += chunk;
+            if (body.length > 18 * 1024 * 1024) {
+                aborted = true;
+                res.writeHead(413, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Upload payload too large (max 15MB)' }));
+                req.destroy();
+            }
+        });
+        req.on('end', () => {
+            if (aborted) return;
+            try {
+                const payload = JSON.parse(body || '{}');
+                const spot = payload.spot;
+                if (!spot || !spot.name || !spot.type || typeof spot.lat !== 'number' || typeof spot.lng !== 'number') {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ error: 'Missing required spot/trail fields (name, type, coordinates)' }));
+                }
+
+                const author = (payload.author || spot.submittedBy || 'Community Member').trim().slice(0, 60);
+                const uploadedDataUris = Array.isArray(payload.uploadedPhotos) ? payload.uploadedPhotos.slice(0, 5) : [];
+                const savedUrls = [];
+
+                for (const dataUri of uploadedDataUris) {
+                    const savedUrl = saveBase64ImageToUploads(dataUri, spot.type || 'spot');
+                    if (savedUrl) savedUrls.push(savedUrl);
+                }
+
+                if (savedUrls.length > 0) {
+                    spot.imageUrl = savedUrls[0];
+                    spot.images = savedUrls.concat((spot.images || []).filter(u => u && !u.startsWith('data:')));
+                    spot.imageSource = `Community Photo by ${author}`;
+                } else if (spot.imageUrl && !spot.imageSource) {
+                    spot.imageSource = `Submitted by ${author}`;
+                }
+
+                spot.submittedBy = author;
+                spot.submittedAt = new Date().toISOString();
+                spot.isCommunitySubmitted = true;
+                // Submissions are pending admin approval before appearing publicly
+                spot.status = 'pending';
+                spot.approved = false;
+
+                const comm = loadCommunitySubmissions();
+                comm.spots.unshift(spot);
+                saveCommunitySubmissions(comm);
+
+                console.log(`[Community Submit] New ${spot.type} submitted by "${author}": "${spot.name}" (queued for admin approval)`);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({
+                    success: true,
+                    pendingApproval: true,
+                    message: 'Thank you! Your submission has been received and queued for admin review before publishing.',
+                    spot
+                }));
+            } catch (e) {
+                console.error('[Community Submit Error]:', e);
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'Failed to save submission' }));
+            }
+        });
+        return;
+    }
+
+    // API Endpoint: Upload Community Photos to Any Existing Spot, Hiking Trail, or Event (requires admin approval)
+    if (pathname === '/api/community/photos' && req.method === 'POST') {
+        let body = '';
+        let aborted = false;
+        req.on('data', chunk => {
+            body += chunk;
+            if (body.length > 18 * 1024 * 1024) {
+                aborted = true;
+                res.writeHead(413, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Photo payload too large (max 15MB)' }));
+                req.destroy();
+            }
+        });
+        req.on('end', () => {
+            if (aborted) return;
+            try {
+                const payload = JSON.parse(body || '{}');
+                const spotId = (payload.spotId || '').trim();
+                if (!spotId) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ error: 'Missing spotId' }));
+                }
+
+                const author = (payload.author || 'Community Member').trim().slice(0, 60);
+                const caption = (payload.caption || '').trim().slice(0, 300);
+                const spotName = (payload.spotName || spotId).trim().slice(0, 120);
+                const uploadedDataUris = Array.isArray(payload.photos) ? payload.photos.slice(0, 5) : [];
+                const externalUrl = (payload.photoUrl || '').trim();
+
+                const savedUrls = [];
+                for (const dataUri of uploadedDataUris) {
+                    const savedUrl = saveBase64ImageToUploads(dataUri, spotId);
+                    if (savedUrl) savedUrls.push(savedUrl);
+                }
+                if (externalUrl && isValidImageUrl(externalUrl)) {
+                    savedUrls.push(externalUrl);
+                }
+
+                if (savedUrls.length === 0) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ error: 'No valid photo files or URLs provided' }));
+                }
+
+                const comm = loadCommunitySubmissions();
+                if (!Array.isArray(comm.photosBySpotId[spotId])) {
+                    comm.photosBySpotId[spotId] = [];
+                }
+
+                const timestamp = new Date().toISOString();
+                const entries = savedUrls.map(url => ({
+                    id: `photo-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+                    url,
+                    author,
+                    caption,
+                    imageSource: `Community Photo by ${author}`,
+                    timestamp,
+                    status: 'pending',
+                    approved: false,
+                    spotId,
+                    spotName
+                }));
+
+                // Prepend newest pending community photos
+                comm.photosBySpotId[spotId] = entries.concat(comm.photosBySpotId[spotId]);
+                saveCommunitySubmissions(comm);
+
+                console.log(`[Community Photos] Added ${savedUrls.length} photo(s) to spot "${spotId}" by "${author}" (queued for admin approval)`);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({
+                    success: true,
+                    pendingApproval: true,
+                    message: 'Thank you! Your photo(s) have been uploaded and will appear on the site once approved by an administrator.',
+                    spotId,
+                    addedCount: savedUrls.length,
+                    entries
+                }));
+            } catch (e) {
+                console.error('[Community Photos Error]:', e);
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'Failed to process photo upload' }));
+            }
+        });
+        return;
+    }
+
+    // API Endpoint: Verify Admin PIN
+    if (pathname === '/api/admin/verify-pin' && req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => body += chunk);
+        req.on('end', () => {
+            try {
+                const data = JSON.parse(body || '{}');
+                const valid = String(data.pin || '').trim() === String(ADMIN_PIN).trim();
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ valid }));
+            } catch (e) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'Invalid JSON' }));
+            }
+        });
+        return;
+    }
+
+    // API Endpoint: Get All Pending Submissions & Photos for Admin Review
+    if (pathname === '/api/admin/pending' && req.method === 'GET') {
+        if (!checkAdminAuth(req, parsedUrl)) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'Unauthorized: Invalid Admin PIN' }));
+        }
+
+        const comm = loadCommunitySubmissions();
+        const pendingSpots = (comm.spots || []).filter(s => s.status === 'pending' || !s.approved);
+        const pendingPhotos = [];
+        for (const [spotId, list] of Object.entries(comm.photosBySpotId || {})) {
+            if (Array.isArray(list)) {
+                for (const p of list) {
+                    if (p.status === 'pending' || !p.approved) {
+                        pendingPhotos.push(Object.assign({ spotId }, p));
+                    }
+                }
+            }
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({
+            pendingSpots,
+            pendingPhotos,
+            totalPending: pendingSpots.length + pendingPhotos.length
+        }));
+    }
+
+    // API Endpoint: Approve or Reject a Community Submission or Photo
+    if (pathname === '/api/admin/moderate' && req.method === 'POST') {
+        if (!checkAdminAuth(req, parsedUrl)) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'Unauthorized: Invalid Admin PIN' }));
+        }
+
+        let body = '';
+        req.on('data', chunk => body += chunk);
+        req.on('end', () => {
+            try {
+                const data = JSON.parse(body || '{}');
+                const { itemType, id, spotId, action } = data; // action: 'approve' | 'reject'
+                if (!itemType || !id || !['approve', 'reject'].includes(action)) {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ error: 'Missing or invalid parameters' }));
+                }
+
+                const comm = loadCommunitySubmissions();
+                if (itemType === 'spot') {
+                    const spot = (comm.spots || []).find(s => s.id === id);
+                    if (!spot) {
+                        res.writeHead(404, { 'Content-Type': 'application/json' });
+                        return res.end(JSON.stringify({ error: 'Spot not found in submissions' }));
+                    }
+                    if (action === 'approve') {
+                        spot.status = 'approved';
+                        spot.approved = true;
+                        spot.approvedAt = new Date().toISOString();
+                    } else {
+                        spot.status = 'rejected';
+                        spot.approved = false;
+                        comm.spots = comm.spots.filter(s => s.id !== id);
+                    }
+                    saveCommunitySubmissions(comm);
+                    console.log(`[Admin Moderation] Spot "${spot.name}" (${id}) ${action}d`);
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ success: true, action, itemType, id }));
+                } else if (itemType === 'photo') {
+                    let targetSpotId = spotId;
+                    if (!targetSpotId) {
+                        for (const [sId, list] of Object.entries(comm.photosBySpotId || {})) {
+                            if (Array.isArray(list) && list.some(p => p.id === id || p.url === id)) {
+                                targetSpotId = sId;
+                                break;
+                            }
+                        }
+                    }
+                    const photoList = comm.photosBySpotId[targetSpotId];
+                    if (!photoList) {
+                        res.writeHead(404, { 'Content-Type': 'application/json' });
+                        return res.end(JSON.stringify({ error: 'Spot or photo list not found' }));
+                    }
+                    const photo = photoList.find(p => p.id === id || p.url === id);
+                    if (!photo) {
+                        res.writeHead(404, { 'Content-Type': 'application/json' });
+                        return res.end(JSON.stringify({ error: 'Photo not found' }));
+                    }
+
+                    if (action === 'approve') {
+                        photo.status = 'approved';
+                        photo.approved = true;
+                        photo.approvedAt = new Date().toISOString();
+
+                        // If target spot is an OSM spot in spots_harvested.json, also update its primary image
+                        if (targetSpotId.startsWith('osm-spot-') && fs.existsSync(harvestedPath)) {
+                            try {
+                                const harvSpots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
+                                const idx = harvSpots.findIndex(s => s.id === targetSpotId);
+                                if (idx !== -1) {
+                                    const existingImgs = Array.isArray(harvSpots[idx].images) ? harvSpots[idx].images : (harvSpots[idx].imageUrl ? [harvSpots[idx].imageUrl] : []);
+                                    harvSpots[idx].images = [photo.url].concat(existingImgs.filter(u => u !== photo.url));
+                                    harvSpots[idx].imageUrl = photo.url;
+                                    harvSpots[idx].imageSource = photo.imageSource;
+                                    fs.writeFileSync(harvestedPath, JSON.stringify(harvSpots, null, 4), 'utf-8');
+                                }
+                            } catch (e) {
+                                console.warn('Could not update spots_harvested with approved photo:', e.message);
+                            }
+                        }
+                    } else {
+                        photo.status = 'rejected';
+                        photo.approved = false;
+                        comm.photosBySpotId[targetSpotId] = photoList.filter(p => p.id !== id && p.url !== id);
+                    }
+                    saveCommunitySubmissions(comm);
+                    console.log(`[Admin Moderation] Photo "${id}" for spot "${targetSpotId}" ${action}d`);
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ success: true, action, itemType, id }));
+                } else {
+                    res.writeHead(400, { 'Content-Type': 'application/json' });
+                    return res.end(JSON.stringify({ error: 'Unknown itemType' }));
+                }
+            } catch (e) {
+                console.error('[Admin Moderation Error]:', e);
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'Failed to process moderation' }));
             }
         });
         return;
@@ -1122,6 +1530,13 @@ ${coords.map((pt, i) => {
     } else if (pathname === '/group_checkins.json') {
         filePath = path.join(DATA_DIR, 'group_checkins.json');
         isDataFile = true;
+    } else if (pathname === '/community_submissions.json') {
+        filePath = path.join(DATA_DIR, 'community_submissions.json');
+        isDataFile = true;
+    } else if (pathname.startsWith('/uploads/')) {
+        const safeFilename = path.basename(pathname);
+        filePath = path.join(uploadsDir, safeFilename);
+        isDataFile = true;
     } else {
         filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
     }
@@ -1133,13 +1548,14 @@ ${coords.map((pt, i) => {
         return;
     }
 
-    const extname = path.extname(filePath);
+    const extname = path.extname(filePath).toLowerCase();
     let contentType = 'text/html';
     if (extname === '.css') contentType = 'text/css';
     else if (extname === '.js') contentType = 'text/javascript';
     else if (extname === '.json') contentType = 'application/json';
     else if (extname === '.png') contentType = 'image/png';
     else if (extname === '.jpg' || extname === '.jpeg') contentType = 'image/jpeg';
+    else if (extname === '.webp') contentType = 'image/webp';
     else if (extname === '.ico') contentType = 'image/x-icon';
     else if (extname === '.txt') contentType = 'text/plain';
     else if (extname === '.xml') contentType = 'application/xml';
@@ -1155,7 +1571,7 @@ ${coords.map((pt, i) => {
             }
         } else {
             res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content, 'utf-8');
+            res.end(content);
         }
     });
 });

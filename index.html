@@ -65,7 +65,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=29">
+    <link rel="stylesheet" href="style.css?v=30">
 </head>
 <body class="light-theme">
     <!-- App Container -->
@@ -83,8 +83,11 @@
                 <a href="marketing.html" id="marketing-btn" class="btn btn-outline" title="Instagram Marketing Tool" style="text-decoration: none; display: none; align-items: center; gap: 0.5rem;">
                     <i class="fa-solid fa-bullhorn"></i> Marketing
                 </a>
-                <button id="add-spot-btn" class="btn btn-primary" title="Add a playspot">
-                    <i class="fa-solid fa-map-pin"></i> Add a Spot
+                <button id="upload-photo-header-btn" class="btn btn-outline" title="Upload photos for any spot or hike" onclick="openPhotoUploadModal()">
+                    <i class="fa-solid fa-camera"></i> Upload Photos
+                </button>
+                <button id="add-spot-btn" class="btn btn-primary" title="Submit a playspot, hiking trail, or event">
+                    <i class="fa-solid fa-plus-circle"></i> Add Spot / Trail
                 </button>
                 <button id="feedback-btn" class="btn btn-outline" title="Give Feedback">
                     <i class="fa-solid fa-comments"></i> Feedback
@@ -219,6 +222,9 @@
                                 <i class="fa-solid fa-layer-group"></i> Show Official Swisstopo Trails on Map
                             </label>
                         </div>
+                        <button type="button" class="btn btn-outline community-sidebar-btn" onclick="openAddSpotModalWithType('hiking')">
+                            <i class="fa-solid fa-plus-circle"></i> Submit a Family Trail &amp; Photos
+                        </button>
                     </div>
 
                     <!-- Dedicated Kids Events Sub-Filters -->
@@ -258,6 +264,9 @@
                                 <i class="fa-solid fa-tag" style="color: #2a9d8f;"></i> Free Admission Only
                             </label>
                         </div>
+                        <button type="button" class="btn btn-outline community-sidebar-btn" onclick="openAddSpotModalWithType('event')">
+                            <i class="fa-solid fa-plus-circle"></i> Submit a Kids Event &amp; Photos
+                        </button>
                     </div>
 
                     <div class="filter-group">
@@ -333,18 +342,36 @@
             </div>
         </div>
 
-        <!-- Add Spot Modal -->
+        <!-- Add Spot / Trail / Event Modal -->
         <div id="add-spot-modal" class="modal-overlay" style="display: none;">
             <div class="modal-content card max-w-lg">
                 <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
-                <h2>Add a New Playspot</h2>
-                <p class="modal-subtitle">Share your favorite kid's spot in Switzerland with other families.</p>
+                <h2 id="add-spot-modal-title"><i class="fa-solid fa-map-location-dot" style="color: var(--primary-color);"></i> Submit a Spot, Trail or Event</h2>
+                <p class="modal-subtitle">Share a family hiking trail, playground, pool, or kids activity with photos for other families in Switzerland.</p>
                 <form id="add-spot-form" class="scroll-form">
-                    <!-- Primary: Address or Location (only mandatory input) -->
+                    <!-- Category Type Selector & Name -->
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="new-spot-type">What are you sharing? *</label>
+                            <select id="new-spot-type" class="form-select">
+                                <option value="playpark">🛝 Playpark (Outdoor Playground)</option>
+                                <option value="hiking">🥾 Hiking Trail (Family Hike)</option>
+                                <option value="swimmingpool">🏊 Swimming Pool / Badi</option>
+                                <option value="gamezone">🎮 Game Zone (Indoor Play)</option>
+                                <option value="event">🎪 Kids Event / Activity</option>
+                            </select>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="new-spot-name" id="new-spot-name-label">Name of Spot / Trail <span class="optional-tag">optional</span></label>
+                            <input type="text" id="new-spot-name" placeholder="e.g., Panoramaweg or Muggenbühl Park">
+                        </div>
+                    </div>
+
+                    <!-- Primary: Address or Trailhead Location (mandatory input) -->
                     <div class="form-group">
-                        <label for="new-spot-address">Address or Location Description *</label>
+                        <label for="new-spot-address" id="new-spot-address-label">Address or Starting Location *</label>
                         <div class="input-with-location-btn">
-                            <input type="text" id="new-spot-address" required placeholder="e.g., Seefeldquai, 8008 Zürich or a nearby landmark">
+                            <input type="text" id="new-spot-address" required placeholder="e.g., Seefeldquai, 8008 Zürich or Trailhead Station">
                             <button type="button" id="use-my-location-btn" class="btn btn-location" title="Use my current location">
                                 <i class="fa-solid fa-location-crosshairs"></i> Use My Location
                             </button>
@@ -357,26 +384,108 @@
                         <input type="hidden" id="new-spot-city">
                     </div>
 
-                    <!-- Optional: Spot Name -->
-                    <div class="form-row">
-                        <div class="form-group flex-1">
-                            <label for="new-spot-name">Spot Name <span class="optional-tag">optional</span></label>
-                            <input type="text" id="new-spot-name" placeholder="Auto-generated if left empty">
+                    <!-- Dynamic Hiking Trail Fields (shown when type === 'hiking') -->
+                    <div id="new-trail-fields-box" class="community-type-box" style="display: none;">
+                        <div class="community-box-title">
+                            <i class="fa-solid fa-person-hiking"></i> Hiking Trail Details
                         </div>
-                        <div class="form-group flex-1">
-                            <label for="new-spot-type">Type of Zone <span class="optional-tag">optional</span></label>
-                            <select id="new-spot-type" class="form-select">
-                                <option value="playpark">Playpark (Outdoor)</option>
-                                <option value="hiking">Hiking Trail</option>
-                                <option value="gamezone">Game Zone (Indoor)</option>
-                                <option value="swimmingpool">Swimming Pool</option>
-                            </select>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="new-trail-end-stop">Finish / Destination <span class="optional-tag">optional</span></label>
+                                <input type="text" id="new-trail-end-stop" placeholder="e.g., Seealpsee or Circular Loop">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="new-trail-difficulty">Difficulty Level</label>
+                                <select id="new-trail-difficulty" class="form-select">
+                                    <option value="easy" selected>🟢 Easy (Family / T1)</option>
+                                    <option value="moderate">🟠 Moderate (Mountain / T2)</option>
+                                    <option value="difficult">🔴 Difficult (Alpine / T3)</option>
+                                </select>
+                            </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="new-trail-distance">Distance (km) <span class="optional-tag">optional</span></label>
+                                <input type="number" step="0.1" min="0.2" max="100" id="new-trail-distance" placeholder="e.g., 4.5">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="new-trail-duration">Duration <span class="optional-tag">optional</span></label>
+                                <input type="text" id="new-trail-duration" placeholder="e.g., 1h 45m">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="new-trail-ascent">Ascent (m) <span class="optional-tag">optional</span></label>
+                                <input type="number" min="0" max="5000" id="new-trail-ascent" placeholder="e.g., 180">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0.4rem;">
+                            <label for="new-trail-gpx-file"><i class="fa-solid fa-route"></i> Upload GPX / KML Track File <span class="optional-tag">optional — draws exact route on map</span></label>
+                            <input type="file" id="new-trail-gpx-file" accept=".gpx,.kml,.xml" class="form-input-file">
+                            <small class="form-help" id="new-trail-gpx-status"></small>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Event Fields (shown when type === 'event') -->
+                    <div id="new-event-fields-box" class="community-type-box" style="display: none;">
+                        <div class="community-box-title">
+                            <i class="fa-solid fa-calendar-star"></i> Kids Event Details
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="new-event-start-date">Start Date</label>
+                                <input type="date" id="new-event-start-date">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="new-event-end-date">End Date <span class="optional-tag">optional</span></label>
+                                <input type="date" id="new-event-end-date">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="new-event-category">Event Category</label>
+                                <select id="new-event-category" class="form-select">
+                                    <option value="festival">Festivals &amp; Light Shows</option>
+                                    <option value="workshop">Hands-On Labs &amp; Workshops</option>
+                                    <option value="museum">Museums &amp; Castles</option>
+                                    <option value="animals">Animals &amp; Zoos</option>
+                                    <option value="seasonal">Seasonal &amp; Traditions</option>
+                                    <option value="sports">Sports &amp; Games</option>
+                                    <option value="outdoor">Outdoor Adventures</option>
+                                </select>
+                            </div>
+                            <div class="form-group flex-1" style="display: flex; align-items: flex-end; padding-bottom: 0.4rem;">
+                                <label class="checkbox-container" style="margin: 0;">
+                                    <input type="checkbox" id="new-event-indoor" checked>
+                                    <span class="checkmark"></span> Indoor / Rainy-Day Friendly
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Photo Upload Section (Always Visible) -->
+                    <div class="community-photo-upload-box">
+                        <label><i class="fa-solid fa-camera-retro" style="color: var(--primary-color);"></i> Upload Photos <span class="optional-tag">up to 4 photos from phone or computer</span></label>
+                        <input type="file" id="new-spot-photo-files" accept="image/*" multiple class="form-input-file">
+                        <div id="new-spot-photo-previews" class="photo-upload-previews"></div>
+                        <div class="form-row" style="margin-top: 0.5rem; margin-bottom: 0;">
+                            <div class="form-group flex-1" style="margin-bottom: 0;">
+                                <label for="new-spot-author" style="font-size: 0.8rem;">Your Name / Photo Credit <span class="optional-tag">optional</span></label>
+                                <input type="text" id="new-spot-author" placeholder="e.g., Family Müller">
+                            </div>
+                            <div class="form-group flex-1" style="margin-bottom: 0;">
+                                <label for="new-spot-image" style="font-size: 0.8rem;">Or Paste Image URL <span class="optional-tag">optional</span></label>
+                                <input type="url" id="new-spot-image" placeholder="https://...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 0.7rem;">
+                        <label for="new-spot-desc">Description &amp; Highlights <span class="optional-tag">optional</span></label>
+                        <textarea id="new-spot-desc" rows="2" placeholder="Describe what makes this spot, trail, or event great for kids!"></textarea>
                     </div>
 
                     <!-- Collapsible optional details -->
                     <div class="optional-details-toggle" id="toggle-optional-details">
-                        <i class="fa-solid fa-chevron-down"></i> More details <span class="optional-tag">optional — we'll fill in what we can automatically</span>
+                        <i class="fa-solid fa-chevron-down"></i> More details (Amenities, Ages, Hours &amp; Fees) <span class="optional-tag">optional</span>
                     </div>
                     <div class="optional-details-section" id="optional-details-section" style="display: none;">
 
@@ -403,7 +512,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Amenities / Facilities <span class="optional-tag">optional</span></label>
+                            <label>Amenities / Trail Features <span class="optional-tag">optional</span></label>
                             <div class="checkbox-grid">
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="new-spot-amenities" value="Toilets">
@@ -411,7 +520,7 @@
                                 </label>
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="new-spot-amenities" value="Cafe/Food">
-                                    <span class="checkmark"></span> Cafe / Food stall
+                                    <span class="checkmark"></span> Cafe / Restaurant
                                 </label>
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="new-spot-amenities" value="Shade">
@@ -427,26 +536,20 @@
                                 </label>
                                 <label class="checkbox-container">
                                     <input type="checkbox" name="new-spot-amenities" value="Picnic Area">
-                                    <span class="checkmark"></span> Picnic/BBQ Spot
+                                    <span class="checkmark"></span> Picnic / BBQ Spot
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="new-spot-amenities" value="Winter Trail">
+                                    <span class="checkmark"></span> Winter Trail
                                 </label>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="new-spot-image">Image URL <span class="optional-tag">optional</span></label>
-                            <input type="url" id="new-spot-image" placeholder="Leave empty for automatic image">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="new-spot-desc">Description <span class="optional-tag">optional</span></label>
-                            <textarea id="new-spot-desc" rows="3" placeholder="Describe what makes this spot awesome for kids!"></textarea>
-                        </div>
                     </div>
 
-                    <div class="form-actions">
+                    <div class="form-Actions" style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
                         <button type="button" class="btn btn-secondary" id="add-spot-cancel">Cancel</button>
                         <button type="submit" class="btn btn-primary" id="add-spot-submit-btn">
-                            <i class="fa-solid fa-plus"></i> Add Spot
+                            <i class="fa-solid fa-paper-plane"></i> Publish Submission
                         </button>
                     </div>
                 </form>
@@ -882,6 +985,155 @@
             </div>
         </div>
 
+        <!-- Community Photo Upload Modal (For Existing Spots, Trails & Events) -->
+        <!-- Community Photo Upload Modal (For Any Existing Spot, Hiking Trail, or Event) -->
+        <div id="upload-photo-modal" class="modal-overlay" style="display: none; z-index: 3200;">
+            <div class="modal-content card max-w-md">
+                <button type="button" class="modal-close" id="close-upload-photo-modal"><i class="fa-solid fa-xmark"></i></button>
+                <h2><i class="fa-solid fa-camera" style="color: var(--primary-color);"></i> Share Your Photos</h2>
+                <p class="modal-subtitle" id="upload-photo-spot-subtitle">Select any playspot or trail to add real family photos!</p>
+                <form id="upload-photo-form">
+                    <input type="hidden" id="upload-photo-spot-id">
+
+                    <!-- Spot / Hike Selector Group -->
+                    <div class="form-group" id="photo-spot-select-group" style="margin-bottom: 0.85rem;">
+                        <label for="community-photo-spot-search"><i class="fa-solid fa-location-dot" style="color: var(--primary-color);"></i> Target Spot or Hiking Trail *</label>
+                        
+                        <div id="community-photo-selected-badge" class="selected-spot-badge" style="display: none;">
+                            <span class="selected-spot-badge-text" id="selected-spot-badge-text">
+                                <i class="fa-solid fa-check-circle"></i> <span id="selected-spot-name-display"></span>
+                            </span>
+                            <button type="button" id="btn-change-selected-spot" class="btn-change-spot" title="Change target spot">
+                                <i class="fa-solid fa-pen"></i> Change
+                            </button>
+                        </div>
+
+                        <div id="community-photo-search-wrapper" class="spot-search-wrapper">
+                            <input type="text" id="community-photo-spot-search" class="form-input" placeholder="Search spot or hike (e.g. Oeschinensee, Bellerivepark, Josefwiese)..." autocomplete="off">
+                            <div id="community-photo-spot-results" class="spot-search-results-dropdown" style="display: none;"></div>
+                        </div>
+                        <small class="form-help" id="photo-spot-help">Search across all 6,000+ playgrounds, family hiking trails, swimming pools and gamezones</small>
+                    </div>
+
+                    <div class="community-photo-upload-box">
+                        <label for="community-photo-files"><i class="fa-solid fa-images"></i> Select Photos from Phone or Computer *</label>
+                        <input type="file" id="community-photo-files" accept="image/*" multiple class="form-input-file">
+                        <small class="form-help">Up to 4 photos (automatically resized &amp; optimized for fast upload)</small>
+                        <div id="community-photo-previews" class="photo-upload-previews"></div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 0.75rem;">
+                        <label for="community-photo-url">Or Paste an Image URL <span class="optional-tag">optional</span></label>
+                        <input type="url" id="community-photo-url" placeholder="https://...">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="community-photo-author">Your Name / Photo Credit *</label>
+                            <input type="text" id="community-photo-author" required placeholder="e.g., Anna M. or Family Weber">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="community-photo-caption">Short Tip or Caption <span class="optional-tag">optional</span></label>
+                        <input type="text" id="community-photo-caption" placeholder="e.g., Great shaded picnic area with water fountain!">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0.8rem;">
+                        <label class="checkbox-container" style="font-size: 0.8rem; line-height: 1.4;">
+                            <input type="checkbox" id="community-photo-rights" required checked>
+                            <span class="checkmark"></span>
+                            I confirm I took these photos myself (or have permission to share them) for SwissKidsSpots.
+                        </label>
+                    </div>
+
+                    <div style="font-size: 0.73rem; color: var(--text-secondary); background: var(--bg-secondary, #f8fafc); border-radius: 6px; padding: 0.5rem 0.65rem; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.4rem;">
+                        <i class="fa-solid fa-shield-halved" style="color: var(--primary-color);"></i>
+                        <span>Photos are reviewed by an administrator before appearing publicly to keep the platform safe for all families.</span>
+                    </div>
+
+                    <div class="form-actions" style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+                        <button type="button" class="btn btn-secondary" id="cancel-upload-photo-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submit-upload-photo-btn">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Moderation Modal -->
+        <div id="admin-modal" class="modal-overlay" style="display: none; z-index: 3300;">
+            <div class="modal-content card max-w-lg admin-modal-content">
+                <button type="button" class="modal-close" id="close-admin-modal"><i class="fa-solid fa-xmark"></i></button>
+                
+                <!-- PIN Verification Screen -->
+                <div id="admin-auth-view">
+                    <div style="text-align: center; padding: 1.5rem 0.5rem;">
+                        <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.75rem;">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h2 style="margin: 0 0 0.5rem;">Admin Moderation Portal</h2>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            Review and approve community submitted trails, playspots, events, and user photos before publishing to the site.
+                        </p>
+                        <form id="admin-pin-form" style="max-width: 300px; margin: 0 auto;">
+                            <div class="form-group">
+                                <label for="admin-pin-input">Enter Admin PIN</label>
+                                <input type="password" id="admin-pin-input" class="form-input" placeholder="••••••••" required autocomplete="current-password" style="text-align: center; font-size: 1.25rem; letter-spacing: 2px;">
+                            </div>
+                            <div id="admin-pin-error" style="color: #ef4444; font-size: 0.82rem; margin-bottom: 0.75rem; display: none;">
+                                Invalid PIN. Please try again.
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                <i class="fa-solid fa-lock-open"></i> Unlock Dashboard
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Moderation Dashboard Screen -->
+                <div id="admin-dashboard-view" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-bottom: 0.85rem;">
+                        <div>
+                            <h2 style="margin: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fa-solid fa-list-check" style="color: var(--primary-color);"></i> Moderation Queue
+                            </h2>
+                            <small id="admin-queue-summary" style="color: var(--text-secondary);">Loading pending items...</small>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button type="button" class="btn btn-outline" id="btn-admin-refresh" title="Refresh queue" style="padding: 0.35rem 0.65rem; font-size: 0.8rem;">
+                                <i class="fa-solid fa-rotate"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline" id="btn-admin-logout" style="padding: 0.35rem 0.65rem; font-size: 0.8rem;">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Moderation Tabs -->
+                    <div class="admin-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1.5px solid var(--border-color);">
+                        <button type="button" class="admin-tab active" data-tab="spots" id="tab-pending-spots">
+                            <i class="fa-solid fa-location-dot"></i> Spots &amp; Trails <span id="count-pending-spots" class="admin-badge-count">0</span>
+                        </button>
+                        <button type="button" class="admin-tab" data-tab="photos" id="tab-pending-photos">
+                            <i class="fa-solid fa-images"></i> User Photos <span id="count-pending-photos" class="admin-badge-count">0</span>
+                        </button>
+                    </div>
+
+                    <!-- Tab 1: Spots & Trails List -->
+                    <div id="admin-spots-panel" class="admin-tab-panel">
+                        <div id="admin-pending-spots-list" class="admin-items-list"></div>
+                    </div>
+
+                    <!-- Tab 2: Photos List -->
+                    <div id="admin-photos-panel" class="admin-tab-panel" style="display: none;">
+                        <div id="admin-pending-photos-list" class="admin-items-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="app-footer">
             <div class="footer-inner">
@@ -897,6 +1149,10 @@
                     <button type="button" id="btn-open-report" class="footer-link footer-link-report">
                         <i class="fa-solid fa-flag"></i> Report an Image / Content
                     </button>
+                    <span class="footer-sep">&bull;</span>
+                    <button type="button" id="btn-open-admin" class="footer-link" style="color: var(--primary-color); font-weight: 600;">
+                        <i class="fa-solid fa-shield-halved"></i> Admin Review <span id="admin-footer-badge" class="admin-badge-count" style="display: none;">0</span>
+                    </button>
                 </div>
                 <p class="footer-copy">
                     &copy; 2026 SwissKidsSpots. Made with <i class="fa-solid fa-heart text-red"></i> for families in Switzerland.
@@ -911,6 +1167,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=33"></script>
+    <script src="app.js?v=35"></script>
 </body>
 </html>

@@ -6,3 +6,6 @@ Thumbs.db
 .env.*
 
 *.backup.json
+
+uploads/*
+!uploads/.gitkeep

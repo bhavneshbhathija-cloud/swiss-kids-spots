@@ -418,12 +418,14 @@ async function loadSpots() {
         console.error("Error loading postal-codes.json:", e);
     }
 
-    // 1. Load hand-curated baseline from JSON file + All SwitzerlandMobility Hiking Trails + Kids Events
+    // 1. Load hand-curated baseline from JSON file + All SwitzerlandMobility Hiking Trails + Kids Events + Community Submissions
+    window.communityPhotosBySpotId = {};
     try {
-        const [baseResponse, hikesResponse, eventsResponse] = await Promise.all([
-            fetch("base_spots.json?v=15"),
+        const [baseResponse, hikesResponse, eventsResponse, commResponse] = await Promise.all([
+            fetch("base_spots.json?v=16"),
             fetch("hikes.json?v=16"),
-            fetch("/api/events?v=" + Date.now()).catch(() => fetch("events.json?v=1"))
+            fetch("/api/events?v=" + Date.now()).catch(() => fetch("events.json?v=1")),
+            fetch("/api/community/submissions?v=" + Date.now()).catch(() => null)
         ]);
         const baseSpots = baseResponse.ok ? await baseResponse.json() : [];
         const hikeSpots = hikesResponse.ok ? await hikesResponse.json() : [];
@@ -433,6 +435,16 @@ async function loadSpots() {
                 rawEvents = await eventsResponse.json();
             } catch (e) {
                 console.warn("Could not parse events:", e);
+            }
+        }
+
+        let commData = { spots: [], photosBySpotId: {} };
+        if (commResponse && commResponse.ok) {
+            try {
+                commData = await commResponse.json();
+                window.communityPhotosBySpotId = commData.photosBySpotId || {};
+            } catch (e) {
+                console.warn("Could not parse community submissions:", e);
             }
         }
 
@@ -485,19 +497,22 @@ async function loadSpots() {
             verified: true
         }));
 
-        spots = [...baseSpots, ...hikeSpots, ...eventSpots];
-        console.log(`Loaded ${baseSpots.length} baseline spots, ${hikeSpots.length} hiking trails, and ${eventSpots.length} kids events.`);
+        const commSpots = Array.isArray(commData.spots) ? commData.spots : [];
+        spots = [...commSpots, ...baseSpots, ...hikeSpots, ...eventSpots];
+        console.log(`Loaded ${baseSpots.length} baseline spots, ${hikeSpots.length} hiking trails, ${eventSpots.length} kids events, and ${commSpots.length} community submissions.`);
     } catch (e) {
         console.error("Error loading baseline/hiking/event spots:", e);
         spots = [];
     }
     
-    // 2. Load custom user-created spots from localStorage
+    // 2. Load custom user-created spots from localStorage (skip duplicates already in server community spots)
     const customLocal = localStorage.getItem("swiss_kids_custom_spots");
     if (customLocal) {
         try {
             const customSpots = JSON.parse(customLocal);
-            spots = spots.concat(customSpots);
+            const existingIds = new Set(spots.map(s => s.id));
+            const uniqueCustom = customSpots.filter(s => !existingIds.has(s.id));
+            spots = spots.concat(uniqueCustom);
         } catch (e) {
             console.error("Error loading custom spots from localStorage", e);
         }
@@ -514,13 +529,21 @@ async function loadSpots() {
         }
     }
     
-    // Merge reviews into baseline & hiking spots
+    // Merge reviews and community-uploaded photos into baseline, hiking & event spots
     spots.forEach(spot => {
         if (!spot.ratings) spot.ratings = [5, 5, 4];
         if (!spot.comments) spot.comments = [];
         if (reviewsDict[spot.id]) {
             spot.ratings = spot.ratings.concat(reviewsDict[spot.id].ratings || []);
             spot.comments = spot.comments.concat(reviewsDict[spot.id].comments || []);
+        }
+        const commPhotos = window.communityPhotosBySpotId && window.communityPhotosBySpotId[spot.id];
+        if (Array.isArray(commPhotos) && commPhotos.length > 0) {
+            const urls = commPhotos.map(p => p.url).filter(Boolean);
+            const existing = Array.isArray(spot.images) ? spot.images : (spot.imageUrl ? [spot.imageUrl] : []);
+            spot.images = urls.concat(existing.filter(u => !urls.includes(u)));
+            spot.imageUrl = spot.images[0];
+            spot.imageSource = commPhotos[0].imageSource || `Community Photo by ${commPhotos[0].author || 'Visitor'}`;
         }
     });
 
@@ -584,11 +607,19 @@ async function loadOsmSpots() {
         if (response.ok) {
             const harvestedSpots = await response.json();
             
-            // Merge reviews into harvested spots
+            // Merge reviews and community photos into harvested spots
             harvestedSpots.forEach(spot => {
                 if (reviewsDict[spot.id]) {
                     spot.ratings = spot.ratings.concat(reviewsDict[spot.id].ratings || []);
                     spot.comments = spot.comments.concat(reviewsDict[spot.id].comments || []);
+                }
+                const commPhotos = window.communityPhotosBySpotId && window.communityPhotosBySpotId[spot.id];
+                if (Array.isArray(commPhotos) && commPhotos.length > 0) {
+                    const urls = commPhotos.map(p => p.url).filter(Boolean);
+                    const existing = Array.isArray(spot.images) ? spot.images : (spot.imageUrl ? [spot.imageUrl] : []);
+                    spot.images = urls.concat(existing.filter(u => !urls.includes(u)));
+                    spot.imageUrl = spot.images[0];
+                    spot.imageSource = commPhotos[0].imageSource || `Community Photo by ${commPhotos[0].author || 'Visitor'}`;
                 }
             });
 
@@ -1715,9 +1746,10 @@ async function openDetails(spotId, options = {}) {
     const googleSearchUrl = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${spot.lat},${spot.lng}`;
     const safeSpotName = (spot.name || '').replace(/'/g, "\\'");
     const safeSpotImg = encodeURIComponent(spot.imageUrl || '');
+    const addPhotoBtnHtml = `<button type="button" class="spot-detail-add-photo-btn" onclick="openPhotoUploadModal('${spot.id}')"><i class="fa-solid fa-camera"></i> Add Photo</button>`;
     const detailAttributionHtml = spot.imageSource 
-        ? `<div class="image-attribution detail-attribution">📷 ${spot.imageSource} <button type="button" class="spot-detail-report-link" onclick="openTakedownModal('${safeSpotName}', '${safeSpotImg}')"><i class="fa-solid fa-flag"></i> Report</button></div>` 
-        : `<div style="margin-top: 4px;"><button type="button" class="spot-detail-report-link" style="margin-left: 0;" onclick="openTakedownModal('${safeSpotName}', '${safeSpotImg}')"><i class="fa-solid fa-flag"></i> Report photo</button></div>`;
+        ? `<div class="image-attribution detail-attribution" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem;"><span>📷 ${spot.imageSource} <button type="button" class="spot-detail-report-link" onclick="openTakedownModal('${safeSpotName}', '${safeSpotImg}')"><i class="fa-solid fa-flag"></i> Report</button></span>${addPhotoBtnHtml}</div>` 
+        : `<div style="margin-top: 6px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem;"><button type="button" class="spot-detail-report-link" style="margin-left: 0;" onclick="openTakedownModal('${safeSpotName}', '${safeSpotImg}')"><i class="fa-solid fa-flag"></i> Report photo</button>${addPhotoBtnHtml}</div>`;
 
     // Build SVG Elevation Profile chart for hiking routes
     let hikingDetailSectionsHtml = "";
@@ -2880,25 +2912,295 @@ function useMyLocation() {
 }
 
 // --- Handle Add Spot Submit ---
+// --- Client-Side Photo Resizer & Compressor ---
+function readFileAsDataUrl(file, maxWidth = 1280, maxHeight = 1280, quality = 0.82) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                let width = img.width;
+                let height = img.height;
+                if (width > maxWidth || height > maxHeight) {
+                    if (width > height) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    } else {
+                        width = Math.round((width * maxHeight) / height);
+                        height = maxHeight;
+                    }
+                }
+                const canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+                resolve(canvas.toDataURL("image/jpeg", quality));
+            };
+            img.onerror = () => resolve(null);
+            img.src = e.target.result;
+        };
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+    });
+}
+
+// Parse uploaded GPX / KML file to extract trail coordinates & elevation profile
+function parseGpxOrKmlFile(fileText) {
+    const coords = [];
+    const eleProfile = [];
+    let distanceKm = 0;
+    try {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(fileText, "application/xml");
+        
+        // Try GPX track points (<trkpt lat="..." lon="...">)
+        const trkpts = doc.querySelectorAll("trkpt");
+        if (trkpts && trkpts.length > 0) {
+            trkpts.forEach(pt => {
+                const lat = parseFloat(pt.getAttribute("lat"));
+                const lon = parseFloat(pt.getAttribute("lon"));
+                if (!isNaN(lat) && !isNaN(lon)) {
+                    coords.push([lat, lon]);
+                    const eleNode = pt.querySelector("ele");
+                    const ele = eleNode ? parseFloat(eleNode.textContent) : null;
+                    if (ele !== null && !isNaN(ele)) {
+                        eleProfile.push({ distKm: 0, ele: Math.round(ele) });
+                    }
+                }
+            });
+        }
+        
+        // Try KML coordinates (<coordinates>lon,lat,alt ...</coordinates>)
+        if (coords.length === 0) {
+            const coordNodes = doc.querySelectorAll("coordinates");
+            coordNodes.forEach(node => {
+                const text = node.textContent.trim();
+                const tuples = text.split(/\s+/);
+                tuples.forEach(tuple => {
+                    const parts = tuple.split(",");
+                    if (parts.length >= 2) {
+                        const lon = parseFloat(parts[0]);
+                        const lat = parseFloat(parts[1]);
+                        const alt = parts[2] ? parseFloat(parts[2]) : null;
+                        if (!isNaN(lat) && !isNaN(lon)) {
+                            coords.push([lat, lon]);
+                            if (alt !== null && !isNaN(alt)) {
+                                eleProfile.push({ distKm: 0, ele: Math.round(alt) });
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
+        // Calculate total distance in km along points
+        for (let i = 1; i < coords.length; i++) {
+            distanceKm += calculateDistance(coords[i - 1][0], coords[i - 1][1], coords[i][0], coords[i][1]);
+            if (eleProfile[i]) {
+                eleProfile[i].distKm = Math.round(distanceKm * 10) / 10;
+            }
+        }
+        distanceKm = Math.round(distanceKm * 10) / 10;
+    } catch (e) {
+        console.warn("Could not parse GPX/KML file:", e);
+    }
+    return { coords, eleProfile, distanceKm };
+}
+
+window.openAddSpotModalWithType = function(preselectedType = 'playpark') {
+    const modal = document.getElementById("add-spot-modal");
+    const typeSelect = document.getElementById("new-spot-type");
+    if (typeSelect) {
+        typeSelect.value = preselectedType;
+        handleNewSpotTypeChange();
+    }
+    if (modal) modal.style.display = "flex";
+};
+
+function handleNewSpotTypeChange() {
+    const type = document.getElementById("new-spot-type").value;
+    const trailBox = document.getElementById("new-trail-fields-box");
+    const eventBox = document.getElementById("new-event-fields-box");
+    const nameLabel = document.getElementById("new-spot-name-label");
+    const nameInput = document.getElementById("new-spot-name");
+    const addrLabel = document.getElementById("new-spot-address-label");
+    const addrInput = document.getElementById("new-spot-address");
+
+    if (trailBox) trailBox.style.display = type === "hiking" ? "block" : "none";
+    if (eventBox) eventBox.style.display = type === "event" ? "block" : "none";
+
+    if (type === "hiking") {
+        if (nameLabel) nameLabel.innerHTML = 'Trail Name *';
+        if (nameInput) nameInput.placeholder = 'e.g., Oeschinensee Panorama Trail';
+        if (addrLabel) addrLabel.innerHTML = 'Trailhead / Starting Location *';
+        if (addrInput) addrInput.placeholder = 'e.g., Kandersteg Talstation or Grindelwald First';
+    } else if (type === "event") {
+        if (nameLabel) nameLabel.innerHTML = 'Event Title *';
+        if (nameInput) nameInput.placeholder = 'e.g., Kinderfest & Open-Air Workshop';
+        if (addrLabel) addrLabel.innerHTML = 'Event Location / Venue *';
+        if (addrInput) addrInput.placeholder = 'e.g., Zoo Zürich or Park im Grünen';
+    } else {
+        if (nameLabel) nameLabel.innerHTML = 'Spot Name <span class="optional-tag">optional</span>';
+        if (nameInput) nameInput.placeholder = 'e.g., Quartierspielplatz Bäckeranlage';
+        if (addrLabel) addrLabel.innerHTML = 'Address or Location Description *';
+        if (addrInput) addrInput.placeholder = 'e.g., Seefeldquai, 8008 Zürich';
+    }
+}
+
+// Open modal for uploading photos to ANY existing spot / trail / event
+window.openPhotoUploadModal = function(spotId) {
+    const modal = document.getElementById("upload-photo-modal");
+    const idInput = document.getElementById("upload-photo-spot-id");
+    const subTitle = document.getElementById("upload-photo-spot-subtitle");
+    const previewBox = document.getElementById("community-photo-previews");
+    const fileInput = document.getElementById("community-photo-files");
+    const urlInput = document.getElementById("community-photo-url");
+    const searchInput = document.getElementById("community-photo-spot-search");
+    const searchWrapper = document.getElementById("community-photo-search-wrapper");
+    const selectedBadge = document.getElementById("community-photo-selected-badge");
+    const resultsContainer = document.getElementById("community-photo-spot-results");
+
+    if (previewBox) previewBox.innerHTML = '';
+    if (fileInput) fileInput.value = '';
+    if (urlInput) urlInput.value = '';
+    if (resultsContainer) {
+        resultsContainer.innerHTML = '';
+        resultsContainer.style.display = 'none';
+    }
+
+    if (spotId) {
+        const spot = spots.find(s => s.id === spotId);
+        if (spot) {
+            selectSpotForPhotoUpload(spot.id);
+        } else {
+            if (idInput) idInput.value = spotId;
+            if (selectedBadge) selectedBadge.style.display = 'none';
+            if (searchWrapper) searchWrapper.style.display = 'block';
+            if (searchInput) {
+                searchInput.value = '';
+                setTimeout(() => searchInput.focus(), 150);
+            }
+            if (subTitle) subTitle.textContent = 'Select any playspot or trail to add real family photos!';
+        }
+    } else {
+        if (idInput) idInput.value = '';
+        if (selectedBadge) selectedBadge.style.display = 'none';
+        if (searchWrapper) searchWrapper.style.display = 'block';
+        if (searchInput) {
+            searchInput.value = '';
+            setTimeout(() => searchInput.focus(), 150);
+        }
+        if (subTitle) subTitle.textContent = 'Search and select any playspot or family trail to share photos!';
+    }
+
+    if (modal) modal.style.display = "flex";
+};
+
+window.selectSpotForPhotoUpload = function(spotId) {
+    const spot = spots.find(s => s.id === spotId);
+    if (!spot) return;
+    const idInput = document.getElementById("upload-photo-spot-id");
+    const nameDisplay = document.getElementById("selected-spot-name-display");
+    const selectedBadge = document.getElementById("community-photo-selected-badge");
+    const searchWrapper = document.getElementById("community-photo-search-wrapper");
+    const resultsContainer = document.getElementById("community-photo-spot-results");
+    const subTitle = document.getElementById("upload-photo-spot-subtitle");
+
+    if (idInput) idInput.value = spot.id;
+    if (nameDisplay) {
+        const typeLabels = { playpark: 'Playpark', swimmingpool: 'Pool', gamezone: 'Game Zone', hiking: 'Family Trail', event: 'Event' };
+        const typeIcons = { playpark: 'fa-shapes', swimmingpool: 'fa-person-swimming', gamezone: 'fa-gamepad', hiking: 'fa-person-hiking', event: 'fa-calendar-days' };
+        nameDisplay.innerHTML = `<i class="fa-solid ${typeIcons[spot.type] || 'fa-map-pin'}"></i> <strong>[${typeLabels[spot.type] || spot.type}]</strong> ${escapeHtml(spot.name)} <span style="font-weight: normal; opacity: 0.85;">(${escapeHtml(spot.city || spot.destination || 'Switzerland')})</span>`;
+    }
+    if (subTitle) subTitle.textContent = `Adding real family photos for "${spot.name}"`;
+    if (selectedBadge) selectedBadge.style.display = 'flex';
+    if (searchWrapper) searchWrapper.style.display = 'none';
+    if (resultsContainer) {
+        resultsContainer.innerHTML = '';
+        resultsContainer.style.display = 'none';
+    }
+};
+
+function handleCommunitySpotSearch(query) {
+    const q = (query || '').toLowerCase().trim();
+    const resultsContainer = document.getElementById("community-photo-spot-results");
+    if (!resultsContainer) return;
+
+    if (q.length < 2) {
+        resultsContainer.innerHTML = '';
+        resultsContainer.style.display = 'none';
+        return;
+    }
+
+    // Search across all loaded spots and hikes
+    const matches = spots.filter(s => {
+        if (!s.name) return false;
+        const nameMatch = s.name.toLowerCase().includes(q);
+        const cityMatch = (s.city && s.city.toLowerCase().includes(q));
+        const destMatch = (s.destination && s.destination.toLowerCase().includes(q));
+        const addrMatch = (s.address && s.address.toLowerCase().includes(q));
+        return nameMatch || cityMatch || destMatch || addrMatch;
+    }).slice(0, 8);
+
+    if (matches.length === 0) {
+        resultsContainer.innerHTML = '<div style="padding: 0.75rem; font-size: 0.8rem; color: var(--text-secondary); text-align: center;"><i class="fa-solid fa-magnifying-glass"></i> No matching spots or trails found. Try another search term.</div>';
+        resultsContainer.style.display = 'block';
+        return;
+    }
+
+    const typeIcons = {
+        playpark: 'fa-solid fa-shapes',
+        swimmingpool: 'fa-solid fa-person-swimming',
+        gamezone: 'fa-solid fa-gamepad',
+        hiking: 'fa-solid fa-person-hiking',
+        event: 'fa-solid fa-calendar-days'
+    };
+
+    resultsContainer.innerHTML = matches.map(s => `
+        <div class="spot-search-item" onclick="selectSpotForPhotoUpload('${s.id}')">
+            <div class="spot-search-item-icon">
+                <i class="${typeIcons[s.type] || 'fa-solid fa-map-pin'}"></i>
+            </div>
+            <div class="spot-search-item-info">
+                <div class="spot-search-item-name">${escapeHtml(s.name)}</div>
+                <div class="spot-search-item-meta">${escapeHtml(s.city || s.destination || s.address || 'Switzerland')} &bull; <span style="text-transform: capitalize; font-weight: 600;">${s.type}</span></div>
+            </div>
+        </div>
+    `).join('');
+    resultsContainer.style.display = 'block';
+}
+
+// Handle Add Spot / Trail / Event Submit
 async function handleAddSpotSubmit(e) {
     e.preventDefault();
 
     const submitBtn = document.getElementById("add-spot-submit-btn");
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding spot...';
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Publishing...';
 
-    // Get the mandatory field
+    // Mandatory address
     const address = document.getElementById("new-spot-address").value.trim();
-
-    // Get optional fields (with defaults)
-    const name = document.getElementById("new-spot-name").value.trim();
     const type = document.getElementById("new-spot-type").value || "playpark";
+    const name = document.getElementById("new-spot-name").value.trim();
     const hours = document.getElementById("new-spot-hours").value.trim() || "08:00 - 20:00 daily";
     const fees = document.getElementById("new-spot-fees").value.trim();
     const minAge = parseInt(document.getElementById("new-spot-minage").value) || 0;
-    const maxAge = parseInt(document.getElementById("new-spot-maxage").value) || 12;
+    const maxAge = parseInt(document.getElementById("new-spot-maxage").value) || 16;
     const desc = document.getElementById("new-spot-desc").value.trim();
     const customImg = document.getElementById("new-spot-image").value.trim();
+    const author = document.getElementById("new-spot-author").value.trim() || "Community Member";
+
+    // Read selected photo files
+    const photoFileInput = document.getElementById("new-spot-photo-files");
+    const uploadedPhotos = [];
+    if (photoFileInput && photoFileInput.files && photoFileInput.files.length > 0) {
+        const filesToProcess = Array.from(photoFileInput.files).slice(0, 4);
+        for (const file of filesToProcess) {
+            const dataUrl = await readFileAsDataUrl(file);
+            if (dataUrl) uploadedPhotos.push(dataUrl);
+        }
+    }
 
     // Checkbox amenities
     const amenities = [];
@@ -2906,13 +3208,12 @@ async function handleAddSpotSubmit(e) {
         amenities.push(chk.value);
     });
 
-    // --- Resolve coordinates & location details ---
+    // Resolve coordinates & location details
     let lat = parseFloat(document.getElementById("new-spot-lat").value);
     let lng = parseFloat(document.getElementById("new-spot-lng").value);
     let zipVal = document.getElementById("new-spot-zip").value.trim();
     let city = document.getElementById("new-spot-city").value.trim();
 
-    // If coordinates are not set (no GPS used), geocode the address
     if (isNaN(lat) || isNaN(lng)) {
         const geoResult = await geocodeAddress(address);
         if (geoResult) {
@@ -2924,7 +3225,6 @@ async function handleAddSpotSubmit(e) {
         }
     }
 
-    // Final fallback: ZIP database or center of Switzerland
     if (isNaN(lat) || isNaN(lng)) {
         if (zipVal && SWISS_ZIPS[zipVal]) {
             lat = SWISS_ZIPS[zipVal].lat;
@@ -2935,13 +3235,11 @@ async function handleAddSpotSubmit(e) {
         }
     }
 
-    // Try to resolve city from ZIP database if still missing
     if (!city && zipVal && SWISS_ZIPS[zipVal]) {
         city = SWISS_ZIPS[zipVal].city;
     }
     if (!city) city = "Switzerland";
 
-    // Try to find closest ZIP if still missing
     if (!zipVal) {
         let minDist = Infinity;
         for (const [zc, coords] of Object.entries(SWISS_ZIPS)) {
@@ -2956,54 +3254,47 @@ async function handleAddSpotSubmit(e) {
         }
     }
 
-    // --- Auto-generate name if not provided ---
     let spotName = name;
     if (!spotName) {
-        const typeNames = { playpark: "Playground", swimmingpool: "Swimming Pool", gamezone: "Game Zone" };
+        const typeNames = { playpark: "Playground", swimmingpool: "Swimming Pool", gamezone: "Game Zone", hiking: "Family Trail", event: "Kids Activity" };
         spotName = `${typeNames[type] || "Playground"} in ${city}`;
     }
 
-    // --- Auto-generate description if not provided ---
     let spotDesc = desc;
     if (!spotDesc) {
         const descTemplates = {
             playpark: `A public outdoor playground in ${city}, Switzerland. Great for kids with various play structures and open space.`,
             swimmingpool: `A swimming pool facility in ${city}, Switzerland. Fun aquatic activities for the whole family.`,
-            gamezone: `An indoor game zone in ${city}, Switzerland. Safe and fun play area for children.`
+            gamezone: `An indoor game zone in ${city}, Switzerland. Safe and fun play area for children.`,
+            hiking: `A family-friendly hiking trail starting in ${city}. Beautiful views and scenic paths for families.`,
+            event: `Exciting kids and family event in ${city}. Hands-on activities and fun for children of all ages.`
         };
         spotDesc = descTemplates[type] || descTemplates.playpark;
     }
 
-    // --- Smart fee defaults ---
     let spotFees = fees;
     if (!spotFees) {
-        spotFees = type === "playpark" ? "Free" : "Contact venue";
+        spotFees = (type === "playpark" || type === "hiking") ? "Free" : "Contact venue";
     } else if (spotFees === "0") {
         spotFees = "Free";
     }
 
-    // --- Default amenities if none selected ---
     let spotAmenities = amenities;
     if (spotAmenities.length === 0) {
-        if (type === "playpark") spotAmenities = ["Stroller Friendly"];
-        else if (type === "swimmingpool") spotAmenities = ["Toilets", "Stroller Friendly"];
+        if (type === "hiking") spotAmenities = ["Stroller Friendly", "Picnic Area"];
+        else if (type === "playpark") spotAmenities = ["Stroller Friendly"];
         else spotAmenities = ["Toilets", "Stroller Friendly"];
     }
 
-    // --- Set fallback image based on spot type ---
-    let imageUrl = customImg;
-    if (!imageUrl) {
-        if (type === "playpark") imageUrl = "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80";
-        else if (type === "gamezone") imageUrl = "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80";
-        else imageUrl = "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80";
-    }
+    let fallbackUrl = getDefaultSpotFallback(type);
+    let imageUrl = customImg || (uploadedPhotos[0] || fallbackUrl);
 
-    // --- Build the full address string ---
     const fullAddress = address.includes(zipVal) ? address : `${address}, ${zipVal} ${city}`;
+    const spotId = `community-${type}-${Date.now()}`;
 
-    // --- Create the spot ---
+    // Construct base spot object
     const newSpot = {
-        id: `custom-spot-${Date.now()}`,
+        id: spotId,
         name: spotName,
         type,
         description: spotDesc,
@@ -3018,33 +3309,432 @@ async function handleAddSpotSubmit(e) {
         maxAge,
         amenities: spotAmenities,
         imageUrl,
-        images: [imageUrl],
+        images: customImg ? [customImg] : [fallbackUrl],
         ratings: [5],
-        comments: [{ author: "Finder", rating: 5, text: "Newly added spot. Looks awesome!" }]
+        comments: [{ author, rating: 5, text: `Shared by ${author} on SwissKidsSpots! ${spotDesc.slice(0, 120)}` }],
+        submittedBy: author,
+        imageSource: `Community Photo by ${author}`,
+        isCommunitySubmitted: true
     };
+
+    // Parse GPX track if hiking trail
+    if (type === "hiking") {
+        const gpxFileInput = document.getElementById("new-trail-gpx-file");
+        let parsedTrack = { coords: [], eleProfile: [], distanceKm: 0 };
+        if (gpxFileInput && gpxFileInput.files && gpxFileInput.files.length > 0) {
+            try {
+                const text = await gpxFileInput.files[0].text();
+                parsedTrack = parseGpxOrKmlFile(text);
+            } catch (err) {
+                console.warn("Could not read GPX file:", err);
+            }
+        }
+
+        const diffSelect = document.getElementById("new-trail-difficulty");
+        const distInput = document.getElementById("new-trail-distance");
+        const durInput = document.getElementById("new-trail-duration");
+        const ascInput = document.getElementById("new-trail-ascent");
+        const endStopInput = document.getElementById("new-trail-end-stop");
+
+        newSpot.difficulty = diffSelect ? diffSelect.value : "easy";
+        newSpot.distanceKm = (distInput && distInput.value) ? parseFloat(distInput.value) : (parsedTrack.distanceKm || 3.5);
+        newSpot.timeHours = durInput && durInput.value ? durInput.value.trim() : `${Math.max(1, Math.round(newSpot.distanceKm / 3))}h`;
+        newSpot.ascentM = ascInput && ascInput.value ? parseInt(ascInput.value) : 100;
+        newSpot.descentM = newSpot.ascentM;
+        newSpot.startStop = address;
+        newSpot.endStop = (endStopInput && endStopInput.value.trim()) ? endStopInput.value.trim() : address;
+        newSpot.coordinates = parsedTrack.coords.length > 0 ? parsedTrack.coords : [[newSpot.lat, newSpot.lng]];
+        newSpot.elevationProfile = parsedTrack.eleProfile;
+        newSpot.isWinterTrail = spotAmenities.includes("Winter Trail");
+    } else if (type === "event") {
+        const startDateInput = document.getElementById("new-event-start-date");
+        const endDateInput = document.getElementById("new-event-end-date");
+        const catSelect = document.getElementById("new-event-category");
+        const indoorChk = document.getElementById("new-event-indoor");
+
+        newSpot.startDate = startDateInput && startDateInput.value ? startDateInput.value : new Date().toISOString().split("T")[0];
+        newSpot.endDate = endDateInput && endDateInput.value ? endDateInput.value : newSpot.startDate;
+        newSpot.category = catSelect ? catSelect.value : "festival";
+        newSpot.isRainyDayFriendly = indoorChk ? indoorChk.checked : true;
+        newSpot.isFree = spotFees.toLowerCase().includes("free");
+        newSpot.priceText = spotFees;
+        newSpot.timeText = hours;
+        newSpot.ageLabel = `Ages ${minAge} - ${maxAge}`;
+    }
+
+    // Post submission to server for admin review
+    let submitSuccess = false;
+    try {
+        const payload = {
+            spot: newSpot,
+            author,
+            uploadedPhotos
+        };
+        const res = await fetch("/api/community/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+            submitSuccess = true;
+        }
+    } catch (err) {
+        console.warn("Could not save to /api/community/submit:", err);
+    }
 
     // Save ZIP to dictionary if new
     if (!SWISS_ZIPS[zipVal]) {
         SWISS_ZIPS[zipVal] = { city, canton: "CH", lat, lng };
     }
 
-    spots.push(newSpot);
-    saveSpots();
-
     // Reset and hide form
     document.getElementById("add-spot-form").reset();
     document.getElementById("add-spot-modal").style.display = "none";
-    document.getElementById("optional-details-section").style.display = "none";
+    const optionalSection = document.getElementById("optional-details-section");
+    if (optionalSection) optionalSection.style.display = "none";
+    const previewBox = document.getElementById("new-spot-photo-previews");
+    if (previewBox) previewBox.innerHTML = '';
 
-    // Restore button
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Add Spot';
+    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Publish Submission';
 
-    // Refresh page
-    renderSpotsList();
-    focusOnMap(newSpot.id, lat, lng);
-    alert(`Success! "${spotName}" has been added to your local playspot finder.`);
+    alert(`Thank you, ${author}! Your ${type === 'hiking' ? 'family trail' : (type === 'event' ? 'event' : 'spot')} "${spotName}" has been submitted successfully.\n\nTo ensure safety, accuracy and family-friendly quality, all submissions are reviewed by an administrator before appearing publicly on SwissKidsSpots.`);
 }
+
+// Handle Community Photo Upload to existing spot / trail / event
+async function handlePhotoUploadSubmit(e) {
+    e.preventDefault();
+    const spotId = document.getElementById("upload-photo-spot-id").value;
+    const author = document.getElementById("community-photo-author").value.trim();
+    const caption = document.getElementById("community-photo-caption").value.trim();
+    const externalUrl = document.getElementById("community-photo-url").value.trim();
+    const fileInput = document.getElementById("community-photo-files");
+    const submitBtn = document.getElementById("submit-upload-photo-btn");
+
+    if (!spotId) {
+        alert("Please select a spot or hiking trail first.");
+        const searchInput = document.getElementById("community-photo-spot-search");
+        if (searchInput) {
+            document.getElementById("community-photo-search-wrapper").style.display = "block";
+            searchInput.focus();
+        }
+        return;
+    }
+
+    const targetSpot = spots.find(s => s.id === spotId);
+    const spotName = targetSpot ? targetSpot.name : spotId;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+
+    const uploadedDataUrls = [];
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        const filesToProcess = Array.from(fileInput.files).slice(0, 4);
+        for (const file of filesToProcess) {
+            const dataUrl = await readFileAsDataUrl(file);
+            if (dataUrl) uploadedDataUrls.push(dataUrl);
+        }
+    }
+
+    if (uploadedDataUrls.length === 0 && !externalUrl) {
+        alert("Please select at least one photo file or paste an image URL.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos';
+        return;
+    }
+
+    try {
+        const res = await fetch("/api/community/photos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                spotId,
+                spotName,
+                author,
+                caption,
+                photos: uploadedDataUrls,
+                photoUrl: externalUrl
+            })
+        });
+        if (res.ok) {
+            alert(`Thank you, ${author}! Your photo(s) have been uploaded successfully.\n\nTo ensure quality for all families, photos are reviewed and approved by an administrator before appearing on the website.`);
+        } else {
+            alert("Could not complete upload. Please check your network connection and try again.");
+        }
+    } catch (err) {
+        console.warn("Server photo upload failed:", err);
+        alert("Upload error. Please try again.");
+    }
+
+    document.getElementById("upload-photo-form").reset();
+    document.getElementById("upload-photo-modal").style.display = "none";
+    const previewBox = document.getElementById("community-photo-previews");
+    if (previewBox) previewBox.innerHTML = '';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos';
+}
+
+// ==========================================
+// Admin Moderation Queue & Portal Management
+// ==========================================
+let adminPendingQueue = { pendingSpots: [], pendingPhotos: [] };
+
+window.openAdminModal = function() {
+    const modal = document.getElementById("admin-modal");
+    if (!modal) return;
+    const pin = sessionStorage.getItem("sfk_admin_pin");
+    const authView = document.getElementById("admin-auth-view");
+    const dashView = document.getElementById("admin-dashboard-view");
+    const pinErr = document.getElementById("admin-pin-error");
+
+    if (pinErr) pinErr.style.display = "none";
+
+    if (pin) {
+        if (authView) authView.style.display = "none";
+        if (dashView) dashView.style.display = "block";
+        loadAdminPendingQueue();
+    } else {
+        if (authView) authView.style.display = "block";
+        if (dashView) dashView.style.display = "none";
+        const pinInput = document.getElementById("admin-pin-input");
+        if (pinInput) {
+            pinInput.value = "";
+            setTimeout(() => pinInput.focus(), 100);
+        }
+    }
+    modal.style.display = "flex";
+};
+
+window.closeAdminModal = function() {
+    const modal = document.getElementById("admin-modal");
+    if (modal) modal.style.display = "none";
+};
+
+async function handleAdminPinSubmit(e) {
+    e.preventDefault();
+    const pinInput = document.getElementById("admin-pin-input");
+    const pinErr = document.getElementById("admin-pin-error");
+    const pin = (pinInput ? pinInput.value : "").trim();
+    if (!pin) return;
+
+    try {
+        const res = await fetch("/api/admin/verify-pin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ pin })
+        });
+        const data = await res.json();
+        if (data && data.valid) {
+            sessionStorage.setItem("sfk_admin_pin", pin);
+            if (pinErr) pinErr.style.display = "none";
+            document.getElementById("admin-auth-view").style.display = "none";
+            document.getElementById("admin-dashboard-view").style.display = "block";
+            loadAdminPendingQueue();
+        } else {
+            if (pinErr) {
+                pinErr.textContent = "Invalid Admin PIN. Please try again.";
+                pinErr.style.display = "block";
+            }
+        }
+    } catch (err) {
+        console.error("Failed to verify PIN:", err);
+        if (pinErr) {
+            pinErr.textContent = "Error connecting to server.";
+            pinErr.style.display = "block";
+        }
+    }
+}
+
+async function loadAdminPendingQueue() {
+    const pin = sessionStorage.getItem("sfk_admin_pin");
+    if (!pin) return;
+
+    const summaryEl = document.getElementById("admin-queue-summary");
+    if (summaryEl) summaryEl.textContent = "Fetching moderation queue...";
+
+    try {
+        const res = await fetch("/api/admin/pending", {
+            headers: { "x-admin-pin": pin }
+        });
+        if (res.status === 401) {
+            sessionStorage.removeItem("sfk_admin_pin");
+            document.getElementById("admin-dashboard-view").style.display = "none";
+            document.getElementById("admin-auth-view").style.display = "block";
+            return;
+        }
+        if (res.ok) {
+            adminPendingQueue = await res.json();
+            renderAdminQueueUI();
+        }
+    } catch (err) {
+        console.error("Error loading admin queue:", err);
+        if (summaryEl) summaryEl.textContent = "Failed to load moderation queue.";
+    }
+}
+
+function renderAdminQueueUI() {
+    const spotsList = adminPendingQueue.pendingSpots || [];
+    const photosList = adminPendingQueue.pendingPhotos || [];
+    const totalPending = spotsList.length + photosList.length;
+
+    // Update Counts & Badges
+    const badgeSpots = document.getElementById("count-pending-spots");
+    const badgePhotos = document.getElementById("count-pending-photos");
+    const footerBadge = document.getElementById("admin-footer-badge");
+    const summaryEl = document.getElementById("admin-queue-summary");
+
+    if (badgeSpots) badgeSpots.textContent = spotsList.length;
+    if (badgePhotos) badgePhotos.textContent = photosList.length;
+    if (footerBadge) {
+        footerBadge.textContent = totalPending;
+        footerBadge.style.display = totalPending > 0 ? "inline-block" : "none";
+    }
+    if (summaryEl) {
+        summaryEl.textContent = totalPending === 0
+            ? "Queue is clean! No items pending review."
+            : `${totalPending} item(s) awaiting approval (${spotsList.length} spots/trails, ${photosList.length} photos)`;
+    }
+
+    // Render Spots Panel
+    const spotsContainer = document.getElementById("admin-pending-spots-list");
+    if (spotsContainer) {
+        if (spotsList.length === 0) {
+            spotsContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-secondary);"><i class="fa-solid fa-circle-check" style="color: #16a34a; font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i> No spots or trails pending review!</div>';
+        } else {
+            spotsContainer.innerHTML = spotsList.map(s => {
+                const photosHtml = Array.isArray(s.images) && s.images.length > 0
+                    ? `<div class="admin-card-photos">${s.images.slice(0, 4).map(u => `<img src="${escapeHtml(u)}" class="admin-photo-thumb" alt="Thumbnail" />`).join('')}</div>`
+                    : '';
+                const trailStatsHtml = s.type === 'hiking'
+                    ? `<div style="font-size: 0.78rem; color: #2a9d8f; font-weight: 600; margin-bottom: 0.4rem;"><i class="fa-solid fa-route"></i> ${s.distanceKm || '3'} km &bull; Difficulty: ${s.difficulty || 'easy'} &bull; Ascent: ${s.ascentM || '100'}m</div>`
+                    : '';
+                return `
+                <div class="admin-card" id="admin-card-spot-${s.id}">
+                    <div class="admin-card-header">
+                        <h3 class="admin-card-title">${escapeHtml(s.name)}</h3>
+                        <span class="admin-card-badge">${escapeHtml(s.type)}</span>
+                    </div>
+                    <div class="admin-card-meta">
+                        <i class="fa-solid fa-location-dot"></i> ${escapeHtml(s.address || s.city || 'Switzerland')} &bull; Submitted by: <strong>${escapeHtml(s.submittedBy || 'Member')}</strong> &bull; ${new Date(s.submittedAt || Date.now()).toLocaleDateString()}
+                    </div>
+                    ${trailStatsHtml}
+                    <div class="admin-card-desc">${escapeHtml(s.description || 'No description provided.')}</div>
+                    ${photosHtml}
+                    <div class="admin-card-actions">
+                        <button type="button" class="btn-admin-reject" onclick="moderateAdminItem('spot', '${s.id}', '', 'reject')">
+                            <i class="fa-solid fa-xmark"></i> Reject
+                        </button>
+                        <button type="button" class="btn-admin-approve" onclick="moderateAdminItem('spot', '${s.id}', '', 'approve')">
+                            <i class="fa-solid fa-check"></i> Approve &amp; Publish
+                        </button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+    }
+
+    // Render Photos Panel
+    const photosContainer = document.getElementById("admin-pending-photos-list");
+    if (photosContainer) {
+        if (photosList.length === 0) {
+            photosContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-secondary);"><i class="fa-solid fa-circle-check" style="color: #16a34a; font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i> No user photos pending review!</div>';
+        } else {
+            photosContainer.innerHTML = photosList.map(p => {
+                const targetSpot = spots.find(s => s.id === p.spotId);
+                const spotDisplayName = targetSpot ? targetSpot.name : (p.spotName || p.spotId);
+                return `
+                <div class="admin-card" id="admin-card-photo-${p.id}">
+                    <div class="admin-card-header">
+                        <h3 class="admin-card-title"><i class="fa-solid fa-map-pin" style="color: var(--primary-color);"></i> ${escapeHtml(spotDisplayName)}</h3>
+                        <span class="admin-card-badge">Photo Upload</span>
+                    </div>
+                    <div class="admin-card-meta">
+                        Author: <strong>${escapeHtml(p.author || 'Member')}</strong> &bull; Spot ID: <code>${escapeHtml(p.spotId)}</code> &bull; ${new Date(p.timestamp || Date.now()).toLocaleDateString()}
+                    </div>
+                    ${p.caption ? `<div class="admin-card-desc"><i class="fa-solid fa-quote-left" style="opacity: 0.5;"></i> ${escapeHtml(p.caption)}</div>` : ''}
+                    <div class="admin-card-photos">
+                        <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener" title="Click to view full size">
+                            <img src="${escapeHtml(p.url)}" class="admin-photo-thumb" style="width: 130px; height: 130px; border-radius: 8px;" alt="User Photo" />
+                        </a>
+                    </div>
+                    <div class="admin-card-actions">
+                        <button type="button" class="btn-admin-reject" onclick="moderateAdminItem('photo', '${p.id}', '${p.spotId}', 'reject')">
+                            <i class="fa-solid fa-xmark"></i> Reject
+                        </button>
+                        <button type="button" class="btn-admin-approve" onclick="moderateAdminItem('photo', '${p.id}', '${p.spotId}', 'approve')">
+                            <i class="fa-solid fa-check"></i> Approve &amp; Publish
+                        </button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+    }
+}
+
+window.moderateAdminItem = async function(itemType, id, spotId, action) {
+    const pin = sessionStorage.getItem("sfk_admin_pin");
+    if (!pin) {
+        alert("Admin session expired. Please log in again.");
+        openAdminModal();
+        return;
+    }
+
+    if (action === "reject" && !confirm(`Are you sure you want to REJECT this ${itemType}?`)) {
+        return;
+    }
+
+    try {
+        const res = await fetch("/api/admin/moderate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-admin-pin": pin
+            },
+            body: JSON.stringify({ itemType, id, spotId, action })
+        });
+        const result = await res.json();
+        if (result && result.success) {
+            // If approved, refresh public community submissions so it reflects immediately
+            if (action === "approve") {
+                try {
+                    const commRes = await fetch("/api/community/submissions");
+                    if (commRes.ok) {
+                        const commData = await commRes.json();
+                        if (Array.isArray(commData.spots)) {
+                            commData.spots.forEach(cs => {
+                                if (!spots.some(s => s.id === cs.id)) {
+                                    spots.unshift(cs);
+                                }
+                            });
+                        }
+                        if (commData.photosBySpotId) {
+                            window.communityPhotosBySpotId = commData.photosBySpotId;
+                            for (const [sId, pList] of Object.entries(commData.photosBySpotId)) {
+                                const sp = spots.find(s => s.id === sId);
+                                if (sp && Array.isArray(pList) && pList.length > 0) {
+                                    const approvedUrls = pList.map(p => p.url);
+                                    const existing = Array.isArray(sp.images) ? sp.images : (sp.imageUrl ? [sp.imageUrl] : []);
+                                    sp.images = approvedUrls.concat(existing.filter(u => !approvedUrls.includes(u)));
+                                    sp.imageUrl = sp.images[0];
+                                    sp.imageSource = pList[0].imageSource || `Community Photo by ${pList[0].author}`;
+                                }
+                            }
+                        }
+                        renderSpotsList();
+                    }
+                } catch (e) {
+                    console.warn("Could not sync community submissions after approval:", e);
+                }
+            }
+            await loadAdminPendingQueue();
+        } else {
+            alert(result.error || "Failed to process moderation action.");
+        }
+    } catch (err) {
+        console.error("Moderation request error:", err);
+        alert("Failed to contact server.");
+    }
+};
 
 // --- Submit Feedback ---
 async function handleFeedbackSubmit(e) {
@@ -4572,14 +5262,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const uploadPhotoModal = document.getElementById("upload-photo-modal");
+    const adminModal = document.getElementById("admin-modal");
+
     // Modal Close triggers
-    document.querySelectorAll(".modal-close, #add-spot-cancel, #feedback-cancel").forEach(btn => {
+    document.querySelectorAll(".modal-close, #add-spot-cancel, #feedback-cancel, #cancel-upload-photo-btn, #close-upload-photo-modal, #close-admin-modal").forEach(btn => {
         btn.addEventListener("click", () => {
             addSpotModal.style.display = "none";
             detailModal.style.display = "none";
             feedbackModal.style.display = "none";
             if (impressumModal) impressumModal.style.display = "none";
             if (takedownModal) takedownModal.style.display = "none";
+            if (uploadPhotoModal) uploadPhotoModal.style.display = "none";
+            if (adminModal) adminModal.style.display = "none";
             closeGroupRadarModal();
         });
     });
@@ -4591,11 +5286,190 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === feedbackModal) feedbackModal.style.display = "none";
         if (e.target === impressumModal) impressumModal.style.display = "none";
         if (e.target === takedownModal) takedownModal.style.display = "none";
+        if (uploadPhotoModal && e.target === uploadPhotoModal) uploadPhotoModal.style.display = "none";
+        if (adminModal && e.target === adminModal) adminModal.style.display = "none";
         const radarModal = document.getElementById("group-radar-modal");
         if (e.target === radarModal) closeGroupRadarModal();
     });
 
-    // Add Spot Form Submission
+    // Spot / Hike Live Search for Photo Upload Modal
+    const photoSpotSearch = document.getElementById("community-photo-spot-search");
+    if (photoSpotSearch) {
+        photoSpotSearch.addEventListener("input", (e) => {
+            handleCommunitySpotSearch(e.target.value);
+        });
+    }
+    const changeSelectedSpotBtn = document.getElementById("btn-change-selected-spot");
+    if (changeSelectedSpotBtn) {
+        changeSelectedSpotBtn.addEventListener("click", () => {
+            const idInput = document.getElementById("upload-photo-spot-id");
+            const selectedBadge = document.getElementById("community-photo-selected-badge");
+            const searchWrapper = document.getElementById("community-photo-search-wrapper");
+            const searchInput = document.getElementById("community-photo-spot-search");
+            const resultsContainer = document.getElementById("community-photo-spot-results");
+            if (idInput) idInput.value = '';
+            if (selectedBadge) selectedBadge.style.display = 'none';
+            if (searchWrapper) searchWrapper.style.display = 'block';
+            if (resultsContainer) {
+                resultsContainer.innerHTML = '';
+                resultsContainer.style.display = 'none';
+            }
+            if (searchInput) {
+                searchInput.value = '';
+                setTimeout(() => searchInput.focus(), 100);
+            }
+        });
+    }
+
+    // Admin Moderation Triggers & Tab Navigation
+    const btnOpenAdmin = document.getElementById("btn-open-admin");
+    if (btnOpenAdmin) {
+        btnOpenAdmin.addEventListener("click", openAdminModal);
+    }
+    const adminPinForm = document.getElementById("admin-pin-form");
+    if (adminPinForm) {
+        adminPinForm.addEventListener("submit", handleAdminPinSubmit);
+    }
+    const btnAdminRefresh = document.getElementById("btn-admin-refresh");
+    if (btnAdminRefresh) {
+        btnAdminRefresh.addEventListener("click", loadAdminPendingQueue);
+    }
+    const btnAdminLogout = document.getElementById("btn-admin-logout");
+    if (btnAdminLogout) {
+        btnAdminLogout.addEventListener("click", () => {
+            sessionStorage.removeItem("sfk_admin_pin");
+            document.getElementById("admin-dashboard-view").style.display = "none";
+            document.getElementById("admin-auth-view").style.display = "block";
+            const pinInput = document.getElementById("admin-pin-input");
+            if (pinInput) pinInput.value = "";
+            const badge = document.getElementById("admin-footer-badge");
+            if (badge) badge.style.display = "none";
+        });
+    }
+
+    const tabSpots = document.getElementById("tab-pending-spots");
+    const tabPhotos = document.getElementById("tab-pending-photos");
+    const panelSpots = document.getElementById("admin-spots-panel");
+    const panelPhotos = document.getElementById("admin-photos-panel");
+    if (tabSpots && tabPhotos) {
+        tabSpots.addEventListener("click", () => {
+            tabSpots.classList.add("active");
+            tabPhotos.classList.remove("active");
+            if (panelSpots) panelSpots.style.display = "block";
+            if (panelPhotos) panelPhotos.style.display = "none";
+        });
+        tabPhotos.addEventListener("click", () => {
+            tabPhotos.classList.add("active");
+            tabSpots.classList.remove("active");
+            if (panelPhotos) panelPhotos.style.display = "block";
+            if (panelSpots) panelSpots.style.display = "none";
+        });
+    }
+
+    // Alt+A keyboard shortcut for Admin review
+    window.addEventListener("keydown", (e) => {
+        if (e.altKey && (e.key === "a" || e.key === "A")) {
+            e.preventDefault();
+            openAdminModal();
+        }
+    });
+
+    // Check if admin is already authenticated in this session to show badge
+    if (sessionStorage.getItem("sfk_admin_pin")) {
+        loadAdminPendingQueue();
+    }
+
+    // Add Spot Form Submission & Type Switcher
+    const newSpotTypeSelect = document.getElementById("new-spot-type");
+    if (newSpotTypeSelect) {
+        newSpotTypeSelect.addEventListener("change", handleNewSpotTypeChange);
+    }
+
+    // Community Photos Live Preview for Add Spot / Trail Form
+    const spotPhotoInput = document.getElementById("new-spot-photo-files");
+    const spotPhotoPreviews = document.getElementById("new-spot-photo-previews");
+    if (spotPhotoInput && spotPhotoPreviews) {
+        spotPhotoInput.addEventListener("change", async () => {
+            spotPhotoPreviews.innerHTML = "";
+            const files = Array.from(spotPhotoInput.files).slice(0, 5);
+            for (const f of files) {
+                try {
+                    const dataUrl = await readFileAsDataUrl(f, 1600, 1600, 0.82);
+                    const thumb = document.createElement("div");
+                    thumb.className = "photo-preview-thumb";
+                    thumb.innerHTML = `<img src="${dataUrl}" alt="Preview" /><span class="preview-name">${escapeHtml(f.name.slice(0, 15))}</span>`;
+                    spotPhotoPreviews.appendChild(thumb);
+                } catch (err) {
+                    console.warn("Failed preview for file", f.name, err);
+                }
+            }
+        });
+    }
+
+    // GPX / KML Route File Parser for Trails
+    const gpxInput = document.getElementById("new-trail-gpx-file");
+    const gpxInfo = document.getElementById("new-trail-gpx-info");
+    if (gpxInput) {
+        gpxInput.addEventListener("change", async () => {
+            const file = gpxInput.files[0];
+            if (!file) {
+                if (gpxInfo) gpxInfo.textContent = "";
+                return;
+            }
+            try {
+                const text = await file.text();
+                const parsed = parseGpxOrKmlFile(text);
+                if (parsed.coords && parsed.coords.length > 0) {
+                    if (gpxInfo) {
+                        gpxInfo.innerHTML = `<i class="fa-solid fa-check-circle" style="color:#22c55e;"></i> Route parsed: ${parsed.distanceKm} km, ${parsed.coords.length} GPS points` + (parsed.ascentM ? `, ~${parsed.ascentM}m ascent` : '');
+                    }
+                    const distInput = document.getElementById("new-trail-distance");
+                    if (distInput && !distInput.value && parsed.distanceKm) distInput.value = parsed.distanceKm;
+                    const ascInput = document.getElementById("new-trail-ascent");
+                    if (ascInput && !ascInput.value && parsed.ascentM) ascInput.value = parsed.ascentM;
+                    const latInput = document.getElementById("new-spot-lat");
+                    const lngInput = document.getElementById("new-spot-lng");
+                    if (latInput && !latInput.value && parsed.coords[0]) {
+                        latInput.value = parsed.coords[0][0].toFixed(5);
+                    }
+                    if (lngInput && !lngInput.value && parsed.coords[0]) {
+                        lngInput.value = parsed.coords[0][1].toFixed(5);
+                    }
+                } else {
+                    if (gpxInfo) gpxInfo.innerHTML = `<i class="fa-solid fa-file" style="color:var(--primary-color);"></i> File ready (${(file.size / 1024).toFixed(0)} KB)`;
+                }
+            } catch (err) {
+                console.warn("GPX preview error:", err);
+                if (gpxInfo) gpxInfo.textContent = "File selected: " + file.name;
+            }
+        });
+    }
+
+    // Upload Photo Modal for existing spots/trails/events
+    const uploadPhotoForm = document.getElementById("upload-photo-form");
+    if (uploadPhotoForm) {
+        uploadPhotoForm.addEventListener("submit", handlePhotoUploadSubmit);
+    }
+    const communityPhotoFiles = document.getElementById("community-photo-files");
+    const communityPhotoPreviews = document.getElementById("community-photo-previews");
+    if (communityPhotoFiles && communityPhotoPreviews) {
+        communityPhotoFiles.addEventListener("change", async () => {
+            communityPhotoPreviews.innerHTML = "";
+            const files = Array.from(communityPhotoFiles.files).slice(0, 4);
+            for (const f of files) {
+                try {
+                    const dataUrl = await readFileAsDataUrl(f, 1600, 1600, 0.82);
+                    const thumb = document.createElement("div");
+                    thumb.className = "photo-preview-thumb";
+                    thumb.innerHTML = `<img src="${dataUrl}" alt="Preview" /><span class="preview-name">${escapeHtml(f.name.slice(0, 15))}</span>`;
+                    communityPhotoPreviews.appendChild(thumb);
+                } catch (err) {
+                    console.warn("Failed preview for community file", f.name, err);
+                }
+            }
+        });
+    }
+
     document.getElementById("add-spot-form").addEventListener("submit", handleAddSpotSubmit);
 
     // Use My Location GPS button
