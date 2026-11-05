@@ -65,7 +65,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=30">
+    <link rel="stylesheet" href="style.css?v=31">
 </head>
 <body class="light-theme">
     <!-- App Container -->
@@ -84,13 +84,10 @@
                     <i class="fa-solid fa-bullhorn"></i> Marketing
                 </a>
                 <button id="upload-photo-header-btn" class="btn btn-outline" title="Upload photos for any spot or hike" onclick="openPhotoUploadModal()">
-                    <i class="fa-solid fa-camera"></i> Upload Photos
+                    <i class="fa-solid fa-camera"></i> <span class="btn-label">Photos</span>
                 </button>
                 <button id="add-spot-btn" class="btn btn-primary" title="Submit a playspot, hiking trail, or event">
-                    <i class="fa-solid fa-plus-circle"></i> Add Spot / Trail
-                </button>
-                <button id="feedback-btn" class="btn btn-outline" title="Give Feedback">
-                    <i class="fa-solid fa-comments"></i> Feedback
+                    <i class="fa-solid fa-plus-circle"></i> <span class="btn-label">Add Spot/Trail</span>
                 </button>
                 <button id="theme-toggle" class="btn btn-icon" title="Toggle Dark/Light Mode">
                     <i class="fa-solid fa-moon"></i>
@@ -124,12 +121,20 @@
                         <input type="range" id="radius-slider" min="0" max="25" step="1" value="5">
                     </div>
 
+                    <!-- Mobile Filter Toggle Bar (Visible on mobile only) -->
+                    <div class="mobile-filter-bar mobile-only">
+                        <button type="button" id="mobile-filter-toggle-btn" class="mobile-filter-toggle-btn">
+                            <span><i class="fa-solid fa-sliders"></i> Filters &amp; Categories <span id="mobile-filter-count-badge" class="badge"></span></span>
+                            <i class="fa-solid fa-chevron-down toggle-icon" id="mobile-filter-chevron"></i>
+                        </button>
+                    </div>
+
                     <div class="weather-dashboard-widget" id="weather-widget" style="display: none;">
                         <!-- Will be dynamically updated by weather API -->
                     </div>
                 </section>
 
-                <section class="filter-section card">
+                <section class="filter-section card" id="filter-section">
                     <h2><i class="fa-solid fa-sliders"></i> Filters</h2>
                     
                     <div class="filter-group">
@@ -302,6 +307,10 @@
                             <option value="name">Name (A-Z)</option>
                         </select>
                     </div>
+
+                    <button type="button" id="mobile-filter-apply-btn" class="btn btn-primary mobile-only" style="width: 100%; margin-top: 1rem; padding: 0.6rem;">
+                        <i class="fa-solid fa-check"></i> Apply &amp; Show Spots
+                    </button>
                 </section>
             </aside>
 
@@ -329,6 +338,11 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Floating Bottom Pill for Mobile: Switch between List and Map seamlessly -->
+                <button id="mobile-floating-view-toggle" class="mobile-floating-pill mobile-only" aria-label="Toggle map and list view">
+                    <i class="fa-solid fa-map" id="mobile-floating-view-icon"></i> <span id="mobile-floating-view-label">Show Map</span>
+                </button>
             </div>
         </main>
 
@@ -1138,6 +1152,10 @@
         <footer class="app-footer">
             <div class="footer-inner">
                 <div class="footer-legal-links">
+                    <button type="button" id="feedback-btn" class="footer-link">
+                        <i class="fa-solid fa-comments"></i> Feedback
+                    </button>
+                    <span class="footer-sep">&bull;</span>
                     <button type="button" id="btn-open-impressum" class="footer-link">
                         <i class="fa-solid fa-file-contract"></i> Impressum &amp; Legal Notice
                     </button>
@@ -1167,6 +1185,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=35"></script>
+    <script src="app.js?v=36"></script>
 </body>
 </html>

@@ -1158,6 +1158,62 @@ function renderSpotsList(keepLimit = false) {
     }
 
     updateMapMarkers(visibleSpots);
+    updateMobileFilterCount();
+}
+
+// Toggle between Mobile Map & List View
+function toggleMobileMapView(showMap) {
+    const mapPanel = document.getElementById("map-panel");
+    const mobileFloatingBtn = document.getElementById("mobile-floating-view-toggle");
+    const mobileFloatingIcon = document.getElementById("mobile-floating-view-icon");
+    const mobileFloatingLabel = document.getElementById("mobile-floating-view-label");
+
+    if (!mapPanel) return;
+    const isCurrentlyMap = mapPanel.style.display === "block";
+    const shouldShowMap = showMap !== undefined ? showMap : !isCurrentlyMap;
+
+    if (shouldShowMap) {
+        mapPanel.style.display = "block";
+        if (mobileFloatingIcon) mobileFloatingIcon.className = "fa-solid fa-list";
+        if (mobileFloatingLabel) mobileFloatingLabel.textContent = "Show List";
+        if (mobileFloatingBtn) mobileFloatingBtn.classList.add("active-map");
+        setTimeout(() => {
+            if (activeMap) activeMap.invalidateSize();
+        }, 150);
+    } else {
+        mapPanel.style.display = "none";
+        if (mobileFloatingIcon) mobileFloatingIcon.className = "fa-solid fa-map";
+        if (mobileFloatingLabel) mobileFloatingLabel.textContent = "Show Map";
+        if (mobileFloatingBtn) mobileFloatingBtn.classList.remove("active-map");
+    }
+}
+
+// Calculate active filters count for mobile filter toggle button badge
+function updateMobileFilterCount() {
+    const badge = document.getElementById("mobile-filter-count-badge");
+    if (!badge) return;
+    let count = 0;
+    // Check main categories
+    ['filter-playpark', 'filter-hiking', 'filter-gamezone', 'filter-swimmingpool', 'filter-event', 'filter-weather-suitable'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.checked) count++;
+    });
+    // Check subfilters
+    ['filter-hike-region', 'filter-hike-difficulty', 'filter-event-timing', 'filter-event-category'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.value && el.value !== 'all') count++;
+    });
+    ['filter-hike-stroller', 'filter-hike-winter', 'filter-hike-restaurant', 'filter-hike-parking', 'filter-event-free'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.checked) count++;
+    });
+    if (count > 0) {
+        badge.textContent = `(${count})`;
+        badge.style.display = 'inline-block';
+    } else {
+        badge.textContent = '';
+        badge.style.display = 'none';
+    }
 }
 
 // Center Map on a Selected Spot or Hiking Trail Polyline from Card
@@ -1177,10 +1233,9 @@ function focusOnMap(id, lat, lng) {
         }
     }
 
-    // Scroll to map for mobile screens
+    // Reveal map view seamlessly on mobile screens
     if (window.innerWidth <= 992) {
-        document.getElementById("map-panel").style.display = "block";
-        setTimeout(() => activeMap.invalidateSize(), 100);
+        toggleMobileMapView(true);
     }
 }
 
@@ -5523,21 +5578,52 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 7. Mobile View Switchers
+    // 7. Mobile View Switchers & Responsive Filters
     const mobileMapBtn = document.getElementById("mobile-map-toggle");
     const mobileListBtn = document.getElementById("mobile-list-toggle");
-    const mapPanel = document.getElementById("map-panel");
+    const mobileFloatingToggle = document.getElementById("mobile-floating-view-toggle");
+    const mobileFilterToggleBtn = document.getElementById("mobile-filter-toggle-btn");
+    const mobileFilterApplyBtn = document.getElementById("mobile-filter-apply-btn");
+    const filterSection = document.getElementById("filter-section");
 
-    mobileMapBtn.addEventListener("click", () => {
-        mapPanel.style.display = "block";
-        // Recalculate Leaflet sizing
-        setTimeout(() => {
-            if (activeMap) activeMap.invalidateSize();
-        }, 100);
-    });
+    if (mobileMapBtn) {
+        mobileMapBtn.addEventListener("click", () => toggleMobileMapView(true));
+    }
+    if (mobileListBtn) {
+        mobileListBtn.addEventListener("click", () => toggleMobileMapView(false));
+    }
+    if (mobileFloatingToggle) {
+        mobileFloatingToggle.addEventListener("click", () => toggleMobileMapView());
+    }
 
-    mobileListBtn.addEventListener("click", () => {
-        mapPanel.style.display = "none";
+    if (mobileFilterToggleBtn && filterSection) {
+        mobileFilterToggleBtn.addEventListener("click", () => {
+            const isExpanded = filterSection.classList.toggle("mobile-expanded");
+            mobileFilterToggleBtn.classList.toggle("expanded", isExpanded);
+            if (isExpanded) {
+                filterSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    }
+
+    if (mobileFilterApplyBtn && filterSection) {
+        mobileFilterApplyBtn.addEventListener("click", () => {
+            filterSection.classList.remove("mobile-expanded");
+            if (mobileFilterToggleBtn) mobileFilterToggleBtn.classList.remove("expanded");
+            const spotsList = document.getElementById("spots-list");
+            if (spotsList) {
+                spotsList.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    }
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 992) {
+            const mapPanel = document.getElementById("map-panel");
+            if (mapPanel && mapPanel.style.display === "none") {
+                mapPanel.style.display = "";
+            }
+        }
     });
 
     // 8. Group Hike Planner Event Listeners
