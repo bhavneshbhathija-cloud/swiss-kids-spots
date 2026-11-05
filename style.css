@@ -87,9 +87,9 @@ body {
 /* --- Header Styling --- */
 .app-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 2.5rem;
+    flex-direction: column;
+    padding: 1.1rem 2.5rem 0.95rem;
+    gap: 0.35rem;
     background: var(--bg-sidebar);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -97,6 +97,13 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.header-main-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .header-logo {
@@ -130,10 +137,12 @@ body {
     color: var(--swiss-red);
 }
 
-.logo-text p.tagline {
+.app-header p.tagline {
     font-size: 0.85rem;
     color: var(--text-secondary);
     font-weight: 400;
+    margin: 0;
+    line-height: 1.35;
 }
 
 .header-actions {
@@ -1540,12 +1549,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
 /* Smartphone Screens (<= 768px) */
 @media (max-width: 768px) {
     .app-header {
-        padding: 0.65rem 0.85rem;
-        flex-direction: row;
-        align-items: center;
+        padding: 0.65rem 0.85rem 0.55rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.35rem;
+    }
+
+    .header-main-row {
+        display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+        align-items: center;
+        width: 100%;
+        gap: 0.45rem;
     }
 
     .header-logo {
@@ -1562,13 +1578,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
     }
 
     .logo-text h1 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
         letter-spacing: -0.5px;
+        margin: 0;
     }
 
-    /* Hide long tagline on mobile to reclaim critical screen space */
-    .logo-text p.tagline {
-        display: none !important;
+    .app-header p.tagline {
+        display: block !important;
+        font-size: 0.76rem;
+        line-height: 1.35;
+        color: var(--text-secondary);
+        margin: 0;
     }
 
     .header-actions {
