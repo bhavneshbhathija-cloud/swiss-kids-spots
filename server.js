@@ -42,6 +42,10 @@ const groupCheckinsPath = path.join(DATA_DIR, 'group_checkins.json');
 const communitySubmissionsPath = path.join(DATA_DIR, 'community_submissions.json');
 const uploadsDir = path.join(DATA_DIR, 'uploads');
 
+// Crawlable SEO pages + dynamic sitemap (see seo.js)
+const seo = require('./seo');
+try { seo.init({ dataDir: DATA_DIR, publicDir: PUBLIC_DIR }); } catch (e) { console.error('SEO init failed', e); }
+
 if (!fs.existsSync(uploadsDir)) {
     try {
         fs.mkdirSync(uploadsDir, { recursive: true });
@@ -323,6 +327,8 @@ const server = http.createServer(async (req, res) => {
 
     const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
     const pathname = parsedUrl.pathname;
+
+    if (seo.handle(req, res, pathname)) return;
 
     // API Endpoint: Swiss Public Transport (SBB / transport.opendata.ch) Proxy with 10-min in-memory cache
     if (pathname === '/api/transport/connections') {

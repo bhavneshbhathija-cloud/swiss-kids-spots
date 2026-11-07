@@ -1,3 +1,24 @@
 {
-  "groups": {}
+  "groups": {
+    "gh-hikesmwi-20261107-nj2a": {
+      "groupId": "gh-hikesmwi-20261107-nj2a",
+      "spotId": "hike-sm-winterhike-375-0",
+      "date": "",
+      "checkins": [],
+      "pings": [
+        {
+          "id": "png-1793898094360-hpeq",
+          "memberName": "Family 82",
+          "lat": 47.430181999999995,
+          "lng": 8.539285625,
+          "accuracy": 292,
+          "note": "Taking a snack break 🥪",
+          "timestamp": 1793898094340,
+          "timeStr": "18:01"
+        }
+      ],
+      "createdAt": "2026-11-05T17:01:34.345Z",
+      "updatedAt": "2026-11-05T17:01:34.345Z"
+    }
+  }
 }
