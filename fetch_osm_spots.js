@@ -155,7 +155,7 @@ function harvestSpots() {
                         imageUrl = PLAYPARK_IMAGES[idx % PLAYPARK_IMAGES.length];
                         minAge = 1;
                         maxAge = 12;
-                        defaultAmenities = ["Toilets", "Shade", "Stroller Friendly"];
+                        defaultAmenities = [];
                     } else if (osmLeisure === "water_park" || osmLeisure === "swimming_pool") {
                         spotType = "swimmingpool";
                         defaultDesc = "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.";
@@ -343,7 +343,7 @@ function harvestSpots() {
                     }
 
                     // Hours
-                    const hours = tags.opening_hours || "08:00 - 20:00 daily";
+                    const hours = tags.opening_hours || null;
 
                     // Fees
                     const feeTag = tags.fee || "";

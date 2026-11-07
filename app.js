@@ -1743,7 +1743,16 @@ async function openDetails(spotId, options = {}) {
             : '<i class="fa-regular fa-star star-empty"></i>';
     }
 
-    const amenitiesList = spot.amenities || spot.features || [];
+    // Filter out unverified default playground amenities
+    let rawAmenities = spot.amenities || spot.features || [];
+    if (spot.type === 'playpark') {
+        const dummySet = new Set(["Toilets", "Shade", "Stroller Friendly"]);
+        // If it matches the unverified dummy set, treat as empty
+        if (rawAmenities.length <= 3 && rawAmenities.every(a => dummySet.has(a))) {
+            rawAmenities = [];
+        }
+    }
+    const amenitiesList = rawAmenities;
     const amenitiesHtml = amenitiesList.map(a => {
         let aIcon = "fa-check";
         if (a === "Toilets") aIcon = "fa-restroom";
@@ -2157,34 +2166,39 @@ async function openDetails(spotId, options = {}) {
             </div>
         `;
 
+        let displayHours = spot.openingHours;
+        if (!displayHours || displayHours === "08:00 - 20:00 daily" || displayHours === "08:00 - 20:00") {
+            displayHours = spot.type === 'playpark' ? 'Freely accessible' : 'Not specified';
+        }
+
         metaGridHtml = `
             <div class="detail-meta-grid">
                 <div class="detail-meta-item">
                     <i class="fa-solid fa-clock"></i>
                     <div class="detail-meta-item-content">
                         <h4>Opening Times</h4>
-                        <p>${spot.openingHours}</p>
+                        <p>${displayHours}</p>
                     </div>
                 </div>
                 <div class="detail-meta-item">
                     <i class="fa-solid fa-wallet"></i>
                     <div class="detail-meta-item-content">
                         <h4>Entry Fee</h4>
-                        <p>${spot.fees}</p>
+                        <p>${spot.fees || (spot.type === 'playpark' ? 'Free' : 'Free / Not specified')}</p>
                     </div>
                 </div>
                 <div class="detail-meta-item">
                     <i class="fa-solid fa-child"></i>
                     <div class="detail-meta-item-content">
                         <h4>Age Group</h4>
-                        <p>Ages ${spot.minAge} - ${spot.maxAge}</p>
+                        <p>Ages ${spot.minAge || 1} - ${spot.maxAge || 12}</p>
                     </div>
                 </div>
                 <div class="detail-meta-item">
                     <i class="fa-solid fa-star"></i>
                     <div class="detail-meta-item-content">
                         <h4>Rating</h4>
-                        <p>${avgR} Stars (${spot.ratings.length} reviews)</p>
+                        <p>${avgR} Stars (${spot.ratings ? spot.ratings.length : 1} reviews)</p>
                     </div>
                 </div>
             </div>
@@ -2239,12 +2253,13 @@ async function openDetails(spotId, options = {}) {
 
         ${hikingDetailSectionsHtml}
 
+        ${amenitiesHtml ? `
         <div class="detail-amenities">
             <h3>Amenities Available</h3>
             <div class="amenities-badges-container">
                 ${amenitiesHtml}
             </div>
-        </div>
+        </div>` : ''}
 
         <!-- Live Spot Weather Block -->
         <div class="detail-weather-live">
@@ -3238,7 +3253,7 @@ async function handleAddSpotSubmit(e) {
     const address = document.getElementById("new-spot-address").value.trim();
     const type = document.getElementById("new-spot-type").value || "playpark";
     const name = document.getElementById("new-spot-name").value.trim();
-    const hours = document.getElementById("new-spot-hours").value.trim() || "08:00 - 20:00 daily";
+    const hours = document.getElementById("new-spot-hours").value.trim() || (type === "playpark" ? "Freely accessible" : "");
     const fees = document.getElementById("new-spot-fees").value.trim();
     const minAge = parseInt(document.getElementById("new-spot-minage").value) || 0;
     const maxAge = parseInt(document.getElementById("new-spot-maxage").value) || 16;
@@ -3336,9 +3351,8 @@ async function handleAddSpotSubmit(e) {
 
     let spotAmenities = amenities;
     if (spotAmenities.length === 0) {
-        if (type === "hiking") spotAmenities = ["Stroller Friendly", "Picnic Area"];
-        else if (type === "playpark") spotAmenities = ["Stroller Friendly"];
-        else spotAmenities = ["Toilets", "Stroller Friendly"];
+        if (type === "hiking") spotAmenities = ["Picnic Area"];
+        else spotAmenities = [];
     }
 
     let fallbackUrl = getDefaultSpotFallback(type);
