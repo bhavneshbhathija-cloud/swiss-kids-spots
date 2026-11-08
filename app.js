@@ -57,9 +57,9 @@ function calculateSpotDistance(lat, lng, spot) {
     return minD;
 }
 
-// Compute average rating
+// Compute average rating (returns null if spot has no verified ratings)
 function getAvgRating(spot) {
-    if (!spot.ratings || spot.ratings.length === 0) return spot.rating || 4.8;
+    if (!spot || !spot.ratings || spot.ratings.length === 0) return null;
     const sum = spot.ratings.reduce((acc, r) => acc + r, 0);
     return (sum / spot.ratings.length).toFixed(1);
 }
@@ -518,21 +518,48 @@ async function loadSpots() {
         }
     }
     
-    // 3. Load user reviews/ratings for all spots from localStorage
+    // 3. Load user reviews/ratings for all spots from server and localStorage
+    let serverReviews = {};
+    try {
+        const revRes = await fetch("/api/reviews?t=" + Date.now());
+        if (revRes.ok) {
+            serverReviews = await revRes.json();
+        }
+    } catch (e) {
+        console.warn("Could not load reviews from server:", e);
+    }
+
     const localReviews = localStorage.getItem("swiss_kids_reviews");
-    let reviewsDict = {};
+    let reviewsDict = { ...serverReviews };
     if (localReviews) {
         try {
-            reviewsDict = JSON.parse(localReviews);
+            const parsed = JSON.parse(localReviews);
+            for (const [sId, sRev] of Object.entries(parsed)) {
+                if (!reviewsDict[sId]) {
+                    reviewsDict[sId] = sRev;
+                } else {
+                    const existingTexts = new Set((reviewsDict[sId].comments || []).map(c => `${c.author}:${c.text}`));
+                    (sRev.comments || []).forEach(c => {
+                        if (!existingTexts.has(`${c.author}:${c.text}`)) {
+                            reviewsDict[sId].comments = reviewsDict[sId].comments || [];
+                            reviewsDict[sId].comments.push(c);
+                            reviewsDict[sId].ratings = reviewsDict[sId].ratings || [];
+                            reviewsDict[sId].ratings.push(c.rating);
+                        }
+                    });
+                }
+            }
         } catch (e) {
             console.error("Error loading reviews from localStorage", e);
         }
     }
+    window.appReviewsDict = reviewsDict;
     
     // Merge reviews and community-uploaded photos into baseline, hiking & event spots
     spots.forEach(spot => {
-        if (!spot.ratings) spot.ratings = [5, 5, 4];
+        if (!spot.ratings) spot.ratings = [];
         if (!spot.comments) spot.comments = [];
+        spot.comments = (spot.comments || []).filter(c => c && c.author && c.author !== "OSM Contributor");
         if (reviewsDict[spot.id]) {
             spot.ratings = spot.ratings.concat(reviewsDict[spot.id].ratings || []);
             spot.comments = spot.comments.concat(reviewsDict[spot.id].comments || []);
@@ -592,13 +619,15 @@ async function loadOsmSpots() {
         countContainer.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading all kids spots...';
     }
 
-    const localReviews = localStorage.getItem("swiss_kids_reviews");
-    let reviewsDict = {};
-    if (localReviews) {
-        try {
-            reviewsDict = JSON.parse(localReviews);
-        } catch (e) {
-            console.error("Error loading reviews from localStorage", e);
+    let reviewsDict = window.appReviewsDict || {};
+    if (!window.appReviewsDict) {
+        const localReviews = localStorage.getItem("swiss_kids_reviews");
+        if (localReviews) {
+            try {
+                reviewsDict = JSON.parse(localReviews);
+            } catch (e) {
+                console.error("Error loading reviews from localStorage", e);
+            }
         }
     }
 
@@ -609,6 +638,9 @@ async function loadOsmSpots() {
             
             // Merge reviews and community photos into harvested spots
             harvestedSpots.forEach(spot => {
+                if (!spot.ratings) spot.ratings = [];
+                if (!spot.comments) spot.comments = [];
+                spot.comments = spot.comments.filter(c => c && c.author && c.author !== "OSM Contributor");
                 if (reviewsDict[spot.id]) {
                     spot.ratings = spot.ratings.concat(reviewsDict[spot.id].ratings || []);
                     spot.comments = spot.comments.concat(reviewsDict[spot.id].comments || []);
@@ -971,13 +1003,13 @@ function renderSpotsList(keepLimit = false) {
             if (currentSearchZip !== "") {
                 return (a.distance || 0) - (b.distance || 0);
             } else {
-                return getAvgRating(b) - getAvgRating(a);
+                return (parseFloat(getAvgRating(b)) || 0) - (parseFloat(getAvgRating(a)) || 0);
             }
         });
     } else if (sortBy === "distance" && currentSearchZip !== "") {
         filtered.sort((a, b) => (a.distance || 0) - (b.distance || 0));
     } else if (sortBy === "rating") {
-        filtered.sort((a, b) => getAvgRating(b) - getAvgRating(a));
+        filtered.sort((a, b) => (parseFloat(getAvgRating(b)) || 0) - (parseFloat(getAvgRating(a)) || 0));
     } else {
         filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
@@ -1010,15 +1042,22 @@ function renderSpotsList(keepLimit = false) {
         const avgR = getAvgRating(spot);
         const feeBadge = isFreeSpot(spot) ? '<span class="badge badge-free">Free</span>' : `<span class="badge badge-fee">${spot.fees}</span>`;
         
-        // Generate Star icons
-        let starsHtml = "";
-        const roundedRating = Math.round(avgR);
-        for (let i = 1; i <= 5; i++) {
-            if (i <= roundedRating) {
-                starsHtml += '<i class="fa-solid fa-star star-filled"></i>';
-            } else {
-                starsHtml += '<i class="fa-regular fa-star star-empty"></i>';
+        // Generate Star rating markup
+        const hasRatings = avgR !== null && spot.ratings && spot.ratings.length > 0;
+        let ratingHtml = "";
+        if (hasRatings) {
+            let starsHtml = "";
+            const roundedRating = Math.round(parseFloat(avgR));
+            for (let i = 1; i <= 5; i++) {
+                if (i <= roundedRating) {
+                    starsHtml += '<i class="fa-solid fa-star star-filled"></i>';
+                } else {
+                    starsHtml += '<i class="fa-regular fa-star star-empty"></i>';
+                }
             }
+            ratingHtml = `<div class="spot-card-rating">${starsHtml} <span>(${spot.ratings.length})</span></div>`;
+        } else {
+            ratingHtml = `<div class="spot-card-rating no-ratings" style="color: var(--text-secondary); font-size: 0.82rem;"><i class="fa-regular fa-star"></i> No reviews yet</div>`;
         }
 
         // Weather Suitability Alert
@@ -1124,9 +1163,7 @@ function renderSpotsList(keepLimit = false) {
                 ${eventCardExtrasHtml}
                 <p class="spot-card-area"><i class="fa-solid fa-location-dot"></i> ${spot.address}</p>
                 <div class="spot-card-meta">
-                    <div class="spot-card-rating">
-                        ${starsHtml} <span>(${spot.ratings ? spot.ratings.length : 1})</span>
-                    </div>
+                    ${ratingHtml}
                     ${feeBadge}
                 </div>
             </div>
@@ -1735,12 +1772,15 @@ async function openDetails(spotId, options = {}) {
     
     // Pre-populate HTML showing loading weather
     const avgR = getAvgRating(spot);
+    const hasRatings = avgR !== null && spot.ratings && spot.ratings.length > 0;
     let starsHtml = "";
-    const roundedRating = Math.round(avgR);
-    for (let i = 1; i <= 5; i++) {
-        starsHtml += i <= roundedRating 
-            ? '<i class="fa-solid fa-star star-filled"></i>' 
-            : '<i class="fa-regular fa-star star-empty"></i>';
+    if (hasRatings) {
+        const roundedRating = Math.round(parseFloat(avgR));
+        for (let i = 1; i <= 5; i++) {
+            starsHtml += i <= roundedRating 
+                ? '<i class="fa-solid fa-star star-filled"></i>' 
+                : '<i class="fa-regular fa-star star-empty"></i>';
+        }
     }
 
     // Filter out unverified default playground amenities
@@ -1764,7 +1804,8 @@ async function openDetails(spotId, options = {}) {
         return `<span class="amenities-badge"><i class="fa-solid ${aIcon}"></i> ${a}</span>`;
     }).join("");
 
-    const reviewsHtml = spot.comments && spot.comments.length > 0 ? spot.comments.map(c => {
+    const verifiedComments = (spot.comments || []).filter(c => c && c.author && c.author !== "OSM Contributor");
+    const reviewsHtml = verifiedComments.length > 0 ? verifiedComments.map(c => {
         let revStars = "";
         for (let i = 1; i <= 5; i++) {
             revStars += i <= c.rating 
@@ -1780,7 +1821,7 @@ async function openDetails(spotId, options = {}) {
                 <p class="review-text">${c.text}</p>
             </div>
         `;
-    }).join("") : '<p class="no-reviews-placeholder">No reviews yet. Be the first to share your thoughts!</p>';
+    }).join("") : '<p class="no-reviews-placeholder" style="color: var(--text-secondary); font-style: italic; padding: 0.8rem 0;"><i class="fa-regular fa-comment-dots" style="margin-right: 6px;"></i>No parent reviews yet. Visited this spot? Be the first to share your experience with other families below!</p>';
 
     let directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${spot.lat},${spot.lng}`;
     if (spot.type === "hiking" && Array.isArray(spot.coordinates) && spot.coordinates.length >= 2) {
@@ -2198,7 +2239,7 @@ async function openDetails(spotId, options = {}) {
                     <i class="fa-solid fa-star"></i>
                     <div class="detail-meta-item-content">
                         <h4>Rating</h4>
-                        <p>${avgR} Stars (${spot.ratings ? spot.ratings.length : 1} reviews)</p>
+                        <p>${hasRatings ? `${avgR} Stars (${spot.ratings.length} review${spot.ratings.length === 1 ? '' : 's'})` : 'No ratings yet'}</p>
                     </div>
                 </div>
             </div>
@@ -2445,7 +2486,7 @@ async function openDetails(spotId, options = {}) {
 }
 
 // Submit a new review
-function submitReview(e, spotId) {
+async function submitReview(e, spotId) {
     e.preventDefault();
     const author = document.getElementById("review-author-input").value.trim();
     const text = document.getElementById("review-text-input").value.trim();
@@ -2456,11 +2497,15 @@ function submitReview(e, spotId) {
         return;
     }
 
+    const newComment = { author, rating: ratingVal, text, date: new Date().toISOString() };
+
     const spotIdx = spots.findIndex(s => s.id === spotId);
     if (spotIdx !== -1) {
         // 1. Add in-memory
+        if (!spots[spotIdx].ratings) spots[spotIdx].ratings = [];
+        if (!spots[spotIdx].comments) spots[spotIdx].comments = [];
         spots[spotIdx].ratings.push(ratingVal);
-        spots[spotIdx].comments.push({ author, rating: ratingVal, text });
+        spots[spotIdx].comments.push(newComment);
         
         // 2. Save review to localStorage reviews dictionary
         const localReviews = localStorage.getItem("swiss_kids_reviews");
@@ -2475,9 +2520,28 @@ function submitReview(e, spotId) {
             reviewsDict[spotId] = { ratings: [], comments: [] };
         }
         reviewsDict[spotId].ratings.push(ratingVal);
-        reviewsDict[spotId].comments.push({ author, rating: ratingVal, text });
+        reviewsDict[spotId].comments.push(newComment);
         
         localStorage.setItem("swiss_kids_reviews", JSON.stringify(reviewsDict));
+        if (window.appReviewsDict) {
+            window.appReviewsDict[spotId] = reviewsDict[spotId];
+        }
+
+        // 3. Post to backend shared reviews database
+        try {
+            await fetch("/api/reviews", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    spotId: spotId,
+                    author: author,
+                    rating: ratingVal,
+                    text: text
+                })
+            });
+        } catch (err) {
+            console.warn("Could not save review to server:", err);
+        }
         
         // Refresh details modal and lists
         openDetails(spotId);

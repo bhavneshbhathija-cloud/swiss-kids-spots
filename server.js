@@ -759,6 +759,76 @@ ${coords.map((pt, i) => {
         return;
     }
 
+    // API Endpoint: Real Community Reviews for Spots & Trails
+    if (pathname === '/api/reviews') {
+        const reviewsFilePath = path.join(DATA_DIR, 'reviews.json');
+
+        if (req.method === 'GET') {
+            let reviewsBySpot = {};
+            if (fs.existsSync(reviewsFilePath)) {
+                try {
+                    reviewsBySpot = JSON.parse(fs.readFileSync(reviewsFilePath, 'utf-8'));
+                } catch (e) {
+                    reviewsBySpot = {};
+                }
+            }
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(reviewsBySpot));
+            return;
+        }
+
+        if (req.method === 'POST') {
+            let body = '';
+            req.on('data', chunk => { body += chunk; });
+            req.on('end', () => {
+                try {
+                    const data = JSON.parse(body);
+                    const { spotId, author, rating, text } = data;
+                    if (!spotId || !author || !rating || !text) {
+                        res.writeHead(400, { 'Content-Type': 'application/json' });
+                        res.end(JSON.stringify({ error: 'Missing required review fields' }));
+                        return;
+                    }
+
+                    let reviewsBySpot = {};
+                    if (fs.existsSync(reviewsFilePath)) {
+                        try {
+                            reviewsBySpot = JSON.parse(fs.readFileSync(reviewsFilePath, 'utf-8'));
+                        } catch (e) {
+                            reviewsBySpot = {};
+                        }
+                    }
+
+                    if (!reviewsBySpot[spotId]) {
+                        reviewsBySpot[spotId] = { ratings: [], comments: [] };
+                    }
+
+                    const cleanAuthor = String(author).trim().slice(0, 50);
+                    const cleanText = String(text).trim().slice(0, 1000);
+                    const cleanRating = Math.max(1, Math.min(5, parseInt(rating) || 5));
+
+                    reviewsBySpot[spotId].ratings.push(cleanRating);
+                    reviewsBySpot[spotId].comments.push({
+                        author: cleanAuthor,
+                        rating: cleanRating,
+                        text: cleanText,
+                        date: new Date().toISOString()
+                    });
+
+                    fs.writeFileSync(reviewsFilePath, JSON.stringify(reviewsBySpot, null, 4), 'utf-8');
+                    console.log(`[Review] Real review saved for spot ${spotId} by ${cleanAuthor}`);
+
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ success: true, spotId, review: { author: cleanAuthor, rating: cleanRating, text: cleanText } }));
+                } catch (e) {
+                    res.writeHead(500, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({ error: 'Failed to save review' }));
+                }
+            });
+            return;
+        }
+    }
+
     // API Endpoint: Get Community Submitted Spots, Trails, Events & User-Uploaded Photos (ONLY APPROVED)
     if (pathname === '/api/community/submissions' && req.method === 'GET') {
         const comm = loadCommunitySubmissions();

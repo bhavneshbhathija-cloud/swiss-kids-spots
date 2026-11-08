@@ -419,10 +419,8 @@ function harvestSpots() {
                         wikimediaCommons: wikimediaCommons,
                         wikidataId: wikidataId,
                         wikipediaRef: wikipediaRef,
-                        ratings: [5],
-                        comments: [
-                            { author: "OSM Contributor", rating: 5, text: `Verified public kids spot harvested via OpenStreetMap. Great location in ${city}!` }
-                        ],
+                        ratings: [],
+                        comments: [],
                         images: existingImages
                     });
                 });
