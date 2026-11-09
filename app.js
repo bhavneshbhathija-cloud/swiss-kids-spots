@@ -655,8 +655,10 @@ async function loadOsmSpots() {
                 }
             });
 
-            spots = spots.concat(harvestedSpots);
-            console.log(`Loaded ${harvestedSpots.length} OSM spots dynamically.`);
+            const existingIds = new Set(spots.map(s => s.id));
+            const uniqueHarvested = harvestedSpots.filter(s => !existingIds.has(s.id));
+            spots = spots.concat(uniqueHarvested);
+            console.log(`Loaded ${uniqueHarvested.length} additional OSM spots dynamically.`);
             isOsmSpotsLoaded = true;
         }
     } catch (e) {
@@ -932,6 +934,7 @@ function renderSpotsList(keepLimit = false) {
     } else {
         filtered = filtered.filter(spot => {
             if (spot.type === "event") return true;
+            if (spot.featured === true) return true;
             const isCustom = spot.id.startsWith("custom-spot-");
             const isCurated = !spot.id.startsWith("osm-spot-") && !isCustom;
             return isCurated || isCustom;
@@ -983,17 +986,19 @@ function renderSpotsList(keepLimit = false) {
     if (sortBy === "featured") {
         filtered.sort((a, b) => {
             const getPriority = (spot) => {
-                // Hand-curated baseline gems (playparks, pools, gamezones) and custom user spots
-                if (spot.id.startsWith("spot-") || spot.id.startsWith("custom-spot-")) return 1;
+                // Hand-curated baseline gems, famous attractions & custom user spots
+                if (spot.id.startsWith("spot-") || spot.id.startsWith("excel-spot-") || spot.id.startsWith("custom-spot-")) return 1;
                 // Live/upcoming events
                 if (spot.type === "event") return 2;
+                // Promoted photo-verified community playparks, pools & gamezones
+                if (spot.featured === true) return 3;
                 // Official family hiking trails
-                if (spot.type === "hiking") return 3;
+                if (spot.type === "hiking") return 4;
                 // Harvested OSM spots with real photos
                 const isPlaceholder = spot.imageUrl && spot.imageUrl.includes("unsplash.com/photo-");
-                if (!isPlaceholder) return 4;
+                if (!isPlaceholder) return 5;
                 // Harvested OSM spots with placeholder photos
-                return 5;
+                return 6;
             };
 
             const pA = getPriority(a);
