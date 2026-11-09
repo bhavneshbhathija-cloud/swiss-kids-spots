@@ -146,22 +146,21 @@ function harvestSpots() {
                     let spotType = "playpark";
                     let defaultDesc = "";
                     let imageUrl = "";
-                    let minAge = 1, maxAge = 12;
+                    const parsedMinAge = tags.min_age !== undefined ? parseInt(tags.min_age, 10) : NaN;
+                    const parsedMaxAge = tags.max_age !== undefined ? parseInt(tags.max_age, 10) : NaN;
+                    const minAge = !isNaN(parsedMinAge) ? parsedMinAge : undefined;
+                    const maxAge = !isNaN(parsedMaxAge) ? parsedMaxAge : undefined;
                     let defaultAmenities = [];
 
                     if (osmLeisure === "playground") {
                         spotType = "playpark";
                         defaultDesc = "A public outdoor playground in Switzerland featuring swings, slides, climbing frames, and kids play units.";
                         imageUrl = PLAYPARK_IMAGES[idx % PLAYPARK_IMAGES.length];
-                        minAge = 1;
-                        maxAge = 12;
                         defaultAmenities = [];
                     } else if (osmLeisure === "water_park" || osmLeisure === "swimming_pool") {
                         spotType = "swimmingpool";
                         defaultDesc = "Public swimming pool facility in Switzerland.";
                         imageUrl = SWIMMINGPOOL_IMAGES[idx % SWIMMINGPOOL_IMAGES.length];
-                        minAge = 0;
-                        maxAge = 18;
                         defaultAmenities = [];
                         if (tags.toilets === "yes") defaultAmenities.push("Toilets");
                         if (tags.wheelchair === "yes") defaultAmenities.push("Stroller Friendly");
@@ -170,8 +169,6 @@ function harvestSpots() {
                         spotType = "gamezone";
                         defaultDesc = "An indoor game and play zone featuring safe spaces, interactive games, and obstacle arenas.";
                         imageUrl = GAMEZONE_IMAGES[idx % GAMEZONE_IMAGES.length];
-                        minAge = 2;
-                        maxAge = 14;
                         defaultAmenities = ["Toilets", "Cafe/Food", "Stroller Friendly"];
                     }
 
@@ -413,8 +410,8 @@ function harvestSpots() {
                         lng: Math.round(lng * 100000) / 100000,
                         openingHours: hours,
                         fees: fees,
-                        minAge: minAge,
-                        maxAge: maxAge,
+                        ...(minAge !== undefined ? { minAge } : {}),
+                        ...(maxAge !== undefined ? { maxAge } : {}),
                         amenities: defaultAmenities,
                         imageUrl: existingImageUrl,
                         imageSource: existingImageSource,

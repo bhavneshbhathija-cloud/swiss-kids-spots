@@ -466,32 +466,30 @@ async function loadSpots() {
             endDate: ev.endDate || ev.startDate,
             timeText: ev.timeText || '',
             recurrence: ev.recurrence || 'single-day',
-            ageMin: ev.ageMin || 0,
-            ageMax: ev.ageMax || 18,
-            ageLabel: ev.ageLabel || 'Kids & Families',
+            ...(ev.ageMin !== undefined ? { ageMin: ev.ageMin, minAge: ev.ageMin } : {}),
+            ...(ev.ageMax !== undefined ? { ageMax: ev.ageMax, maxAge: ev.ageMax } : {}),
+            ...(ev.ageLabel ? { ageLabel: ev.ageLabel } : {}),
             isRainyDayFriendly: ev.isRainyDayFriendly !== false,
             isFree: ev.isFree || false,
             priceText: ev.priceText || (ev.isFree ? 'Free Admission' : ''),
             fees: ev.isFree ? 'Free' : (ev.priceText || 'Paid Entry'),
             openingHours: ev.timeText || 'See website',
-            minAge: ev.ageMin || 0,
-            maxAge: ev.ageMax || 18,
             officialUrl: ev.officialUrl,
             ticketUrl: ev.ticketUrl || ev.officialUrl,
             imageUrl: ev.imageUrl || getDefaultSpotFallback('event'),
             tags: ev.tags || [],
             organizer: ev.organizer || '',
-            ratings: [5, 5, 5, 4.8],
+            ratings: [],
             comments: [],
             features: [
                 ev.isRainyDayFriendly ? 'Indoor / Weatherproof' : 'Outdoor',
                 ev.isFree ? 'Free Admission' : (ev.priceText || 'Tickets apply'),
-                ev.ageLabel || 'Kids & Families'
+                ...(ev.ageLabel ? [ev.ageLabel] : [])
             ],
             amenities: [
                 ev.isRainyDayFriendly ? 'Indoor / Weatherproof' : 'Outdoor Event',
                 ev.isFree ? 'Free Admission' : (ev.priceText || 'Ticket Admission'),
-                ev.ageLabel || 'Kids & Families',
+                ...(ev.ageLabel ? [ev.ageLabel] : []),
                 'Family Friendly'
             ],
             verified: true
@@ -2156,13 +2154,14 @@ async function openDetails(spotId, options = {}) {
                         <p style="font-weight: 700;">${spot.isFree ? '🎟️ Free Admission' : escapeHtml(spot.priceText || spot.fees || 'Paid Entry')}</p>
                     </div>
                 </div>
+                ${spot.ageLabel ? `
                 <div class="detail-meta-item">
                     <i class="fa-solid fa-child" style="color: #3a86ff;"></i>
                     <div class="detail-meta-item-content">
                         <h4>Age Group</h4>
-                        <p style="font-weight: 700;">${escapeHtml(spot.ageLabel || 'Kids & Families')}</p>
+                        <p style="font-weight: 700;">${escapeHtml(spot.ageLabel)}</p>
                     </div>
-                </div>
+                </div>` : ''}
                 <div class="detail-meta-item">
                     <i class="fa-solid ${spot.isRainyDayFriendly ? 'fa-umbrella' : 'fa-sun'}" style="color: ${spot.isRainyDayFriendly ? '#2a9d8f' : '#f4a261'};"></i>
                     <div class="detail-meta-item-content">
@@ -2234,6 +2233,18 @@ async function openDetails(spotId, options = {}) {
             displayHours = `<span style="font-size: 0.82rem; line-height: 1.4; display: inline-block;">${displayHours.split(' | ').join('<br>')}</span>`;
         }
 
+        const hasValidatedAge = spot.ageLabel || spot.minAge !== undefined || spot.maxAge !== undefined;
+        let validatedAgeText = spot.ageLabel || '';
+        if (!validatedAgeText && (spot.minAge !== undefined || spot.maxAge !== undefined)) {
+            if (spot.minAge !== undefined && spot.maxAge !== undefined) {
+                validatedAgeText = `Ages ${spot.minAge} - ${spot.maxAge}`;
+            } else if (spot.minAge !== undefined) {
+                validatedAgeText = `From ${spot.minAge} yrs`;
+            } else {
+                validatedAgeText = `Up to ${spot.maxAge} yrs`;
+            }
+        }
+
         metaGridHtml = `
             <div class="detail-meta-grid">
                 <div class="detail-meta-item">
@@ -2250,13 +2261,14 @@ async function openDetails(spotId, options = {}) {
                         <p>${spot.fees || (spot.type === 'playpark' ? 'Free' : 'Free / Not specified')}</p>
                     </div>
                 </div>
+                ${hasValidatedAge ? `
                 <div class="detail-meta-item">
                     <i class="fa-solid fa-child"></i>
                     <div class="detail-meta-item-content">
                         <h4>Age Group</h4>
-                        <p>Ages ${spot.minAge || 1} - ${spot.maxAge || 12}</p>
+                        <p>${escapeHtml(validatedAgeText)}</p>
                     </div>
-                </div>
+                </div>` : ''}
                 <div class="detail-meta-item">
                     <i class="fa-solid fa-star"></i>
                     <div class="detail-meta-item-content">
@@ -3352,8 +3364,10 @@ async function handleAddSpotSubmit(e) {
     const name = document.getElementById("new-spot-name").value.trim();
     const hours = document.getElementById("new-spot-hours").value.trim() || (type === "playpark" ? "Freely accessible" : "");
     const fees = document.getElementById("new-spot-fees").value.trim();
-    const minAge = parseInt(document.getElementById("new-spot-minage").value) || 0;
-    const maxAge = parseInt(document.getElementById("new-spot-maxage").value) || 16;
+    const rawMinAge = document.getElementById("new-spot-minage").value.trim();
+    const rawMaxAge = document.getElementById("new-spot-maxage").value.trim();
+    const minAge = rawMinAge !== "" && !isNaN(parseInt(rawMinAge, 10)) ? parseInt(rawMinAge, 10) : undefined;
+    const maxAge = rawMaxAge !== "" && !isNaN(parseInt(rawMaxAge, 10)) ? parseInt(rawMaxAge, 10) : undefined;
     const desc = document.getElementById("new-spot-desc").value.trim();
     const customImg = document.getElementById("new-spot-image").value.trim();
     const author = document.getElementById("new-spot-author").value.trim() || "Community Member";
@@ -3471,8 +3485,8 @@ async function handleAddSpotSubmit(e) {
         lng: Math.round(lng * 100000) / 100000,
         openingHours: hours,
         fees: spotFees,
-        minAge,
-        maxAge,
+        ...(minAge !== undefined ? { minAge } : {}),
+        ...(maxAge !== undefined ? { maxAge } : {}),
         amenities: spotAmenities,
         imageUrl,
         images: customImg ? [customImg] : [fallbackUrl],
@@ -3525,7 +3539,9 @@ async function handleAddSpotSubmit(e) {
         newSpot.isFree = spotFees.toLowerCase().includes("free");
         newSpot.priceText = spotFees;
         newSpot.timeText = hours;
-        newSpot.ageLabel = `Ages ${minAge} - ${maxAge}`;
+        if (minAge !== undefined || maxAge !== undefined) {
+            newSpot.ageLabel = `Ages ${minAge ?? 0} - ${maxAge ?? 18}`;
+        }
     }
 
     // Post submission to server for admin review
