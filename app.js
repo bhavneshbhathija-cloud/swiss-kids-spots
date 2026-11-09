@@ -983,14 +983,17 @@ function renderSpotsList(keepLimit = false) {
     if (sortBy === "featured") {
         filtered.sort((a, b) => {
             const getPriority = (spot) => {
-                const isCustom = spot.id.startsWith("custom-spot-");
-                const isCurated = !spot.id.startsWith("osm-spot-") && !isCustom;
-                if (isCurated || isCustom) return 1;
-                
+                // Hand-curated baseline gems (playparks, pools, gamezones) and custom user spots
+                if (spot.id.startsWith("spot-") || spot.id.startsWith("custom-spot-")) return 1;
+                // Live/upcoming events
+                if (spot.type === "event") return 2;
+                // Official family hiking trails
+                if (spot.type === "hiking") return 3;
+                // Harvested OSM spots with real photos
                 const isPlaceholder = spot.imageUrl && spot.imageUrl.includes("unsplash.com/photo-");
-                if (!isPlaceholder) return 2;
-                
-                return 3;
+                if (!isPlaceholder) return 4;
+                // Harvested OSM spots with placeholder photos
+                return 5;
             };
 
             const pA = getPriority(a);
