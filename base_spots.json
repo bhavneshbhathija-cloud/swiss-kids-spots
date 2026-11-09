@@ -67,13 +67,13 @@
         "id": "spot-3",
         "name": "Alpamare Indoor Water Park",
         "type": "swimmingpool",
-        "description": "Europe's largest covered water park. Features 12 water slides (totaling 2.1km of sliding fun!), indoor and outdoor pools, wave pool, toddler splash paddling zone with mini slides, and beautiful views of Lake Zurich.",
+        "description": "Water park complex with indoor & outdoor pools, giant slides & spa with sauna & massage treatments.",
         "address": "Gwattstrasse 12, 8808 Pfäffikon",
         "zip": "8808",
         "city": "Pfäffikon",
         "lat": 47.2035,
         "lng": 8.7812,
-        "openingHours": "10:00 - 21:00 daily",
+        "openingHours": "Mo: 10:00 AM – 9:00 PM | Tu: 10:00 AM – 9:00 PM | We: 10:00 AM – 9:00 PM | Th: 10:00 AM – 9:00 PM | Fr: 10:00 AM – 10:00 PM | Sa: 10:00 AM – 10:00 PM | Su: 10:00 AM – 9:00 PM",
         "fees": "32 CHF (Kids 3-5: 12 CHF)",
         "minAge": 0,
         "maxAge": 18,
@@ -81,7 +81,8 @@
             "Toilets",
             "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeNBjjIZk1mZ-xoPgv-GZK4p33eXm1tPXef-sbnDPte5nxwxQwfXp_zHGBE3lKstLDHamFYANq-c1p6zc4a--rVgqVOv6WaftHvnf6KXNMcgS278g9sapQwOsuCcsfrhYuXzC-SCA=s4800-w1000",
         "ratings": [],
@@ -92,7 +93,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLcNpBp31PlsmiiGicBf1xeBv5GpGVj8Drgf5MIER3Hbc2AHaCx_lOzWyrI56iClmiNBMNCwhtIMt_2s6yX10TZtmkWiyvoLQ7vF123qwx4InJl9MPBpiwyIoxM_96aJ63hpqeIO=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Alpamare",
-        "featured": true
+        "featured": true,
+        "website": "http://www.alpamare.ch/",
+        "phone": "055 415 15 15"
     },
     {
         "id": "spot-4",
@@ -136,7 +139,7 @@
         "city": "Bern",
         "lat": 46.943,
         "lng": 7.3735,
-        "openingHours": "09:00 - 22:00 daily",
+        "openingHours": "Mo: 9:00 AM – 10:00 PM | Tu: 9:00 AM – 10:00 PM | We: 9:00 AM – 10:00 PM | Th: 9:00 AM – 10:00 PM | Fr: 9:00 AM – 10:00 PM | Sa: 9:00 AM – 10:00 PM | Su: 9:00 AM – 10:00 PM",
         "fees": "25 CHF (Kids under 6 Free)",
         "minAge": 0,
         "maxAge": 16,
@@ -155,7 +158,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLfyppMr8ntCGRBTAN5E6ln4dHkA48LxYp8Ak4hqq9wyj0Hlzy8MTO27oVvxFg06Ic7YwNPwz0UK3vb8X4YqZi6ir2lAzkcB5Ax3gTyUvMHOSqVu8WLO-G3hwyjQRpaLAPU-7aI=s4800-w952"
         ],
         "imageSource": "Google Maps / Photo by Bernaqua | Erlebnisbad | Fitness | Wellness",
-        "featured": true
+        "featured": true,
+        "website": "https://www.bernaqua.ch/",
+        "phone": "031 556 95 95"
     },
     {
         "id": "spot-6",
@@ -257,13 +262,13 @@
         "id": "spot-9",
         "name": "Aquabasilea Splash Pool",
         "type": "swimmingpool",
-        "description": "A premier water park in the Basel area. Includes a rapid outdoor river torrent, several high-thrill slides, an indoor wave pool, and a kids water village area equipped with spray nozzles, buckets, and low slides.",
+        "description": "Large indoor water park with 7 slides, a wave pool, hammam-style treatments & 12 saunas.",
         "address": "Hardstrasse 57, 4133 Pratteln",
         "zip": "4133",
-        "city": "Pratteln (Basel)",
+        "city": "Pratteln",
         "lat": 47.5212,
         "lng": 7.6915,
-        "openingHours": "10:00 - 21:00 daily",
+        "openingHours": "Mo: 10:00 AM – 10:00 PM | Tu: 10:00 AM – 10:00 PM | We: 10:00 AM – 10:00 PM | Th: 10:00 AM – 10:00 PM | Fr: 10:00 AM – 10:00 PM | Sa: 10:00 AM – 10:00 PM | Su: 10:00 AM – 10:00 PM",
         "fees": "28 CHF (Kids 6-15: 18 CHF)",
         "minAge": 0,
         "maxAge": 18,
@@ -282,16 +287,17 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLefOkIigYG5bPTbqCsvDVASApi6SniXXtaz6DSDmlgypDXgjRKE208vXnz7CsJNaZcs3PBulzBe-tMVOzB24XKzy8cJHJHJitDpkPPIrniXoGrhFWkJ73TiRsfZZ7fD3rdeSw8=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by aquabasilea",
-        "featured": true
+        "featured": true,
+        "website": "https://www.aquabasilea.ch/"
     },
     {
         "id": "spot-10",
         "name": "Lido Luzern Beach & Pool",
         "type": "swimmingpool",
-        "description": "A gorgeous lake beach resort on Lake Lucerne. Offers a 250-meter long sandy beach, a large heated outdoor kids pool with fountains, water toys, an adventure playground, and vast grassy lawns for sunbathing.",
-        "address": "Haldenstrasse 6, 6006 Lucerne",
+        "description": "Lakefront recreational area with a sandy beach,\na swimming pool, a playground & a restaurant.",
+        "address": "Lidostrasse 6A, 6006 Luzern",
         "zip": "6006",
-        "city": "Lucerne",
+        "city": "Luzern",
         "lat": 47.052,
         "lng": 8.336,
         "openingHours": "09:00 - 20:00 (Open May to September)",
@@ -303,7 +309,8 @@
             "Cafe/Food",
             "Shade",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdkUUpHfaDEQQUrV6cTWN93YZmGkDWU49iPnVr8VEA8NJwZOtT4gGLZtbI_Dv7MiSRsUldyNe9wgyTSFRjhmmnFJzmQ1Z3yFAf1LsoZeHxQH4wLymDPf8sKfvApPXhS99pRmQerJNId5APo=s4800-w1000",
         "ratings": [],
@@ -314,7 +321,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLe1LxqMtSMOxBVwwgNPMrnt3cs6TxkeQmVkcnOzUzyObJrdaVe7sKsviuUWmK-5uFio3-WbdDMSt-OJA8pgjumsO6kb-_YEfkXI3gHjv2SD-BLgB2PhKwhKVmNKhKDxvjL6fFYT=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Strandbad Lido Luzern",
-        "featured": true
+        "featured": true,
+        "website": "http://www.lido-luzern.ch/",
+        "phone": "041 370 38 06"
     },
     {
         "id": "spot-11",
@@ -384,13 +393,13 @@
         "id": "spot-13",
         "name": "Splash & Spa Tamaro",
         "type": "swimmingpool",
-        "description": "A tropical-themed indoor water park in Ticino. Boasts a massive kids' splash paradise under glass domes, multiple wave generators, low-hazard spray parks, and slide networks. Heated year-round to 34°C.",
-        "address": "Via Campagnola 1, 6802 Rivera",
+        "description": "Swimming center with several slides, wave pool & terrace in mountain setting, plus a stylish spa.",
+        "address": "Via Campagnole 1, 6802 Monteceneri",
         "zip": "6802",
-        "city": "Rivera (Lugano)",
+        "city": "Monteceneri",
         "lat": 46.1265,
         "lng": 8.922,
-        "openingHours": "10:00 - 21:00 daily",
+        "openingHours": "Mo: 11:00 AM – 9:00 PM | Tu: 11:00 AM – 9:00 PM | We: 11:00 AM – 9:00 PM | Th: 11:00 AM – 9:00 PM | Fr: 11:00 AM – 9:00 PM | Sa: 11:00 AM – 9:00 PM | Su: 11:00 AM – 9:00 PM",
         "fees": "29 CHF (Kids under 6: 10 CHF)",
         "minAge": 0,
         "maxAge": 18,
@@ -409,19 +418,21 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLfGq1os8IjnhGKTBeKXPTQHFX7435BLJjxqMFc40jA3S4zwz-anIu7yZVjUqLTf8ca8J6Ie-gX2aw1IUoofRXy_ttw7cyxr9ErGX2tAdcYFmNaiJuxt3VRFCOtikzdl9qe7NYBH=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Splash e Spa Tamaro",
-        "featured": true
+        "featured": true,
+        "website": "http://www.splashespa.ch/",
+        "phone": "091 936 22 22"
     },
     {
         "id": "spot-14",
         "name": "Lido di Lugano Swimming Pool",
         "type": "swimmingpool",
-        "description": "Classic outdoor resort featuring an Olympic pool, diving towers, a dedicated heated kids' pool with mini-fountains and a slide, plus a grass playground area right next to the lake.",
+        "description": "Open-air pool complex with a sandy beach & green areas, popular for swimming & water polo.",
         "address": "Viale Castagnola 4, 6900 Lugano",
         "zip": "6900",
         "city": "Lugano",
         "lat": 46.0042,
         "lng": 8.966,
-        "openingHours": "09:00 - 19:30 (Open May to September)",
+        "openingHours": "Mo: 9:00 AM – 7:30 PM | Tu: 9:00 AM – 7:30 PM | We: 9:00 AM – 7:30 PM | Th: 9:00 AM – 7:30 PM | Fr: 9:00 AM – 7:30 PM | Sa: 9:00 AM – 7:30 PM | Su: 9:00 AM – 7:30 PM",
         "fees": "8 CHF for Adults, 4 CHF for Kids",
         "minAge": 0,
         "maxAge": 16,
@@ -430,7 +441,8 @@
             "Cafe/Food",
             "Shade",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf0HPNXfBCC4PtWyfccaHx86PYd8BLJkIlm9q4PyJSuPRDWPJLc2pA3VSUusRw6MLHj4OTbZvNPBNj6HEHJn9IhjnzzDo5xkpbUwWjkw5LgqlXSs-TJ8H1fphDG6CVJ1gA8wfMG=s4800-w1000",
         "ratings": [],
@@ -441,7 +453,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLf1qtLvxZMhyB3G-Jo3HUgxkHAvpEW_llBmbCA5TVZgZhPsAlATWpMQTr_dp-BvzpmavaHcY-9JOGmdHzRQ5errktV1cqko8x4tXpgOapu7ySUxq96rDHZ80PvsSWkqvBpmHdcs8A=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Lido di Lugano",
-        "featured": true
+        "featured": true,
+        "website": "https://www.lugano.ch/cultura-tempo-libero/sport/lidi-e-piscine/lido-di-lugano.html",
+        "phone": "058 866 68 80"
     },
     {
         "id": "spot-15",
@@ -733,13 +747,13 @@
         "id": "spot-24",
         "name": "Leukerbad Therme Family Zone",
         "type": "swimmingpool",
-        "description": "The largest thermal baths alpine resort in Europe. Incorporates warm indoor and outdoor pools, two giant high-speed loop slides, and a dedicated kids splash paradise filled with water cannons and nozzles.",
-        "address": "Rathausstrasse 32, 3954 Leukerbad",
+        "description": "Popular indoor/outdoor spot offering thermal pools & swimming pools with mountain views & saunas.",
+        "address": "Thermenstrasse 56, 3954 Leukerbad",
         "zip": "3954",
         "city": "Leukerbad",
         "lat": 46.3797,
         "lng": 7.6289,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 8:00 AM – 8:00 PM | Tu: 8:00 AM – 8:00 PM | We: 8:00 AM – 8:00 PM | Th: 8:00 AM – 8:00 PM | Fr: 8:00 AM – 8:00 PM | Sa: 8:00 AM – 8:00 PM | Su: 8:00 AM – 8:00 PM",
         "fees": "25 CHF (Kids under 8: Free)",
         "minAge": 0,
         "maxAge": 18,
@@ -758,7 +772,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLf6wRPCg-le0Os7nB8pJT6yw_zY-JP5ma7iCvp9eRcOVEBPF9_kYkSoF9eIjxYOroeVr5F01eTVACi9ZXnERsAMfrfo4p0rDmJFkdx8R7UdS7c1ErcN2Ogl6iOCjYfxBeeRi3eP=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Leukerbad Therme",
-        "featured": true
+        "featured": true,
+        "website": "https://www.leukerbad.ch/therme",
+        "phone": "027 472 20 20"
     },
     {
         "id": "spot-25",
@@ -770,7 +786,7 @@
         "city": "Baar",
         "lat": 47.1952,
         "lng": 8.5284,
-        "openingHours": "08:00 - 21:30 daily",
+        "openingHours": "Mo: 6:30 AM – 9:15 PM | Tu: 6:30 AM – 9:15 PM | We: 6:30 AM – 9:15 PM | Th: 6:30 AM – 9:15 PM | Fr: 6:30 AM – 9:15 PM | Sa: 9:00 AM – 5:45 PM | Su: 9:00 AM – 5:45 PM",
         "fees": "8 CHF (Kids 6-16: 4 CHF)",
         "minAge": 0,
         "maxAge": 18,
@@ -779,7 +795,8 @@
             "Cafe/Food",
             "Shade",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcyM7wDEECiPq7lDHo_gfoh_CuTXQbFBx5OnfgRlg1Da5uQjdhki6MHHjP-ja34TERWBahfbPvZfHTRgN1_CnSX1tKXMXb1FcdO4WEq1x8FjOK9UrfR0pIO65kFvs6W5ISFuZiXeKAE-5_T=s4800-w1000",
         "ratings": [],
@@ -790,7 +807,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLcZES_i2nwh4_CYx3YOHuRxSm8aHHQm3gcE1DUZWqo4m263cxonR37X9DvEltvmvNvSVR72NbUifqwzhGpjCrQR-hqnvBi09675sUpaNoiu-fj_OkBR2B_8pgpIy4v6Dg09dwqP=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Hallen- und Freibad Lättich",
-        "featured": true
+        "featured": true,
+        "website": "https://www.lättich-baar.ch/?y_source=1_ODIxNjczNTctNzE1LWxvY2F0aW9uLndlYnNpdGU=",
+        "phone": "041 767 27 00"
     },
     {
         "id": "spot-26",
@@ -858,12 +877,12 @@
         "name": "Strandbad Zug Kids Beach & Pool",
         "type": "swimmingpool",
         "description": "A family-favorite lakeside beach on Lake Zug. Offers a flat, gently sloping sandy beach, a shaded baby paddling pool, a water trampoline, and a lovely kids playground on the lawns.",
-        "address": "Chamerstrasse 81, 6300 Zug",
+        "address": "Artherstrasse 2, 6300 Zug",
         "zip": "6300",
         "city": "Zug",
         "lat": 47.1725,
         "lng": 8.5108,
-        "openingHours": "09:00 - 20:00 (Open May to September)",
+        "openingHours": "Mo: 10:00 AM – 11:00 PM | Tu: 10:00 AM – 11:00 PM | We: 10:00 AM – 11:00 PM | Th: 10:00 AM – 11:00 PM | Fr: 10:00 AM – 11:00 PM | Sa: 10:00 AM – 11:00 PM | Su: 10:00 AM – 11:00 PM",
         "fees": "4 CHF for adults, 2 CHF for kids",
         "minAge": 0,
         "maxAge": 16,
@@ -872,7 +891,8 @@
             "Cafe/Food",
             "Shade",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf9kKsY7Ey-nbMYjYklhOz3TfClxUC5cqrTn7Q9aDWBre0_5HbyTkVwFioBxg8D6pMGUFa7w0g2crs4SfzZjSn_hbQ1EJjYXHMKqiQ4dJmA6Bo3PT-KVtkAD5oGA1-UGMZYOQR1Ng=s4800-w1000",
         "ratings": [],
@@ -883,13 +903,15 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLdGr1NfbRs_2Z0-zMKcCckefDHXbRdXTAYZYn5aZTPAaklasPePSyMcnOC-zY72-ykXNZAkn-L29GuTEno91UnwUMYNy4B9b68gskyNh0fE_9wBN3DRqdDLdxOOgZveZaNbUNcDqA=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Alain Louis Dougoud",
-        "featured": true
+        "featured": true,
+        "website": "https://seeliken.ch/",
+        "phone": "041 711 14 56"
     },
     {
         "id": "spot-29",
         "name": "Marzili Outdoor Swimming Pools",
         "type": "swimmingpool",
-        "description": "Bern's famous riverside swimming spot. Provides huge, free-access grassy lawns, multiple children wading pools with fountains and animal sprinklers, a 50m lap pool, and a giant water slide.",
+        "description": "This busy, city hub for swimming has several pools, grass lawns & a backdrop of historic buildings.",
         "address": "Marzilistrasse 29, 3005 Bern",
         "zip": "3005",
         "city": "Bern",
@@ -904,7 +926,8 @@
             "Cafe/Food",
             "Shade",
             "Stroller Friendly",
-            "Picnic Area"
+            "Picnic Area",
+            "Parking"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfcvI53Xggde4wfba0BDE9yBJx-BxJ6RA-wjqNZS84d1MO6uwMq_mesjqAfeOZVn67_toQ3cYmc0tiw4Ax3bLp7W9sw-DuvUSB3S2olyzMda0TUDuvnp-RcpYpIqpIJF2lQ8rs=s4800-w1000",
         "ratings": [],
@@ -915,7 +938,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLfoEEYLRF9tm3eHTk4IyJXswqYkqtbOrhSEakudrV1bwQdrtPBDxSEx_1c9VorqUVOEPHhwx5fmOuqDaQjTB9aZO0F2TAZ9YOXgxTLf2oG59wh9aL8RBKDXTkKDO5C9dZD9fqPH=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Marco Bertossa",
-        "featured": true
+        "featured": true,
+        "website": "https://www.sportamt-bern.ch/sportanlage/marzili/",
+        "phone": "031 321 19 10"
     },
     {
         "id": "spot-30",
@@ -957,7 +982,7 @@
         "city": "Kloten",
         "lat": 47.4475,
         "lng": 8.5833,
-        "openingHours": "09:00 - 21:00 daily (varies by season)",
+        "openingHours": "Mo: 10:00 AM – 8:00 PM | Tu: 8:00 AM – 8:00 PM | We: 8:00 AM – 8:00 PM | Th: 8:00 AM – 8:00 PM | Fr: 8:00 AM – 8:00 PM | Sa: 9:00 AM – 5:00 PM | Su: 9:00 AM – 5:00 PM",
         "fees": "8 CHF (Kids 4 CHF)",
         "minAge": 0,
         "maxAge": 18,
@@ -977,7 +1002,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLc7ItTD3M-XSZM0ioHx0wdXyKZRtGiIUpVFr1Kqgr5O7YK_0aIfOv6Sx89umy5uAttwI4Kn-zcTfLOQbiL-LjIYxxlJYXhSxsWEaLFoBFNtEx0NQ9hOEY4viBPI804g0uQnsbiK=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Hallenbad Kloten",
-        "featured": true
+        "featured": true,
+        "website": "https://www.schluefweg.ch/hallenbad",
+        "phone": "044 804 85 85"
     },
     {
         "id": "spot-32",
@@ -1399,20 +1426,21 @@
         "id": "spot-46",
         "name": "Alpamare Water Park",
         "type": "swimmingpool",
-        "description": "Switzerland's largest water park! 12 slides spanning 2.1 km, children's paradise, wave pool, and wellness. 30 min from Zurich by train.",
-        "address": "Gwattstrasse 12, 8808 Pfäffikon SZ",
+        "description": "Water park complex with indoor & outdoor pools, giant slides & spa with sauna & massage treatments.",
+        "address": "Gwattstrasse 12, 8808 Pfäffikon",
         "zip": "8808",
-        "city": "Other",
+        "city": "Pfäffikon",
         "lat": 47.2114,
         "lng": 8.7797,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 10:00 AM – 9:00 PM | Tu: 10:00 AM – 9:00 PM | We: 10:00 AM – 9:00 PM | Th: 10:00 AM – 9:00 PM | Fr: 10:00 AM – 10:00 PM | Sa: 10:00 AM – 10:00 PM | Su: 10:00 AM – 9:00 PM",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
         "amenities": [
             "Toilets",
             "Stroller Friendly",
-            "Cafe/Food"
+            "Cafe/Food",
+            "Parking"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeNBjjIZk1mZ-xoPgv-GZK4p33eXm1tPXef-sbnDPte5nxwxQwfXp_zHGBE3lKstLDHamFYANq-c1p6zc4a--rVgqVOv6WaftHvnf6KXNMcgS278g9sapQwOsuCcsfrhYuXzC-SCA=s4800-w1000",
         "ratings": [],
@@ -1423,26 +1451,29 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLcNpBp31PlsmiiGicBf1xeBv5GpGVj8Drgf5MIER3Hbc2AHaCx_lOzWyrI56iClmiNBMNCwhtIMt_2s6yX10TZtmkWiyvoLQ7vF123qwx4InJl9MPBpiwyIoxM_96aJ63hpqeIO=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Alpamare",
-        "featured": true
+        "featured": true,
+        "website": "http://www.alpamare.ch/",
+        "phone": "055 415 15 15"
     },
     {
         "id": "spot-47",
         "name": "Dolder Bad",
         "type": "swimmingpool",
         "description": "Historic lido in leafy grounds above Zurich. 50m outdoor pool, shaded paddling pool, and play area surrounded by forest.",
-        "address": "Dolderbahn, 8032 Zürich",
-        "zip": "8032",
-        "city": "Zurich",
+        "address": "Adlisbergstrasse 36, 8044 Zürich",
+        "zip": "8044",
+        "city": "Zürich",
         "lat": 47.3736,
         "lng": 8.5707,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
         "amenities": [
             "Toilets",
             "Stroller Friendly",
-            "Cafe/Food"
+            "Cafe/Food",
+            "Parking"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdqFzllVqQ5jc7gsHzIRMevoX1eW6AoMETwxRu7tG7r--ZjXgLqNe3UeH45wAYZWAs4ioihRuO-O_ZTMdmZPJYQk4Sr4WY7vVBsaBpqTTTCAT2qJjXQifbNgQbUAGVcmLWW7yycZGpueN-_=s4800-w1000",
         "ratings": [],
@@ -1453,7 +1484,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLcOnOEndbc8IkUO0JyX8FXhUO-A93faniNH6V4URfh8knGTDeCQhFTGfpEofdjb-t5roMHkWnDhHcP96g8xIeDQ93QO5NFVFggY9twKB6Jsdtl_IegVeKOxGv4_CZDPtfV9ey6l=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Dolder Wellenbad",
-        "featured": true
+        "featured": true,
+        "website": "https://doldereisundbad.ch/wellenbad/",
+        "phone": "044 267 70 80"
     },
     {
         "id": "spot-48",
@@ -1465,7 +1498,7 @@
         "city": "Bern",
         "lat": 46.9373,
         "lng": 7.4051,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
@@ -1489,19 +1522,21 @@
         "id": "spot-49",
         "name": "Marzili Freibad",
         "type": "swimmingpool",
-        "description": "Among Switzerland's oldest baths, right in the shadow of the Parliament. Free entry, river swim on the Aare, massively popular in summer.",
+        "description": "This busy, city hub for swimming has several pools, grass lawns & a backdrop of historic buildings.",
         "address": "Marzilistrasse 29, 3005 Bern",
         "zip": "3005",
         "city": "Bern",
         "lat": 46.9432,
         "lng": 7.4486,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Free",
         "minAge": 1,
         "maxAge": 12,
         "amenities": [
             "Toilets",
-            "Stroller Friendly"
+            "Stroller Friendly",
+            "Parking",
+            "Outdoor Badi"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfcvI53Xggde4wfba0BDE9yBJx-BxJ6RA-wjqNZS84d1MO6uwMq_mesjqAfeOZVn67_toQ3cYmc0tiw4Ax3bLp7W9sw-DuvUSB3S2olyzMda0TUDuvnp-RcpYpIqpIJF2lQ8rs=s4800-w1000",
         "ratings": [],
@@ -1512,25 +1547,29 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLfoEEYLRF9tm3eHTk4IyJXswqYkqtbOrhSEakudrV1bwQdrtPBDxSEx_1c9VorqUVOEPHhwx5fmOuqDaQjTB9aZO0F2TAZ9YOXgxTLf2oG59wh9aL8RBKDXTkKDO5C9dZD9fqPH=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Marco Bertossa",
-        "featured": true
+        "featured": true,
+        "website": "https://www.sportamt-bern.ch/sportanlage/marzili/",
+        "phone": "031 321 19 10"
     },
     {
         "id": "spot-50",
         "name": "Weyermannshaus Freibad",
         "type": "swimmingpool",
         "description": "Switzerland's largest outdoor pool by water surface — 16,000 m² across multiple pools with waterslides and a children's area.",
-        "address": "Weyermannshaus, 3018 Bern",
-        "zip": "3018",
+        "address": "Stöckackerstrasse 9, 3027 Bern",
+        "zip": "3027",
         "city": "Bern",
         "lat": 46.9282,
         "lng": 7.4012,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
         "amenities": [
             "Toilets",
-            "Stroller Friendly"
+            "Stroller Friendly",
+            "Parking",
+            "Outdoor Badi"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfDKU4azyvNa7FCR5kHPz7u51AVqBq5ty5yWmFWhMYX0OrxeN-9AudToPbpELn2f8NGcILIpXoLjjk9NVUKEvmpyMQnHwGf317uwFXXyKOiFYzkWTa1Mgwn4jhGw4GaHR3oPgd2=s4800-w1000",
         "ratings": [],
@@ -1541,26 +1580,29 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLfE3fMWXvB_-UeqFN1JZPZWRvo59VDOuDChxXsiqO5z5kk1EsUs7NPqgYpMjUMggwGIIevxbbq3zAvCHxfa7xyeyYnkz1G9cw3aapkFKK-BNrjHuvFXwdyhmFAya8DsGE9qWfj9XDMrmaLH=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by kiwi",
-        "featured": true
+        "featured": true,
+        "website": "http://www.sportamt-bern.ch/sportanlage/freibad-weyermannshaus",
+        "phone": "031 321 19 50"
     },
     {
         "id": "spot-51",
         "name": "Genève-Plage",
         "type": "swimmingpool",
         "description": "Iconic lakeside lido on Lake Geneva with an Olympic pool, beach area, water slides, and stunning views of Mont Blanc.",
-        "address": "Quai de Cologny, 1223 Cologny, Geneva",
-        "zip": "1223",
-        "city": "Geneva",
+        "address": "Quai Gustave-Ador, 1207 Genève",
+        "zip": "1207",
+        "city": "Genève",
         "lat": 46.217,
         "lng": 6.1647,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: Open 24 hours | Tu: Open 24 hours | We: Open 24 hours | Th: Open 24 hours | Fr: Open 24 hours | Sa: Open 24 hours | Su: Open 24 hours",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
         "amenities": [
             "Toilets",
             "Stroller Friendly",
-            "Cafe/Food"
+            "Cafe/Food",
+            "Parking"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLd4wCtOjKDgRCz0OpIJ2n57KjMs0i71NGpiae4CLTep_XuMse2pv0TLjhsc4eF7KrSgRfOKdl78z_XC-BlDvoyyAUxEYyjuZDZkj5IxrQkVsOkbWLDDKPvolLU6b8agYHDCi1m0=s4800-w1000",
         "ratings": [],
@@ -1571,19 +1613,20 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLezVYVzgxCcPAwvxcAJuwXObXVr-4T5RVKqh3VNkNMPaAWX8YGIiHgPIClNMlJLmFtYG32z0MiX0ZqmDzAzL0YiYSA_BPt6e7Vlk1px0XBWXjm4Icf4VliGGP2-dXdMQCAbkcSZ-NK2R8aT=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Florian Lechat",
-        "featured": true
+        "featured": true,
+        "website": "https://www.geneve.ch/fr/plage-eaux-vives"
     },
     {
         "id": "spot-52",
         "name": "Piscine de Bellerive",
         "type": "swimmingpool",
         "description": "Outdoor lakeside pool complex with a 50m competition pool, children's pool, grass sunbathing areas, and Lake Geneva access.",
-        "address": "Avenue de Rhodanie 27, 1007 Lausanne",
+        "address": "Av. de Rhodanie 23, 1007 Lausanne",
         "zip": "1007",
         "city": "Lausanne",
         "lat": 46.5041,
         "lng": 6.6362,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
@@ -1591,7 +1634,8 @@
             "Toilets",
             "Stroller Friendly",
             "Picnic Area",
-            "Cafe/Food"
+            "Cafe/Food",
+            "Parking"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdmkWqP_DnfoHnb0F0MaiOTKYd-l3cYGoSUyQeQubK-NaM9LjQmhlptIO6TxGKHFAzSPAehU-guO6BTNy-8lD1qLR5rK0voCodXgo4l-GN6ssP3DBPokBh9yJr-BQW9WStgCD5Wrg=s4800-w1000",
         "ratings": [],
@@ -1602,25 +1646,29 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLc4S2UOwVmDV4bqxaL6PqjudnuJ2N027M70AZwJ0FbVPcovjLX29ZSf40smJFVUY6o2Rrw10FrUcIKDl-dZMh0mCYUW5U9NvfZtUvdz7hNUZIL35NBM03PPz-ot3ubluco53SKXKQuy8aJb=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Gabrielle Bavato",
-        "featured": true
+        "featured": true,
+        "website": "https://www.lausanne.ch/bellerive",
+        "phone": "021 315 48 60"
     },
     {
         "id": "spot-53",
         "name": "Lido Lucerne",
         "type": "swimmingpool",
-        "description": "Beautiful outdoor pool and beach on Lake Lucerne with mountain backdrop. Lakeside swimming, pools for all ages, and a stunning Alpine setting.",
-        "address": "Lidostrasse 6, 6006 Luzern",
+        "description": "Lakefront recreational area with a sandy beach,\na swimming pool, a playground & a restaurant.",
+        "address": "Lidostrasse 6A, 6006 Luzern",
         "zip": "6006",
-        "city": "Lucerne",
+        "city": "Luzern",
         "lat": 47.0537,
         "lng": 8.318,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
         "amenities": [
             "Toilets",
-            "Stroller Friendly"
+            "Stroller Friendly",
+            "Parking",
+            "Outdoor Badi"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdkUUpHfaDEQQUrV6cTWN93YZmGkDWU49iPnVr8VEA8NJwZOtT4gGLZtbI_Dv7MiSRsUldyNe9wgyTSFRjhmmnFJzmQ1Z3yFAf1LsoZeHxQH4wLymDPf8sKfvApPXhS99pRmQerJNId5APo=s4800-w1000",
         "ratings": [],
@@ -1631,25 +1679,29 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLe1LxqMtSMOxBVwwgNPMrnt3cs6TxkeQmVkcnOzUzyObJrdaVe7sKsviuUWmK-5uFio3-WbdDMSt-OJA8pgjumsO6kb-_YEfkXI3gHjv2SD-BLgB2PhKwhKVmNKhKDxvjL6fFYT=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Strandbad Lido Luzern",
-        "featured": true
+        "featured": true,
+        "website": "http://www.lido-luzern.ch/",
+        "phone": "041 370 38 06"
     },
     {
         "id": "spot-54",
         "name": "Lido di Lugano",
         "type": "swimmingpool",
-        "description": "Mediterranean-feel lido in Ticino with lake swimming, waterslides, sandy beach area, and palm trees — a taste of the Italian south.",
-        "address": "Viale Castagnola 11, 6906 Lugano",
-        "zip": "6906",
-        "city": "Other",
+        "description": "Open-air pool complex with a sandy beach & green areas, popular for swimming & water polo.",
+        "address": "Viale Castagnola 4, 6900 Lugano",
+        "zip": "6900",
+        "city": "Lugano",
         "lat": 46.0037,
         "lng": 8.9539,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 9:00 AM – 7:30 PM | Tu: 9:00 AM – 7:30 PM | We: 9:00 AM – 7:30 PM | Th: 9:00 AM – 7:30 PM | Fr: 9:00 AM – 7:30 PM | Sa: 9:00 AM – 7:30 PM | Su: 9:00 AM – 7:30 PM",
         "fees": "Entry fee applies",
         "minAge": 1,
         "maxAge": 12,
         "amenities": [
             "Toilets",
-            "Stroller Friendly"
+            "Stroller Friendly",
+            "Parking",
+            "Outdoor Badi"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf0HPNXfBCC4PtWyfccaHx86PYd8BLJkIlm9q4PyJSuPRDWPJLc2pA3VSUusRw6MLHj4OTbZvNPBNj6HEHJn9IhjnzzDo5xkpbUwWjkw5LgqlXSs-TJ8H1fphDG6CVJ1gA8wfMG=s4800-w1000",
         "ratings": [],
@@ -1660,7 +1712,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLf1qtLvxZMhyB3G-Jo3HUgxkHAvpEW_llBmbCA5TVZgZhPsAlATWpMQTr_dp-BvzpmavaHcY-9JOGmdHzRQ5errktV1cqko8x4tXpgOapu7ySUxq96rDHZ80PvsSWkqvBpmHdcs8A=s4800-w1000"
         ],
         "imageSource": "Google Maps / Photo by Lido di Lugano",
-        "featured": true
+        "featured": true,
+        "website": "https://www.lugano.ch/cultura-tempo-libero/sport/lidi-e-piscine/lido-di-lugano.html",
+        "phone": "058 866 68 80"
     },
     {
         "id": "spot-55",
@@ -1988,18 +2042,19 @@
         "name": "Freizeitpark wird völlig unterschätzt",
         "type": "swimmingpool",
         "description": "Double go-karts (age 3+), climbing park, Tower, Laurapark, indoor adventure, indoor minigolf, water park (summer)",
-        "address": "Payerneland, Payerne VD, 1551 Payerne",
-        "zip": "1551",
+        "address": "Route de Berne 14, 1530 Payerne",
+        "zip": "1530",
         "city": "Payerne",
         "lat": 46.81262,
         "lng": 6.95307,
-        "openingHours": "Wed–Sun 11:00–19:00; Karting varies",
+        "openingHours": "Mo: Closed | Tu: Closed | We: 1:00 – 7:00 PM | Th: 2:00 – 7:00 PM | Fr: 2:00 – 7:00 PM | Sa: 11:00 AM – 7:00 PM | Su: 11:00 AM – 7:00 PM",
         "fees": "From CHF 5/child, CHF 7/adult; Karting 10min CHF 15",
         "minAge": 0,
         "maxAge": 14,
         "amenities": [
             "Toilets",
-            "Stroller Friendly"
+            "Stroller Friendly",
+            "Parking"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfQnKmmfaLEUFiUuXW4UxlrOfVDd3Xy5SFgvKw8HCBFaMCa4UEkWTiOHhxvyUNI6QkskjP7zTfiKyIX9pFVzRxht61nQrMf5C9T71Shb297Z8k0wOvla_ATPEOhJB_mfEwmO-YX=s4800-w1000",
         "images": [
@@ -2011,7 +2066,9 @@
         "comments": [],
         "instagramUrl": "https://www.instagram.com/p/DZk7U5HqfIX/",
         "imageSource": "Google Maps / Photo by Payerneland Laurapark",
-        "featured": true
+        "featured": true,
+        "website": "http://www.payerneland.ch/",
+        "phone": "026 660 04 60"
     },
     {
         "id": "excel-spot-1784119995182-4",
@@ -2738,17 +2795,16 @@
         "name": "Spielplatz geöffnet – BOWI Willisau",
         "type": "swimmingpool",
         "description": "Large playground with water area (summer), climbing elements for older kids, toddler areas",
-        "address": "BOWI Garten + Freizeit AG, Willisau LU, 6130 Willisau",
+        "address": "Steinbruchweg, 6130 Willisau",
         "zip": "6130",
         "city": "Willisau",
         "lat": 47.12818,
         "lng": 7.99847,
-        "openingHours": "Open until early Nov, daily 10:00–18:00",
+        "openingHours": "Mo: Open 24 hours | Tu: Open 24 hours | We: Open 24 hours | Th: Open 24 hours | Fr: Open 24 hours | Sa: Open 24 hours | Su: Open 24 hours",
         "fees": "Adults CHF 5; Children CHF 7",
         "minAge": 0,
         "maxAge": 14,
         "amenities": [
-            "Toilets",
             "Stroller Friendly"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLedtZYgjEdtg6KMoDMW_x6DSpfbiMMjqSQKyzt8C0I4CR9CTzNUkE5EDfem5hoqpwWgpsb74tYviz_Zn86xdxlXvVF2_uwbOwlLa3ITXG3L_RTIy5tx1l1K7G8FMpTaq8NsEk_efw=s4800-w1000",
@@ -2826,19 +2882,19 @@
         "id": "excel-spot-1784120117206-52",
         "name": "Swiss Holiday Park",
         "type": "swimmingpool",
-        "description": "Holiday & leisure park with indoor waterpark",
-        "address": "Swiss Holiday Park, Morschach SZ, 6443 Morschach",
+        "description": "Unfussy accommodations in a vibrant resort offering 4 restaurants, a spa & a water park.",
+        "address": "Dorfstrasse 10, 6443 Morschach",
         "zip": "6443",
         "city": "Morschach",
         "lat": 46.98096,
         "lng": 8.61799,
-        "openingHours": "Check venue for hours",
+        "openingHours": "Mo: Open 24 hours | Tu: Open 24 hours | We: Open 24 hours | Th: Open 24 hours | Fr: Open 24 hours | Sa: Open 24 hours | Su: Open 24 hours",
         "fees": "Contact venue",
         "minAge": 0,
         "maxAge": 14,
         "amenities": [
-            "Toilets",
-            "Stroller Friendly"
+            "Stroller Friendly",
+            "Parking"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe6YHPgr7oEKNClF3G6NQhPPO0QB6q7Xxy2wkxNZZucXMb41oNoVweg8h_cWEq_wMVTS8ksOmNO_eBrVTN2gryAQcmVc_Q38t5wIAeC-WlQJTaPgstvOwdNyE8KNzbSpM-eFTSD5OtlRTF1=s4800-w1000",
         "images": [
@@ -2850,7 +2906,9 @@
         "comments": [],
         "instagramUrl": "https://www.instagram.com/p/DVEdGO7j0U7/",
         "imageSource": "Google Maps / Photo by Swiss Holiday Park",
-        "featured": true
+        "featured": true,
+        "website": "http://www.swissholidaypark.ch/",
+        "phone": "041 825 50 50"
     },
     {
         "id": "excel-spot-1784120134099-60",
@@ -3294,12 +3352,12 @@
         "name": "Säntispark Bäder- & Rutschenwelt",
         "type": "swimmingpool",
         "description": "Eastern Switzerland's premier family water park featuring 8 spectacular water slides (up to 180m long with light and sound effects), surf wave pool, wild water canyon river, and a dedicated 'Kinderbäderwelt' with warm shallow lagoons and water play features.",
-        "address": "Wiesenbachstrasse 9, 9030 Abtwil",
+        "address": "Wiesenbachstrasse 9, 9030 Abtwil SG",
         "zip": "9030",
-        "city": "Abtwil",
+        "city": "Abtwil SG",
         "lat": 47.4116,
         "lng": 9.3175,
-        "openingHours": "09:00 - 22:00 daily",
+        "openingHours": "Mo: 9:00 AM – 10:00 PM | Tu: 9:00 AM – 10:00 PM | We: 9:00 AM – 10:00 PM | Th: 9:00 AM – 10:00 PM | Fr: 9:00 AM – 10:00 PM | Sa: 9:00 AM – 10:00 PM | Su: 9:00 AM – 10:00 PM",
         "fees": "19 - 39 CHF (Under 4 Free)",
         "minAge": 1,
         "maxAge": 16,
@@ -3318,19 +3376,21 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLdj-OJN_A-EsgVOPaEdPMEo-UkjIUAMy2rAphOVC7UEhLE1EOZMS15UxW4yUpya9bhziR9vRhnMNwrPlulpV2x6Tf4hnJwQfJE-YRtSNok4kdNGyImErY3O0H9J2qGJPcbQhFwe_mb_jfQH=s4800-w1000",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLemZjrD0My_KsX72y6uuOByekVnvoOVU3qSkExucR7o65ahfkni1CdnDLYxOAQ6h12RBh0AgRs9Qe6iPFYOoLx7fjgWdSW0IEntvPL7q8p3QZKVAAmigLsYGoHnRVhUXK6dibA=s4800-w1000",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLezkaUoGgtJeu_uAeBFI01fXCQulPDNFqw2T53uJZocPI0piaGF_xwPTqYjPXmdw3UBslALfjWqZpK2FLvXpRTG86zgpkj5nm77IkPPaEUay23M_hUerh-05VLVbvLuIxHYsN1f=s4800-w958"
-        ]
+        ],
+        "website": "https://saentispark-freizeit.ch/baeder/",
+        "phone": "058 712 55 00"
     },
     {
         "id": "spot-110",
         "name": "Splash e Spa Tamaro Waterpark",
         "type": "swimmingpool",
-        "description": "Modern indoor/outdoor water park in Ticino featuring a 30°C wave pool, 5 high-adrenaline funnel and raft water slides, outdoor panoramic thermal pool, and a colorful interactive children's water castle with fountains, slides, and tipping buckets.",
-        "address": "Via Campagnole 1, 6802 Rivera",
+        "description": "Swimming center with several slides, wave pool & terrace in mountain setting, plus a stylish spa.",
+        "address": "Via Campagnole 1, 6802 Monteceneri",
         "zip": "6802",
-        "city": "Rivera",
+        "city": "Monteceneri",
         "lat": 46.1265,
         "lng": 8.9221,
-        "openingHours": "10:00 - 21:00 daily",
+        "openingHours": "Mo: 11:00 AM – 9:00 PM | Tu: 11:00 AM – 9:00 PM | We: 11:00 AM – 9:00 PM | Th: 11:00 AM – 9:00 PM | Fr: 11:00 AM – 9:00 PM | Sa: 11:00 AM – 9:00 PM | Su: 11:00 AM – 9:00 PM",
         "fees": "24 - 42 CHF (Under 6 Free)",
         "minAge": 1,
         "maxAge": 16,
@@ -3349,7 +3409,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLeOsRDiXQjjPtC2JElpvO7rM0My2-uPxPCzHwW5DMhanCuFcXV_ezqVg7yOsZgrt9ZAGFWWrzRcj2GT5TqsD0EyOITgk0i95j-Ot5ic32JSLVJpRe4SiBx9ZvZh8BQkJrG11Y3u=s4800-w1000",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLdkrnxxNYl-QZU4a_L70kdHsYrZ1X9M-RLybEah8LPr-HJ5vFUozJz1P8InqhGkLPLjOB_k27MW11MpaS1-EFNVkcuT_BUQZliaJNmKyD-7OGFyDKwptxY9z8XDVm620bEkUrRnTA=s4800-w1000",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLeqxhF0uSwoIZu5h8RIZULUdKEnWeqgpl1b4Q06GTgu5J-sen8FrsRjR--y_Yec31NOBwn_ff07XQhOMlCFwlp_SNWmzTn61lkTfmZEBojFNZ3obzj08rEA3pPEvfn_HtapxOSo=s4800-w1000"
-        ]
+        ],
+        "website": "http://www.splashespa.ch/",
+        "phone": "091 936 22 22"
     },
     {
         "id": "spot-111",
@@ -4022,13 +4084,13 @@
         "id": "spot-132",
         "name": "Aquaparc Le Bouveret",
         "type": "swimmingpool",
-        "description": "French-speaking Switzerland's premier tropical indoor/outdoor water theme park on Lake Geneva. Features a giant Pirate Ship lagoon for kids, lazy river, wave pool, Sharkyland toddler splash zone, and 7 major slides.",
-        "address": "Route de la Plage 122, 1897 Le Bouveret",
+        "description": "Caribbean-themed water park with slides & games, plus whirlpool, saunas & a Turkish bath.",
+        "address": "Rte de la Plage 122, 1897 Port-Valais",
         "zip": "1897",
-        "city": "Le Bouveret",
+        "city": "Port-Valais",
         "lat": 46.3894,
         "lng": 6.8594,
-        "openingHours": "10:30 - 18:00 daily",
+        "openingHours": "Mo: Closed | Tu: Closed | We: 10:30 AM – 6:00 PM | Th: 10:30 AM – 6:00 PM | Fr: 10:30 AM – 6:00 PM | Sa: 10:30 AM – 6:00 PM | Su: 10:30 AM – 6:00 PM",
         "fees": "39 - 49 CHF (Under 3 Free)",
         "minAge": 1,
         "maxAge": 16,
@@ -4047,26 +4109,29 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLeiSfUzDFiCD6XqBXMhO7zxOzORJqqCEyHzRFTJ44dEy8-DdOWGg67T26MCX5_-lv81JSKwJjBCLk1gNyfFYmGWe9djYUPDMLRIg8wj8A1OT0CaCN4M6h7ec54sr_a9BkUAOuee8g=s4800-w1000",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLfTkQ0zWcVKmK6fuIxULnoee4Z-ipoK5P2CEVNPiE3UdSKtFpUmCx7tbtx2qT3PFDu258G7ifOtGpxLKG9e219rr-APKV8OQjA8Aui13NbHJvPSgis4J1ng5-g3rbHHreLTiPA=s4800-w1000",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLepgaCqLbx8TD3lwukuh_1p9g_rUW2dRGVdiEUjz0qPlX_i9hFZ6PN-3oaGu9BDZPFn4mU7DSq2hlAwy9h3yVCyioaV3WPsHfgG9i5PV9J1Ob6Ca_1Awe7SrHa-DOoVhNM-Z0J1=s4800-w1000"
-        ]
+        ],
+        "website": "https://www.aquaparc.ch/",
+        "phone": "024 482 00 00"
     },
     {
         "id": "spot-133",
         "name": "Bains de Lavey & Outdoor Thermal Pools",
         "type": "swimmingpool",
-        "description": "Home to the warmest thermal spring water in Switzerland (33°C to 36°C) surrounded by the dramatic Dents du Midi peaks. Features vast illuminated outdoor pools, whirlpools, current channels, and family hours.",
-        "address": "Route des Bains 48, 1892 Lavey-Morcles",
+        "description": "Spa complex with heated outdoor pools, hot tub & a restaurant, plus beauty treatments & massages.",
+        "address": "Rte des Bains 46, 1892 Lavey-Les-Bains",
         "zip": "1892",
-        "city": "Lavey-les-Bains",
+        "city": "Lavey-Les-Bains",
         "lat": 46.2019,
         "lng": 7.0189,
-        "openingHours": "09:00 - 21:00 daily",
+        "openingHours": "Mo: 9:00 AM – 9:00 PM | Tu: 9:00 AM – 9:00 PM | We: 9:00 AM – 9:00 PM | Th: 9:00 AM – 9:00 PM | Fr: 9:00 AM – 10:00 PM | Sa: 9:00 AM – 10:00 PM | Su: 9:00 AM – 9:00 PM",
         "fees": "22 - 32 CHF (From age 4)",
         "minAge": 4,
         "maxAge": 16,
         "amenities": [
             "Toilets",
             "Cafe/Food",
-            "Parking"
+            "Parking",
+            "Stroller Friendly"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdcoQNtrZWerZhN4g_uEvNgfarEzRTF8PPnYiVY7eyPzNf0NQYa7wJz9Mk-RqxVptleinHJ7_M1JdNz3wFE8ITP5inug_QpjwT6SGTnYa2slpCWC_ELRyiMH6L8iLHZBsR6k1CN-P7oPoG2=s4800-w1000",
         "imageSource": "Google Maps / Photo by Les Bains de Lavey",
@@ -4077,7 +4142,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLdcoQNtrZWerZhN4g_uEvNgfarEzRTF8PPnYiVY7eyPzNf0NQYa7wJz9Mk-RqxVptleinHJ7_M1JdNz3wFE8ITP5inug_QpjwT6SGTnYa2slpCWC_ELRyiMH6L8iLHZBsR6k1CN-P7oPoG2=s4800-w1000",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLec45CJ_KGO3uSU-6kB17Yd1al99uFYThajEhjcLEcn8sDJoilYNFDZd_zOQuCJVr6J-GFkfLQKzidV5QxLY-rUGBM8HHowLrWlI2VzEzOv1zjxqM0kMNnlyVGlKv_JqFNtWmxx5A=s4800-w650",
             "https://lh3.googleusercontent.com/grass-cs/AABkmLeSIdmqcxlgq3b4lez8NR_LOFVqgYVocs-XJHfxwA_R4S5zUGEq-JPYbO5xAV2UEUGPucwhcdGC2cKDo7tdycWm9ek7ACK5cVz_yuifWq3P7FlCC2wdS_Q9J68zAI4UkJi10VfGiw=s4800-w1000"
-        ]
+        ],
+        "website": "http://www.bains-lavey.ch/",
+        "phone": "024 486 15 55"
     },
     {
         "id": "spot-134",
@@ -8767,23 +8834,22 @@
         "id": "osm-spot-10",
         "name": "Hallenbad Aadorf",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Hallenbad Aadorf, 8356 Ettenhausen TG",
-        "zip": "8356",
-        "city": "Ettenhausen TG",
+        "description": "Public indoor swimming pool (Hallenbad Aadorf) in Ettenhausen TG.",
+        "address": "Schützenstrasse 40, 8355 Aadorf",
+        "zip": "8355",
+        "city": "Aadorf",
         "lat": 47.49386,
         "lng": 8.90479,
-        "openingHours": "Mo-Fr 10:00-21:00; Tu 06:00-07:30,10:00-21:00; Th 06:00-21:00; Sa 12:00-17:00; Su 10:00-17:00",
+        "openingHours": "Mo: 10:00 AM – 8:00 PM | Tu: 6:00 AM – 8:00 PM | We: 9:00 AM – 8:00 PM | Th: 6:00 – 8:00 AM, 10:30 AM – 9:00 PM | Fr: 9:00 AM – 8:00 PM | Sa: 12:00 – 5:00 PM | Su: 10:00 AM – 4:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeiLBusy5z3FU89JAQ4gSF_eLksdVlUmIKPjK-alc2ZqswfW4pUexk0E8WvaZqRdDQiAhuezcLMzSiAtAUjrI_aRRCacaweq8LcyuYg1Iou9wXj7a1CL2KK9gukwNKQJdOZt_rdcwbWnJUR=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfcRSAbhR0p4KBeCJhtMD-xK4i1717Z95fVbwSqnfUeemRJm2Ev8yDnjXbInfYiSxJ6d5CR_r0ZzoluQrlDI7dZoPSh46JEnNbC6mDgPuWwFAMf6Tdw_IpTUHYIV03iG7wVW6KxOBXxsNwf=s4800-w1000",
         "imageSource": "Google Maps / Photo by Thomas Bachmann",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -8792,31 +8858,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeiLBusy5z3FU89JAQ4gSF_eLksdVlUmIKPjK-alc2ZqswfW4pUexk0E8WvaZqRdDQiAhuezcLMzSiAtAUjrI_aRRCacaweq8LcyuYg1Iou9wXj7a1CL2KK9gukwNKQJdOZt_rdcwbWnJUR=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfcRSAbhR0p4KBeCJhtMD-xK4i1717Z95fVbwSqnfUeemRJm2Ev8yDnjXbInfYiSxJ6d5CR_r0ZzoluQrlDI7dZoPSh46JEnNbC6mDgPuWwFAMf6Tdw_IpTUHYIV03iG7wVW6KxOBXxsNwf=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLenhCvM4eH45i3prByu9LJkEBPlFDUFcHhwMJ9EN5s0mso4biPb8jUZBjU7H8z9AnOelWydgXOgwjxpE5o4IlGl9V1A6iTU_1D0FrdRbQTajvdFNrN6e8kneFWBd0um7DahVT1BrEklb7Ck=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfSCm2v4WUQ4gVWNZcJ1LTdP1UCSX6PfJVl_olMrY6ICMwEgzRVz_BZTxTjwBXiPfFgquvul07MKT099RkAYZ_U4iyFS8R2XxOvGgvYLoK1DPW55H54uk9FoOjRXZUFuPfOEvZIeqgFBnEi=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.aadorf.ch/kultur-freizeit-sport/sport-und-freizeitanlagen/hallenbad/ueber-uns-aktuelles.html/351",
+        "phone": "052 368 48 52"
     },
     {
         "id": "osm-spot-32",
         "name": "Piscine de Livron",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Piscine de Livron, 1217 Meyrin 2",
+        "description": "Public swimming pool facility (Piscine de Livron) located in Meyrin 2.",
+        "address": "Rue de Livron 2, 1217 Meyrin",
         "zip": "1217",
-        "city": "Meyrin 2",
+        "city": "Meyrin",
         "lat": 46.231,
         "lng": 6.08172,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 11:30 AM – 1:30 PM, 4:00 – 8:30 PM | Tu: 7:30 AM – 1:30 PM, 4:00 – 9:30 PM | We: 7:30 AM – 8:30 PM | Th: 11:30 AM – 1:30 PM, 4:00 – 8:30 PM | Fr: 11:30 AM – 1:30 PM, 4:00 ��� 8:30 PM | Sa: 12:00 – 5:00 PM | Su: 9:00 AM – 5:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdhsJDnK6oCgplHmGPu45bLPDJUBF0y1Uhq95JWT15IRxG1diWMwwNnUujF3Pfj0lk2Nv3ZcvpJt72G697qU_JB8T6DgO1FTX8V1ta8ewpmJxt2mRkvV8mvqidl9QcJJFhz9RUi=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLc6ibNYukxA37NkeGzqsB_g1y6AtqYutSJij29Je445vucEhiZ2XKMO-1C-YZYoatLILc8wzsgVAuXEvXHGkIWPZwooKuMlLXwCj0_GMm8oiKCjoQZj5zeQAT9uQXtzJjkyE1fw=s4800-w1000",
         "imageSource": "Google Maps / Photo by THIERRY Vaud",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -8825,31 +8893,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdhsJDnK6oCgplHmGPu45bLPDJUBF0y1Uhq95JWT15IRxG1diWMwwNnUujF3Pfj0lk2Nv3ZcvpJt72G697qU_JB8T6DgO1FTX8V1ta8ewpmJxt2mRkvV8mvqidl9QcJJFhz9RUi=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc6ibNYukxA37NkeGzqsB_g1y6AtqYutSJij29Je445vucEhiZ2XKMO-1C-YZYoatLILc8wzsgVAuXEvXHGkIWPZwooKuMlLXwCj0_GMm8oiKCjoQZj5zeQAT9uQXtzJjkyE1fw=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdGXdFI1IPogNH0MaiLzFWs8VO9rNrbGGtKV8mHjWBIeZVktyAldZrUt5o64A6McJndV_HnaEZ_PICv4pC_9fBP7r7yVeLxcO89B5K7FBjk0hoxQOaIo0BQd1Ta8yplWccA3IPB=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcxLb_ubgNhzdO7L1gXjwua77OByT00p7pJTEXBfJUDdSTFwZGch9Jgll4gptgjbKKlMg0gTt_wLd4Nqb2LEkFzbGOLO6Pg1ZagaVAhb9GMjdWWpr9uVCT2vHoLqwTcQ1gWTE_pVw=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://meyrin.ch/fr/votre-mairie-administration-sports-installations-sportives/piscine-de-livron",
+        "phone": "022 782 81 83"
     },
     {
         "id": "osm-spot-47",
         "name": "Schwimmbad Schulhaus Zihl",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Schwimmbad Schulhaus Zihl, 8107 Buchs ZH",
+        "description": "Public outdoor swimming pool and bathing facility (Schwimmbad Schulhaus Zihl) in Buchs ZH.",
+        "address": "Zihlstrasse 11, 8107 Buchs",
         "zip": "8107",
-        "city": "Buchs ZH",
+        "city": "Buchs",
         "lat": 47.45975,
         "lng": 8.43316,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeF6k5lglBa21HeTgma6YRJxs1viMJhlbcj3f2oldcYVAtjrCDF1OXT17enHSwm1bRgAyP704bApYBFNnnXbBOwbd-id7n5p__iU5mjU5GxAEYRJzevY64P2P33O2Rj5MJgouO4Vh1f1Yk=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe8K3Th4F1q4_yokUVxCj6h7_0TfPKRoxDb9UOQFfruvV4rdLlnTM87Y4KVjp5HAnz4i1Bz3wTeAHAz4dcq8ZKxRylziujv1ZYCJqAvfShbZHAOlvVfzUtHwEszAzItU0jr1S5A1YL2xcc=s4800-w1000",
         "imageSource": "Google Maps / Photo by Roland Zumbuehl",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -8858,31 +8928,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeF6k5lglBa21HeTgma6YRJxs1viMJhlbcj3f2oldcYVAtjrCDF1OXT17enHSwm1bRgAyP704bApYBFNnnXbBOwbd-id7n5p__iU5mjU5GxAEYRJzevY64P2P33O2Rj5MJgouO4Vh1f1Yk=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLe8K3Th4F1q4_yokUVxCj6h7_0TfPKRoxDb9UOQFfruvV4rdLlnTM87Y4KVjp5HAnz4i1Bz3wTeAHAz4dcq8ZKxRylziujv1ZYCJqAvfShbZHAOlvVfzUtHwEszAzItU0jr1S5A1YL2xcc=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfeoHcmKsIlUSHA1loeYZ0poV4cNn7XK5jB58b0ncrXS1BaVK21YuQI9WVoodom7dw3k1dnI-pV1BYgx6KBdDTd9iza1ATEmQczcuwNgYsv9nDyGTik-m0pXqtdlAxerd4_8GVsvOEhwLZI=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLd2b_cDJYJMjdpUqukZ3VCK7MHZDYgcIokyxSxg1xgkCIrzZDPMeDpUFFDIiMP_ZrQE8RCFwosPW-HV_O58SWUgDktBP5pyyV07LIRiMyZoZxzWi-lJAMc3Xch91Dg0NLqxOGbg=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "phone": "043 243 50 70"
     },
     {
         "id": "osm-spot-55",
         "name": "Bernaqua",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Bernaqua, 3018 Bern",
-        "zip": "3018",
+        "description": "Public thermal bath and swimming facility (Bernaqua) in Bern.",
+        "address": "Riedbachstrasse 98, 3027 Bern",
+        "zip": "3027",
         "city": "Bern",
         "lat": 46.94539,
         "lng": 7.37302,
-        "openingHours": "Mo-Su 09:00-22:00",
+        "openingHours": "Mo: 9:00 AM – 10:00 PM | Tu: 9:00 AM – 10:00 PM | We: 9:00 AM – 10:00 PM | Th: 9:00 AM – 10:00 PM | Fr: 9:00 AM – 10:00 PM | Sa: 9:00 AM – 10:00 PM | Su: 9:00 AM – 10:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfugy-l0SLXQ7cevoMcWvyJeKKXOF3BW8AmEtH4GepKFl9qRrEXYnFGq6HlcvhSoHDb9LAwPBj69AxyI8lef5Cshko3k9xviZIOk37ZGIvUyzi0CFWhWcbi2ZMnsKiC6FPfcczrzw=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfE_-bBNpQT2ObmJv4u3pm9yHtU3Lf4W9FL9jYN4SCXO0gdzVHWmY_LuverScOKCTJ5aqL0QrpJUSosKe4U6Y6XAfiOicL9p-AR6IdqKsLoZL6SEMMz4d2rXo3Gthu2IV22SZ9gSQ=s4800-w1000",
         "imageSource": "Google Maps / Photo by Bernaqua | Erlebnisbad | Fitness | Wellness",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -8891,31 +8963,32 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfugy-l0SLXQ7cevoMcWvyJeKKXOF3BW8AmEtH4GepKFl9qRrEXYnFGq6HlcvhSoHDb9LAwPBj69AxyI8lef5Cshko3k9xviZIOk37ZGIvUyzi0CFWhWcbi2ZMnsKiC6FPfcczrzw=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfE_-bBNpQT2ObmJv4u3pm9yHtU3Lf4W9FL9jYN4SCXO0gdzVHWmY_LuverScOKCTJ5aqL0QrpJUSosKe4U6Y6XAfiOicL9p-AR6IdqKsLoZL6SEMMz4d2rXo3Gthu2IV22SZ9gSQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeDHv15-6LzrXKIzosTpbOQpxJPjSen48RLpxdwGjMAYzF_fDEfMLbWgxo0wXIzQh-UtLxAv7qi2q5knm9alvReVrk9tHPr1DNaXRPDbvshoubSPtIaISVOHwZaa2GmhI6HnFpg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcn_Se-sSkMjaDC0_bshP5L9FWjCJ-v8Aumx4xuFfS6Iu0OXln-bO4B__MaqdLjr3W5AU8AColP0tVegR37g5A_UKXUw0IazYprBeORR6C2g-r3mT5_8bPzzRM14BnlWHm2pME=s4800-w952"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.bernaqua.ch/",
+        "phone": "031 556 95 95"
     },
     {
         "id": "osm-spot-57",
         "name": "Hallenbad Grenzach",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Scheffelstraße 3, 79639 Grenzach-Wyhlen",
+        "description": "Public indoor swimming pool (Hallenbad Grenzach) in Grenzach-Wyhlen.",
+        "address": "Scheffelstraße 3, 79639 Grenzach-Wyhlen, Germany",
         "zip": "79639",
         "city": "Grenzach-Wyhlen",
         "lat": 47.55171,
         "lng": 7.6587,
-        "openingHours": "Mo 06:00-07:30,13:00-17:30; Tu 13:00-21:30; We 06:30-21:30; Th 06:00-07:30,13:00-21:30; Sa 14:00-19:00; Su 07:00-13:00",
+        "openingHours": "Mo: 6:00 – 7:30 AM, 1:00 – 5:30 PM | Tu: 1:00 – 9:30 PM | We: 6:00 AM – 9:30 PM | Th: 6:00 – 7:30 AM, 1:00 – 9:30 PM | Fr: 6:00 – 7:30 AM, 1:00 – 6:30 PM | Sa: 2:00 – 7:00 PM | Su: 7:00 AM – 1:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLckSOF9l3MH_gdVO-MuJtoOVwXcaxHceebvfldYX2qY9E7291FQK7Hztf8a_za02FgzFmjNnJDLmQHmUms5KUqROnDypQAVCF3zmG4EL3rJwWt2-DWvlaOTa21PH2HkP2mjr6Hzsw=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcRNb8iWtMZ5hr7lplP3JO5YgPg_k1JMOh2K2aUa7Z3Dl2Ku4LnRmd0swStJsUgUqOFy3KAp2ObeZuMmbKpk1qkJYMXly3fTrLZ4Pr99vCF8Jg3LvjqxAf5HX65fIzpJXUBnZsUlg=s4800-w1000",
         "imageSource": "Google Maps / Photo by 20Bosko07 (Michel)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -8924,30 +8997,29 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLckSOF9l3MH_gdVO-MuJtoOVwXcaxHceebvfldYX2qY9E7291FQK7Hztf8a_za02FgzFmjNnJDLmQHmUms5KUqROnDypQAVCF3zmG4EL3rJwWt2-DWvlaOTa21PH2HkP2mjr6Hzsw=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcRNb8iWtMZ5hr7lplP3JO5YgPg_k1JMOh2K2aUa7Z3Dl2Ku4LnRmd0swStJsUgUqOFy3KAp2ObeZuMmbKpk1qkJYMXly3fTrLZ4Pr99vCF8Jg3LvjqxAf5HX65fIzpJXUBnZsUlg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdoJbM349JiMPqGOXw7OszHy85P7bB9wZPZENHVadqhzSva_TKOaMd9ulXadWZtwfGnN_h9lxfsuwTqtYdtCXE8OchiorrmXTXoa6DnlE5TRi-M6Nh5bjRRvoVKgLp_Hs50kPXg=s4800-w743",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfClHukTjBlHuE465PBsso43TeydqMsl5hbyjJXZH0neOrhwhvTGSb2AHfAEF4O98kVfS-58yBfW_xsGl2nbzsMdjFLrZ3OrgXqoF6284RxsOuWntplSPziIIToTsuYNh69aSGqMw=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.grenzach-wyhlen.de/baederbetriebe",
+        "phone": "07624 988144"
     },
     {
         "id": "osm-spot-91",
         "name": "Strandbad",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public lakeside or riverside bathing facility (Strandbad) in Davos Wolfgang.",
         "address": "Strandbad, 7265 Davos Wolfgang",
         "zip": "7265",
         "city": "Davos Wolfgang",
         "lat": 46.8652,
         "lng": 9.8872,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcWxiMapm96KM2U7aDJGWawwH5RoUVw_fQX-0_EvtZgrBfaoxFfZe6DloouT8ijh20x6YKAX6pFv8Au6AEWqY7UcTBpz2vW7Ijzk7ZVnXRiL3rQs2BpsHYDrmWSQdtMdU-0WhMC=s4800-w1000",
         "imageSource": "Google Maps / Photo by Bachi's Strandbad Davos",
         "osmImageUrl": null,
@@ -8965,23 +9037,18 @@
         "id": "osm-spot-92",
         "name": "Seeliken",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Seeliken, 6304 Zug",
-        "zip": "6304",
+        "description": "Public swimming pool facility (Seeliken) located in Zug.",
+        "address": "Seeliken, 6300 Zug",
+        "zip": "6300",
         "city": "Zug",
         "lat": 47.16438,
         "lng": 8.51338,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLch8c-mf09UMEGpAC117joXa_fE5aih4RVlz44ao3DzrUW1oZUWXZBh8IwRSshoWuY-32ZdZKQrvpr5oMfXG-xUG_TU1kiZrRNgyKmWjAIvz0022ELTnpSzPzdkJ-1KY-3YcwFs=s4800-w1000",
+        "amenities": [],
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcwpnypujnTqZOl63UdjJzGbNTmIqwnU_6wORw9Z3YsxV5baQ4BJRevInl2QlzrA009wKqivu6y-17RVqyEchQxqbuP8gy43o0gpwQjbnugBL-06f0-oeSBBN-hur4tHsQp-jPW=s4800-w1000",
         "imageSource": "Google Maps / Photo by Thomas Hayoz",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -8990,7 +9057,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLch8c-mf09UMEGpAC117joXa_fE5aih4RVlz44ao3DzrUW1oZUWXZBh8IwRSshoWuY-32ZdZKQrvpr5oMfXG-xUG_TU1kiZrRNgyKmWjAIvz0022ELTnpSzPzdkJ-1KY-3YcwFs=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcwpnypujnTqZOl63UdjJzGbNTmIqwnU_6wORw9Z3YsxV5baQ4BJRevInl2QlzrA009wKqivu6y-17RVqyEchQxqbuP8gy43o0gpwQjbnugBL-06f0-oeSBBN-hur4tHsQp-jPW=s4800-w1000"
         ],
         "featured": true
     },
@@ -8998,22 +9065,17 @@
         "id": "osm-spot-93",
         "name": "Hallenbad",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public indoor swimming pool (Hallenbad) in Koblenz.",
         "address": "Hallenbad, 5322 Koblenz",
         "zip": "5322",
         "city": "Koblenz",
         "lat": 47.62529,
         "lng": 8.21586,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLelPO6JEEkpYF40XvoDBsDgc5BDW0tJQ_w2yc6Hc-oHCdtYa4mxOngpv1zatBRIUJUa9_34KgF5_35wz_l3QxKw_bLcjWj5DwAOhWqTQHq6bRTgyYygYV73VgLrg6rKtwEdimQHg0Y9g2s=s4800-w1000",
         "imageSource": "Google Maps / Photo by Jörg Zimmermann",
         "osmImageUrl": null,
@@ -9031,23 +9093,21 @@
         "id": "osm-spot-130",
         "name": "Schwimmbad Rotkreuz",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Schwimmbad Rotkreuz, 6343 Rotkreuz",
+        "description": "Public outdoor swimming pool and bathing facility (Schwimmbad Rotkreuz) in Rotkreuz.",
+        "address": "Buonaserstrasse 33, 6343 Rotkreuz",
         "zip": "6343",
         "city": "Rotkreuz",
         "lat": 47.14073,
         "lng": 8.43906,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf2xVjZPLhkLatTwTP2q3xjHfOECODoP0GNSaPxdoJjAQhkb-7E9h0dMdKQBHGrxvdgEm7KTiDUQMgLb0ZTI9xi2wREl8wqqLbhzL9ZxVMCjxmga-YhZ-CjCU9mk9k0Tux6L42j=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdCt21Gg_utInFXV4GKmTeZcuu4u9iMWcZHSOc2YlqySV0OdyH4MKNoHqWPGP11sQqyIfCnDh6XX1lRXoPIdHltX-_oMJagorevRBg9WbCPjpSfD0jzNOGDgb_0PUG5eK-ACF96=s4800-w1000",
         "imageSource": "Google Maps / Photo by Flavio Blum",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9056,31 +9116,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLf2xVjZPLhkLatTwTP2q3xjHfOECODoP0GNSaPxdoJjAQhkb-7E9h0dMdKQBHGrxvdgEm7KTiDUQMgLb0ZTI9xi2wREl8wqqLbhzL9ZxVMCjxmga-YhZ-CjCU9mk9k0Tux6L42j=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdCt21Gg_utInFXV4GKmTeZcuu4u9iMWcZHSOc2YlqySV0OdyH4MKNoHqWPGP11sQqyIfCnDh6XX1lRXoPIdHltX-_oMJagorevRBg9WbCPjpSfD0jzNOGDgb_0PUG5eK-ACF96=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeONUEwa5UBSHvdRUKkUpTNTruVoeHeY5ULgtW_zAgnDmuK0djbeAfSI2q_II3038xU490GbgOjtPFhnJ6odPYS24py_pD8NHj-BC8xbndm57IA_6WndSunYP51uosJgYLmSq6b=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcR-Y6YSxKnXF2s4BA32jE1lCet_OvbB0_cxEUxbcyhSscPxHs6IFDQH4NYxFOr5d3wvKi6CRpvugJA0PiDSdWaMvsSWVhz4mhTit5tY8HVsvhf0Xnb7Mowm59YgTEio1dmG1k=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.zg.ch/behoerden/gemeinden/risch-rotkreuz/gemeinde/freizeit-und-sport/infrastrukturen/badeanstalten",
+        "phone": "079 538 47 32"
     },
     {
         "id": "osm-spot-146",
         "name": "Strandbad Diepoldsau",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Strandbad Diepoldsau, 9444 Diepoldsau",
+        "description": "Public lakeside or riverside bathing facility (Strandbad Diepoldsau) in Diepoldsau.",
+        "address": "Strandbadstrasse 15, 9444 Diepoldsau",
         "zip": "9444",
         "city": "Diepoldsau",
         "lat": 47.3808,
         "lng": 9.67228,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: Closed | Tu: Closed | We: Closed | Th: Closed | Fr: Closed | Sa: 9:00 AM – 3:00 PM, 6:00 – 11:00 PM | Su: Closed",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLettEQarPKwyRJfmbP1JQsU8d7XEI-sgKft0jB5YwnR68Do4_vPipss2-YNnZXNqqKYyZn7iICTPaEALOzqLE0vScekPLAh7TiogaHA13D6l56_YLZfJlFTpFeWEKw6bjXW9ABA=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdWgJ41PAls0zEyCH32rj4sh8HOFCzXpZ8xbaDivMjFTVuQbvUCe6dNdSm2l5wYL_MxTpTByT5BynYGWK9TOB3YzwQbPoXlTLrqT86ITjBbwcx9tXWalnSGKyUigsEzyjC6lleP=s4800-w1000",
         "imageSource": "Google Maps / Photo by Cee Bitt",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9089,32 +9152,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLettEQarPKwyRJfmbP1JQsU8d7XEI-sgKft0jB5YwnR68Do4_vPipss2-YNnZXNqqKYyZn7iICTPaEALOzqLE0vScekPLAh7TiogaHA13D6l56_YLZfJlFTpFeWEKw6bjXW9ABA=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdWgJ41PAls0zEyCH32rj4sh8HOFCzXpZ8xbaDivMjFTVuQbvUCe6dNdSm2l5wYL_MxTpTByT5BynYGWK9TOB3YzwQbPoXlTLrqT86ITjBbwcx9tXWalnSGKyUigsEzyjC6lleP=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLezDqJ1pNW6j0l3NplFnApzPBOzHExCNOJ-60Kh_ypkXf9I-iCh4q7_TL1xBiCLg3CU19-xi7hVxNFTzjCL02oezOexAVNg2qVXMTOGn1eTZEwQaKxaZphGQ0yTTakcKDzsfX67Ww=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLePU5WMnkz2wvA2UqFlsztvTmet2IEK-VViE19372TVMEFv6VcnTW6bcyaFzMvwlJYsbk7iu_dm55h0ruWMpe2h-tzyLRaJGPQXiSEjJn0OtRIn-LYgyJJI80z2cGVmCQF9dxEN=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.strandbaddiepoldsau.ch/",
+        "phone": "071 733 19 13"
     },
     {
         "id": "osm-spot-178",
         "name": "Bogn d'aua da sal",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Bogn d'aua da sal, 7515 Sils/Segl Baselgia",
+        "description": "Public swimming pool facility (Bogn d'aua da sal) located in Sils/Segl Baselgia.",
+        "address": "7515 Sils im Engadin/Segl",
         "zip": "7515",
-        "city": "Sils/Segl Baselgia",
+        "city": "Sils im Engadin/Segl",
         "lat": 46.42803,
         "lng": 9.76268,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
+            "Toilets"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdAzSQBBAfxFssTy5ZEnanuNrOuJTgRjYBlLcgp-A8k6k_xXVTgwFgsGWEM7rjiWSACxHJEwaqlwD2AxlLlT5xvr11lKo2CZi2LwrselGKUSF2LIsiBqfqY4L79xI6QN0BLhdSA=s4800-w1000",
-        "imageSource": "Google Maps / Photo by Art Museums of the World",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdvXYZ1M_IoDY5dBIbKxFcTT-4K1mlRdWIL7eEqru4FUA5-IEK-2WBEkD-vCzIdlE5LltT0XKry1ylPDOgQ6LEfwq-JK4Fomkw3io0Xgn1fRe6IHWsFlIjSpGyCve6B7sqzPUIvmQ=s4800-w1000",
+        "imageSource": "Google Maps / Photo by William Von Mansory",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -9122,7 +9186,9 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdAzSQBBAfxFssTy5ZEnanuNrOuJTgRjYBlLcgp-A8k6k_xXVTgwFgsGWEM7rjiWSACxHJEwaqlwD2AxlLlT5xvr11lKo2CZi2LwrselGKUSF2LIsiBqfqY4L79xI6QN0BLhdSA=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdvXYZ1M_IoDY5dBIbKxFcTT-4K1mlRdWIL7eEqru4FUA5-IEK-2WBEkD-vCzIdlE5LltT0XKry1ylPDOgQ6LEfwq-JK4Fomkw3io0Xgn1fRe6IHWsFlIjSpGyCve6B7sqzPUIvmQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf9z-XwSLVRe3OowzSLxaZiyu2sTUR5JBNB0ywFMqBcoTJLde645DYPONcNKyF76kVTpbYJBXzHuaUipRcKXv6_EijWiAxhir6AUO340_xA1uR7BT3l1agSzI4LHRE4yQbY0OaIRw=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcIYv7mmVIY493LmfhrRvVewDioKYBea6w73t2oK5M3WXEj208CdeweeLeAoB3eL638299dj7i5nibwB50AosLn5qKEYURebVw7wIS-gaNoQ1Tj6C8US_uGfI97k7yTiE5D7i8P=s4800-w1000"
         ],
         "featured": true
     },
@@ -9130,23 +9196,22 @@
         "id": "osm-spot-198",
         "name": "Hallenbad Minster",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Guggelstrasse 7, 8842 Unteriberg",
+        "description": "Public indoor swimming pool (Hallenbad Minster) in Unteriberg.",
+        "address": "Guggelsstrasse 7, 8842 Unteriberg",
         "zip": "8842",
         "city": "Unteriberg",
         "lat": 47.05754,
         "lng": 8.79936,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdGheK0G6-kNqPIS_-Uhuqf0tioV770bhghgl526KpKTqsP4u8jHx0wiDuIn7pfEsG_KC9j1BKr3bmNwq_wtjItBuTCZJQ59YYwHhW4osW04hHcbY41z66puFmTkOZH1K0by2HbjA=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdWAaI5VHI0pPtFMi7cwRs22ymEhWDwtj90ZZF794iCnk_NhgyS0iHqI-ZlzuhyVrfwFxlCMLZibDCKuD74-Nj5SQypgiLCr4Xp9IOQVHjNIpPzkvC36wSJ3Y5yU-gX4TyvjYPrxQ=s4800-w1000",
         "imageSource": "Google Maps / Photo by Hallenbad Ybrig",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9155,31 +9220,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdGheK0G6-kNqPIS_-Uhuqf0tioV770bhghgl526KpKTqsP4u8jHx0wiDuIn7pfEsG_KC9j1BKr3bmNwq_wtjItBuTCZJQ59YYwHhW4osW04hHcbY41z66puFmTkOZH1K0by2HbjA=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdWAaI5VHI0pPtFMi7cwRs22ymEhWDwtj90ZZF794iCnk_NhgyS0iHqI-ZlzuhyVrfwFxlCMLZibDCKuD74-Nj5SQypgiLCr4Xp9IOQVHjNIpPzkvC36wSJ3Y5yU-gX4TyvjYPrxQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdF_AxOpoRqDLGJsIOICWiNvOGYSl4Mknv9EwZo3KZzJaLogiPXqcOjwfXovsaz7cOCLAjI6T4eSJ_A6LpJoedSBToVz3fzjPlV9epjFsg0eok4r5jOFd7OrJSHkb7Ehy5fFtbHYOfzP7pt=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcCnou1_lfwclP9HJgVCSSKFekbL74IEyhbrWwe_sLZn8GBHEPARZlFpfQOaP3NV5uolQEUq3Lv1CGKsZibFAq61Bvq1ImQQwG89h7cU9CD-pyXg0HTYQcKB2fsw59YSObAzwMsk7xJ3f6A=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.hallenbad-ybrig.ch/",
+        "phone": "055 414 27 21"
     },
     {
         "id": "osm-spot-249",
         "name": "Eienwäldli",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Eienwäldli, 6391 Engelberg",
-        "zip": "6391",
+        "description": "Polished mountain hotel featuring upmarket dining, plus a spa with an indoor heated pool complex.",
+        "address": "Wasserfallstrasse 108, 6390 Engelberg",
+        "zip": "6390",
         "city": "Engelberg",
         "lat": 46.80977,
         "lng": 8.42267,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLemY6Mxe75a0-jIHZf7WNFz6Dgyb8o7e0Roa3VpRWZ19qziIqex5Qgf35TeKjLzxTuablQIn2t53r6aIWh91z04iccKy9GOZoOcrlu7kjLXsk2Ju9lM7enI459LAX8Yb_39YTgtZg=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeaPraH-Tp4R6mf4sNLh0oiqgWIYFtR20sIf2m9NNyta6-bHNJhV2svbLu9hKp0Vc66OUGs57-eWghdHfwewtDzNLX4O-hWH1NLqYRoSWSnNCMZ3WEXX2bxFvqZhWYAKl3b990o7Q=s4800-w1000",
         "imageSource": "Google Maps / Photo by Alpenresort Eienwäldli",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9188,31 +9255,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLemY6Mxe75a0-jIHZf7WNFz6Dgyb8o7e0Roa3VpRWZ19qziIqex5Qgf35TeKjLzxTuablQIn2t53r6aIWh91z04iccKy9GOZoOcrlu7kjLXsk2Ju9lM7enI459LAX8Yb_39YTgtZg=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeaPraH-Tp4R6mf4sNLh0oiqgWIYFtR20sIf2m9NNyta6-bHNJhV2svbLu9hKp0Vc66OUGs57-eWghdHfwewtDzNLX4O-hWH1NLqYRoSWSnNCMZ3WEXX2bxFvqZhWYAKl3b990o7Q=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfKb_0T01ZZdm9kmIOkkqgSJPHN6fu5GM33eGIHhYauJkv8QYP19UZ0pO7MnC6kna7banThGMpEdxHBzQdCcO_zCbj9osK4iHv9_ax_QhmMeSWoyRQ4PxH_RVJ1UBJRwimkslnNkQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeAQUshreTgkP0kJCkzmqgd793qaHeJf9zSqZ4uNldv-flW50LD9xcixQNpiYDmHpTM1DUqHZZoH83ORax4vo7Qtb8EYN3a67gY4-yeFw-4iLBe-kw6PUsL8KG8TiQXzsBqxnorVrdpquk=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://alpenresort.ch/",
+        "phone": "041 637 19 49"
     },
     {
         "id": "osm-spot-252",
         "name": "Aquaparc",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Aquaparc, 1845 Noville",
-        "zip": "1845",
-        "city": "Noville",
+        "description": "Caribbean-themed water park with slides & games, plus whirlpool, saunas & a Turkish bath.",
+        "address": "Rte de la Plage 122, 1897 Port-Valais",
+        "zip": "1897",
+        "city": "Port-Valais",
         "lat": 46.38951,
         "lng": 6.86235,
-        "openingHours": "Mo-Fr 10:30-18:00; Sa,Su,PH 10:30-19:00",
+        "openingHours": "Mo: Closed | Tu: Closed | We: 10:30 AM – 6:00 PM | Th: 10:30 AM – 6:00 PM | Fr: 10:30 AM – 6:00 PM | Sa: 10:30 AM – 6:00 PM | Su: 10:30 AM – 6:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeZxQgBaTexDI0KicOaPMw-fSUng-3fUbs95BzkXb-edRnK2u6INRWwV22a-EbclXZWq1q9936s8aFUAS8uiOWAK24UD3l-D29Q-S75KErntaFOHqJsyYaiejd5wXDT3vJgByigxA=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeqSt6HtMpW53IaIoyQt4Xo26lxluw97tFiiNIeu7yArJGbQO2uluQNvBzsTlBei4Pdb8gZ_a6oPAXr1CX_sdOXtROHLN18Q8i16U5hYlwn1Bcczr6jDv3plmbY1y-6TgVud6q-vg=s4800-w1000",
         "imageSource": "Google Maps / Photo by David Do",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9221,31 +9291,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeZxQgBaTexDI0KicOaPMw-fSUng-3fUbs95BzkXb-edRnK2u6INRWwV22a-EbclXZWq1q9936s8aFUAS8uiOWAK24UD3l-D29Q-S75KErntaFOHqJsyYaiejd5wXDT3vJgByigxA=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeqSt6HtMpW53IaIoyQt4Xo26lxluw97tFiiNIeu7yArJGbQO2uluQNvBzsTlBei4Pdb8gZ_a6oPAXr1CX_sdOXtROHLN18Q8i16U5hYlwn1Bcczr6jDv3plmbY1y-6TgVud6q-vg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfTkQ0zWcVKmK6fuIxULnoee4Z-ipoK5P2CEVNPiE3UdSKtFpUmCx7tbtx2qT3PFDu258G7ifOtGpxLKG9e219rr-APKV8OQjA8Aui13NbHJvPSgis4J1ng5-g3rbHHreLTiPA=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLepgaCqLbx8TD3lwukuh_1p9g_rUW2dRGVdiEUjz0qPlX_i9hFZ6PN-3oaGu9BDZPFn4mU7DSq2hlAwy9h3yVCyioaV3WPsHfgG9i5PV9J1Ob6Ca_1Awe7SrHa-DOoVhNM-Z0J1=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.aquaparc.ch/",
+        "phone": "024 482 00 00"
     },
     {
         "id": "osm-spot-303",
         "name": "Strandbad Nonnenhorn",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Strandbad Nonnenhorn, 9401 Rorschach",
+        "description": "Public lakeside or riverside bathing facility (Strandbad Nonnenhorn) in Rorschach.",
+        "address": "Seestraße 12, 88149 Nonnenhorn, Germany",
         "zip": "9401",
         "city": "Rorschach",
         "lat": 47.57586,
         "lng": 9.60779,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcLwSoUpYsBcMD05Wuqbg4qNsuP6Bess9aUr7zYcUXJ0xix5NhUQhLn-ttvXXBU3J22UiiiuE7yQAdTI_SaT6mwAS1RabBO-W6SKgYqpozXC_11sAYYBlbozSL4htF0wMLE8Vep=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeHNbB8Jwe_bVsW1hEEQZX2Jn0RlFPlUdITR1auMkbdHv6V9H_YJwJlv1cUp7S6ecF2PgU9oe1EoJVgAu2XIFTv8SEh_dsPgPDOtdHRn8yRH28CN16hNSAqXtVy2lVZBEjuQI5Q=s4800-w1000",
         "imageSource": "Google Maps / Photo by Strandbad Nonnenhorn",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9254,31 +9327,32 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcLwSoUpYsBcMD05Wuqbg4qNsuP6Bess9aUr7zYcUXJ0xix5NhUQhLn-ttvXXBU3J22UiiiuE7yQAdTI_SaT6mwAS1RabBO-W6SKgYqpozXC_11sAYYBlbozSL4htF0wMLE8Vep=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeHNbB8Jwe_bVsW1hEEQZX2Jn0RlFPlUdITR1auMkbdHv6V9H_YJwJlv1cUp7S6ecF2PgU9oe1EoJVgAu2XIFTv8SEh_dsPgPDOtdHRn8yRH28CN16hNSAqXtVy2lVZBEjuQI5Q=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcA1SfLRy9LRmhrgXB8Q_NG15Eg6BhcfRU37ySPkCqgnNqDS9c1nG0vmUplwSdPos3kTlkmyYXXZE_lKwANt1e6rjpDsnSexzjV_TSUkKX2SKAgQGzwgdpp0Im7XOEKGoOpvdce=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdzsFLAo3JMKyQCybiF32NIg9-_SEh-GIgKnA4HtKj8f-lWC5NhkCxDXBu0RMh96yB03xSv5V-jvh3qJumCbXXY3ZPDWRDzq8tpUoOLpFj10k1Wo006OZ8HeSw5GAHKBeZuiPNoKw=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.nonnenhorn.eu/",
+        "phone": "0800 0786786"
     },
     {
         "id": "osm-spot-320",
         "name": "Bains des Pâquis",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Bains des Pâquis, 1201 Genève",
+        "description": "Popular public bath houses on a pier in Lake Geneva that turn into saunas during winter.",
+        "address": "Quai du Mont-Blanc 30, 1201 Genève",
         "zip": "1201",
         "city": "Genève",
         "lat": 46.21036,
         "lng": 6.15419,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 9:00 AM – 8:30 PM | Tu: 9:00 AM – 8:30 PM | We: 9:00 AM – 8:30 PM | Th: 9:00 AM – 8:30 PM | Fr: 9:00 AM – 8:30 PM | Sa: 9:00 AM – 8:30 PM | Su: 9:00 AM – 8:30 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
+            "Toilets"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcR8E-07bbTLMPTpxJXrUc3Ok-11EIfQ6k5YilA91VAsnfqmxg6_id-9E-o0iIpoCacufw8aVNPChkPrgORz1Sr-Q8rZTvxWyq7yWwQ_tqto3oMtrpWjLzZFgr_PpE5ESYYLBxbYKdO8Cim=s4800-w905",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfzx24CBrtC__H80I_4FLk2AM0YvP7pZx1NCLOIym68gVB7ONrSOt4nS3OMD2_notxlklHTF9dPK5UG2O0_4tZ-kvY6FTyPrEVZHpa7INpG7CBe5hf7XVO-dqtSavI1xzgLKxKPjv-BgxCk=s4800-w905",
         "imageSource": "Google Maps / Photo by Csaba Biro",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9287,31 +9361,35 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcR8E-07bbTLMPTpxJXrUc3Ok-11EIfQ6k5YilA91VAsnfqmxg6_id-9E-o0iIpoCacufw8aVNPChkPrgORz1Sr-Q8rZTvxWyq7yWwQ_tqto3oMtrpWjLzZFgr_PpE5ESYYLBxbYKdO8Cim=s4800-w905"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfzx24CBrtC__H80I_4FLk2AM0YvP7pZx1NCLOIym68gVB7ONrSOt4nS3OMD2_notxlklHTF9dPK5UG2O0_4tZ-kvY6FTyPrEVZHpa7INpG7CBe5hf7XVO-dqtSavI1xzgLKxKPjv-BgxCk=s4800-w905",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcSynlwe8Au82p9po0AkZ3GitXAVs6bxDY-cWXWptqJIU8E6kuq_6ZA27XTgi_GWDtQM7Wx8J1RupcllTqWcRra2sK92kMOcik-wLSR6S_ZUtXd1BEL-ZQsVAvtcyKNshnBBUKhIg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLerHQ3M2rAP1IylJPX62jyLMA4TLmtC6C4YVnqizeCQb6OCVmZkn7aP7Uu9qJ6WZpAmDDRUCajCTeRBFG6F1e-fKfHx3uhW3oli4ylwjhy-hJanZzOd8867KN9ciodunUMyfkPI=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.bains-des-paquis.ch/",
+        "phone": "022 732 29 74"
     },
     {
         "id": "osm-spot-346",
         "name": "Strandbad Alpnach",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Strandbad Alpnach, 6053 Alpnachstad",
+        "description": "Public lakeside or riverside bathing facility (Strandbad Alpnach) in Alpnachstad.",
+        "address": "Städerriedstrasse 6, 6053 Alpnach",
         "zip": "6053",
-        "city": "Alpnachstad",
+        "city": "Alpnach",
         "lat": 46.95408,
         "lng": 8.28343,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdrvXJg90bGW_PMPXiBnOTAn06WhlIo3Qjaewm_Cl83Q_u8mLpDshCi-d91bo5AjSYDJNxM35IISIttABcmG5MwQScmj6Zm37HmEsk31FYE3h5WaOFmKOcdy16pPxqxxIekhXEsPQ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf4ND3FXSFyUcY3fOue3ZL0rehgGrXwS1-AjqFGLPYhsIe2sgmeZYTMqyoJxVDUlrQ9bosAp63JJVyyA59Aom_uQKRWTsFGR6-N2HkU7-axGYvKCBUsFIusf7YXA_aBJyMgNy4IUg=s4800-w1000",
         "imageSource": "Google Maps / Photo by Benjamin",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9320,31 +9398,32 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdrvXJg90bGW_PMPXiBnOTAn06WhlIo3Qjaewm_Cl83Q_u8mLpDshCi-d91bo5AjSYDJNxM35IISIttABcmG5MwQScmj6Zm37HmEsk31FYE3h5WaOFmKOcdy16pPxqxxIekhXEsPQ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf4ND3FXSFyUcY3fOue3ZL0rehgGrXwS1-AjqFGLPYhsIe2sgmeZYTMqyoJxVDUlrQ9bosAp63JJVyyA59Aom_uQKRWTsFGR6-N2HkU7-axGYvKCBUsFIusf7YXA_aBJyMgNy4IUg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdkunqBSkHjaXUcCMPaNivepfuAf4GjnBvTNchGuUtjTHOVpktGlvMC0wtH6qa5gLGWQCOdcADogLTEqeZQBk1o1-DCkUroLKb6jRJxvH_LlKegS9-lbOB3z98cm61A2oqKtNrXSlDu9tU=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcxWQJOPn6-D6kwf4bHOrRVrhDE8t7H6UduoKBgNk_1W2ZriBZWvlDAdnbb5smESP7vZYnYM7tlFz4yAGTFI8po5EZn22c2nMZEkPDrfCBbglDL0kd-W0i0AwBbGQcUpETsWb2T=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.alpnachbadibeizli.ch/",
+        "phone": "041 670 13 79"
     },
     {
         "id": "osm-spot-383",
         "name": "Schiltalp",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Schiltalp, 3826 Gimmelwald",
+        "description": "Public swimming pool facility (Schiltalp) located in Gimmelwald.",
+        "address": "Im Schilt, 3826 Lauterbrunnen",
         "zip": "3826",
-        "city": "Gimmelwald",
+        "city": "Lauterbrunnen",
         "lat": 46.55374,
         "lng": 7.86975,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
+            "Toilets"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfYOtIF23THw3PIxh1ylrdSVh5Q48Mf_RTSCMpKE7f2N3bSFiHCyp9rWXeUBsyVUgH25KYB4UNDuomD0GMJViPaVlFprRK0UaRuSBVz5IRZuJybHlmx2Dt5xdqsPUSNjdDu6Iccs-4v8GQ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeNUM8yEUh7G0auJb72eG6RROadoNniLnA7KmuKyb0MTFLYP5dnhw4ZOymARIepP9SxZM9QVFRpNl-vbXAhHhlSYYJqSAS9xr4GCeMA2SKdAH4ByVKxn_aEbRRHRV-oqVzKPMYGb2ANRs4=s4800-w1000",
         "imageSource": "Google Maps / Photo by The Lost Forest Mum",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9353,31 +9432,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfYOtIF23THw3PIxh1ylrdSVh5Q48Mf_RTSCMpKE7f2N3bSFiHCyp9rWXeUBsyVUgH25KYB4UNDuomD0GMJViPaVlFprRK0UaRuSBVz5IRZuJybHlmx2Dt5xdqsPUSNjdDu6Iccs-4v8GQ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeNUM8yEUh7G0auJb72eG6RROadoNniLnA7KmuKyb0MTFLYP5dnhw4ZOymARIepP9SxZM9QVFRpNl-vbXAhHhlSYYJqSAS9xr4GCeMA2SKdAH4ByVKxn_aEbRRHRV-oqVzKPMYGb2ANRs4=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeaY22l7SDNXW265Z3C2xXqMGVqTMqMv5qePd8DOJvtZSDZT6jiLpj9S5_5wel4R0ZXBrO9aZ1vwGO4YL51UcrQndQBJ49YxlQinSiMswsYGEgxEsKeZtATjk8QypHedB-CBxqDaA=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdISR8e_EWdfdDeit-0QynDwZ2yQg2NwR62A3UDOgGeiIPPfjPIGfYkk1LknIQDWFZCFbXpDbst8ei3eG5pdef71oFZ6R83Kczd1iXgnjIcqelFDrNOYzjR3RqkOEwzFS-RQHr_ScEt6pM=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.alporama.ch/gv2/get/get_alpSenntenDetail.asp?idAlpen=407"
     },
     {
         "id": "osm-spot-389",
         "name": "Freibad Klausenhorn - Dingelsdorf",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Freibad Klausenhorn - Dingelsdorf, 8273 Triboltingen",
+        "description": "Public outdoor swimming pool and bathing facility (Freibad Klausenhorn - Dingelsdorf) in Triboltingen.",
+        "address": "Zum Klausenhorn 121, 78465 Konstanz-Dingelsdorf, Germany",
         "zip": "8273",
         "city": "Triboltingen",
         "lat": 47.74853,
         "lng": 9.14723,
-        "openingHours": "24/7",
+        "openingHours": "Mo: Open 24 hours | Tu: Open 24 hours | We: Open 24 hours | Th: Open 24 hours | Fr: Open 24 hours | Sa: Open 24 hours | Su: Open 24 hours",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLc034YVBFMIaPJid5CqB-xYGeYDEFGbPciPYFLBEewWg2MDW2GUpUWbJeHytWmWk6obobBSgmxtZSRT9ci9etfPYJ9eDZUgbV2FPeCBTSxY9bnaBy07914RYN2IHhUDxUj6rdcdAQ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfs9ub6HZQZsWT4BfrRw3ZlF_R8yR9CrffgQsejIfQI_TPSoBqz948Ra4nAiqXtaa9lWbL3zDtZaezGMtzWpEwk4rXqrjmb5H_5yT-KL24UnVDFhBOGdKlGyVbiVceBdABGIsVVGw=s4800-w1000",
         "imageSource": "Google Maps / Photo by Strandbad Dingelsdorf am Klausenhorn",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9386,31 +9467,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLc034YVBFMIaPJid5CqB-xYGeYDEFGbPciPYFLBEewWg2MDW2GUpUWbJeHytWmWk6obobBSgmxtZSRT9ci9etfPYJ9eDZUgbV2FPeCBTSxY9bnaBy07914RYN2IHhUDxUj6rdcdAQ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfs9ub6HZQZsWT4BfrRw3ZlF_R8yR9CrffgQsejIfQI_TPSoBqz948Ra4nAiqXtaa9lWbL3zDtZaezGMtzWpEwk4rXqrjmb5H_5yT-KL24UnVDFhBOGdKlGyVbiVceBdABGIsVVGw=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLd0rQns7q5Oc9TvhWRNlqJFmsP0T2oTAWecoqJkIq5a-biayDWc9hLEQCmjwEF4iSV4sv_My2XfZ8RUc6wrc0XHPn8mmspd6TLLDlbqYlP8r3vTEYrEUhdtvU_LhABESpsMsUuZ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfthX7M_ltcZxAArqSJ4sLEEyCGOu623-ZBWFyQ4r-9d8tRP01IxXUxPOn4QSKak7QxyVBWcta1HRX-2ad60PLzC0Qx57g6smZOaxslz7tOuBXQ9rNqO59Ahi0wkx1_U9We6hD6tg=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.konstanzer-baeder.de/strandbaeder/strandbad-dingelsdorf",
+        "phone": "07533 5311"
     },
     {
         "id": "osm-spot-391",
         "name": "Camping Bella-Tola",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Camping Bella-Tola, 3952 Susten",
+        "description": "Public swimming pool facility (Camping Bella-Tola) located in Susten.",
+        "address": "Waldstrasse 133, 3952 Susten",
         "zip": "3952",
         "city": "Susten",
         "lat": 46.29869,
         "lng": 7.63658,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLejBCAU0x5bt-N2eu4Otyc1N1uN2JfGXy8TqTIijT0O3O3pASs4NaQp1T1vBj6akXlz6Z800TO1saB2hI8aXDTtbSSolhnW3PzGnW1-7MxaesAkuqXYfwSbjGhF7ijamkafnDFZ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeqXsPPOv--xjuATrjuCN0d148Y1xH1JyCLR_jOFKz5bxTgWHvjtDLroSAEjXpDzx5u1w-ZSnlKSFOnAA3AgKKvsi0F2gDjAs3qHaUeGvFyh1VFjQGfrNphPs0nO5Z05AbjOqvi=s4800-w1000",
         "imageSource": "Google Maps / Photo by Caren Schipperus",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9419,31 +9503,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLejBCAU0x5bt-N2eu4Otyc1N1uN2JfGXy8TqTIijT0O3O3pASs4NaQp1T1vBj6akXlz6Z800TO1saB2hI8aXDTtbSSolhnW3PzGnW1-7MxaesAkuqXYfwSbjGhF7ijamkafnDFZ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeqXsPPOv--xjuATrjuCN0d148Y1xH1JyCLR_jOFKz5bxTgWHvjtDLroSAEjXpDzx5u1w-ZSnlKSFOnAA3AgKKvsi0F2gDjAs3qHaUeGvFyh1VFjQGfrNphPs0nO5Z05AbjOqvi=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdf1q881bLoAFcknjcBipMstHMfYS1nSiSBA58WJpksF-S9syBHP0qU3dFs8O_8SnUQhrB1LvRx3z6B3AbLdHhlm0Ssjw2fzLlKz6N1yqsLkplo4BEPtUOAzia-U8yhNnqBx437n1w4JU_D=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeyaYXE6eCX2wRyYFNiGMJAkxQYdZul-pwVkc9x9vbaqPZoD8gcczCvRTb3A6Y1Os1rBBXse3PJLdPRUIgs-5CI_RahFZBmRDs5npW6q2ywfQVe4vSigYIIQdovm6aMqRQautz8=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.bella-tola.ch/"
     },
     {
         "id": "osm-spot-411",
         "name": "Aquabasilea",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Large indoor water park with 7 slides, a wave pool, hammam-style treatments & 12 saunas.",
         "address": "Hardstrasse 57, 4133 Pratteln",
         "zip": "4133",
         "city": "Pratteln",
         "lat": 47.52423,
         "lng": 7.68119,
-        "openingHours": "PH,Mo-Su 10:00-22:00",
+        "openingHours": "Mo: 10:00 AM – 10:00 PM | Tu: 10:00 AM – 10:00 PM | We: 10:00 AM – 10:00 PM | Th: 10:00 AM – 10:00 PM | Fr: 10:00 AM – 10:00 PM | Sa: 10:00 AM – 10:00 PM | Su: 10:00 AM – 10:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcTENpO3MqTQkRH9SdLJbUjUd4rn7cOhO9SSuc9Ry9Ss2hFaA-DkbXMPI4TUY4QSD4x64CLKf4T5DgblxfvUydyesdYMg_KoRYZpEDVtYQMiKsaAf1jb_SaiOeWotULBCWk-Lnx=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdgI6I09P3MkClpEQmd2rojpMaXalzDD1iY5mzgXiV7ipqz54Grk2GG8K2_ZkVUrgYeo5ZHrmkkjvoas66yR8ZDXCWMSayTJmRfq0ZlNQYnGH4oWq9pJML4n-RM6R6kfz58f1e6=s4800-w1000",
         "imageSource": "Google Maps / Photo by aquabasilea",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9452,31 +9538,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcTENpO3MqTQkRH9SdLJbUjUd4rn7cOhO9SSuc9Ry9Ss2hFaA-DkbXMPI4TUY4QSD4x64CLKf4T5DgblxfvUydyesdYMg_KoRYZpEDVtYQMiKsaAf1jb_SaiOeWotULBCWk-Lnx=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdgI6I09P3MkClpEQmd2rojpMaXalzDD1iY5mzgXiV7ipqz54Grk2GG8K2_ZkVUrgYeo5ZHrmkkjvoas66yR8ZDXCWMSayTJmRfq0ZlNQYnGH4oWq9pJML4n-RM6R6kfz58f1e6=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcYspD8b_CT32Ixy4ModGb4Tm8jI4ZUP0V62tnl4hFv2zwrOxzZo1GcytuEDzGsE9YsIhIVuod12Civeq3C5TDD7FbDySeAPGrfiTKIl2_u8dywxsx4q-ylEGP1IgF6i1X9utU-QWlhkfVB=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfUd1pn8OUiR9Owmnlbx4nEsAPWkuPVIn94FBRjytng3nZ3U_yWV-VPuD0Gjfp-mAf9FT-NkUJx6ct8P8z2173JVD0jPcWZZuWnO-hdMYBOmhTxCaITWYDHEj8D0FObLzI_ZW4=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.aquabasilea.ch/"
     },
     {
         "id": "osm-spot-537",
         "name": "Strandbad Sulzberger See",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Strandbad Sulzberger See, 8509 Frauenfeld",
+        "description": "Public lakeside or riverside bathing facility (Strandbad Sulzberger See) in Frauenfeld.",
+        "address": "See 4, 87477 Sulzberg, Germany",
         "zip": "8509",
         "city": "Frauenfeld",
         "lat": 47.6805,
         "lng": 10.3318,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcjwAqj_KonkJ847S1psHkGLYQVP7Nz5Ly-WUeBxaTdrBpFT6Rx-auyCdkexWC6Md3nC6HopLei02RpV6I4aXObjsm4c1FkZ99U7VWOXIn74Fp2xFXTJSXr3ggkiH1jZwre5SU=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLc8bMkK2uusolTjUt2kKekJ06HbbDiGvhmtGZWdypDniJvuIIj5rO7yQbwZPx1gn-wzumiJPZXok5kSlVfgxO-U1462WOo-Feo_VO_JheJSiaHtcx4kEmFisGiuIhADlbP2Ln8=s4800-w1000",
         "imageSource": "Google Maps / Photo by Monika Fassnacht",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9485,31 +9573,32 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcjwAqj_KonkJ847S1psHkGLYQVP7Nz5Ly-WUeBxaTdrBpFT6Rx-auyCdkexWC6Md3nC6HopLei02RpV6I4aXObjsm4c1FkZ99U7VWOXIn74Fp2xFXTJSXr3ggkiH1jZwre5SU=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc8bMkK2uusolTjUt2kKekJ06HbbDiGvhmtGZWdypDniJvuIIj5rO7yQbwZPx1gn-wzumiJPZXok5kSlVfgxO-U1462WOo-Feo_VO_JheJSiaHtcx4kEmFisGiuIhADlbP2Ln8=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc7K1kyPqCDdLOqYWbtoRO0f6dDk2ICuEMc_hl7LVwBkFywsZd3m7sRDj0zSZRIr0jfKWvgAa3v7QhnZg1sWB2UMPZhZ4TnLMjY9iTs0sQrYoLmo2KRGo2LRK_cCtdeoz_URjY=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdRgF-GIw-16bi6E1G8OyTE3NWaqaCVR_pyZYh4hmPoMwu2pGYI547F-NsOYBqh9avX8UlhacUtNIQG2GTv8s76RqoHSRpp7qn4UaO-Ia-n9r3uxzETES2fdqcaLvesjXwdBUo39w=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://pension-seebad.de/"
     },
     {
         "id": "osm-spot-541",
         "name": "Nid du Cro",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Nid du Cro, 2008 Neuchâtel",
-        "zip": "2008",
+        "description": "Public swimming pool facility (Nid du Cro) located in Neuchâtel.",
+        "address": "Rte des Falaises 30, 2000 Neuchâtel",
+        "zip": "2000",
         "city": "Neuchâtel",
         "lat": 46.99852,
         "lng": 6.95702,
-        "openingHours": "Mo-Su 09:00-20:00",
+        "openingHours": "Mo: 8:00 AM – 10:00 PM | Tu: 8:00 AM – 10:00 PM | We: 8:00 AM – 10:00 PM | Th: 8:00 AM – 10:00 PM | Fr: 8:00 AM – 7:30 PM | Sa: 8:00 AM – 6:30 PM | Su: 9:00 AM – 7:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeqq6tpzpcyT5EdxAfYnJ44jGeoOaL83DYLnIpaxwPezpjmpduWIEdwn5yBMzlXdx_bh58-b8P2sS2jSabsVXOIodQdj-v5gR5K7xrJjCD-gCKaOyX3wkAnnj1Q1L8SVqLlsLtkiIM2TcFt=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe8X4EDn8UPe8VcgDWfzwwchTTLt77k-8CF9Lbb5Yl0YIgMXjflwR18WBTGCI5UySwGpzPc40twNZWP4wjqQ56v1oO4Bfzml1OxBjASKKrQGU3cPNX2b3td-cxKfK141u0c0UuURbBsri5r=s4800-w1000",
         "imageSource": "Google Maps / Photo by Piscines du Nid-du-Crô",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9518,31 +9607,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeqq6tpzpcyT5EdxAfYnJ44jGeoOaL83DYLnIpaxwPezpjmpduWIEdwn5yBMzlXdx_bh58-b8P2sS2jSabsVXOIodQdj-v5gR5K7xrJjCD-gCKaOyX3wkAnnj1Q1L8SVqLlsLtkiIM2TcFt=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLe8X4EDn8UPe8VcgDWfzwwchTTLt77k-8CF9Lbb5Yl0YIgMXjflwR18WBTGCI5UySwGpzPc40twNZWP4wjqQ56v1oO4Bfzml1OxBjASKKrQGU3cPNX2b3td-cxKfK141u0c0UuURbBsri5r=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeLiDHQ2Z6gkWemY636uViADgJqZ5muExmJym0MjhLG2CULPHMSEP_8Ijdx4_UW9YuY2ijk3PAHxHRs86MrQkqXqWrDR6xYB8vyQEEKDOuib9kLIElfuIv-Na-KKkJqIPui0-bzEg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcJwosLMzO9CP8x4JSqvW9EqejSyfl0wI2gl6lSUHhYi5JjCgVoRdudsVQc1-4EuXSPYEco-EAeAYF3ywAbn-l71kfEXj_nZJFB2KsysmSERxy34qRI2qS1oUElazDjUh25FiJb=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.lessports.ch/",
+        "phone": "032 717 85 00"
     },
     {
         "id": "osm-spot-545",
         "name": "Piscine couverte",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Piscine couverte, 1009 Pully",
+        "description": "Public indoor swimming pool (Piscine couverte) in Pully.",
+        "address": "Av. des Collèges 13, 1009 Pully",
         "zip": "1009",
         "city": "Pully",
         "lat": 46.51051,
         "lng": 6.6558,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 12:05 – 1:30 PM | Tu: 12:05 – 1:30 PM, 4:30 – 9:00 PM | We: 2:30 – 4:30 PM | Th: 12:05 – 1:30 PM, 4:30 – 9:00 PM | Fr: 12:05 – 1:30 PM | Sa: 12:00 – 5:00 PM | Su: 9:00 AM – 5:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcQd0Lvl-bgaURTzbCmm7svY9OKRhKENKFKx2Gr82VjFVe-u5jgecwShtqHcByEE-lTtK2CmCbu_myn6wte07Z9UqeINBbI20x_9uGbUjAOUVi71pi_XBINf998fIEhPi3wK84=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe8M7bVp3mGnzmxn_nq6ZpgqZxDzXbYgB4ZhZbYnCN3KUZzOJy9XWKjfB45EjBz-dLeNPqU0DEjc2BOTQzbagwZ4YNo-cOn3HCxJn13-vNcAuWTYFIqvLGhS8wv1BSydLcsskM=s4800-w1000",
         "imageSource": "Google Maps / Photo by Antonio Fernando Alves",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9551,31 +9643,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcQd0Lvl-bgaURTzbCmm7svY9OKRhKENKFKx2Gr82VjFVe-u5jgecwShtqHcByEE-lTtK2CmCbu_myn6wte07Z9UqeINBbI20x_9uGbUjAOUVi71pi_XBINf998fIEhPi3wK84=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLe8M7bVp3mGnzmxn_nq6ZpgqZxDzXbYgB4ZhZbYnCN3KUZzOJy9XWKjfB45EjBz-dLeNPqU0DEjc2BOTQzbagwZ4YNo-cOn3HCxJn13-vNcAuWTYFIqvLGhS8wv1BSydLcsskM=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLffyiuMOaq1R7ztH9FdQkatxbDXFO8ai-NzPB1GTeJkEqzOzgWOHzdeJJKWkk0BgCEP6ECUSuq8nXQZZ0Fk8tFKKa2GFXfjc3HgEiC8WwbobJVTVbaAEcIgeGiyLOysLw3-r78=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdgrbpGX6HI8dK-JoYtJdcGR_Tq8qWnS5R69s9vSs77I0ldJIzG8j_Wb9nDTH0ZSsocdITF2qZ64Q1rGAWoaI-peGGT6X4bz8x_7_QTlrVzaer665-xtDEgGfOosA0IRErk2MQd=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://piscines.pully.ch/",
+        "phone": "021 721 36 69"
     },
     {
         "id": "osm-spot-548",
         "name": "Hallenbad SPZ",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Hallenbad SPZ, 6207 Nottwil Paraplegikerzentrum",
+        "description": "Public indoor swimming pool (Hallenbad SPZ) in Nottwil Paraplegikerzentrum.",
+        "address": "Guido A. Zäch Str. 1, 6207 Nottwil",
         "zip": "6207",
-        "city": "Nottwil Paraplegikerzentrum",
+        "city": "Nottwil",
         "lat": 47.14121,
         "lng": 8.13062,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 6:00 – 8:00 AM | Tu: 6:00 – 8:00 AM, 12:00 – 7:00 PM | We: 6:00 – 8:30 AM, 6:00 – 9:30 PM | Th: 12:00 – 9:30 PM | Fr: 6:00 – 8:00 AM, 6:00 – 9:30 PM | Sa: 8:00 AM – 12:00 PM, 4:00 – 8:00 PM | Su: 8:30 AM – 6:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfSBw-Skv3AlUiiiDPHOfpKAokIPCchPH5kXHa6tzvkGBD_U-8gZGyNbg1OV96VOaUN75dLGXaZXq4CKdHdvaW1Yw0DQtTVshBFnWvT1FlTiRF-E1Jng-HnyWfgfGS2hWf5i2ajIje3ZOIQ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdM2cBgoMyX1WjQBgn_nCeoDtaHFR5B-R3qPimZX2Xz8FdVVQC74cMM-o2DVxldtWdOHGc8hHh2Fdu9Gccw_OjDG91eDdfzA0eC2x0aw-NaL3S3uokFEg_thfKjHweoiOlsL7bh7wmhozVQ=s4800-w1000",
         "imageSource": "Google Maps / Photo by Hallenbad SPZ",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9584,31 +9679,32 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfSBw-Skv3AlUiiiDPHOfpKAokIPCchPH5kXHa6tzvkGBD_U-8gZGyNbg1OV96VOaUN75dLGXaZXq4CKdHdvaW1Yw0DQtTVshBFnWvT1FlTiRF-E1Jng-HnyWfgfGS2hWf5i2ajIje3ZOIQ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdM2cBgoMyX1WjQBgn_nCeoDtaHFR5B-R3qPimZX2Xz8FdVVQC74cMM-o2DVxldtWdOHGc8hHh2Fdu9Gccw_OjDG91eDdfzA0eC2x0aw-NaL3S3uokFEg_thfKjHweoiOlsL7bh7wmhozVQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcwZUKne-rcBfat-36lRWCg0JE7OxrhBsqIJv0tRqiDATPVB18MP7BvMiZ8OtilMHkzEskFTSOJuzm7teeRoTCGSPJGCDy-_Qt3zu0cOJC8gu3FkEdvJvEVMaAMQJVBA4f7jQ_P6SA6j48=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeGtjVOTx9Rhx1WfcKpLmrbg_vFrHMNSwW6wgDdbE2HLxA9XS3nHOA6RQHbEQRgc1dQZdW4YA7MsC7bq2xfv1nqGmTRakmOQXw34gLYvrfQ_ZHuUqL9esrNPYGPmnJEC74i3e1W5MH0H8tD=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.paraplegie.ch/hallenbad",
+        "phone": "041 939 54 54"
     },
     {
         "id": "osm-spot-612",
         "name": "Piscina Comunale Coperta di Valtournenche",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Piscina Comunale Coperta di Valtournenche, 3920 Zermatt",
+        "description": "Public swimming pool facility (Piscina Comunale Coperta di Valtournenche) located in Zermatt.",
+        "address": "Piazza Carrel, 5, 11021 Valtournenche AO, Italy",
         "zip": "3920",
         "city": "Zermatt",
         "lat": 45.87542,
         "lng": 7.62395,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcLTe40ZZbye3k3repc0vZ1dXftzWO0IoPkCv2Otsw5x6eEV8uhvxzWZ6KkQnphTwCEwY9etLD4asNtG9HfGDOU8EChI7P_7Z35Fi7OecfaMhn_8jWhXh8s98atXZnsrrcGmFvQeRBfsWrc=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdpd4_1lwP_xhumK1A4r41jYvHq8NGaI7DHsiMG295pN4RfS5G4LsPTbhw1GpLzZcQMssCMpMs05rctVCFeCTHYztqfl2IB6ze5fdJayUDBpbmNyVOivlPqE7X6sN0X4xBT3efFVaIpMcj3=s4800-w1000",
         "imageSource": "Google Maps / Photo by Ilaria Provasio",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9617,31 +9713,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcLTe40ZZbye3k3repc0vZ1dXftzWO0IoPkCv2Otsw5x6eEV8uhvxzWZ6KkQnphTwCEwY9etLD4asNtG9HfGDOU8EChI7P_7Z35Fi7OecfaMhn_8jWhXh8s98atXZnsrrcGmFvQeRBfsWrc=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdpd4_1lwP_xhumK1A4r41jYvHq8NGaI7DHsiMG295pN4RfS5G4LsPTbhw1GpLzZcQMssCMpMs05rctVCFeCTHYztqfl2IB6ze5fdJayUDBpbmNyVOivlPqE7X6sN0X4xBT3efFVaIpMcj3=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeMCF4ryqpfYeMfOprTAeIniOFgn3HTGA55dD6HXCmsVNirHpE4syNgvA5ELqBmCRDB5caoFpQq1v16xtifbgvAMFTYPhfDK_nVHNSS4b0kZYMhiXWk333bjRztTiLWoWTA9aLW=s4800-w818",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdxAd68q0ki0nLLkI-NKVa2tEOa7Xo9x875mJRG_hJCsKcjiwxnkeF118cRJ0x8oS-CHIgcfGbpZntjWa5G0YfPiihQ1CpHpkqwLAQYdbZ7WNxlHyMhd5tXK5PmyeFzsQ7tLfmDnA=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.cdsports.it/",
+        "phone": "0166 92698"
     },
     {
         "id": "osm-spot-646",
         "name": "Piscine Les Hémionées",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Piscine Les Hémionées) located in Boncourt.",
         "address": "Rue d'Ajoie 1, 2926 Boncourt",
         "zip": "2926",
         "city": "Boncourt",
         "lat": 47.49596,
         "lng": 7.01147,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 8:00 AM – 12:00 PM | Tu: 8:00 AM – 9:00 PM | We: 8:00 – 10:00 AM, 12:00 – 9:00 PM | Th: 8:00 AM – 9:00 PM | Fr: 8:00 AM – 12:00 PM | Sa: 9:00 AM – 5:00 PM | Su: 9:00 AM – 5:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdmVCKk_6ypsysWcWn9wEqjp5ACsOeV_Xm8Vb4Qn-VRxCMBixKKL6aajb6WGqmZ91nhb_G2xy0nPAGCpMz8rnFpkf_0PD2ESdXBrTmGENiNxPEU8CiyjY25QuAJc9xQKgQLGJZE34Ys2urk=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLc2DXt5D8cFf4jRxTh6rC9kjFZjcBVT1chBi7Ai79V6NDW-JJL0dJU_7u1aCRPEiTCFYhEV5uihLp9hhEALbZCM81EbrzvKtWsQpcMPZhPzbIrGlvd3AUIGAS8V4WKwS6N-aS2ADTVtWFh_=s4800-w1000",
         "imageSource": "Google Maps / Photo by Alexandre Moscardini",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9650,31 +9748,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdmVCKk_6ypsysWcWn9wEqjp5ACsOeV_Xm8Vb4Qn-VRxCMBixKKL6aajb6WGqmZ91nhb_G2xy0nPAGCpMz8rnFpkf_0PD2ESdXBrTmGENiNxPEU8CiyjY25QuAJc9xQKgQLGJZE34Ys2urk=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc2DXt5D8cFf4jRxTh6rC9kjFZjcBVT1chBi7Ai79V6NDW-JJL0dJU_7u1aCRPEiTCFYhEV5uihLp9hhEALbZCM81EbrzvKtWsQpcMPZhPzbIrGlvd3AUIGAS8V4WKwS6N-aS2ADTVtWFh_=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcNO4S8o0Qy8FhFSajoYeRV0I4nj-vH0XhMOwimeXQskSxT8puSA-uhWDd0ufVG4uDhT0j6iriAw6-8Bo3MYIZFFVMP-iW3okCuRKz3Fyh-Uz6BjNDA41kMq8pVNk7k2z3F4IHdIA=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLebS969Iq97sv5-UPuSD71uv_Ewi8H4YNaDNtBxTmA8Tw9uvGMPAKgPSyZVhxZpVmbYQou4SwN6F8vK-qUNrAb4umQGv8ue6cuglLe8YpNJhEKTi_ECdbPQupiH1ErrNmPluvbXBA=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.piscineboncourt.ch/",
+        "phone": "032 475 61 61"
     },
     {
         "id": "osm-spot-649",
         "name": "Lernschwimmbecken Schule Rüfenacht",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Lernschwimmbecken Schule Rüfenacht, 3076 Worb",
-        "zip": "3076",
-        "city": "Worb",
+        "description": "Public swimming pool facility (Lernschwimmbecken Schule Rüfenacht) located in Worb.",
+        "address": "Rosenweg 9, 3075 Rüfenacht",
+        "zip": "3075",
+        "city": "Rüfenacht",
         "lat": 46.93134,
         "lng": 7.53993,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf7QVxV7jFuSVRujoeGY2B3UVOHUSkbXYCzEiTJk1poOYpHKwPeWES5Lt2TpvPzxgfWLgUmofF7Q4FK22pyjjawgZjZU_gisutiyVCEDyAPiNW29q0fk5icmaV_kDzISoZLoEu6=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfbmV1v2yqOwi5DygBcPfZQpUYXkdK6RdJd9beOPWyE3l_Y7rO0jW4LxoN-fgLkleCzrLCGtqVD6jSZQpC3EIPakJ-qTRd7VGOt1ivX_Dj3l1mQwNxEOn-wlKopu7eIgap8C9Ps=s4800-w1000",
         "imageSource": "Google Maps / Photo by Marco G.",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9683,32 +9783,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLf7QVxV7jFuSVRujoeGY2B3UVOHUSkbXYCzEiTJk1poOYpHKwPeWES5Lt2TpvPzxgfWLgUmofF7Q4FK22pyjjawgZjZU_gisutiyVCEDyAPiNW29q0fk5icmaV_kDzISoZLoEu6=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfbmV1v2yqOwi5DygBcPfZQpUYXkdK6RdJd9beOPWyE3l_Y7rO0jW4LxoN-fgLkleCzrLCGtqVD6jSZQpC3EIPakJ-qTRd7VGOt1ivX_Dj3l1mQwNxEOn-wlKopu7eIgap8C9Ps=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcGhCEkgbgpj4TkvXRPgD_SSwoj-ss6fdlqCT5UPBlSL66B05bMyczXdKg5I4StlbOv-tnNAFph5Le7oMRdy1q9GvQbDBNg1VQ3xSrNYyEn5ucHlDC-rqjRUhq3AUzs9S1kBtyy=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.schulen-worb.ch/",
+        "phone": "031 838 06 50"
     },
     {
         "id": "osm-spot-672",
         "name": "Hallenbad",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Hallenbad, 4532 Feldbrunnen",
-        "zip": "4532",
-        "city": "Feldbrunnen",
+        "description": "Public indoor swimming pool (Hallenbad) in Feldbrunnen.",
+        "address": "Obere Sternengasse 1, 4500 Solothurn",
+        "zip": "4500",
+        "city": "Solothurn",
         "lat": 47.21579,
         "lng": 7.55683,
-        "openingHours": "Mo-Sa 09:30-22:00; Su 09:00-18:00",
+        "openingHours": "Mo: Closed | Tu: 6:00 – 9:00 PM | We: Closed | Th: 6:00 – 9:00 PM | Fr: Closed | Sa: 9:00 AM – 6:00 PM | Su: 9:00 AM – 5:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcOKzUkFPe5PxDMXzitg5-KOm9L8Z3LSekxczjrjvohXvMTDhwWyar0SQLRL4WBNvSXwTDT1MtLCll4HUC3hNRvokEzEH-2Zdp-Y7tsMsN-QGW8F_YqEJ7WS6ilSEvVi_7xxA0ixw=s4800-w1000",
-        "imageSource": "Google Maps / Photo by Sportzentrum Zuchwil",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfZQlOcJ7fkPjnVKtY2mrntp3bRf9FmXBVRXputX42gcFU3_sUkMYm5yZjzYcOgJjV048klXmMqUj-uuOPJh5geFNe9vbUim_RDxFc7RpgKliu4hZve9LZiPuMNa6VdzE7rL6HiNQ=s4800-w768",
+        "imageSource": "Google Maps / Photo by Hallenbad Stadt Solothurn",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -9716,30 +9818,29 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcOKzUkFPe5PxDMXzitg5-KOm9L8Z3LSekxczjrjvohXvMTDhwWyar0SQLRL4WBNvSXwTDT1MtLCll4HUC3hNRvokEzEH-2Zdp-Y7tsMsN-QGW8F_YqEJ7WS6ilSEvVi_7xxA0ixw=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfZQlOcJ7fkPjnVKtY2mrntp3bRf9FmXBVRXputX42gcFU3_sUkMYm5yZjzYcOgJjV048klXmMqUj-uuOPJh5geFNe9vbUim_RDxFc7RpgKliu4hZve9LZiPuMNa6VdzE7rL6HiNQ=s4800-w768",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLel4EfHaTMYzkufnC0I4M09xuev9cAqAh85lQRu1ZbaSJnLXfT7tF9mpn0wEYYJrW8NQRmi2M4ke01uBq_IPCyMsl48HTzp9PhImFmJ8ZRWxlXvBNPnrop1FXiaC7sicwNxiZxq=s4800-w768",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfczvaZrzHsO478doPRt_0RamvwBZXIaaAUoIm2bQy-iHw99ym4rQv7dXrSdNOvnOCCedYXjAQZRlaN4bkaseY3m6fzhscB3Jfvl3DQg5JqwSgHbIRKhuK_LXT_M2DZJps3CmAKag=s4800-w768"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.hallenbad-solothurn.ch/",
+        "phone": "032 622 12 28"
     },
     {
         "id": "osm-spot-714",
         "name": "Schwimmbad am Badsee",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public outdoor swimming pool and bathing facility (Schwimmbad am Badsee) in Frauenfeld.",
         "address": "Schwimmbad am Badsee, 8509 Frauenfeld",
         "zip": "8509",
         "city": "Frauenfeld",
         "lat": 47.75281,
         "lng": 10.00591,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcTuFbZzSUVAGqhuAdGK3L9udq0AjYXys33xuhQ3GUr3HLV7AF5xZr5GtmtDmI53hrPpYLliv44V4kUuxET7WpUEIPc-k06996HJztZuyM8Kbl17WPz2ME7or_zEiZ7_vEaUxqZlO80L-A=s4800-w1000",
         "imageSource": "Google Maps / Photo by Schlossbadi Frauenfeld",
         "osmImageUrl": null,
@@ -9757,22 +9858,17 @@
         "id": "osm-spot-718",
         "name": "Montagnola Pool",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Montagnola Pool) located in Pambio-Noranco.",
         "address": "Montagnola Pool, 6915 Pambio-Noranco",
         "zip": "6915",
         "city": "Pambio-Noranco",
         "lat": 45.98926,
         "lng": 8.91808,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeTi8wyA7O5h-jYseuB525j0uRr8Z20it9bE0pvohsZxrxD3c-CRfF05hHSWIc_A2mmYg5pCFLUsPPPhgA4k_O_9JrFg-TQ3PIwP-FWPIZCerdmVdn6zQlohlluoi9IkMq2zzi8=s4800-w1000",
         "imageSource": "Google Maps / Photo by Cinzia Pavesi",
         "osmImageUrl": null,
@@ -9790,22 +9886,17 @@
         "id": "osm-spot-807",
         "name": "Schwimmteich zu Stöcklin",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Schwimmteich zu Stöcklin) located in Pfeffingen.",
         "address": "Schwimmteich zu Stöcklin, 4148 Pfeffingen",
         "zip": "4148",
         "city": "Pfeffingen",
         "lat": 47.45873,
         "lng": 7.58834,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfTgdN9uHAi6lXMOC00fPhIb9nFubZZlyRcJccLogqUTjOWvCh7fT_bm9XBmxYFgp3VEJy-mfvT3NqbxN446chsCcwmVCgj3sRJEaFPjMTEDJmb4tEq2RlYF44HAFwcjtF97RiF=s4800-w1000",
         "imageSource": "Google Maps / Photo by Gartenbad Aesch-Pfeffingen",
         "osmImageUrl": null,
@@ -9823,23 +9914,22 @@
         "id": "osm-spot-851",
         "name": "Freibad Lerchenfeld",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Freibad Lerchenfeld, 9014 St. Gallen",
+        "description": "Public outdoor swimming pool and bathing facility (Freibad Lerchenfeld) in St. Gallen.",
+        "address": "Zürcherstrasse 152, 9014 St. Gallen",
         "zip": "9014",
         "city": "St. Gallen",
         "lat": 47.41583,
         "lng": 9.34173,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeu63J9O2IzY-1RIeVB-P058_UjP8CrzON_SXMLgtAY8cXAnY2XX2j0-x9SBpE4b9zjDXMlTkvEgxc6gJR6LiV7fs-BS_OR57AR4KTyJCN_Fp2tjJiJBk-QsO0MbZ1n3uE6Pl_NJcp58PI=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLd0MZB_hXHKa2Tg0cf4ceslO_ZDSrTBPgan5Psk3HVqQdNF7ba325ZgSp6Ae_zxb_L0719pdSiH81zAJi7Gc7_iCP6GWazH4nqQE15cVj0u-QhF4wG5P5MZGmVLZT1F50fHHfF9tZUCZRc=s4800-w1000",
         "imageSource": "Google Maps / Photo by Sascha Klement",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9848,31 +9938,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeu63J9O2IzY-1RIeVB-P058_UjP8CrzON_SXMLgtAY8cXAnY2XX2j0-x9SBpE4b9zjDXMlTkvEgxc6gJR6LiV7fs-BS_OR57AR4KTyJCN_Fp2tjJiJBk-QsO0MbZ1n3uE6Pl_NJcp58PI=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLd0MZB_hXHKa2Tg0cf4ceslO_ZDSrTBPgan5Psk3HVqQdNF7ba325ZgSp6Ae_zxb_L0719pdSiH81zAJi7Gc7_iCP6GWazH4nqQE15cVj0u-QhF4wG5P5MZGmVLZT1F50fHHfF9tZUCZRc=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfZE6gXtARs-8izDOQHHs2aAIzZtYttQCD31FpBaDSJbLyFkAPPQOzPZescOXE3Rs0-jtPlvePx067h7G8vt7u4WzbIdTTwbdbB5wHXdjvc56_4oqyWx37OdqaGDaFaYJKTELc=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLesgYJeNxHEDp1fs0ZOxyO9ay2sVPdiiQyKa_chT-nAPfOM9O0-JWTJOvE8LUeR8JeaElDhXVXU02CTse5qws0C_d4-BzYUr1UL9ITfpAYjvZiekM3eDmQ0bRt8-GeUOM8q4fxO=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.sport.stadt.sg.ch/home/baeder-sauna/freibad-lerchenfeld.html",
+        "phone": "071 272 13 70"
     },
     {
         "id": "osm-spot-905",
         "name": "Wiemel",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Wiemel, 5436 Würenlos",
+        "description": "Public swimming pool facility (Wiemel) located in Würenlos.",
+        "address": "Büntenstrasse 39, 5436 Würenlos",
         "zip": "5436",
         "city": "Würenlos",
         "lat": 47.44266,
         "lng": 8.37137,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcL0auehsEWYmv3k4PZdwZxJEUV8hcMCcgsbRUS8S18rjtUm9JjAt2vu2wFoJvR1MOCAw2i08gECd2J0ifmZjwfWMJlZAdGQJ35uA9kM2Em1cEfdgcj7NT4MXZ0vlpIS9j_XXw1bQ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe9K5IVDPpcK19m26crKPJBrRPiasN6bPljf3mSlvoSak_8PaFa7PTLuP94Ez36rfqoRxZ5V6KGnvsGIgSPDCVSt6CWPGhpqeOYPkLyDip3f7J1-WLSMju0NHtvnGKGxUc0O-Pykg=s4800-w1000",
         "imageSource": "Google Maps / Photo by Schwimmbad Wiemel",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9881,30 +9974,29 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcL0auehsEWYmv3k4PZdwZxJEUV8hcMCcgsbRUS8S18rjtUm9JjAt2vu2wFoJvR1MOCAw2i08gECd2J0ifmZjwfWMJlZAdGQJ35uA9kM2Em1cEfdgcj7NT4MXZ0vlpIS9j_XXw1bQ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLe9K5IVDPpcK19m26crKPJBrRPiasN6bPljf3mSlvoSak_8PaFa7PTLuP94Ez36rfqoRxZ5V6KGnvsGIgSPDCVSt6CWPGhpqeOYPkLyDip3f7J1-WLSMju0NHtvnGKGxUc0O-Pykg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc_bkCkWSwYaRW9za8_vol1LclVv04HG2ZxJX54vuGSG7LeWFZQQO02TqAlbOKF05Tolia61Gic5nlPtsFhUEGXTEXvn0CtNXLfBge3qzIyV-8GT7oP2FV873hgkKCqFJs5zvxe=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeoMpxNrC2TXGfAkzYXJUnfYZlJvLLHzc_0guQCsEkbbCp7QDvgWfdFwcb51oHCoQs6qU2-r4BSNMTpThY2S99uQotoGuLZoEBNk5J2snPWwDd-P3kQspC1DDg2Qq-tVbE4UaEonA=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.wiemel.ch/",
+        "phone": "056 424 22 63"
     },
     {
         "id": "osm-spot-978",
         "name": "Piscina Comunale",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Piscina Comunale) located in Campocologno.",
         "address": "Piscina Comunale, 7744 Campocologno",
         "zip": "7744",
         "city": "Campocologno",
         "lat": 46.2186,
         "lng": 10.17804,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfsuCeU5rS_cHEIuIIPQocSntlCzZlm3eB-8oIoV1dKjLqdYNIf8BCY-h9aDHfDzV3udPlds9M2ZODCFP9yzmF1IOVpTfuwZB9ZGd8H-GYMFNx-xf7Qa9Fyq0FP-ktjNCH6u9MbNw=s4800-w1000",
         "imageSource": "Google Maps / Photo by Piscina Coperta",
         "osmImageUrl": null,
@@ -9922,23 +10014,22 @@
         "id": "osm-spot-1067",
         "name": "Freibad Flawil",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Freibad Flawil, 9230 Flawil",
+        "description": "Public outdoor swimming pool and bathing facility (Freibad Flawil) in Flawil.",
+        "address": "Böden 1597, 9230 Flawil",
         "zip": "9230",
         "city": "Flawil",
         "lat": 47.4045,
         "lng": 9.19143,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 10:00 AM – 7:00 PM | Tu: 10:00 AM – 7:00 PM | We: 10:00 AM – 7:00 PM | Th: 10:00 AM – 7:00 PM | Fr: 10:00 AM – 7:00 PM | Sa: 10:00 AM – 7:00 PM | Su: 10:00 AM – 7:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeS8qOI6EWkDkx74Xn5e1KOOD4V_u_7aS9U1P8wJAFdzQCK3UUPL_pE54OduNzhMgw4_zRt1BQOkBg5aP7UPA3IDriPPGY1nsRFEV-173YE1Cxvs3L9986Cff0L46Y9GzIk6dFwjQngNWG5=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeXAAVOWglJgCZnnStaWGafoK6jAw8iMm0c6y1b1OrQgVmkZbcx6JVHOn6tOJBdiIYNDlFeyxcY79mJoInG7uH9lBYqKqS2CQ0tcP82dtbrvl5kWY_XtUTYahbDRBnT5KN5AkAUIb8MnHQU=s4800-w1000",
         "imageSource": "Google Maps / Photo by Freibad Böden",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9947,31 +10038,35 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeS8qOI6EWkDkx74Xn5e1KOOD4V_u_7aS9U1P8wJAFdzQCK3UUPL_pE54OduNzhMgw4_zRt1BQOkBg5aP7UPA3IDriPPGY1nsRFEV-173YE1Cxvs3L9986Cff0L46Y9GzIk6dFwjQngNWG5=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeXAAVOWglJgCZnnStaWGafoK6jAw8iMm0c6y1b1OrQgVmkZbcx6JVHOn6tOJBdiIYNDlFeyxcY79mJoInG7uH9lBYqKqS2CQ0tcP82dtbrvl5kWY_XtUTYahbDRBnT5KN5AkAUIb8MnHQU=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfgMObMfVq56KtDEKlC8qeaJarwiekFMZloidFXIE3M6sl6DtG2vGemyoz0TCWR7z9gtBU_xk71mEriUFLBkbUGLukcYmbt76N1lhwQ-KmX4my5VmfZK9CjhMYuQpJycLF5M3RRVlw7uAgy=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcnHgDniHB7oA-vknHn38Yl_crZVfOOhkemqIILNG5nAdzPkjkiKDGKSf1eLdUKd35qFJepI6JRPWzC7EHSe6WIoqZ4jkhs4C4tVKW-dK1y3FQzToALy85gl9Mlqw-KWutI37_o=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.flawil.ch/freizeit/freibad.html/101",
+        "phone": "071 393 14 20"
     },
     {
         "id": "osm-spot-1068",
         "name": "Freibad Degersheim",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Freibad Degersheim, 9113 Degersheim",
+        "description": "Public outdoor swimming pool and bathing facility (Freibad Degersheim) in Degersheim.",
+        "address": "Mühlegasse, 9113 Degersheim",
         "zip": "9113",
         "city": "Degersheim",
         "lat": 47.37406,
         "lng": 9.20252,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdCe2XpnLJK-X6kJD_EmwsKiD7b_bVy7vtKK3LY-HMO4VGtbbYb6djZ5lIeupDEvW9Kx7nzCgA641O9mP_WwXTOguyO7OnyUTHSMAkNMC4RaytRfJyCQVAs1myoPDpV5YBqw3SWAA=s4800-w844",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeM7ub4Tpq3utj23CkoJ89dkMM7K0b2MfmJ_c-eK_H0uYdeGLTI1BD5ZUTMUNs-vovKQAIKwQ4fWmAGXAOPsqeHERYUmPMeqfpTMrOLOKrvaBBkZMgNAqK8Tnz3wVYKIx8TAb00Mg=s4800-w844",
         "imageSource": "Google Maps / Photo by Schwimmbad Schwimm- u. Sportanlage",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -9980,30 +10075,29 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdCe2XpnLJK-X6kJD_EmwsKiD7b_bVy7vtKK3LY-HMO4VGtbbYb6djZ5lIeupDEvW9Kx7nzCgA641O9mP_WwXTOguyO7OnyUTHSMAkNMC4RaytRfJyCQVAs1myoPDpV5YBqw3SWAA=s4800-w844"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeM7ub4Tpq3utj23CkoJ89dkMM7K0b2MfmJ_c-eK_H0uYdeGLTI1BD5ZUTMUNs-vovKQAIKwQ4fWmAGXAOPsqeHERYUmPMeqfpTMrOLOKrvaBBkZMgNAqK8Tnz3wVYKIx8TAb00Mg=s4800-w844",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdLNaLu7xH9ePV0qJCOpXqYtk-d9SDrhkLq8VYIFxWkZp7gu8ezR1UcvlRnrnLMk7P98FlYDF0a-z30A7Gf9B6NLhpSIhA68gWDSyyYSdXYnaNB6EPYI5YatUBbJjlCcYHrAhKa=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdxK4hl3AwV_XKAy7Wd0vb3CCDaQUanr1o1LSf249yexIBtnmYAKSGSHMoW88oM2ZwdpYvLsJkYFLzo_hRXJxh737mdUvLfNJGd5yRCCoW-ECxiNjPeaHl-JpXqCPv8LJu4LGdEVA=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.degersheim.ch/DE/49/Freibad.htm",
+        "phone": "071 371 13 13"
     },
     {
         "id": "osm-spot-1088",
         "name": "Bassin Olympique",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Bassin Olympique) located in Champéry.",
         "address": "Bassin Olympique, 1874 Champéry",
         "zip": "1874",
         "city": "Champéry",
         "lat": 46.18509,
         "lng": 6.70352,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcjbyEInA9qwUoGu5eQtE1U4_UAqsceCaX1B8cTSkM6SDX0Nu_aOU9xPXrwW7YTIin8BLXu9q4aj6HRpCBGimRyY_-HStY6RKyLFUGa5eSfEEihATHBr3WCklOMVycNT0G0NXVp=s4800-w1000",
         "imageSource": "Google Maps / Photo by Centre Sportif Palladium de Champéry",
         "osmImageUrl": null,
@@ -10021,23 +10115,18 @@
         "id": "osm-spot-1093",
         "name": "Schulschwimmanlage Kügeliloo",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Schulschwimmanlage Kügeliloo, 8093 Zürich ETH-Hönggerberg",
-        "zip": "8093",
-        "city": "Zürich ETH-Hönggerberg",
+        "description": "Public swimming pool facility (Schulschwimmanlage Kügeliloo) located in Zürich ETH-Hönggerberg.",
+        "address": "Maienstrasse 9/11, 8050 Zürich",
+        "zip": "8050",
+        "city": "Zürich",
         "lat": 47.41107,
         "lng": 8.52804,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 8:00 AM – 8:00 PM | Tu: 8:00 AM – 8:00 PM | We: 8:00 AM – 8:00 PM | Th: 8:00 AM – 8:00 PM | Fr: 8:00 AM – 8:00 PM | Sa: 8:00 AM – 8:00 PM | Su: 8:00 AM – 8:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdhuahYGL38DuUjDh_YnuTJtGsItkYfbb20muJRJVOh3MZbHnzSWzWAOBHEMS-_ewyTcJEKDVSur1pNbbs-pblcVyZ_hAOR-xzJpoCCKNZuMEAQMPKnHFAJVeMqguiQVJNLIQtmXL5CpzEu=s4800-w1000",
+        "amenities": [],
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdtTUsKAA7FTGQV62pHCe3TrGOHmv5uzmEkwZSKUyEuzxzBCe_ri959WmnDlD81e4zBATErUyfoDSwF46WgVBoDGNjAAijN-2myaAHgwK1mFy9rzDBOW0SBjTyqD2IMziQBYbkoUCGnniUr=s4800-w1000",
         "imageSource": "Google Maps / Photo by K A",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10046,31 +10135,31 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdhuahYGL38DuUjDh_YnuTJtGsItkYfbb20muJRJVOh3MZbHnzSWzWAOBHEMS-_ewyTcJEKDVSur1pNbbs-pblcVyZ_hAOR-xzJpoCCKNZuMEAQMPKnHFAJVeMqguiQVJNLIQtmXL5CpzEu=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdtTUsKAA7FTGQV62pHCe3TrGOHmv5uzmEkwZSKUyEuzxzBCe_ri959WmnDlD81e4zBATErUyfoDSwF46WgVBoDGNjAAijN-2myaAHgwK1mFy9rzDBOW0SBjTyqD2IMziQBYbkoUCGnniUr=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.stadt-zuerich.ch/schulen/de/kuegeliloo.html",
+        "phone": "044 413 59 78"
     },
     {
         "id": "osm-spot-1098",
         "name": "Bödelibad",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Bödelibad, 3800 Unterseen",
+        "description": "Public swimming pool facility (Bödelibad) located in Unterseen.",
+        "address": "Goldey, 3800 Unterseen",
         "zip": "3800",
         "city": "Unterseen",
         "lat": 46.69027,
         "lng": 7.85714,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 2:00 – 9:00 PM | Tu: 9:00 AM – 9:00 PM | We: 7:00 AM – 9:00 PM | Th: 9:00 AM – 9:00 PM | Fr: 7:00 AM – 9:00 PM | Sa: 9:00 AM – 6:00 PM | Su: 9:00 AM – 6:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLckMFllGEwWWdTDw3_pxTutZoEQzrwVf7vKC0wR4X2r3fqU4XijUENJhj-F5ezKy3EyXPP1Ep5Qp_fGaJsMVQvLIqAp5uayictJ5_zd8qA73wx70HrFgcq6y8pge44PENHkUfs95rGneOsn=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdsX8Lq0383ER95JBie3_PraQQRJhQ9id64dUWocs3Z485pZKamI7jz-fIr-q88c6PX5zcNrPdJO_osmZicAt8mqrgJL4ANJ9h25siNXjrGv6NeLaGPgRLu7QxhMn7AG_6TwwGrYQw9uJ5c=s4800-w1000",
         "imageSource": "Google Maps / Photo by BÖDELIBAD Interlaken",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10079,31 +10168,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLckMFllGEwWWdTDw3_pxTutZoEQzrwVf7vKC0wR4X2r3fqU4XijUENJhj-F5ezKy3EyXPP1Ep5Qp_fGaJsMVQvLIqAp5uayictJ5_zd8qA73wx70HrFgcq6y8pge44PENHkUfs95rGneOsn=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdsX8Lq0383ER95JBie3_PraQQRJhQ9id64dUWocs3Z485pZKamI7jz-fIr-q88c6PX5zcNrPdJO_osmZicAt8mqrgJL4ANJ9h25siNXjrGv6NeLaGPgRLu7QxhMn7AG_6TwwGrYQw9uJ5c=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf4Q088x5SfuUHOZrZjImTDwAL0I37tRnNBjvhx3sFcP7-iR0detX5d6d2jJDVZNMLY_qkdoyn1UYx8pXjVEomSsGMxm9mBP0Npdyb4ZAWBx2mL40M1qZ_EWG2C4KQQaPATrhpA8g=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcEYCSZNlHkHbe5FiYBu_z7ORuIWN0cMPOmbX1M5O7lecji0jVeJKHEmp3RyZYVJ4HDPJY4_3rxc-7X7JbD8Kr6pX8IwepMiHG_RICQzz6nyehn-2QTqJnOXqLIqoSw8PYF8eFPuAjDO3OT=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://boedelibad-interlaken.ch/",
+        "phone": "033 827 90 90"
     },
     {
         "id": "osm-spot-1186",
         "name": "Piscine du Grand-Saconnex",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "L'Ancienne-Route 51, 1218 Le Grand-Saconnex",
+        "description": "Public swimming pool facility (Piscine du Grand-Saconnex) located in Le Grand-Saconnex.",
+        "address": "Rte de Colovrex, 1218 Le Grand-Saconnex",
         "zip": "1218",
         "city": "Le Grand-Saconnex",
         "lat": 46.2338,
         "lng": 6.12752,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeBCyBA8CGJ-cU5rOECJikUv9Y9Q5WHJwdC-_2c4z6VCde2EmLK1JHWLV2cyDITiPB3bSWTQ7U6xcSKujmZeW3RQXgCVhOIRKXMGW5QJ4np6XKFBdlO6vaImieMinrh4DS6hge63MC0gOU=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcGeklmHcEGzjJ337oV34OJ_qeVA_5CEg7xa4Zs6A2ZBh1mnQ-i5dPUYlUz6bO6uGQs7_Le_qvfOKqhMzdslXX8vkqc73BX_DyOWhn-P5KWVIBkpgPdwtFhq_IOtjRoEkIvV4KGB2AN4f8=s4800-w1000",
         "imageSource": "Google Maps / Photo by Rony Meyer",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10112,30 +10203,29 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeBCyBA8CGJ-cU5rOECJikUv9Y9Q5WHJwdC-_2c4z6VCde2EmLK1JHWLV2cyDITiPB3bSWTQ7U6xcSKujmZeW3RQXgCVhOIRKXMGW5QJ4np6XKFBdlO6vaImieMinrh4DS6hge63MC0gOU=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcGeklmHcEGzjJ337oV34OJ_qeVA_5CEg7xa4Zs6A2ZBh1mnQ-i5dPUYlUz6bO6uGQs7_Le_qvfOKqhMzdslXX8vkqc73BX_DyOWhn-P5KWVIBkpgPdwtFhq_IOtjRoEkIvV4KGB2AN4f8=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdkDbmuu7FFuer95_UB8qsudvlHv8ENnvpUB5CtO8PXdv5MNyI6j60Bxf24agKjXqruW-u1ylaKOv09sd9DHgcB05oxHfLQCJvaWZmXmhvMNHvLum3N-HkMYff6dCb8xlBP1f_O=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfVdVtSLk_vZ1iEEpZO8DZYivxp3VpnCRBu6gZNLSDmV-1yewjuAFIwEM9tC3JVToxZ-JZF7zo1szH72GCukDhZVn6WaHrfwrDr81JjJnioQS_1uOMFPEUbGdYiX5Y4aRCBfDGveg=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.grand-saconnex.ch/fr/sports-et-loisirs/infrastructures-sportives/centre-sportif-du-blanche-0-203",
+        "phone": "022 920 97 10"
     },
     {
         "id": "osm-spot-1348",
         "name": "Lungerer Badi",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public outdoor swimming pool and bathing facility (Lungerer Badi) in Lungern.",
         "address": "Lungerer Badi, 6078 Lungern",
         "zip": "6078",
         "city": "Lungern",
         "lat": 46.78353,
         "lng": 8.15605,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfjEDvmpuQckdWWYzZ6kQu4X08ZAAclq-dDPOLaGEJ5Sjlp1DgnJkRSQchARdBRoI6Rdf1C0FePMCqxDCB2tOg5Esa4j9IgjA0PqAMb9UCGb44Bx_hvLHqno09221A-rgELGhpfRw=s4800-w1000",
         "imageSource": "Google Maps / Photo by Sarah Kaufmann",
         "osmImageUrl": null,
@@ -10153,23 +10243,22 @@
         "id": "osm-spot-1388",
         "name": "Bains de Saillon",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Bains de Saillon, 1913 Saillon",
+        "description": "Extensive thermal springs area with a lazy river & hot tubs, plus a seasonal children's playground.",
+        "address": "Rte du Centre Thermal 16, 1913 Saillon",
         "zip": "1913",
         "city": "Saillon",
         "lat": 46.17349,
         "lng": 7.19561,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 8:00 AM – 9:00 PM | Tu: 8:00 AM – 9:00 PM | We: 8:00 AM – 9:00 PM | Th: 8:00 AM – 9:00 PM | Fr: 8:00 AM – 9:00 PM | Sa: 8:00 AM – 9:00 PM | Su: 8:00 AM – 9:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeIpj6wxMqIwNZ2QESh6TXiu4K2f_Q6tqvIrquLVUvEasZ2vlSESww3BMY7_lK1kwBiAEEaw03pX5t_HKSNOxvcAWexduQKrTzW5SgK8P4zz0Xlbx3Xi8CtfZh3uv4y_dJPAsYYUQ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdfTKOpLRz_JCD51rMbUbAdQSZNZMuNK6a0Q0eDRwIlklcVw6cv2JhBOhrqojLSfXxWDyzYep56BCJ21C233tb-Udjadqh-YEsDhQtT0taXyb3lpAQWHjxT8uja5nRbABp3Y7fOxQ=s4800-w1000",
         "imageSource": "Google Maps / Photo by Yves Rosset",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10178,31 +10267,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeIpj6wxMqIwNZ2QESh6TXiu4K2f_Q6tqvIrquLVUvEasZ2vlSESww3BMY7_lK1kwBiAEEaw03pX5t_HKSNOxvcAWexduQKrTzW5SgK8P4zz0Xlbx3Xi8CtfZh3uv4y_dJPAsYYUQ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdfTKOpLRz_JCD51rMbUbAdQSZNZMuNK6a0Q0eDRwIlklcVw6cv2JhBOhrqojLSfXxWDyzYep56BCJ21C233tb-Udjadqh-YEsDhQtT0taXyb3lpAQWHjxT8uja5nRbABp3Y7fOxQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLddmVO_bbkBD4u9tYWpgBdOX5Chglp9SsBcOSK54FJxFuFxTqUsDFFG4SAL52m-ZKt1Stmp8DpuYbZeLwQ0nF2HYdzvRHuxg0jcUI12k64zRWwwMyWU9GuluSHYH490NMh5tbFS=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf2UJ_MCFfn6JRFeV9f27cddFt4mHGJByp1-vQBvtlOwj37p5UNR7PYuSguL0d7eMDmwlL1fN4g-UIf7JJsfj5yxel0azUuOlrGR5DoPZQm4_A4EB4IrCSVTJaTLZX4gOExN4-MBg=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.bainsdesaillon.ch/bains?utm_source=MyBusiness&utm_medium=Earned",
+        "phone": "027 602 11 11"
     },
     {
         "id": "osm-spot-1396",
         "name": "Reka",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Reka, 6085 Hasliberg Goldern",
-        "zip": "6085",
-        "city": "Hasliberg Goldern",
+        "description": "Casual apartment hotel with a pool, a spa & a library, plus a lake, a playground & mountain views.",
+        "address": "6084 Hasliberg",
+        "zip": "6084",
+        "city": "Hasliberg",
         "lat": 46.74709,
         "lng": 8.19711,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeTPUPjhGAgZaZUuxEjCL3Mp1IxDe-XjM6OydDKvWiGZlgscLOF_4yiD3cOGwpedlgZVtdyaY2uwWa2OZb1aQwmMVwT2rgV8_vkflS9tIfrFPfFSL-F5zELtUzH7-pm7ohGDVEuJQ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeqQS0pomLHcHpuc5ttohXclOI0m5Ugsde_OaugEuSHIvoi8Wt5kc9Bkrqdx7QzaqSSIYAmDkoMikHDdwK49-wUKr01s7DwUNHI_Q1d1-nA4Bm_5bkXJTJV_lJT2dntcLrRysetVA=s4800-w1000",
         "imageSource": "Google Maps / Photo by Reka-Feriendorf Hasliberg",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10211,31 +10302,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeTPUPjhGAgZaZUuxEjCL3Mp1IxDe-XjM6OydDKvWiGZlgscLOF_4yiD3cOGwpedlgZVtdyaY2uwWa2OZb1aQwmMVwT2rgV8_vkflS9tIfrFPfFSL-F5zELtUzH7-pm7ohGDVEuJQ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeqQS0pomLHcHpuc5ttohXclOI0m5Ugsde_OaugEuSHIvoi8Wt5kc9Bkrqdx7QzaqSSIYAmDkoMikHDdwK49-wUKr01s7DwUNHI_Q1d1-nA4Bm_5bkXJTJV_lJT2dntcLrRysetVA=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfF91Rar32-WFR0kSZbmoq53ZyGtESCq0LRbdVEoRTpX76ijM8xkyQBLLPX0krTM2oEFZSjGEKtAGqLKNgWkGGS8ojxuSjIxJNrst_0S14xVM5oegJMWhcUY9mkTP0YRB6J3GsUmg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLe-un5WxLumscajdQtsPX1Pt7d0kCtO8zV7MdltsyIN2duo1nN4D4RvtuCoFcK1FOG-AM3-qspkMJIxIJNWUMNAYirBsf0Cb201TgpQtfhPZ5v1RHr5trbenT5uwep3CGpv929Qy1gMISmx=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://reka.ch/de/rekaferien/reka-feriendorf-hasliberg",
+        "phone": "033 971 67 00"
     },
     {
         "id": "osm-spot-1407",
         "name": "Badi Mellikon",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Badi Mellikon, 5465 Mellikon",
+        "description": "Public outdoor swimming pool and bathing facility (Badi Mellikon) in Mellikon.",
+        "address": "5465 Mellikon",
         "zip": "5465",
         "city": "Mellikon",
         "lat": 47.56982,
         "lng": 8.35103,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 9:00 AM – 8:00 PM | Tu: 9:00 AM – 8:00 PM | We: 9:00 AM – 8:00 PM | Th: 9:00 AM – 8:00 PM | Fr: 9:00 AM – 8:00 PM | Sa: 10:00 AM – 8:00 PM | Su: 10:00 AM – 8:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLefLGmgtVk7bKW63umof3A2sf0CKG9KRt3HvwNzXUKlqpByid_PGi1MWqPpw7qlWpAD8sCe4Hu0PCl9fwY8S9D_5xwmEv362T2oEa3Xwg7twioTD4ffolZUJTLkZ9AhScFkzSDk=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdqoL3TUOniORqpE8jLlSvau8zEwwJ7E051PiXrbGs8ZRZVdRO3VDWWKrygyXLTj_mLD1EKkowtzPZLHDwfQpbLDKy33pZm6fby1R49umX13pnq-Quk8G76htI06pXqLjXOEYnj=s4800-w1000",
         "imageSource": "Google Maps / Photo by BaHoZ SeRZaN",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10244,18 +10338,21 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLefLGmgtVk7bKW63umof3A2sf0CKG9KRt3HvwNzXUKlqpByid_PGi1MWqPpw7qlWpAD8sCe4Hu0PCl9fwY8S9D_5xwmEv362T2oEa3Xwg7twioTD4ffolZUJTLkZ9AhScFkzSDk=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdqoL3TUOniORqpE8jLlSvau8zEwwJ7E051PiXrbGs8ZRZVdRO3VDWWKrygyXLTj_mLD1EKkowtzPZLHDwfQpbLDKy33pZm6fby1R49umX13pnq-Quk8G76htI06pXqLjXOEYnj=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeuZVUt5Rt9GmhD5GhuUev8qqZtuegNcOmIKT0qQIeCw2dyBywzg1Ai4JUVDCbOSZt4M8qV8wHnudOiR9pnbP21GBGtvRNZR-ho-tcz-8rHprt4myNje0Z2hbOV0WnKxckNTnupcQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLe4yEVbwvE6bXCJ1DWMdcAQhHJ6dHNylWTPe3luMJxhN0OL0ui5EKnQ3WsO2dJv0LJMiZuGn0pU22RiTpy-GvRT5Uzy0SQde2uJ5SEU3_7JG58VGg-zdsqRyWpPEzElhE8EEYAhIg=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.mellikon.ch/de/politik/behoerdenmitglieder/?personen_id=137906"
     },
     {
         "id": "osm-spot-1444",
         "name": "Piscine du Reposieux",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Piscine du Reposieux, 1870 Monthey 2",
+        "description": "Public swimming pool facility (Piscine du Reposieux) located in Monthey 2.",
+        "address": "Rte du Tonkin 28, 1870 Monthey",
         "zip": "1870",
-        "city": "Monthey 2",
+        "city": "Monthey",
         "lat": 46.25949,
         "lng": 6.95185,
         "openingHours": "Mo, Tu, Th 20:30-22:00; We 13:15-15:00; Sa 14:00-17:00; Su 09:00-12:00, 14:00-17:00",
@@ -10263,12 +10360,10 @@
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfZL1M61w6dglW_V6WkTTEa9wxGxeXO2h7TrJOH0N6LbrW22Ia-9FI59uPelOZMgTIGKd86w3iGHBD4LfWD9V4XjVVLZm8c8KuSgWIoQqY9YEgnAMYquT_ppc5tsoidQA-SzJM=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfRFXBjrKwkDGoS7dCn1JhvDzaoDm40RexyBbZ9fpjLW2LouA_l1SJ3L-T9IJajwSJkYtZDq-sqjR0N9p4CwJxcngxkqqIzWVrMHn-qIhyhLLLoerQw3Lv9OcoRqCWVPIiOuFs=s4800-w1000",
         "imageSource": "Google Maps / Photo by Amine",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10277,7 +10372,9 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfZL1M61w6dglW_V6WkTTEa9wxGxeXO2h7TrJOH0N6LbrW22Ia-9FI59uPelOZMgTIGKd86w3iGHBD4LfWD9V4XjVVLZm8c8KuSgWIoQqY9YEgnAMYquT_ppc5tsoidQA-SzJM=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfRFXBjrKwkDGoS7dCn1JhvDzaoDm40RexyBbZ9fpjLW2LouA_l1SJ3L-T9IJajwSJkYtZDq-sqjR0N9p4CwJxcngxkqqIzWVrMHn-qIhyhLLLoerQw3Lv9OcoRqCWVPIiOuFs=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc435g_kmxI7B2uE68n1eTWvnqDtJGTt2fDjtQQSmS45ayE-RK7b2oRPvhFqfLKbsI9fAS9nbUdmz3aLFYL2lIEX0w6qMQHnY0ovF9mvs4cbEJ7rmXYa3SvcpcK0pRgiA5VDLE=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeJJAF3kNebkHF2TyyWaLMFBNVf23wU9IhyJb8A6ta015m6j_iVSp1k8wRY2-dBeLBcov8kw4JKntjMVxhrLBZtWVsXDDye4a9BoScwQjIMnekuZQJJiQpxWab9uRH_dgAB6Z8=s4800-w1000"
         ],
         "featured": true
     },
@@ -10285,23 +10382,21 @@
         "id": "osm-spot-1519",
         "name": "Zugang zu Zürichsee",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Zugang zu Zürichsee, 8806 Bäch SZ",
+        "description": "Public swimming pool facility (Zugang zu Zürichsee) located in Bäch SZ.",
+        "address": "Seestrasse 107, 8806 Bäch SZ",
         "zip": "8806",
         "city": "Bäch SZ",
         "lat": 47.20288,
         "lng": 8.73041,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 10:00 AM – 8:00 PM | Tu: 10:00 AM – 8:00 PM | We: 10:00 AM – 8:00 PM | Th: 10:00 AM – 8:00 PM | Fr: 10:00 AM – 8:00 PM | Sa: 10:00 AM – 8:00 PM | Su: 10:00 AM – 8:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdwtyneyycgoWBJ2crn1WtIW3RDweOW7T0t38dhAnvYSQPznt_geqMxv1Ztatze6X-bDZ8O5aZNFSo_JSL1qVVBdpf7I9H-xyzD8gR39hWcGaFBYsdYbWefGLRzu4kL7WnXiZZR=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeKE9rJcBO1yRUSnHoZywiRxa8_TiIzVMaQDaFkLERg4JKYkGqfhQyS9FwmijeMKxrvyUpsIESz8b1fSV9wI1N6fJnCqznxVHldoSFdfJ7aPgac7Gkke8InhLpH9QtDphPlFgEP=s4800-w1000",
         "imageSource": "Google Maps / Photo by Andy Steffen",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10310,31 +10405,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdwtyneyycgoWBJ2crn1WtIW3RDweOW7T0t38dhAnvYSQPznt_geqMxv1Ztatze6X-bDZ8O5aZNFSo_JSL1qVVBdpf7I9H-xyzD8gR39hWcGaFBYsdYbWefGLRzu4kL7WnXiZZR=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeKE9rJcBO1yRUSnHoZywiRxa8_TiIzVMaQDaFkLERg4JKYkGqfhQyS9FwmijeMKxrvyUpsIESz8b1fSV9wI1N6fJnCqznxVHldoSFdfJ7aPgac7Gkke8InhLpH9QtDphPlFgEP=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf67pAXRPfATDyGplYLrtZQhlsoBcC26yTK99HQUtJuS0bZQ4yPkuAfzyFpOsPdxewAkh-g2PJP6fdWRIUWiU6FRQH6IpZA6FIBtdnlDxG324Wvm0JpkoxMP5dgJADmqjU2D1K5=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfrOuiQpIFvo7YEJn_tP2f7N92l-Sa737I_78gJHTXo9rU_891jnvpWTEdMxR6ULcEFHsEtHnxTDTKPhdDxRTNuoYILCbai0ciJkiU5MJRMBdr8SrpvMOtLn_pHvudZ55e_ulBk=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://badiportal.ch/de/locations/strandbadbaech",
+        "phone": "044 784 84 29"
     },
     {
         "id": "osm-spot-1520",
         "name": "Zugang zu Zürichsee",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Zugang zu Zürichsee, 8807 Freienbach",
-        "zip": "8807",
+        "description": "Public swimming pool facility (Zugang zu Zürichsee) located in Freienbach.",
+        "address": "Pfäffikon, 8808 Freienbach",
+        "zip": "8808",
         "city": "Freienbach",
         "lat": 47.20788,
         "lng": 8.75797,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdUQjmimBF1H7TdZYWRbLuk8si-AJHhhUJPBWnSRVssW3oIHk_YcwW5nCXaLIKjs3W1l7sLmyhQnJ5xkIGOPsquUqmcWcoNru0MxIM6xp59_Km_T_IxW4wpmMZJTKjmCePBjXRb_Q=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeaam0o52RnRnXWbFLXpGtK-rqhn8eLmlVZgL0Nppc9nIswp3cJB-LgjbpH0CtevIGR7_ShrIrsRcK2xg3rVvBKoChS4sVZUjIJEbiyBtdsVu-UKBw4zQbSwCBp_hLtZFIYDelJaQ=s4800-w1000",
         "imageSource": "Google Maps / Photo by Ao Paradise",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10343,7 +10441,9 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdUQjmimBF1H7TdZYWRbLuk8si-AJHhhUJPBWnSRVssW3oIHk_YcwW5nCXaLIKjs3W1l7sLmyhQnJ5xkIGOPsquUqmcWcoNru0MxIM6xp59_Km_T_IxW4wpmMZJTKjmCePBjXRb_Q=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeaam0o52RnRnXWbFLXpGtK-rqhn8eLmlVZgL0Nppc9nIswp3cJB-LgjbpH0CtevIGR7_ShrIrsRcK2xg3rVvBKoChS4sVZUjIJEbiyBtdsVu-UKBw4zQbSwCBp_hLtZFIYDelJaQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeqwPMQLXmBFTAEcuKsBhwZWG_cdZhryjneRxfBLLh2NNNj2z-MG6fpMVhImPADRGfxYLeWRjEQ2L-K1BE8jCAZI5Nm4mYr644boNcJDqYTQ2WHxgFf76BVuQzzpo6VN7NOj7B2wg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcjXlyf2ZfPW7Aa-VRomu0GJx6b9XZ8JFijZc2ZBt5hAbAUrddmQLXnqgvf1xVV_TboglTrpvBbMr0ncrTzuQ4ltJtpBbaFGcdpF6srrVvfM_pEbF8nROvzDGkTMiCOXfew1CGj=s4800-w1000"
         ],
         "featured": true
     },
@@ -10351,24 +10451,19 @@
         "id": "osm-spot-1583",
         "name": "Panorama Bad Beatenberg",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Panorama Bad Beatenberg, 9493 Mauren FL",
-        "zip": "9493",
-        "city": "Mauren FL",
+        "description": "Public swimming pool facility (Panorama Bad Beatenberg) located in Mauren FL.",
+        "address": "Spirenwaldstrasse 367, 3803 Beatenberg",
+        "zip": "3803",
+        "city": "Beatenberg",
         "lat": 46.69973,
         "lng": 7.79519,
         "openingHours": "Tu-Fr 13:00-19:30; Sa, Su 13:00-17:00",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfXvLeDa4ISwCvYUXb5TyAbYuI76-TfgDs15TK1pyATcB56-U7eE5s7rPkK-zOYfPPnL2i0bW44dS6aTlNC0MjPEEl1y73qBTG-b00DuBiJTyPLJcp66S4o8B_YeoI4u0rQuRU=s4800-w1000",
-        "imageSource": "Google Maps / Photo by Fassbinds Badefässer",
+        "amenities": [],
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfIyA1nkhgGrlI9ZilMVvgN12_K131azkYHwBBoBaxMQtwSW8UUIoOYWe4QbxXX4D2Bom2aDTa9xB_sZ__OAjJoiBgfeRNtr4O4dVECz8pR9wATSnWSamYhdS_IJqYsiJkc2AriYMXun6f8=s4800-w1000",
+        "imageSource": "Google Maps / Photo by Panorama Beatenberg",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -10376,31 +10471,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfXvLeDa4ISwCvYUXb5TyAbYuI76-TfgDs15TK1pyATcB56-U7eE5s7rPkK-zOYfPPnL2i0bW44dS6aTlNC0MjPEEl1y73qBTG-b00DuBiJTyPLJcp66S4o8B_YeoI4u0rQuRU=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfIyA1nkhgGrlI9ZilMVvgN12_K131azkYHwBBoBaxMQtwSW8UUIoOYWe4QbxXX4D2Bom2aDTa9xB_sZ__OAjJoiBgfeRNtr4O4dVECz8pR9wATSnWSamYhdS_IJqYsiJkc2AriYMXun6f8=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeJP7zTM5xhdFuKl_jQLxhy649k1TB0ZDH8h0lUgHK3lBw3euxuMQs2kWyR9HUpC7A21fWIGQjAYSugJfvVBJPoMbv4-9Q7Im4cYFMGm1j4bFAU3zFEy3YScKIIWaGuuHWXsPz26kR7Ixry=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc6S9Mo6uuqE9M3WBnK5GUdY_IDvm9lJvMhsu-cfHgURYHNrx6dz3sNi8SFU1oYazsaq2_SyCxjpnXrr6w9nhthjDzny172X-RT7jDuUH_WeLd0SEyjT1jrPWdhb6xLKSCkieN3fVAlG3rw=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.panorama-beatenberg.ch/",
+        "phone": "0408 847 129"
     },
     {
         "id": "osm-spot-1591",
         "name": "Hallenbad Brühl",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Hallenbad Brühl, 4717 Mümliswil",
+        "description": "Public indoor swimming pool (Hallenbad Brühl) in Mümliswil.",
+        "address": "Ramiswilerstrasse 5, 4717 Mümliswil-Ramiswil",
         "zip": "4717",
-        "city": "Mümliswil",
+        "city": "Mümliswil-Ramiswil",
         "lat": 47.34182,
         "lng": 7.69857,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 6:30 – 9:00 PM | Tu: 5:30 – 9:00 PM | We: 1:30 – 9:00 PM | Th: 1:30 – 4:00 PM, 6:30 – 9:00 PM | Fr: 6:30 – 9:00 PM | Sa: Closed | Su: 10:00 AM – 5:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcvNAyPO_Tke8pf-j1FCaqIBLGsyLJ1J_fXgcucLDgxjzRrpXiMePzBoluDBC0OQReqeQB5uE190FFqNsL3u-fhPZZ48Kd_Kh15Hd9o6y2nvjxV_rXgghJnjIqKZpybx7EMWlSyQUew519L=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdHhRco26DNjF8LKZg6kd-c1hxHCjzmyDpNPE6Yezc7n8s4pCdq4-7pcCC_xadSy3Klv80Hh0lQG_qlBLJnT-ltouOhEpGPVSBPijmmrXCHnYW5vhufo0j4gf9FUbP5CtsoyYZZPTIyxRtC=s4800-w1000",
         "imageSource": "Google Maps / Photo by Hallenbad Brühl Mümliswil",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10409,15 +10507,19 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcvNAyPO_Tke8pf-j1FCaqIBLGsyLJ1J_fXgcucLDgxjzRrpXiMePzBoluDBC0OQReqeQB5uE190FFqNsL3u-fhPZZ48Kd_Kh15Hd9o6y2nvjxV_rXgghJnjIqKZpybx7EMWlSyQUew519L=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdHhRco26DNjF8LKZg6kd-c1hxHCjzmyDpNPE6Yezc7n8s4pCdq4-7pcCC_xadSy3Klv80Hh0lQG_qlBLJnT-ltouOhEpGPVSBPijmmrXCHnYW5vhufo0j4gf9FUbP5CtsoyYZZPTIyxRtC=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfV-fx4HCjsawj2X3JEBt4hHrclvALUkCOOJnG1PV5vrsCzNGNBJXqUZKYrkFQMvHSWXJd02GHsbhGAl0bz1XtnyjrSxogsNN_uT0cFf0rSvuJ26SLPa-zHEjWqc1lZepAtwb1XWc4POrQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdk-Sq5FIUyVi-L4yTyG08dKv6TZ0vqEHKR_t9PiqCD8VeHgX3yp_nhKs0jtEuw1KHuMJukk7kIvQBGVm8AJOzqsSs9M_UtBl5MY5aisz4h984orNaRwFpcgKs105ZXd5YVpgTr=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.muemliswil-ramiswil.ch/oeisi-gmein/freizeitangebote/hallenbad-bruehl.html/24",
+        "phone": "062 391 47 28"
     },
     {
         "id": "osm-spot-1597",
         "name": "Lehrschwimmbecken Schulhaus Letten",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Lehrschwimmbecken Schulhaus Letten) located in Bäretswil.",
         "address": "Engelsteinstrasse 2, 8344 Bäretswil",
         "zip": "8344",
         "city": "Bäretswil",
@@ -10428,12 +10530,10 @@
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcTIkjJP2aqESME8_NSW3l_dzxyWsbhfDuVwnrKYjYd3WDvWv7ACEQMNrCAS1w2rI0oOxsuLudzFdoy6QBpOdWa7y4GQj_2oDvndgCG-DVz9ASTuMiaQnBBQ5wcF2tJoj_F6oGZ=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcY__yLhr6oaGmhq1LLV_2LifD_acnTPkwmpkvOUFEYcSNU6W4_s4UDRbLSj4Tx7n8P-UsUU-NDqSGj-M7OX_Pg4ialgLlhXNRZqZn16sqhpBT3mfQom2oXCvDFG2B7mTDlX-Z8=s4800-w1000",
         "imageSource": "Google Maps / Photo by Ibrahim 12",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10442,31 +10542,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcTIkjJP2aqESME8_NSW3l_dzxyWsbhfDuVwnrKYjYd3WDvWv7ACEQMNrCAS1w2rI0oOxsuLudzFdoy6QBpOdWa7y4GQj_2oDvndgCG-DVz9ASTuMiaQnBBQ5wcF2tJoj_F6oGZ=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcY__yLhr6oaGmhq1LLV_2LifD_acnTPkwmpkvOUFEYcSNU6W4_s4UDRbLSj4Tx7n8P-UsUU-NDqSGj-M7OX_Pg4ialgLlhXNRZqZn16sqhpBT3mfQom2oXCvDFG2B7mTDlX-Z8=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLevYSrdljrS1QOK6pFslRoIgiw52mW0Bn-aAH-OCB9zxrCOtmKEEea52-IZpCTvss7I4X_95bb_Vs8lha9zn-ZSof3q2uwWQGC-uIpkOBlSPwlGy1Cnj432jGA8TkB0apabEvrPiA=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLek2TnHxtMUQsNlqTlSGk49ESd5Z8k6E0EBsCeLPzDDuNiDHH83Adz8y5AXabPiuI5fUYi5kWIFRL8sFcYSWFOpVRGfQ6TUV05McEFFsUe9Vk08S-IqH0BOJRBfRye8K0WTmPk=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.baeretswil.org/de/schule/schulhaeuser/welcome.php?action=showobject&object_id=2038",
+        "phone": "044 939 21 88"
     },
     {
         "id": "osm-spot-1620",
         "name": "Stabio Terme",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Stabio Terme, 6855 Stabio",
+        "description": "Public swimming pool facility (Stabio Terme) located in Stabio.",
+        "address": "Via Bagni 14, 6855 Stabio",
         "zip": "6855",
         "city": "Stabio",
         "lat": 45.85169,
         "lng": 8.94224,
-        "openingHours": "Mo-Fr 07:30-19:30; Sa 09:00-12:30; Su off",
+        "openingHours": "Mo: 7:30 AM – 12:00 PM, 12:30 – 7:30 PM | Tu: 7:30 AM – 12:00 PM, 12:30 – 7:30 PM | We: 7:30 AM – 12:00 PM, 12:30 – 7:30 PM | Th: 7:30 AM – 12:00���PM, 12:30 – 7:30 PM | Fr: 7:30 AM – 12:00 PM, 12:30 – 7:30 PM | Sa: 10:00 AM – 12:30 PM | Su: Closed",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLezrdTZyi2yHX11Bl7G-gB56oVTVCv59paCaEg61vzhmuvXXY1hDZ0Kst9tCoZY5J1Lx5gOzwOov486Jvuh8dB-wsqECBjxQmoq6lEli3wK1H3Wjt6sgAoxcML0G40Jh6rVH-uN=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe9rchkg7gXTRCYZndBtzTB4Iq2xdHhWVy-wijZ-SdWu-qnH_MszhFCMrdKWXH7nRufU8TxQgUCJULxb4tDRHKcKQAG3IfjhxXBRrGj9qYnUloG7lBcbWZscFCnRFCpVih2Fpog=s4800-w1000",
         "imageSource": "Google Maps / Photo by Fisioterapia Stabio Terme",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10475,31 +10578,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLezrdTZyi2yHX11Bl7G-gB56oVTVCv59paCaEg61vzhmuvXXY1hDZ0Kst9tCoZY5J1Lx5gOzwOov486Jvuh8dB-wsqECBjxQmoq6lEli3wK1H3Wjt6sgAoxcML0G40Jh6rVH-uN=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLe9rchkg7gXTRCYZndBtzTB4Iq2xdHhWVy-wijZ-SdWu-qnH_MszhFCMrdKWXH7nRufU8TxQgUCJULxb4tDRHKcKQAG3IfjhxXBRrGj9qYnUloG7lBcbWZscFCnRFCpVih2Fpog=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfg1LFmuNlSbf74KzLD2tMjmPJgVxjzboTshaUon4ZEkrdM7X0uwwBCMrtg-nJ03qrBlvvxGsILbNQTlxwBBDGYKHMu5-V-_As0R1WCVKXDmV4ByEWoI95YD7joh5KW9YRG0EA=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdAg3eEWqn9-ZEUymLh4VH5xPDdsxImTyprNaQojvBAVNEBmGQSyst6PcESwtGVlRRSZNTBHLb8bvg_QOv9CoKZ7oVzS7fWmXsBXduJ7a0_AYO8qruQfyrEIO7blHJvoBlQ4iFz=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.stabioterme.ch/",
+        "phone": "091 647 15 65"
     },
     {
         "id": "osm-spot-1625",
         "name": "Lido-Hallenbad",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Lido-Hallenbad, 6353 Weggis",
+        "description": "Public indoor swimming pool (Lido-Hallenbad) in Weggis.",
+        "address": "Hertensteinstrasse 45, 6353 Weggis",
         "zip": "6353",
         "city": "Weggis",
         "lat": 47.02883,
         "lng": 8.41932,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf3Cd5aw-5kOkoHvtYegzN0xTUzVr_3MnNGauudUxglfrxszNV6HLWTFegKMVeNn3X99X_-mD8izHYRKW_ywU-XAOTbpDrVVJcpBgUtvcDtBPvjOqS4LD1jCtLpZBl2R9wTDy_yMQ=s4800-w700",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdpM7jDnrlSoP6sBs8AR5vT8g5f0BS84fOujqhD6wewbjSJdgQZlWhx8Xtapmg-RaHH1-ON9JQWULQVYO7jCr_Cjd1Hddx9S94rmGoMZIQWIQE6bp6Ms6xE4hrkXZXQMghBhHeZgA=s4800-w700",
         "imageSource": "Google Maps / Photo by Lido Hallenbad Weggis",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10508,16 +10614,20 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLf3Cd5aw-5kOkoHvtYegzN0xTUzVr_3MnNGauudUxglfrxszNV6HLWTFegKMVeNn3X99X_-mD8izHYRKW_ywU-XAOTbpDrVVJcpBgUtvcDtBPvjOqS4LD1jCtLpZBl2R9wTDy_yMQ=s4800-w700"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdpM7jDnrlSoP6sBs8AR5vT8g5f0BS84fOujqhD6wewbjSJdgQZlWhx8Xtapmg-RaHH1-ON9JQWULQVYO7jCr_Cjd1Hddx9S94rmGoMZIQWIQE6bp6Ms6xE4hrkXZXQMghBhHeZgA=s4800-w700",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf-X2wOxuDn5Q5vpFRT4qda8J04sEBZX55_7nH_tnk-e_qBL8bs6qhNUCbgMc0KbUTXGY26Fn72ZJmkq77fkB-QAXZ4NNfmRhURjD14r_FAtE4nn8sOkEFTPLo8GJEu5P7Ip7nF=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfOq3wV2JaMru2hzYkusZRKNMtCUh6g53adnk-kG8-pbivappsIAuR5EDCGRE4Y2_IByhWToGeBbpk7gLc6c9uNNQRA3oKZxJYj9aU6kO7xRdBnsh7AOAgT11c4fUDzHZN7G71c-g=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.weggis.ch/sportanlagen/26752",
+        "phone": "041 392 73 90"
     },
     {
         "id": "osm-spot-1658",
         "name": "Wellenfreibad Ailingen",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Leonie-Fürst-Straße 4, 88048 Friedrichshafen",
+        "description": "Public outdoor swimming pool and bathing facility (Wellenfreibad Ailingen) in Friedrichshafen.",
+        "address": "Leonie-Fürst-Straße 4, 88048 Friedrichshafen-Ailingen, Germany",
         "zip": "88048",
         "city": "Friedrichshafen",
         "lat": 47.6874,
@@ -10528,11 +10638,11 @@
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe_g7CpoLrI8aoEhlQQuVCLl2FPE7LhANbv_ehpyDsL9KrJrqr4kTdbLOAzJWyoswCt0szWECp3cGp9wRlxFZUFlDn_h4UYv0-PmoiqtI80Pct47jXlPwo9jOuCbvk9z7lYTBs5=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfmPU8GVAOIhmWIN2AZFYphyu8GxjF2GJenhVj9tUg-paylsIlQYBbr6jdoyqNzyMChDxIfd4JmhYEhvbKN81dW7IZHPmllxnQKo0hRUsoV9r2hyaktw-fHlUousdh2SoYbCVQ_=s4800-w1000",
         "imageSource": "Google Maps / Photo by Wellenfreibad Ailingen",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10541,15 +10651,19 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLe_g7CpoLrI8aoEhlQQuVCLl2FPE7LhANbv_ehpyDsL9KrJrqr4kTdbLOAzJWyoswCt0szWECp3cGp9wRlxFZUFlDn_h4UYv0-PmoiqtI80Pct47jXlPwo9jOuCbvk9z7lYTBs5=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfmPU8GVAOIhmWIN2AZFYphyu8GxjF2GJenhVj9tUg-paylsIlQYBbr6jdoyqNzyMChDxIfd4JmhYEhvbKN81dW7IZHPmllxnQKo0hRUsoV9r2hyaktw-fHlUousdh2SoYbCVQ_=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfgw5wPZYYYYj7ydfedZqsipIXmyOXxGz28J7W2ELv5MnuuW-6IUEDaMstNplU8qsKFrfuNbu_GP6MgYFv_oBXkOdCT1L3nQwrnFoml3NkUfcerNot2sC2Q1mnN8IR3PlDpov7scsgAP5wg=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeghUMJlPo99X03reRPy2fGB6QsGmWIu4VxfznzHMpXySYOLsu7tlGPsW8glynzqhA2lbj3HyvR79Pg2oHUz9WKFICBfXfh8EfpS186OSYB-DUpZC_34R2iSSzJF-nO7DCB6LxJtw=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://baeder.friedrichshafen.de/wellenfreibad/",
+        "phone": "07541 20356150"
     },
     {
         "id": "osm-spot-1743",
         "name": "Quelldorado",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Quelldorado) located in Frauenfeld.",
         "address": "Quelldorado, 8509 Frauenfeld",
         "zip": "8509",
         "city": "Frauenfeld",
@@ -10559,12 +10673,7 @@
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfZ1tB9JAx4HCVrDRAv58fhjTTW2N_dkY4I7RzM5XKYMekHVan_uVm3ElZsyPNSQyu-GCFqNKB2BCOWZ2EFz8TPmbDeujih0vssuafWsX1wQBW4LfuPe3-2rYEY0Z5qZ7e7l-SRUA=s4800-w1000",
         "imageSource": "Google Maps / Photo by Gasthof zum goldenen Kreuz AG",
         "osmImageUrl": null,
@@ -10582,8 +10691,8 @@
         "id": "osm-spot-1756",
         "name": "Frankrichli",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Frankrichli, 8505 Pfyn",
+        "description": "Public swimming pool facility (Frankrichli) located in Pfyn.",
+        "address": "Badistrasse 10, 8505 Pfyn",
         "zip": "8505",
         "city": "Pfyn",
         "lat": 47.59303,
@@ -10594,11 +10703,10 @@
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeEUVuiHKSUOmBgTpJYFoPj1b5YZzkmsNMb8V-LUhNmMfgTX1e2wWptQJSDMwUrkbOxLSRmUL2hlJlvQjbvhCtTO_tRvNwTJR_4jXY3jej2-zaKvI1VT6D8Gvu2baS_z0nPvihD=s4800-w720",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeL3aVYL-unbYsA2f6Qag0MyIxrqtxM-qohEn5iqXpiR1R7Jjnu0z2XtTaGkfTsY5eZt0h_qlnWjyvSqGsZa-zTv3K1GuKHt0vSpNqSX_70XZunO2qJiTXO6aYhvw6rf1TMuVGZ=s4800-w720",
         "imageSource": "Google Maps / Photo by Badi Beiz Frankrichli",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10607,30 +10715,29 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeEUVuiHKSUOmBgTpJYFoPj1b5YZzkmsNMb8V-LUhNmMfgTX1e2wWptQJSDMwUrkbOxLSRmUL2hlJlvQjbvhCtTO_tRvNwTJR_4jXY3jej2-zaKvI1VT6D8Gvu2baS_z0nPvihD=s4800-w720"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeL3aVYL-unbYsA2f6Qag0MyIxrqtxM-qohEn5iqXpiR1R7Jjnu0z2XtTaGkfTsY5eZt0h_qlnWjyvSqGsZa-zTv3K1GuKHt0vSpNqSX_70XZunO2qJiTXO6aYhvw6rf1TMuVGZ=s4800-w720",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLertHI4CU-b5oxW_mvIkdo_TuNrgZYK5fzH23IYBeW9oOc6Wj7tWOWxlVIz1Vo8HjBZimYjI9MBB3b-IljQIH2OhjO9hhM2u6Y5YvyIAPAHsDYwialgYPw8DW7lH75JvFT_dvSG=s4800-w600",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfgHIcyrq9EnSLR1xyqpIE4wQ7G-Yndvv-2volZYc_Y1MvbAzQZzmEqnrhVWI7ga4NLH8h_IwaVvpKtVYk_sNuvZTsBzKtzlUasuo6_H1klF9GBNxWRm0bvenbxw_Lj6l18lY6R6rjP9r0=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.badibeiz.ch/",
+        "phone": "052 765 14 98"
     },
     {
         "id": "osm-spot-1851",
         "name": "Bewegungszentrum",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Bewegungszentrum) located in Frauenfeld.",
         "address": "Bewegungszentrum, 8509 Frauenfeld",
         "zip": "8509",
         "city": "Frauenfeld",
         "lat": 47.70735,
         "lng": 10.03244,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
-        "amenities": [
-            "Toilets",
-            "Cafe/Food",
-            "Stroller Friendly",
-            "Parking"
-        ],
+        "amenities": [],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcSzKdcsBJmTyi7QhNpM9LhRsRg8q3916mtTuIsQWY0m8yVrZ4CobxIZpmLaQ55zsYIetbECSV-nbpP0pStaXS-BuxwcVV0Pf0XlAwHMLS71If8rn9bayeGOVzUTuDtZPoA_bkqTisIrDak=s4800-w1000",
         "imageSource": "Google Maps / Photo by PHYSIOZENTRUM Frauenfeld",
         "osmImageUrl": null,
@@ -10648,23 +10755,22 @@
         "id": "osm-spot-1920",
         "name": "Piscine couverte de la Blancherie",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Piscine couverte de la Blancherie, 2800 Delémont",
+        "description": "Public indoor swimming pool (Piscine couverte de la Blancherie) in Delémont.",
+        "address": "Rue de la Blancherie 4, 2800 Delémont",
         "zip": "2800",
         "city": "Delémont",
         "lat": 47.36058,
         "lng": 7.34078,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 9:00 AM – 9:00 PM | Tu: 9:00 AM – 9:00 PM | We: 9:00 AM – 9:00 PM | Th: 9:00 AM – 9:00 PM | Fr: 9:00 AM – 9:00 PM | Sa: 9:00 AM – 9:00 PM | Su: 9:00 AM – 9:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Indoor Pool"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcLAoZMf09-V7e8rfBTL4qURwtjqoyog9aMFe97oNsUUqcsY3YW4zmckXtHjgYN4qNSItKeeDyST4fAVaPKinQPtul0J5TRrGeawY6v-0lywiE-Aknu7oWHsCHujhYxL77xn-E=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcXNkDb8ga7Ok__c84rrPV0VCzzPaxmbDjZqfDaL-720oVr-Ch-NyM7cQugjCCJdPFI80iCPREFnRrAQhJzLZjfkY5mzDbUwuysbP2puNXpaem5yDDajaTrcJEa3-keDngMYfE=s4800-w1000",
         "imageSource": "Google Maps / Photo by Luciano Fragnoli",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10673,31 +10779,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcLAoZMf09-V7e8rfBTL4qURwtjqoyog9aMFe97oNsUUqcsY3YW4zmckXtHjgYN4qNSItKeeDyST4fAVaPKinQPtul0J5TRrGeawY6v-0lywiE-Aknu7oWHsCHujhYxL77xn-E=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcXNkDb8ga7Ok__c84rrPV0VCzzPaxmbDjZqfDaL-720oVr-Ch-NyM7cQugjCCJdPFI80iCPREFnRrAQhJzLZjfkY5mzDbUwuysbP2puNXpaem5yDDajaTrcJEa3-keDngMYfE=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf0SLwSJqqYImiOxDjCCrkq3kVp5HctKE9TyVJw9RmXxRmG7fJ4TOmRqAI9h-UwYGxvK168YaRuWYCzP6ULjk89Qzoe8m2rz7Kh-aaW3vueu9Mti0tNGoCIQkwj8U_WitkzIYgxug=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeuiSJupahMml4tjgMD56dAI_rOzRKrcmUCzo2s2uYpKC-wLM-VsYdwC7l2dgJkwWxfZ706TcA3GzrO5tBwhewuqNgip9JHfrPovUjDuPMtQb6gnFZMl5b_TZIuSxZIkM2yP9NV=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.delemont.ch/fr/Tourisme-culture-et-loisirs/Sport/Piscine-couverte/Piscine-couverte.html",
+        "phone": "032 421 66 30"
     },
     {
         "id": "osm-spot-1977",
         "name": "Wellness- und Erlebnisbad Davos \"eau-là-là\"",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Wellness- und Erlebnisbad Davos \"eau-là-là\") located in Davos Platz.",
         "address": "Promenade 90, 7270 Davos Platz",
         "zip": "7270",
         "city": "Davos Platz",
         "lat": 46.80065,
         "lng": 9.8307,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdQFO72o9EPAhecjgKv5fgXcuchN7ZCvieROdnXkv8FO0Gacb5ZcK-x23tqp2DYf_2bhYCBKliN3eI2H-5eGPBWaTZZ5qKu-aRmkbFZFweJq-2pgfKCLrSl_hQQw_pI-aAWxreXzg=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcueaVO1j0I359XCRLPtx4SuKjQNhB6bEzzMzuri4pEipnSyeYSrqxNZ9_PgMv_ZDO3jX0EZSP_d4LYK6fhi0IjMEP3lk42l_gFMTU9e4Ic3cvtWuGvaA5OcXOl7LyHVYWpu5o1RA=s4800-w1000",
         "imageSource": "Google Maps / Photo by Wellness und Erlebnisbad eau-là-là",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10706,31 +10814,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdQFO72o9EPAhecjgKv5fgXcuchN7ZCvieROdnXkv8FO0Gacb5ZcK-x23tqp2DYf_2bhYCBKliN3eI2H-5eGPBWaTZZ5qKu-aRmkbFZFweJq-2pgfKCLrSl_hQQw_pI-aAWxreXzg=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcueaVO1j0I359XCRLPtx4SuKjQNhB6bEzzMzuri4pEipnSyeYSrqxNZ9_PgMv_ZDO3jX0EZSP_d4LYK6fhi0IjMEP3lk42l_gFMTU9e4Ic3cvtWuGvaA5OcXOl7LyHVYWpu5o1RA=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLclcpU4EgaNLlDn5mh24z3gKc0kdfnhz4X0e09kYRBrjbnlddC59BfqrN1XQbjpA5Ln-OCcDmQkkznuGNolATkfrmdiS2088HFxUb45mzhC9lFTOZaikO8SPBOzVVCmUvRqTXYD=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeuWfGeCPwXkTSir9daRJP27gcdgX9GtsDHWbRGDReQuC5VX1O9y4zc9L-tpa-CYRymA_fXh803dv8fjT7RkeSW_1rS-HfRH5o6L8mEOdkw3iYrhHD5ew0-bvuS_rwCX9y0srRPDg=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.eau-la-la.ch/",
+        "phone": "081 413 64 63"
     },
     {
         "id": "osm-spot-2107",
         "name": "Pradas Resort",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Pradas Resort, 7162 Tavanasa",
-        "zip": "7162",
-        "city": "Tavanasa",
+        "description": "Informal quarters in a lakeside resort with mountain views, a swimming lake & an indoor pool.",
+        "address": "Via Plaun Rueun 44, 7165 Breil-Brigels",
+        "zip": "7165",
+        "city": "Breil-Brigels",
         "lat": 46.77025,
         "lng": 9.0674,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLc2QjRLGdnlz2YzTU_TshvZ9HspL3uX6_03DyEalOZddIwwGfPwT96nhdNLBvY9W_8V34aRDZyDgwrN7o8nC6Kqfm3vfQZ_DjF92WepUHro3d3xhXHNwBbo9nTf9PbaKjjqE_KF=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdd2M18_dd3GAop47L8TbyX3PCoxhG2JS7cZJ1Yh1uAuAf39ghbSAhIE4qCJwKeIcHAV9YlrxgxdXIANurhjGP9_KBRddxDQD4yH65puNm9GWuNnifB5reVsO9uhc6NqskGmJ-x=s4800-w1000",
         "imageSource": "Google Maps / Photo by Pradas Resort Brigels",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10739,31 +10849,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLc2QjRLGdnlz2YzTU_TshvZ9HspL3uX6_03DyEalOZddIwwGfPwT96nhdNLBvY9W_8V34aRDZyDgwrN7o8nC6Kqfm3vfQZ_DjF92WepUHro3d3xhXHNwBbo9nTf9PbaKjjqE_KF=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdd2M18_dd3GAop47L8TbyX3PCoxhG2JS7cZJ1Yh1uAuAf39ghbSAhIE4qCJwKeIcHAV9YlrxgxdXIANurhjGP9_KBRddxDQD4yH65puNm9GWuNnifB5reVsO9uhc6NqskGmJ-x=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLejSLQEmSOjG6D-5Sbvr3Kk1iYtrtsy9rDKAdiTnUZhvw3B1YZiA-TwznfT-xm2-nqVpgE2wpCR-SCkeeUgAss51APgUP8Hte32JUr_hD4UO8fDIzGZnGOkAXN_Fx7Lll4lDYSxgw=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcE7nsyLNS4lUr5tNTJOLcHWg8wORTSHZY4QtRz-8q98kM9GEaer9_jfn1Bn3gBmfKNtn5bdP67aWAd1UUiFZmQMiPSy47cp7qJeI-pW9JzSt-YSGUhoD9uSbY_Dv9BA4oYgz4C=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.pradasresort.ch/",
+        "phone": "081 920 14 00"
     },
     {
         "id": "osm-spot-2131",
         "name": "Aua Grava",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
+        "description": "Public swimming pool facility (Aua Grava) located in Laax.",
         "address": "Via Grava 45, 7031 Laax",
         "zip": "7031",
         "city": "Laax",
         "lat": 46.81065,
         "lng": 9.2578,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 8:00 AM – 9:30 PM | Tu: 8:00 AM – 9:30 PM | We: 8:00 AM – 9:30 PM | Th: 8:00 AM – 9:30 PM | Fr: 8:00 AM – 9:30 PM | Sa: 10:00 AM – 8:30 PM | Su: 10:00 AM – 8:30 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLexLmgJY1kw-gIkrRtk-pHaS58FPhK3bj6-sgJLp_6K1WLtWuDq9PPl0sAMjjiSoS0llVr5AMzYYewNXx9xMf04Qz0Iu7_g4ap75l9YCcFV79RA-05EASw0eDk5MBHputGkq1Hb1qT7V_s=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLc87c5-2OBVxmE3KK_otE3xrYuynLIp0x9Y86bGtobhLhCcdqrCVkMQHZpmLRTIoB6StSyX67l34bWNeW0uninX9nL7LzfRDqaPb2v0MTCdYbz0CCvp0ayN6M37R_n4cGFWNdmOjzqp6uk=s4800-w1000",
         "imageSource": "Google Maps / Photo by Aua Grava Laax",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10772,31 +10884,34 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLexLmgJY1kw-gIkrRtk-pHaS58FPhK3bj6-sgJLp_6K1WLtWuDq9PPl0sAMjjiSoS0llVr5AMzYYewNXx9xMf04Qz0Iu7_g4ap75l9YCcFV79RA-05EASw0eDk5MBHputGkq1Hb1qT7V_s=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc87c5-2OBVxmE3KK_otE3xrYuynLIp0x9Y86bGtobhLhCcdqrCVkMQHZpmLRTIoB6StSyX67l34bWNeW0uninX9nL7LzfRDqaPb2v0MTCdYbz0CCvp0ayN6M37R_n4cGFWNdmOjzqp6uk=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeGFEbMvDJgVq_J9j-YdC6qC631C2v90ZUaHrTC5bD0sqyvdH6OM__-F8FYZFzD2P31ZGPS211sJkkYas9NpmjA3-Ymp3ltSNzQRNs8G3g6GsTwpQtP8gxRsxwpHRS2tl6G4Efp=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeamaBcZ5GA3F3yYowoS39BMluJjO0S7s1Uy0214Fbrjk1myOsmlcys55X1c2gA4xx7JLXSSudXeYzng0srXOn1LZDiAmaElfGD9yumdVaDOT0rwpoHYp5Ef8YlhG6ryBHxmCLLrw=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.auagrava.ch/",
+        "phone": "081 920 81 20"
     },
     {
         "id": "osm-spot-2293",
         "name": "Bodensee-Therme Konstanz",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Zur Therme 2, 78464 Konstanz",
+        "description": "Public thermal bath and swimming facility (Bodensee-Therme Konstanz) in Konstanz.",
+        "address": "Zur Therme 2, 78464 Konstanz-Staad, Germany",
         "zip": "78464",
         "city": "Konstanz",
         "lat": 47.66452,
         "lng": 9.20896,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 9:00 AM – 10:00 PM | Tu: 9:00 AM – 10:00 PM | We: 9:00 AM – 10:00 PM | Th: 9:00 AM – 10:00 PM | Fr: 9:00 AM – 10:00 PM | Sa: 9:00 AM – 10:00 PM | Su: 9:00 AM – 10:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
             "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdJxjaDgi8bg-sQjHLLysCMwhLzDxwgJsqsUADlHSmcEzcXaMI0gNOr_pVU7Qcz3XbyEfsNtO88p_4xzh5EdEEDiZ9K9dF5AgR3BVdS4epYRIF46Fc0QvNsvk1Ph2lsZv3_U0M=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLc-KzaDo9cvTHsbSc5yfuh6sfxa2JOVwt2_QuRRjPfuM4aug0qnPf412g1ExUBdw4JnXnJ9saRndQbcLs2dqE3Dj4oXJ8OIxd6W3pgyncprghhBwftPJMetwKrdQJRJMMcJsP0=s4800-w1000",
         "imageSource": "Google Maps / Photo by Bodensee-Therme Konstanz",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10805,31 +10920,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdJxjaDgi8bg-sQjHLLysCMwhLzDxwgJsqsUADlHSmcEzcXaMI0gNOr_pVU7Qcz3XbyEfsNtO88p_4xzh5EdEEDiZ9K9dF5AgR3BVdS4epYRIF46Fc0QvNsvk1Ph2lsZv3_U0M=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLc-KzaDo9cvTHsbSc5yfuh6sfxa2JOVwt2_QuRRjPfuM4aug0qnPf412g1ExUBdw4JnXnJ9saRndQbcLs2dqE3Dj4oXJ8OIxd6W3pgyncprghhBwftPJMetwKrdQJRJMMcJsP0=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdTe5cPIn6ZlPTVs_JDj483c11xZ2Q3MnkvxXrsGEsYx6HpiT1AiziJfZ7UgwAMkjTlB4gLZq5j1wBLNC57iHelSqjCN8DcRbv1Xa1M9IpOfIDM-yjs44r6KQg_gnSngsWgFdY=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLezZSDHVbJ1h0qKCY4g2CgUXWUO1ZVLHs5Pp2Gpig7uexL425jyQY9U0ozdVmn326RfQF4UT7aS8Hx0UJjW0NoG_rcMJz_ZTgAMftS4xph9OxLq526avcLngKCjkMCOLuSsSbI5=s4800-w800"
         ],
-        "featured": true
+        "featured": true,
+        "website": "http://www.therme-konstanz.de/",
+        "phone": "07531 8032700"
     },
     {
         "id": "osm-spot-2384",
         "name": "Bains de Géronde",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Chemin du Grand Lac 27, 3960 Sierre",
+        "description": "Public thermal bath and swimming facility (Bains de Géronde) in Sierre.",
+        "address": "Chem. du Grand Lac 27, 3960 Sierre",
         "zip": "3960",
         "city": "Sierre",
         "lat": 46.29043,
         "lng": 7.54081,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Not specified",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfcD9PwBBgkXzQ40pE3E2IZ5M9Zo8BzA-YLQIaLJg_horZEjyLq22HhDWoYvb8Z8rqa4jlVv5xkHHyEIZEEmEAX2BpqZH5bFRkrjXufTOwUdmrAY1c_JArV5pfwmvz9XtLjyR27pg=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLf6ZnxfcCmG0vjmx8sbXNmpKMgUEDxpT2BCmqb-ijbp1wMyS9yLLhXxJ1GGf5JSoF8E6qt5Y_dWh4mernKCQfPK0sFQFXWEvHkF_2xz6uqOrjRzwMOwo743nDcK3rEii2T6tr3P-Q=s4800-w1000",
         "imageSource": "Google Maps / Photo by Piscine Extérieure de Géronde",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10838,31 +10955,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfcD9PwBBgkXzQ40pE3E2IZ5M9Zo8BzA-YLQIaLJg_horZEjyLq22HhDWoYvb8Z8rqa4jlVv5xkHHyEIZEEmEAX2BpqZH5bFRkrjXufTOwUdmrAY1c_JArV5pfwmvz9XtLjyR27pg=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLf6ZnxfcCmG0vjmx8sbXNmpKMgUEDxpT2BCmqb-ijbp1wMyS9yLLhXxJ1GGf5JSoF8E6qt5Y_dWh4mernKCQfPK0sFQFXWEvHkF_2xz6uqOrjRzwMOwo743nDcK3rEii2T6tr3P-Q=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfEWpPu0aO-tOI8bVGheOlOKc_cFAnBPV_wKjQDOqMnQD3BAG4aAT6LR-aVcwugPkOA4Bl9jR51VC5bvETaa_Rg_Qb3dPqblIHdmzl6gInrcIo7YqCSeBMXAhMwhsaRwLFO35FS3nWLrF2e=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLduOvdJGqfKyk_HpJK83-9oByguMzkpeTJ17gKy-ayjAO-vdw5UeMgqIcD_ypxXj7KOvqKwybw8XcnsViey0fNPJh9LnqJ3yLVJ2k5EbOcvF2vnZ8fyi7d1C8IxifO6zcLWr095Fw=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.sierre.ch/fr/bains-geronde-1956.html",
+        "phone": "027 452 02 70"
     },
     {
         "id": "osm-spot-2696",
         "name": "Piscine Extérieure de Chalezeule",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "Piscine Extérieure de Chalezeule, 2406 Les Taillères",
+        "description": "Public swimming pool facility (Piscine Extérieure de Chalezeule) located in Les Taillères.",
+        "address": "12 Rte de Belfort, 25220 Chalezeule, France",
         "zip": "2406",
         "city": "Les Taillères",
         "lat": 47.26572,
         "lng": 6.07181,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: Closed | Tu: Closed | We: Closed | Th: Closed | Fr: Closed | Sa: 10:30 AM – 7:30 PM | Su: 10:30 AM – 7:30 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLebC51TEfSGDNPbM-nPCN5f7dWkQKJlK48SzVXYYVxM-bKFuAwHIJj6CqTZLLCdIwLPZsB0p9rRGFGr0NnWBjhK_ldxW8BhVSCyUYbXngo7ngdZXCEFATcMQg1D8O9fJ-Z5fepXjGIdH7M=s4800-w480",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdR2GLLgeRnrSy6sBGVjdjnwQXn3_5synE1DWBkUfO3JO1iD35YT917TfJ32ngWjqR_QrLMy09RlAwLTIbhgiRKxCHlols_HZZjYJ4Ct2M6JydD88mytmGl1LtqXiAp8RPemDxcTe7d6XI=s4800-w480",
         "imageSource": "Google Maps / Photo by Piscine de Chalezeule",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10871,31 +10990,33 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLebC51TEfSGDNPbM-nPCN5f7dWkQKJlK48SzVXYYVxM-bKFuAwHIJj6CqTZLLCdIwLPZsB0p9rRGFGr0NnWBjhK_ldxW8BhVSCyUYbXngo7ngdZXCEFATcMQg1D8O9fJ-Z5fepXjGIdH7M=s4800-w480"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdR2GLLgeRnrSy6sBGVjdjnwQXn3_5synE1DWBkUfO3JO1iD35YT917TfJ32ngWjqR_QrLMy09RlAwLTIbhgiRKxCHlols_HZZjYJ4Ct2M6JydD88mytmGl1LtqXiAp8RPemDxcTe7d6XI=s4800-w480",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdKeJcHF8jyDOu3ELAn0M4HnZf2a4gEcG_ipkQSkx0s7LaYYUV3eoNIR2mSJGzARBuFHOfMCBHCwNDtBexpdArH609qWCgcQgThFpFXqPooBLHV-hsUTRlwbHBSQuIB40lIKiFdgQ=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLdFJy0UHSB8FcCi6cjYBAIDXuq9co74QeWOqjQlElhu-zS94215B95RjYbAsa7fH5y_nN7Aw7ORi5NZVtpez7W57vrhSBEaIlQ4KXURPdx_zfUfaFrHloVtZaYD4PFmy25TRyvYwg=s4800-w1000"
         ],
-        "featured": true
+        "featured": true,
+        "website": "https://www.grandbesancon.fr/infos-pratiques/sports-loisirs/piscines/",
+        "phone": "06 33 52 13 49"
     },
     {
         "id": "osm-spot-2697",
         "name": "piscine des Cerisiers",
         "type": "swimmingpool",
-        "description": "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.",
-        "address": "piscine des Cerisiers, 2024 St-Aubin-Sauges",
-        "zip": "2024",
-        "city": "St-Aubin-Sauges",
+        "description": "Public swimming pool facility (piscine des Cerisiers) located in St-Aubin-Sauges.",
+        "address": "Rue des Cerisiers 25, 2023 Gorgier",
+        "zip": "2023",
+        "city": "Gorgier",
         "lat": 46.89829,
         "lng": 6.77537,
-        "openingHours": "08:00 - 20:00 daily",
+        "openingHours": "Mo: 7:30 – 9:30 PM | Tu: Closed | We: 2:00 – 5:00 PM | Th: 7:30 – 9:30 PM | Fr: Closed | Sa: 2:00 – 5:00 PM | Su: 9:00 AM – 12:00 PM",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
-            "Toilets",
-            "Cafe/Food",
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdM1WNaZkrdbal5tdbZt-91R4lyAVWqVgZvLBJiLVk7_IIr2lUOGEeOSgLrWS5HBJdus1JnIHrd-1VgcvyNA4ZVhPJxDU6Y1HIWpGWpu_r2V2Lg2Nlne8k4AqwRoi48d4ONXT70Vg=s4800-w1000",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeR3hXvJ2Kwyas4e-4HUP7-AnDXTUoJxTN82Xr519Pdj5UpfikzB5Ttc6Yp9LV7bAY54pkY57xURkxKbRFukqvKnPFhmkvdHYSIamk7H6a-Xp9DGkA8BS6FCKoYIoKUI9NLLMFbrw=s4800-w1000",
         "imageSource": "Google Maps / Photo by Carlos D. Ochoa",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -10904,7 +11025,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdM1WNaZkrdbal5tdbZt-91R4lyAVWqVgZvLBJiLVk7_IIr2lUOGEeOSgLrWS5HBJdus1JnIHrd-1VgcvyNA4ZVhPJxDU6Y1HIWpGWpu_r2V2Lg2Nlne8k4AqwRoi48d4ONXT70Vg=s4800-w1000"
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLeR3hXvJ2Kwyas4e-4HUP7-AnDXTUoJxTN82Xr519Pdj5UpfikzB5Ttc6Yp9LV7bAY54pkY57xURkxKbRFukqvKnPFhmkvdHYSIamk7H6a-Xp9DGkA8BS6FCKoYIoKUI9NLLMFbrw=s4800-w1000"
         ],
         "featured": true
     },

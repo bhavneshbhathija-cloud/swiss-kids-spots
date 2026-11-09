@@ -158,11 +158,14 @@ function harvestSpots() {
                         defaultAmenities = [];
                     } else if (osmLeisure === "water_park" || osmLeisure === "swimming_pool") {
                         spotType = "swimmingpool";
-                        defaultDesc = "A community swimming pool facility with dedicated splashing zones and water slides for kids' fun.";
+                        defaultDesc = "Public swimming pool facility in Switzerland.";
                         imageUrl = SWIMMINGPOOL_IMAGES[idx % SWIMMINGPOOL_IMAGES.length];
                         minAge = 0;
                         maxAge = 18;
-                        defaultAmenities = ["Toilets", "Cafe/Food", "Stroller Friendly", "Parking"];
+                        defaultAmenities = [];
+                        if (tags.toilets === "yes") defaultAmenities.push("Toilets");
+                        if (tags.wheelchair === "yes") defaultAmenities.push("Stroller Friendly");
+                        if (tags.indoor === "yes") defaultAmenities.push("Indoor Pool");
                     } else {
                         spotType = "gamezone";
                         defaultDesc = "An indoor game and play zone featuring safe spaces, interactive games, and obstacle arenas.";

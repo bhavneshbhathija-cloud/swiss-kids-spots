@@ -1791,12 +1791,16 @@ async function openDetails(spotId, options = {}) {
         }
     }
 
-    // Filter out unverified default playground amenities
+    // Filter out unverified default playground or swimming pool amenities
     let rawAmenities = spot.amenities || spot.features || [];
     if (spot.type === 'playpark') {
         const dummySet = new Set(["Toilets", "Shade", "Stroller Friendly"]);
-        // If it matches the unverified dummy set, treat as empty
         if (rawAmenities.length <= 3 && rawAmenities.every(a => dummySet.has(a))) {
+            rawAmenities = [];
+        }
+    } else if (spot.type === 'swimmingpool' && String(spot.id).startsWith('osm-spot-')) {
+        const poolDummySet = new Set(["Toilets", "Cafe/Food", "Stroller Friendly", "Parking"]);
+        if (rawAmenities.length === 4 && rawAmenities.every(a => poolDummySet.has(a))) {
             rawAmenities = [];
         }
     }
@@ -1809,6 +1813,8 @@ async function openDetails(spotId, options = {}) {
         else if (a.includes("Stroller")) aIcon = "fa-baby-carriage";
         else if (a === "Parking") aIcon = "fa-square-parking";
         else if (a.includes("Picnic")) aIcon = "fa-tree";
+        else if (a.includes("Indoor")) aIcon = "fa-person-swimming";
+        else if (a.includes("Outdoor") || a.includes("Badi")) aIcon = "fa-sun";
         return `<span class="amenities-badge"><i class="fa-solid ${aIcon}"></i> ${a}</span>`;
     }).join("");
 
@@ -2204,8 +2210,14 @@ async function openDetails(spotId, options = {}) {
             </div>
         `;
     } else {
+        const websiteBtnHtml = spot.website ? `
+                <a href="${spot.website}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid var(--border-color);">
+                    <i class="fa-solid fa-globe"></i> Official Website
+                </a>` : '';
+
         actionButtonsHtml = `
-            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                ${websiteBtnHtml}
                 <a href="${googleSearchUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; border-radius: var(--radius-sm); text-transform: none; letter-spacing: 0; border: 1px solid var(--border-color);">
                     <i class="fa-solid fa-map-location-dot"></i> Verify on Google Maps
                 </a>
@@ -2216,8 +2228,10 @@ async function openDetails(spotId, options = {}) {
         `;
 
         let displayHours = spot.openingHours;
-        if (!displayHours || displayHours === "08:00 - 20:00 daily" || displayHours === "08:00 - 20:00") {
+        if (!displayHours || displayHours === "08:00 - 20:00 daily" || displayHours === "08:00 - 20:00" || (spot.type === 'swimmingpool' && displayHours === "24/7")) {
             displayHours = spot.type === 'playpark' ? 'Freely accessible' : 'Not specified';
+        } else if (displayHours.includes(' | ')) {
+            displayHours = `<span style="font-size: 0.82rem; line-height: 1.4; display: inline-block;">${displayHours.split(' | ').join('<br>')}</span>`;
         }
 
         metaGridHtml = `
