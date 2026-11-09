@@ -27062,21 +27062,28 @@
     },
     {
         "id": "osm-spot-927",
-        "name": "Leisure Pool Opfikon",
+        "name": "Freizeitbad Opfikon (Hallen- & Freibad Bruggwiesen)",
         "type": "swimmingpool",
-        "description": "Public swimming pool located in Opfikon.",
-        "address": "Ifangstrasse 13, 8152 Opfikon",
+        "description": "Modern indoor and outdoor family aquatic center in Opfikon/Glattbrugg. Indoor facilities include a 25m pool with 1m diving board, interactive Magic Tube water slide with light & sound effects, 100m² indoor/outdoor warm-water bubble pool, and a toddler water play area with stream and mini-slide. Summer outdoor facilities feature a 50m pool, non-swimmer pool with wide slide, 3m diving pool, shaded kids paddling pool (Planschbecken), playground, and self-service bistro. Entry: CHF 8 (Adults), CHF 4 (Kids 6–15), Free under 6.",
+        "address": "Ifangstrasse 13, 8152 Opfikon (Glattbrugg)",
         "zip": "8152",
         "city": "Opfikon",
         "lat": 47.4319,
         "lng": 8.57067,
-        "openingHours": "Mo: 11:30 AM – 9:00 PM | Tu: 8:00 AM – 9:00 PM | We: 6:00 AM – 9:00 PM | Th: 8:00 AM – 9:00 PM | Fr: 8:00 AM – 9:00 PM | Sa: 8:00 AM – 6:00 PM | Su: 8:00 AM – 6:00 PM",
+        "openingHours": "Mo: 11:30–21:00 | Tu, Th, Fr: 08:00–21:00 | We: 06:00–21:00 | Sa–Su: 08:00–18:00 (Summer Freibad: 08:00–20:00)",
         "fees": "Paid Entry",
         "minAge": 0,
         "maxAge": 18,
         "amenities": [
+            "Toilets",
+            "Cafe/Food",
             "Stroller Friendly",
-            "Parking"
+            "Parking",
+            "Shade",
+            "Indoor Pool",
+            "Outdoor Badi",
+            "Water Slide",
+            "Toddler Pool"
         ],
         "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfESEFXq09Fu70lDJmap7IuWQMn9L7wXPw263VTGwYZ78ayc1N3uQOl-v0p3ZJ25l6Yyu6lx0ubAykSV0tDoBWBjiIUHuB1Bl2-zdPlNQ1SGFM6dnqDUyf8ZccTDEK8BrmJqowp=s4800-w1000",
         "imageSource": "Google Maps / Photo by Freizeitbad Opfikon",
@@ -27092,7 +27099,9 @@
             "https://lh3.googleusercontent.com/grass-cs/AABkmLebDufua9Al-7vF-2zXGBzZ0geZ-0QlOiOEqQDVXn8X3b96P01Vd5kSfY3QgCiM0z2MpT6hpx4A3zC7MZrdBSQxKWFR2ODSBrDQGny1QCKFwc-rV9YYXSI1slY6z92OYjFWrdCQ=s4800-w1000"
         ],
         "website": "https://www.opfikon.ch/freizeitbad",
-        "phone": "044 575 38 88"
+        "phone": "044 575 38 88",
+        "isIndoor": true,
+        "featured": true
     },
     {
         "id": "osm-spot-928",

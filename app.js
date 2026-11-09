@@ -2618,6 +2618,17 @@ function handleZipSearchInput(val) {
 
     clearBtn.style.display = "inline-block";
 
+    // Automatically load full OSM dataset when user starts typing a search query
+    if (!isOsmSpotsLoaded && !window._loadingOsmSpotsPromise && val.trim().length >= 2) {
+        window._loadingOsmSpotsPromise = loadOsmSpots().then(() => {
+            window._loadingOsmSpotsPromise = null;
+            const currentVal = document.getElementById("zip-input")?.value;
+            if (currentVal && currentVal.trim().length >= 2 && !currentSearchZip) {
+                handleZipSearchInput(currentVal);
+            }
+        });
+    }
+
     const searchRaw = val.trim();
     const searchNorm = normalizeSearchText(searchRaw);
     const searchAlias = SWISS_CITY_ALIASES[searchNorm] || searchNorm;
