@@ -1291,10 +1291,19 @@ function getDefaultSpotFallback(type) {
     return "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80";
 }
 
-// Image Gallery Switcher
-window.changeDetailImage = function(src, thumbnailEl) {
+// Image Gallery Switcher & Fullscreen Lightbox
+window._currentDetailImages = [];
+window._currentDetailImageIndex = 0;
+
+window.changeDetailImage = function(src, thumbnailEl, idx) {
     const mainImg = document.getElementById("detail-main-img");
     if (!mainImg) return;
+    if (typeof idx === "number") {
+        window._currentDetailImageIndex = idx;
+    } else if (Array.isArray(window._currentDetailImages)) {
+        const foundIdx = window._currentDetailImages.indexOf(src);
+        if (foundIdx !== -1) window._currentDetailImageIndex = foundIdx;
+    }
     
     mainImg.style.opacity = 0.2;
     setTimeout(() => {
@@ -1304,7 +1313,80 @@ window.changeDetailImage = function(src, thumbnailEl) {
     
     const thumbnails = document.querySelectorAll(".thumbnail-img");
     thumbnails.forEach(t => t.classList.remove("active"));
-    thumbnailEl.classList.add("active");
+    if (thumbnailEl) thumbnailEl.classList.add("active");
+};
+
+window.openPhotoLightbox = function(startIndex) {
+    const imgs = (Array.isArray(window._currentDetailImages) && window._currentDetailImages.length > 0)
+        ? window._currentDetailImages
+        : [document.getElementById("detail-main-img")?.src].filter(Boolean);
+    if (imgs.length === 0) return;
+
+    let currentIdx = typeof startIndex === "number" ? startIndex : (window._currentDetailImageIndex || 0);
+    if (currentIdx < 0 || currentIdx >= imgs.length) currentIdx = 0;
+
+    const existing = document.getElementById("photo-lightbox-overlay");
+    if (existing) existing.remove();
+
+    const overlay = document.createElement("div");
+    overlay.id = "photo-lightbox-overlay";
+    overlay.className = "photo-lightbox-overlay";
+
+    const renderLightboxContent = () => {
+        const hasMulti = imgs.length > 1;
+        overlay.innerHTML = `
+            <button type="button" class="photo-lightbox-close" aria-label="Close full screen photo"><i class="fa-solid fa-xmark"></i></button>
+            ${hasMulti ? `<button type="button" class="photo-lightbox-nav prev" aria-label="Previous photo"><i class="fa-solid fa-chevron-left"></i></button>` : ''}
+            <img class="photo-lightbox-img" src="${imgs[currentIdx]}" alt="Full size photo" referrerpolicy="no-referrer" />
+            ${hasMulti ? `<button type="button" class="photo-lightbox-nav next" aria-label="Next photo"><i class="fa-solid fa-chevron-right"></i></button>` : ''}
+            ${hasMulti ? `<div class="photo-lightbox-counter">${currentIdx + 1} / ${imgs.length}</div>` : ''}
+        `;
+
+        overlay.querySelector(".photo-lightbox-close").addEventListener("click", () => overlay.remove());
+        const prevBtn = overlay.querySelector(".photo-lightbox-nav.prev");
+        const nextBtn = overlay.querySelector(".photo-lightbox-nav.next");
+        if (prevBtn) {
+            prevBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currentIdx = (currentIdx - 1 + imgs.length) % imgs.length;
+                window._currentDetailImageIndex = currentIdx;
+                renderLightboxContent();
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currentIdx = (currentIdx + 1) % imgs.length;
+                window._currentDetailImageIndex = currentIdx;
+                renderLightboxContent();
+            });
+        }
+    };
+
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) overlay.remove();
+    });
+
+    // Touch swipe left/right support on mobile
+    let touchStartX = 0;
+    overlay.addEventListener("touchstart", (e) => {
+        if (e.touches && e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+        }
+    }, { passive: true });
+    overlay.addEventListener("touchend", (e) => {
+        if (imgs.length > 1 && e.changedTouches && e.changedTouches.length === 1) {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 45) {
+                currentIdx = dx < 0 ? (currentIdx + 1) % imgs.length : (currentIdx - 1 + imgs.length) % imgs.length;
+                window._currentDetailImageIndex = currentIdx;
+                renderLightboxContent();
+            }
+        }
+    }, { passive: true });
+
+    renderLightboxContent();
+    document.body.appendChild(overlay);
 };
 
 // Reset spot image to type-specific default category image
@@ -1734,6 +1816,8 @@ async function openDetails(spotId, options = {}) {
     }
 
     const spotImages = spot.images && spot.images.length > 0 ? spot.images : [spot.imageUrl];
+    window._currentDetailImages = spotImages;
+    window._currentDetailImageIndex = 0;
     const mainImage = spotImages[0];
     const isPlaceholder = spot.imageUrl && spot.imageUrl.includes("unsplash.com/photo-");
     const isOSM = spotId.startsWith("osm-spot-");
@@ -1746,14 +1830,15 @@ async function openDetails(spotId, options = {}) {
 
     if (hasMultipleImages) {
         const thumbnailsHtml = spotImages.map((img, idx) => `
-            <img class="thumbnail-img ${idx === 0 ? 'active' : ''}" src="${img}" alt="Preview ${idx + 1}" onclick="changeDetailImage('${img}', this)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+            <img class="thumbnail-img ${idx === 0 ? 'active' : ''}" src="${img}" alt="Preview ${idx + 1}" onclick="changeDetailImage('${img}', this, ${idx})" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
         `).join("");
         
         galleryHtml = `
             <div class="detail-gallery">
-                <div class="detail-main-img-container">
+                <div class="detail-main-img-container" onclick="openPhotoLightbox()">
                     ${loadingBadgeHtml}
                     <img id="detail-main-img" class="detail-main-img" src="${mainImage}" alt="${spot.name}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src=getDefaultSpotFallback('${spot.type}')">
+                    <span class="photo-expand-hint"><i class="fa-solid fa-expand"></i> Full photo (${spotImages.length})</span>
                 </div>
                 <div class="detail-thumbnails">
                     ${thumbnailsHtml}
@@ -1763,9 +1848,10 @@ async function openDetails(spotId, options = {}) {
     } else {
         galleryHtml = `
             <div class="detail-gallery">
-                <div class="detail-main-img-container">
+                <div class="detail-main-img-container" onclick="openPhotoLightbox()">
                     ${loadingBadgeHtml}
                     <img id="detail-main-img" class="detail-main-img" src="${mainImage}" alt="${spot.name}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src=getDefaultSpotFallback('${spot.type}')">
+                    <span class="photo-expand-hint"><i class="fa-solid fa-expand"></i> Full photo</span>
                 </div>
             </div>
         `;
@@ -2460,16 +2546,19 @@ async function openDetails(spotId, options = {}) {
                         // Re-render only the gallery section dynamically if modal is still open
                         const currentModal = document.getElementById("detail-modal");
                         if (currentModal.style.display === "flex") {
+                            window._currentDetailImages = data.images;
+                            window._currentDetailImageIndex = 0;
                             const galleryContainer = currentModal.querySelector(".detail-gallery");
                             if (galleryContainer) {
                                 const newThumbnailsHtml = data.images.map((img, idx) => `
-                                    <img class="thumbnail-img ${idx === 0 ? 'active' : ''}" src="${img}" alt="Preview ${idx + 1}" onclick="changeDetailImage('${img}', this)" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+                                    <img class="thumbnail-img ${idx === 0 ? 'active' : ''}" src="${img}" alt="Preview ${idx + 1}" onclick="changeDetailImage('${img}', this, ${idx})" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
                                 `).join("");
                                 
                                 galleryContainer.outerHTML = `
                                     <div class="detail-gallery">
-                                        <div class="detail-main-img-container">
+                                        <div class="detail-main-img-container" onclick="openPhotoLightbox()">
                                             <img id="detail-main-img" class="detail-main-img" src="${data.images[0]}" alt="${spot.name}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src=getDefaultSpotFallback('${spot.type}')">
+                                            <span class="photo-expand-hint"><i class="fa-solid fa-expand"></i> Full photo (${data.images.length})</span>
                                         </div>
                                         <div class="detail-thumbnails">
                                             ${newThumbnailsHtml}

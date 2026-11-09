@@ -1807,28 +1807,37 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
     /* Modals on Mobile */
     .modal-overlay {
-        padding: 0.4rem;
+        padding: 0.5rem;
         align-items: center;
     }
 
     .modal-content {
-        max-height: 94vh;
+        max-height: 92vh;
         width: 100%;
         border-radius: 14px;
-        padding: 1.1rem 0.95rem;
+        padding: 1rem 0.9rem;
+        overflow-x: hidden;
     }
 
     .modal-close {
-        top: 10px;
-        right: 10px;
-        width: 32px;
-        height: 32px;
-        font-size: 0.85rem;
+        position: sticky;
+        float: right;
+        top: 6px;
+        right: 0;
+        margin-bottom: -30px;
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
+        background: rgba(15, 23, 42, 0.82);
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        z-index: 30;
     }
 
     .modal-content h2 {
-        font-size: 1.15rem;
-        padding-right: 30px;
+        font-size: 1.2rem;
+        line-height: 1.3;
+        padding-right: 10px;
     }
 
     .modal-subtitle {
@@ -1848,13 +1857,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
     /* Detail Modal Specifics */
     .detail-gallery {
-        margin: -1.1rem -0.95rem 1rem -0.95rem;
-        border-radius: 14px 14px 0 0;
-        max-height: 220px;
-    }
-
-    .detail-gallery-main {
-        height: 220px;
+        margin: 0 0 0.85rem 0;
+        max-height: none;
     }
 
     .detail-meta-grid {
@@ -1932,12 +1936,18 @@ input[type="range"]::-webkit-slider-thumb:hover {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .detail-main-img-container {
-    height: 320px;
     width: 100%;
+    height: auto;
+    max-height: 380px;
+    min-height: 200px;
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -1947,9 +1957,114 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .detail-main-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    max-height: 380px;
+    object-fit: contain;
+    display: block;
+    cursor: zoom-in;
     transition: opacity 0.15s ease-in-out;
+}
+
+.photo-expand-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(15, 23, 42, 0.78);
+    color: #ffffff;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .detail-main-img-container {
+        max-height: 270px;
+        min-height: 170px;
+    }
+    .detail-main-img {
+        max-height: 270px;
+    }
+}
+
+/* Fullscreen Photo Lightbox */
+.photo-lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 12, 22, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.photo-lightbox-img {
+    max-width: 96vw;
+    max-height: 82vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    user-select: none;
+}
+
+.photo-lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(30, 41, 59, 0.85);
+    color: #ffffff;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5010;
+}
+
+.photo-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(30, 41, 59, 0.8);
+    color: #ffffff;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5010;
+}
+
+.photo-lightbox-nav.prev { left: 12px; }
+.photo-lightbox-nav.next { right: 12px; }
+
+.photo-lightbox-counter {
+    margin-top: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .detail-thumbnails {
