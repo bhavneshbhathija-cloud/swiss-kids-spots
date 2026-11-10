@@ -128,11 +128,14 @@ function page({ title, description, canonical, h1, body, noindex, breadcrumbs })
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)}</title><meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${canonical}">${noindex ? '<meta name="robots" content="noindex,follow">' : ''}
-<link rel="icon" href="/favicon.png">${ld}
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/favicon.png">${ld}
 <style>
 :root{--fg:#1d2a33;--muted:#5b6b75;--bg:#f7f9fa;--card:#fff;--acc:#e8553e;--line:#e3e8eb}
 *{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg)}
-header,main,footer{max-width:900px;margin:0 auto;padding:16px}header a{font-weight:700;color:var(--acc);text-decoration:none;font-size:1.15rem}
+header,main,footer{max-width:900px;margin:0 auto;padding:16px}header a{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--fg);text-decoration:none;font-size:1.15rem}header a span{color:var(--acc)}header a img{width:36px;height:36px;border-radius:50%;object-fit:contain;box-shadow:0 2px 8px rgba(217,4,41,.22)}
 nav.bc{font-size:.85rem;color:var(--muted)}nav.bc a{color:var(--muted)}h1{font-size:1.7rem;line-height:1.25;margin:.3em 0 .5em}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0}.facts div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
@@ -141,7 +144,7 @@ nav.bc{font-size:.85rem;color:var(--muted)}nav.bc a{color:var(--muted)}h1{font-s
 .tags span{display:inline-block;background:#eef3f5;border-radius:999px;padding:2px 10px;margin:2px;font-size:.85rem}
 a{color:#1b6fa8}.muted{color:var(--muted);font-size:.9rem}footer{color:var(--muted);font-size:.85rem}
 </style></head><body>
-<header><a href="/">SwissForKids</a></header>
+<header><a href="/"><img src="/favicon.png" alt="SwissKidsSpots Logo" width="36" height="36">SwissKids<span>Spots</span></a></header>
 <main>${crumbs.length ? `<nav class="bc">${crumbs.map(c => `<a href="${c[1]}">${esc(c[0])}</a>`).join(' › ')}</nav>` : ''}
 <h1>${esc(h1)}</h1>${body}</main>
 <footer><a href="/spielplaetze">Spielplätze</a> · <a href="/schwimmbaeder">Schwimmbäder</a> · <a href="/indoor-spielplaetze">Indoor-Spielplätze</a> · <a href="/wandern">Familienwanderungen</a> · <a href="/wandern/kinderwagen">Kinderwagen-Wanderungen</a> · <a href="/wandern/winter">Winterwanderungen</a></footer>
