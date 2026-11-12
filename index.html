@@ -107,6 +107,9 @@
                     <a href="marketing.html" id="marketing-btn" class="btn btn-outline" title="Instagram Marketing Tool" style="text-decoration: none; display: none; align-items: center; gap: 0.5rem;">
                         <i class="fa-solid fa-bullhorn"></i> Marketing
                     </a>
+                    <a href="/blog" id="blog-header-btn" class="btn btn-outline" title="Swiss Family Blog &amp; Top 10 Guides" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.45rem;">
+                        <i class="fa-solid fa-book-open"></i> <span class="btn-label">Blog &amp; Guides</span>
+                    </a>
                     <button id="upload-photo-header-btn" class="btn btn-outline" title="Upload photos for any spot or hike" onclick="openPhotoUploadModal()">
                         <i class="fa-solid fa-camera"></i> <span class="btn-label">Photos</span>
                     </button>
@@ -1174,10 +1177,99 @@
             </div>
         </div>
 
+        <!-- Featured Family Guides & Top 10 Blog Section (SEO & User Discovery) -->
+        <section class="home-blog-showcase" aria-labelledby="home-blog-heading" style="max-width: 1440px; margin: 1.5rem auto 0; padding: 0 1.25rem;">
+            <div class="card" style="padding: 1.35rem 1.5rem; border-radius: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+                    <div>
+                        <h2 id="home-blog-heading" style="margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-book-open" style="color: var(--primary-color);"></i> Swiss Family Guides &amp; Top 10 Blogs
+                        </h2>
+                        <p style="margin: 0.25rem 0 0; font-size: 0.88rem; color: var(--text-muted);">
+                            Hand-picked Top 10 city playpark guides &amp; Swiss family hiking rankings by difficulty level
+                        </p>
+                    </div>
+                    <a href="/blog" class="btn btn-outline" style="text-decoration: none; font-size: 0.85rem; padding: 0.45rem 0.9rem;">
+                        View All Guides &rarr;
+                    </a>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
+                    <a href="/blog/top-playparks-kids-spots-zurich" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #d8232a; text-transform: uppercase; letter-spacing: 0.03em;">🛝 City Guide &bull; Zürich</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Top 10 Playparks &amp; Kids Spots in Zürich</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Chinagarten, Josefwiese, Irchelpark, Zoo Zürich &amp; more</span>
+                    </a>
+                    <a href="/blog/top-playparks-kids-spots-lucerne" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #d8232a; text-transform: uppercase; letter-spacing: 0.03em;">🎡 City Guide &bull; Lucerne</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Top 10 Playparks &amp; Kids Spots in Lucerne</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Verkehrshaus, Fritschiwiese, PILU Land, Mooraculum &amp; Rigi</span>
+                    </a>
+                    <a href="/blog/top-playparks-kids-spots-interlaken" style="text-decoration: none; color: inherit; padding: 0.85rem 12px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #d8232a; text-transform: uppercase; letter-spacing: 0.03em;">🏔️ Alpine Guide &bull; Interlaken</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Top 10 Playparks &amp; Kids Spots in Interlaken &amp; Jungfrau</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Allmendhubel Flower Park, Höhenmatte, Mannlichen &amp; Brienz</span>
+                    </a>
+                    <a href="/blog/top-10-easy-family-hikes-switzerland" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: 0.03em;">🟢 Easy Hikes (T1) &bull; Stroller-Friendly</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Top 10 Easy Family Hikes in Switzerland</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Globi Trail, Lieselotte Way, Arosa Bear Trail &amp; Panoramaweg</span>
+                    </a>
+                    <a href="/blog/top-10-moderate-family-hikes-switzerland" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #ea580c; text-transform: uppercase; letter-spacing: 0.03em;">🟠 Moderate Hikes (T2) &bull; Kids 6+</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Top 10 Moderate Family Hikes in Switzerland</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Oeschinensee Loop, 5-Seenweg Zermatt, Creux du Van &amp; Bachalpsee</span>
+                    </a>
+                    <a href="/blog/top-10-challenging-family-hikes-switzerland" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #dc2626; text-transform: uppercase; letter-spacing: 0.03em;">🔴 Challenging Hikes (T2–T3) &bull; Teens &amp; Active Kids</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Top 10 Challenging Family Hikes in Switzerland</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Stoos Ridge, Pizol 5-Lakes, Trift Bridge, Ebenalp–Säntis &amp; Aletsch</span>
+                    </a>
+                    <a href="/blog/top-mineral-baths-thermal-spas-families-switzerland" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 0.03em;">♨️ Thermal Spas &bull; Verified Age Rules</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Best Mineral Baths in Switzerland for Families</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Bad Zurzach, Leukerbad, Rigi Kaltbad, Hürlimannbad &amp; Gruyère</span>
+                    </a>
+                    <a href="/blog/best-summer-family-hikes-switzerland" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #0d9488; text-transform: uppercase; letter-spacing: 0.03em;">☀️ Seasonal Hiking &bull; Summer</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Best Summer Family Hikes: Lakes &amp; Cool Gorges</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Caumasee, Aareschlucht, Trübsee, Trutg dil Flem &amp; Männlichen</span>
+                    </a>
+                    <a href="/blog/best-autumn-family-hikes-switzerland" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #d97706; text-transform: uppercase; letter-spacing: 0.03em;">🍂 Seasonal Hiking &bull; Autumn</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Best Autumn Hikes: Golden Larches &amp; Vineyards</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Engadin Flaz Trail, Lavaux, Val Bregaglia, Rigi &amp; Ticino</span>
+                    </a>
+                    <a href="/blog/best-winter-family-hikes-snow-trails-switzerland" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #2563eb; text-transform: uppercase; letter-spacing: 0.03em;">❄️ Seasonal Hiking &bull; Winter</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Best Winter Family Walks (No Skis Needed)</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Schwägalp Lantern Trail, Morteratsch, Rigi, Mürren &amp; Zermatt</span>
+                    </a>
+                    <a href="/blog/best-sledging-runs-switzerland-by-distance-and-price" style="text-decoration: none; color: inherit; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-secondary, rgba(0,0,0,0.02)); display: flex; flex-direction: column; gap: 0.3rem; transition: transform 0.15s ease, border-color 0.15s ease;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.03em;">🛷 Winter Sledging &bull; Longest to Shortest</span>
+                        <strong style="font-size: 0.95rem; line-height: 1.35;">Best Sledging Runs by Distance &amp; Price (15&ndash;1 km)</strong>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Faulhorn (15 km), Melchsee-Frutt (8 km), Preda&ndash;Bergün &amp; Gurten</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="app-footer">
             <div class="footer-inner">
-                <nav class="footer-seo-links" style="font-size:.85rem;margin-bottom:8px">
+                <nav class="footer-seo-links" style="font-size:.85rem;margin-bottom:8px;line-height:1.7">
+                    <strong><a href="/blog">📚 Family Blog &amp; Guides</a></strong> &bull;
+                    <a href="/blog/top-playparks-kids-spots-zurich">Zürich Playparks</a> &bull;
+                    <a href="/blog/top-playparks-kids-spots-lucerne">Lucerne Playparks</a> &bull;
+                    <a href="/blog/top-playparks-kids-spots-interlaken">Interlaken Playparks</a> &bull;
+                    <a href="/blog/top-10-easy-family-hikes-switzerland">Easy Hikes</a> &bull;
+                    <a href="/blog/top-10-moderate-family-hikes-switzerland">Moderate Hikes</a> &bull;
+                    <a href="/blog/top-10-challenging-family-hikes-switzerland">Challenging Hikes</a> &bull;
+                    <a href="/blog/top-mineral-baths-thermal-spas-families-switzerland">Mineral Baths</a> &bull;
+                    <a href="/blog/best-summer-family-hikes-switzerland">Summer Hikes</a> &bull;
+                    <a href="/blog/best-autumn-family-hikes-switzerland">Autumn Hikes</a> &bull;
+                    <a href="/blog/best-winter-family-hikes-snow-trails-switzerland">Winter Hikes</a> &bull;
+                    <a href="/blog/best-sledging-runs-switzerland-by-distance-and-price">Sledging by Distance &amp; Price</a>
+                    <br>
                     <a href="/spielplaetze">Spielplätze</a> &bull; <a href="/schwimmbaeder">Schwimmbäder</a> &bull;
                     <a href="/indoor-spielplaetze">Indoor-Spielplätze</a> &bull; <a href="/wandern">Familienwanderungen</a> &bull;
                     <a href="/wandern/kinderwagen">Kinderwagen-Wanderungen</a> &bull; <a href="/wandern/winter">Winterwanderungen</a>
