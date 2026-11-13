@@ -15,6 +15,27 @@
 const fs = require('fs');
 const path = require('path');
 
+// Load .env file if present
+const envPath = path.join(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+    try {
+        const envContent = fs.readFileSync(envPath, 'utf-8');
+        envContent.split('\n').forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+                const idx = trimmed.indexOf('=');
+                const key = trimmed.slice(0, idx).trim();
+                const val = trimmed.slice(idx + 1).trim();
+                if (!process.env[key]) {
+                    process.env[key] = val;
+                }
+            }
+        });
+    } catch (e) {
+        console.warn('Failed to parse .env in collect_events.js:', e.message);
+    }
+}
+
 // Load postal codes to automatically resolve exact Swiss Canton (ZH, BE, LU, BS, etc.)
 let postalCodes = {};
 try {
@@ -710,6 +731,11 @@ async function fetchZurichTourismEvents() {
     return events;
 }
 
+function stripHtml(html) {
+    if (!html) return '';
+    return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 // --- Eventfrog Public API Connector (Active when EVENTFROG_API_KEY is available) ---
 async function fetchEventfrogEvents() {
     const apiKey = process.env.EVENTFROG_API_KEY;
@@ -720,53 +746,144 @@ async function fetchEventfrogEvents() {
 
     try {
         console.log('[Collector] Fetching events from Eventfrog Public API...');
-        const res = await fetch('https://api.eventfrog.net/public/v1/events?perPage=50', {
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Accept': 'application/json'
-            }
+        // Query official children & family rubrics:
+        // 48 (Familienveranstaltungen), 51 (Kinderfest), 52 (Kinderführung), 53 (Kinderparty),
+        // 54 (Kindertheater), 55 (Kinderzirkus), 99 (Familienweiterbildung), 117 (Kinderflohmarkt), 906 (Kinderveranstaltungen)
+        const rubrics = [48, 51, 52, 53, 54, 55, 99, 117, 906];
+        const rubricQuery = rubrics.map(r => 'rubId=' + r).join('&');
+        const now = new Date().toISOString();
+        const future = new Date(Date.now() + 90 * 24 * 3600 * 1000).toISOString();
+        const url = `https://api.eventfrog.net/api/v1/events.json?apiKey=${apiKey}&country=CH&${rubricQuery}&from=${encodeURIComponent(now)}&to=${encodeURIComponent(future)}&perPage=250`;
+
+        const res = await fetch(url, {
+            headers: { 'Accept': 'application/json' }
         });
         if (!res.ok) {
-            console.warn(`[Collector] Eventfrog returned HTTP ${res.status}`);
+            console.warn(`[Collector] Eventfrog returned HTTP ${res.status}: ${res.statusText}`);
             return [];
         }
+
         const data = await res.json();
-        const events = [];
-        const rawEvents = data.events || data || [];
+        const rawEvents = data.events || [];
+        console.log(`[Collector] Eventfrog returned ${rawEvents.length} raw events (total available: ${data.totalNumberOfResources || rawEvents.length}).`);
+
+        // Collect unique location IDs
+        const locIdSet = new Set();
         for (const ev of rawEvents) {
-            if (!ev.title) continue;
-            const fullAddress = ev.location ? `${ev.location.street || ''}, ${ev.location.zip || ''} ${ev.location.city || ''}` : 'Switzerland';
-            const canton = ev.location ? (ev.location.canton || resolveCantonFromAddress(fullAddress, 'ZH')) : 'ZH';
+            if (ev.locationIds && Array.isArray(ev.locationIds)) {
+                for (const id of ev.locationIds) {
+                    if (id) locIdSet.add(id);
+                }
+            }
+        }
+
+        // Batch fetch locations in chunks of 40 to avoid long query strings
+        const locIds = Array.from(locIdSet);
+        const locationMap = new Map();
+        const BATCH_SIZE = 40;
+        for (let i = 0; i < locIds.length; i += BATCH_SIZE) {
+            const batch = locIds.slice(i, i + BATCH_SIZE);
+            const locUrl = `https://api.eventfrog.net/api/v1/locations.json?apiKey=${apiKey}&id=${batch.join('&id=')}`;
+            try {
+                const locRes = await fetch(locUrl);
+                if (locRes.ok) {
+                    const locData = await locRes.json();
+                    const locs = locData.locations || [];
+                    for (const l of locs) {
+                        locationMap.set(String(l.id), l);
+                    }
+                }
+            } catch (e) {
+                console.warn('[Collector] Eventfrog batch location fetch warning:', e.message);
+            }
+        }
+        console.log(`[Collector] Eventfrog mapped ${locationMap.size} locations.`);
+
+        const events = [];
+        for (const ev of rawEvents) {
+            if (!ev.title || ev.cancelled === true) continue;
+            const titleDe = (ev.title.de || ev.title.en || ev.title.fr || '').trim();
+            const titleEn = (ev.title.en || ev.title.de || ev.title.fr || '').trim();
+            if (!titleDe) continue;
+
+            let loc = null;
+            if (ev.locationIds && ev.locationIds.length > 0) {
+                loc = locationMap.get(String(ev.locationIds[0]));
+            }
+
+            const locName = loc ? (loc.title?.de || loc.title?.en || loc.title?.fr || loc.city || 'Switzerland') : 'Switzerland';
+            const street = loc ? (loc.addressLine || '') : '';
+            const zip = loc ? (loc.zip || '') : '';
+            const city = loc ? (loc.city || '') : '';
+            const fullAddress = [street, `${zip} ${city}`.trim()].filter(Boolean).join(', ') || 'Switzerland';
+
+            let canton = 'ZH';
+            if (loc && loc.zip && postalCodes[loc.zip] && postalCodes[loc.zip].canton) {
+                canton = postalCodes[loc.zip].canton;
+            } else {
+                canton = resolveCantonFromAddress(fullAddress, 'ZH');
+            }
+
+            let category = 'event';
+            if (ev.rubricId === 54) category = 'theatre';
+            else if (ev.rubricId === 51) category = 'festival';
+            else if (ev.rubricId === 55) category = 'circus';
+            else if (ev.rubricId === 52) category = 'workshop';
+            else if (ev.rubricId === 117) category = 'market';
+            else if (ev.rubricId === 48 || ev.rubricId === 906) category = 'family';
+
+            let desc = ev.shortDescription?.de || ev.shortDescription?.en || '';
+            if (!desc && ev.descriptionAsHTML) {
+                desc = stripHtml(ev.descriptionAsHTML.de || ev.descriptionAsHTML.en || '');
+                if (desc.length > 300) desc = desc.slice(0, 297) + '...';
+            }
+
+            let timeText = 'Check event details';
+            if (ev.begin) {
+                try {
+                    const d = new Date(ev.begin);
+                    const timeStr = d.toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Zurich' });
+                    timeText = `From ${timeStr}`;
+                } catch (e) {}
+            }
+
+            let priceText = 'See tickets';
+            if (ev.soldOut) priceText = 'Sold out';
+            else if (ev.littleTicketsLeft) priceText = 'Tickets selling fast';
+            else if (ev.presaleLink) priceText = 'Tickets available';
+
             events.push({
                 id: `event-ef-${ev.id}`,
-                title: ev.title,
-                titleDe: ev.title,
-                category: "event",
-                description: ev.description || ev.title,
-                descriptionDe: ev.description || ev.title,
-                locationName: ev.location ? ev.location.name : 'Switzerland',
+                title: titleEn || titleDe,
+                titleDe: titleDe,
+                category: category,
+                description: desc || titleDe,
+                descriptionDe: desc || titleDe,
+                locationName: locName,
                 address: fullAddress,
                 canton: canton,
-                lat: ev.location && ev.location.lat ? Number(ev.location.lat) : 47.3769,
-                lng: ev.location && ev.location.lng ? Number(ev.location.lng) : 8.5417,
-                startDate: ev.startDate || '2026-11-01',
-                endDate: ev.endDate || ev.startDate || '2026-11-01',
-                timeText: ev.startTime || 'Check website',
+                lat: (loc && loc.lat) ? Number(loc.lat) : 47.3769,
+                lng: (loc && loc.lng) ? Number(loc.lng) : 8.5417,
+                startDate: ev.begin ? ev.begin.slice(0, 10) : '2026-11-12',
+                endDate: ev.end ? ev.end.slice(0, 10) : (ev.begin ? ev.begin.slice(0, 10) : '2026-11-12'),
+                timeText: timeText,
                 recurrence: 'single-day',
                 ageMin: 0,
                 ageMax: 16,
                 ageLabel: 'Kids & Family',
                 isRainyDayFriendly: true,
-                isFree: ev.isFree || false,
-                priceText: ev.priceText || (ev.isFree ? 'Free' : 'See ticket link'),
+                isFree: false,
+                priceText: priceText,
                 officialUrl: ev.url || 'https://eventfrog.ch',
-                ticketUrl: ev.ticketUrl || ev.url || 'https://eventfrog.ch',
-                imageUrl: ev.imageUrl || '',
-                tags: ["eventfrog", "kids", "tickets"],
-                organizer: ev.organizer ? ev.organizer.name : 'Eventfrog Organizer',
+                ticketUrl: ev.presaleLink || ev.url || 'https://eventfrog.ch',
+                imageUrl: (ev.emblemToShow && ev.emblemToShow.url) ? ev.emblemToShow.url : '',
+                tags: ["eventfrog", "kids-events", "family-activity", category],
+                organizer: ev.organizerName || 'Eventfrog Organizer',
                 source: "eventfrog"
             });
         }
+
+        console.log(`[Collector] Processed ${events.length} valid events from Eventfrog.`);
         return events;
     } catch (e) {
         console.error('[Collector] Eventfrog fetch error:', e.message);

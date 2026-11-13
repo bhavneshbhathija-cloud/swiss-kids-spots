@@ -6,6 +6,7 @@ Thumbs.db
 .env.*
 
 *.backup.json
+osm_hike_pois_cache.json
 
 uploads/*
 !uploads/.gitkeep
