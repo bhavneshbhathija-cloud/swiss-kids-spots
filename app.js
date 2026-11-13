@@ -4204,7 +4204,13 @@ function generateUniqueGroupId(spotId, dateVal) {
 }
 
 window.openGroupHikePlanner = function(spotId, prefill = {}) {
-    const spot = spots.find(s => s.id === spotId);
+    let spot = spots.find(s => s.id === spotId);
+    if (!spot) {
+        // Default to a top featured family hike if opened without a specific trail ID
+        spot = spots.find(s => s.id === 'hike-sm-hike-custom-truebsee-loop') ||
+               spots.find(s => s.type === 'hiking' && s.isFeatured) ||
+               spots.find(s => s.type === 'hiking');
+    }
     if (!spot) return;
 
     currentGroupHikeSpot = spot;
@@ -5427,6 +5433,113 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
     });
+
+    // Global Quick Filter Shortcut for Header Service Pills
+    window.quickFilterType = function(type) {
+        const playpark = document.getElementById("filter-playpark");
+        const gamezone = document.getElementById("filter-gamezone");
+        const pool = document.getElementById("filter-swimmingpool");
+        const hiking = document.getElementById("filter-hiking");
+        const eventEl = document.getElementById("filter-event");
+        const weather = document.getElementById("filter-weather-suitable");
+        const hikeStroller = document.getElementById("filter-hike-stroller");
+        const hikeWinter = document.getElementById("filter-hike-winter");
+
+        if (type === 'all') {
+            if (playpark) playpark.checked = true;
+            if (gamezone) gamezone.checked = true;
+            if (pool) pool.checked = true;
+            if (hiking) hiking.checked = true;
+            if (eventEl) eventEl.checked = true;
+            if (hikeStroller) hikeStroller.checked = false;
+            if (hikeWinter) hikeWinter.checked = false;
+        } else if (type === 'playpark') {
+            if (playpark) playpark.checked = true;
+            if (gamezone) gamezone.checked = false;
+            if (pool) pool.checked = false;
+            if (hiking) hiking.checked = false;
+            if (eventEl) eventEl.checked = false;
+        } else if (type === 'hiking') {
+            if (playpark) playpark.checked = false;
+            if (gamezone) gamezone.checked = false;
+            if (pool) pool.checked = false;
+            if (hiking) hiking.checked = true;
+            if (eventEl) eventEl.checked = false;
+            if (hikeStroller) hikeStroller.checked = false;
+            if (hikeWinter) hikeWinter.checked = false;
+        } else if (type === 'stroller') {
+            if (playpark) playpark.checked = false;
+            if (gamezone) gamezone.checked = false;
+            if (pool) pool.checked = false;
+            if (hiking) hiking.checked = true;
+            if (eventEl) eventEl.checked = false;
+            if (hikeStroller) hikeStroller.checked = true;
+            if (hikeWinter) hikeWinter.checked = false;
+        } else if (type === 'winter') {
+            if (playpark) playpark.checked = false;
+            if (gamezone) gamezone.checked = false;
+            if (pool) pool.checked = false;
+            if (hiking) hiking.checked = true;
+            if (eventEl) eventEl.checked = false;
+            if (hikeWinter) hikeWinter.checked = true;
+        } else if (type === 'swimmingpool') {
+            if (playpark) playpark.checked = false;
+            if (gamezone) gamezone.checked = false;
+            if (pool) pool.checked = true;
+            if (hiking) hiking.checked = false;
+            if (eventEl) eventEl.checked = false;
+        } else if (type === 'gamezone') {
+            if (playpark) playpark.checked = false;
+            if (gamezone) gamezone.checked = true;
+            if (pool) pool.checked = false;
+            if (hiking) hiking.checked = false;
+            if (eventEl) eventEl.checked = false;
+        } else if (type === 'event') {
+            if (playpark) playpark.checked = false;
+            if (gamezone) gamezone.checked = false;
+            if (pool) pool.checked = false;
+            if (hiking) hiking.checked = false;
+            if (eventEl) eventEl.checked = true;
+        } else if (type === 'grouphike') {
+            if (playpark) playpark.checked = false;
+            if (gamezone) gamezone.checked = false;
+            if (pool) pool.checked = false;
+            if (hiking) hiking.checked = true;
+            if (eventEl) eventEl.checked = false;
+            if (typeof window.openGroupHikePlanner === 'function') {
+                window.openGroupHikePlanner();
+            }
+        }
+
+        // Toggle subfilter visibility boxes
+        const hikingSubfiltersBox = document.getElementById("hiking-subfilters-box");
+        if (hikingSubfiltersBox) {
+            hikingSubfiltersBox.style.display = (hiking && hiking.checked) ? "block" : "none";
+        }
+        const eventSubfiltersBox = document.getElementById("event-subfilters-box");
+        if (eventSubfiltersBox) {
+            eventSubfiltersBox.style.display = (eventEl && eventEl.checked) ? "block" : "none";
+        }
+
+        // Update active class on header pills
+        document.querySelectorAll('.header-service-pill').forEach(pill => {
+            if (pill.dataset.filter === type) {
+                pill.classList.add('active');
+            } else {
+                pill.classList.remove('active');
+            }
+        });
+
+        if (typeof renderSpotsList === 'function') {
+            renderSpotsList();
+        }
+
+        // Scroll to results list smoothly on mobile if user clicked a service
+        if (window.innerWidth <= 768) {
+            const listCard = document.getElementById("spots-container");
+            if (listCard) listCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    };
 
     const swisstopoToggle = document.getElementById("toggle-swisstopo-layer");
     if (swisstopoToggle) {

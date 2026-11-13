@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwissKidsSpots - Find Playparks, Family Hiking Trails, Pools &amp; Game Zones in Switzerland</title>
+    <title>SwissKidsSpots - Playparks, Family Hikes, Sledging, Pools, Kids Events &amp; Group Hike Planner</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Find the best playparks, family &amp; stroller-friendly hiking trails, indoor game zones, and swimming pools for kids in Switzerland. Check distance, elevation profiles, restaurants, parking, and live weather suitability before you go.">
-    <meta name="keywords" content="switzerland kids spots, swiss playparks, family hiking trails switzerland, stroller friendly hikes zurich lucerne, swiss playgrounds, swimming pools switzerland, kids game zones switzerland, family activities switzerland">
+    <meta name="description" content="Explore Swiss playparks, family &amp; stroller hiking trails, winter sledging runs, swimming pools &amp; thermal baths, indoor game zones, live kids events, and plan group hikes across Switzerland.">
+    <meta name="keywords" content="switzerland kids spots, swiss playparks, family hiking trails switzerland, stroller friendly hikes zurich lucerne, sledging switzerland, swimming pools switzerland, thermal baths kids switzerland, kids events switzerland, group hike planner switzerland, family activities switzerland">
     <meta name="author" content="SwissKidsSpots">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook Meta Tags (for social sharing previews) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://swissforkids.ch/">
-    <meta property="og:title" content="SwissKidsSpots - Playparks, Family Hiking Trails, Pools &amp; Game Zones in Switzerland">
-    <meta property="og:description" content="Explore 6,000+ playparks, stroller-friendly &amp; family hiking trails, indoor game zones, and swimming pools in Switzerland with live MeteoSwiss weather suitability checks.">
+    <meta property="og:title" content="SwissKidsSpots - Playparks, Family Hikes, Sledging, Pools &amp; Group Hikes in Switzerland">
+    <meta property="og:description" content="Explore Swiss playparks, family &amp; stroller hikes, winter sledging, thermal pools, indoor game zones, live kids events, and coordinate group hikes with live SBB timetable links.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1200&h=630&q=80">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -23,8 +23,8 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://swissforkids.ch/">
-    <meta name="twitter:title" content="SwissKidsSpots - Playparks, Family Hiking Trails, Pools &amp; Game Zones in Switzerland">
-    <meta name="twitter:description" content="Explore 6,000+ playparks, stroller-friendly &amp; family hiking trails, indoor game zones, and swimming pools in Switzerland with live MeteoSwiss weather suitability checks.">
+    <meta name="twitter:title" content="SwissKidsSpots - Playparks, Family Hikes, Sledging, Pools &amp; Group Hikes in Switzerland">
+    <meta name="twitter:description" content="Explore Swiss playparks, family &amp; stroller hikes, winter sledging, thermal pools, indoor game zones, live kids events, and coordinate group hikes with live SBB timetable links.">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1200&h=630&q=80">
 
     <!-- Favicon and App Icons (Google Search & Apple Touch compliant) -->
@@ -89,7 +89,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=47">
+    <link rel="stylesheet" href="style.css?v=48">
 </head>
 <body class="light-theme">
     <!-- App Container -->
@@ -121,7 +121,19 @@
                     </button>
                 </div>
             </div>
-            <p class="tagline">Explore playparks, family &amp; stroller-friendly hiking trails, indoor game zones &amp; swimming pools in Switzerland</p>
+            <p class="tagline">Explore playparks, family &amp; stroller hikes, winter sledging, thermal pools, indoor game zones, kids events &amp; plan group hikes across Switzerland</p>
+            <nav class="header-services-bar" aria-label="Services &amp; Features">
+                <button type="button" class="header-service-pill active" data-filter="all" onclick="quickFilterType('all')"><i class="fa-solid fa-layer-group"></i> All Spots</button>
+                <button type="button" class="header-service-pill" data-filter="playpark" onclick="quickFilterType('playpark')"><i class="fa-solid fa-shapes text-playpark"></i> Playparks</button>
+                <button type="button" class="header-service-pill" data-filter="hiking" onclick="quickFilterType('hiking')"><i class="fa-solid fa-person-hiking text-hiking"></i> Family Hikes</button>
+                <button type="button" class="header-service-pill" data-filter="stroller" onclick="quickFilterType('stroller')"><i class="fa-solid fa-baby-carriage text-hiking"></i> Stroller Trails</button>
+                <button type="button" class="header-service-pill" data-filter="winter" onclick="quickFilterType('winter')"><i class="fa-solid fa-person-sledging text-winter"></i> Sledging &amp; Winter</button>
+                <button type="button" class="header-service-pill" data-filter="swimmingpool" onclick="quickFilterType('swimmingpool')"><i class="fa-solid fa-water-ladder text-swimmingpool"></i> Pools &amp; Thermal Baths</button>
+                <button type="button" class="header-service-pill" data-filter="gamezone" onclick="quickFilterType('gamezone')"><i class="fa-solid fa-gamepad text-gamezone"></i> Indoor Game Zones</button>
+                <button type="button" class="header-service-pill" data-filter="event" onclick="quickFilterType('event')"><i class="fa-solid fa-calendar-star text-event"></i> Kids Events</button>
+                <button type="button" class="header-service-pill header-service-pill-group" data-filter="grouphike" onclick="quickFilterType('grouphike')" title="Plan group hike, travel &amp; SBB train meetup"><i class="fa-solid fa-users" style="color: #2a9d8f;"></i> Plan Group Hike</button>
+                <a href="/blog" class="header-service-pill header-service-pill-link" title="Read Swiss Family Guides &amp; Comparison Tables"><i class="fa-solid fa-book-open"></i> Guides</a>
+            </nav>
         </header>
 
         <!-- Main Content -->
@@ -1308,6 +1320,6 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=46"></script>
+    <script src="app.js?v=47"></script>
 </body>
 </html>

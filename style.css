@@ -155,11 +155,105 @@ body {
 }
 
 .app-header p.tagline {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
     font-weight: 400;
     margin: 0;
-    line-height: 1.35;
+    line-height: 1.4;
+}
+
+.app-header p.tagline strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* --- Header Services & Information Bar --- */
+.header-services-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding: 0.25rem 0 0.15rem;
+    margin-top: 0.2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.header-services-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.header-service-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.32rem 0.72rem;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    font-family: inherit;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.header-service-pill:hover {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.header-service-pill.active {
+    background: var(--swiss-red);
+    color: #ffffff !important;
+    border-color: var(--swiss-red);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(217, 4, 41, 0.35);
+}
+
+.header-service-pill.active i {
+    color: #ffffff !important;
+}
+
+.header-service-pill-group {
+    background: rgba(42, 157, 143, 0.08);
+    color: #2a9d8f;
+    border-color: rgba(42, 157, 143, 0.3);
+    font-weight: 600;
+}
+
+.header-service-pill-group:hover {
+    background: #2a9d8f;
+    color: #ffffff !important;
+    border-color: #2a9d8f;
+}
+
+.header-service-pill-group:hover i {
+    color: #ffffff !important;
+}
+
+.header-service-pill-link {
+    background: rgba(217, 4, 41, 0.08);
+    color: var(--swiss-red);
+    border-color: rgba(217, 4, 41, 0.25);
+    font-weight: 600;
+}
+
+.header-service-pill-link:hover {
+    background: var(--swiss-red);
+    color: #ffffff !important;
+    border-color: var(--swiss-red);
+}
+
+.text-winter {
+    color: #0284c7 !important;
 }
 
 .header-actions {
@@ -1606,6 +1700,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
         line-height: 1.35;
         color: var(--text-secondary);
         margin: 0;
+    }
+
+    .header-services-bar {
+        gap: 0.35rem;
+        padding: 0.1rem 0 0.05rem;
+        margin: 0;
+    }
+
+    .header-service-pill {
+        padding: 0.25rem 0.55rem;
+        font-size: 0.72rem;
     }
 
     .header-actions {
