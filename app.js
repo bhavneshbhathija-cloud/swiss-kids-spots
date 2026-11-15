@@ -3580,7 +3580,7 @@ async function handleAddSpotSubmit(e) {
         imageUrl,
         images: customImg ? [customImg] : [fallbackUrl],
         ratings: [5],
-        comments: [{ author, rating: 5, text: `Shared by ${author} on SwissKidsSpots! ${spotDesc.slice(0, 120)}` }],
+        comments: [{ author, rating: 5, text: `Shared by ${author} on SwissForKids! ${spotDesc.slice(0, 120)}` }],
         submittedBy: author,
         imageSource: `Community Photo by ${author}`,
         isCommunitySubmitted: true
@@ -3669,7 +3669,7 @@ async function handleAddSpotSubmit(e) {
     submitBtn.disabled = false;
     submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Publish Submission';
 
-    alert(`Thank you, ${author}! Your ${type === 'hiking' ? 'family trail' : (type === 'event' ? 'event' : 'spot')} "${spotName}" has been submitted successfully.\n\nTo ensure safety, accuracy and family-friendly quality, all submissions are reviewed by an administrator before appearing publicly on SwissKidsSpots.`);
+    alert(`Thank you, ${author}! Your ${type === 'hiking' ? 'family trail' : (type === 'event' ? 'event' : 'spot')} "${spotName}" has been submitted successfully.\n\nTo ensure safety, accuracy and family-friendly quality, all submissions are reviewed by an administrator before appearing publicly on SwissForKids.`);
 }
 
 // Handle Community Photo Upload to existing spot / trail / event

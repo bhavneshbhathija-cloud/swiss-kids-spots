@@ -190,7 +190,7 @@ table.guide-table tr:last-child td{border-bottom:none}
 a{color:#1b6fa8}.muted{color:var(--muted);font-size:.9rem}footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:32px;padding-top:20px}
 </style></head><body>
 <header>
-  <a class="brand" href="/"><img src="/favicon.png" alt="SwissKidsSpots Logo" width="38" height="38">SwissKids<span>Spots</span></a>
+  <a class="brand" href="/"><img src="/favicon.png" alt="SwissForKids Logo" width="38" height="38">SwissFor<span>Kids</span></a>
   <nav>
     <a href="/">Interactive Map</a>
     <a href="/blog">Family Guides &amp; Blog</a>
