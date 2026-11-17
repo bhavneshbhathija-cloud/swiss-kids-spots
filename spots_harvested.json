@@ -1,5 +1,40 @@
 [
     {
+        "id": "osm-spot-zoo-zurich",
+        "name": "Zoo Zürich & Masoala Regenwald",
+        "type": "playpark",
+        "description": "Switzerland’s premier family zoo set high on Zürichberg. Highlights include the 11,000 m² warm Masoala Rainforest hall with free-roaming lemurs, the Kaeng Krachan Elephant Park, the Zoolino petting zoo with goats and pigs, multiple themed adventure playgrounds, and the famous daily winter Penguin Parade at 13:30.",
+        "address": "Zürichbergstrasse 221, 8044 Zürich",
+        "city": "Zürich",
+        "lat": 47.3855,
+        "lng": 8.5745,
+        "openingHours": "09:00 - 18:00 (Mar - Oct), 09:00 - 17:00 (Nov - Feb)",
+        "fees": "Paid Entry",
+        "amenities": [
+            "Toilets",
+            "Cafe/Food",
+            "Shade",
+            "Stroller Friendly",
+            "Picnic Area",
+            "Parking"
+        ],
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcW0jzxB7eeSujFGanc2a8Pr7vKTPFD1jFfIR21_1Os_beltUGeNZ51Wm_1fb8HAKTho3cCy4oEvizLOKXIV6VbdO5Sxk31PqX9pXZqTR_jDKDdBZmoxQ2riTWYxWtOffL7sAuqTw=s4800-w1000",
+        "imageSource": "Official Venue / Zoo Zürich",
+        "osmImageUrl": null,
+        "wikimediaCommons": null,
+        "wikidataId": "Q220138",
+        "wikipediaRef": "https://en.wikipedia.org/wiki/Zoo_Z%C3%BCrich",
+        "ratings": [],
+        "comments": [],
+        "images": [
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLcW0jzxB7eeSujFGanc2a8Pr7vKTPFD1jFfIR21_1Os_beltUGeNZ51Wm_1fb8HAKTho3cCy4oEvizLOKXIV6VbdO5Sxk31PqX9pXZqTR_jDKDdBZmoxQ2riTWYxWtOffL7sAuqTw=s4800-w1000",
+            "https://lh3.googleusercontent.com/grass-cs/AABkmLfRuccDjHPOZD5jQFi-ZWFJsgfQl6U4VEJmHFHDyHilUIf-UE4BQKgRrSY_Gzn8sqz3oNfHHy5DzKuvjSOGe3iDS8YFuU1TJGiulJmaJmjjokzqCnLbsF3EZJAWrymPNW9bToOD=s4800-w1000"
+        ],
+        "featured": true,
+        "website": "https://www.zoo.ch",
+        "phone": "044 254 25 40"
+    },
+    {
         "id": "osm-spot-1",
         "name": "Playground in Romanshorn",
         "type": "playpark",
@@ -8249,7 +8284,7 @@
             "Parking",
             "Outdoor Badi"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeHNbB8Jwe_bVsW1hEEQZX2Jn0RlFPlUdITR1auMkbdHv6V9H_YJwJlv1cUp7S6ecF2PgU9oe1EoJVgAu2XIFTv8SEh_dsPgPDOtdHRn8yRH28CN16hNSAqXtVy2lVZBEjuQI5Q=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by Strandbad Nonnenhorn",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -8258,9 +8293,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeHNbB8Jwe_bVsW1hEEQZX2Jn0RlFPlUdITR1auMkbdHv6V9H_YJwJlv1cUp7S6ecF2PgU9oe1EoJVgAu2XIFTv8SEh_dsPgPDOtdHRn8yRH28CN16hNSAqXtVy2lVZBEjuQI5Q=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcA1SfLRy9LRmhrgXB8Q_NG15Eg6BhcfRU37ySPkCqgnNqDS9c1nG0vmUplwSdPos3kTlkmyYXXZE_lKwANt1e6rjpDsnSexzjV_TSUkKX2SKAgQGzwgdpp0Im7XOEKGoOpvdce=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdzsFLAo3JMKyQCybiF32NIg9-_SEh-GIgKnA4HtKj8f-lWC5NhkCxDXBu0RMh96yB03xSv5V-jvh3qJumCbXXY3ZPDWRDzq8tpUoOLpFj10k1Wo006OZ8HeSw5GAHKBeZuiPNoKw=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "featured": true,
         "website": "http://www.nonnenhorn.eu/",
@@ -8360,8 +8393,8 @@
         "openingHours": null,
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&auto=format&fit=crop&q=80",
-        "imageSource": "Unsplash License (Curated Swiss Style)",
+        "imageUrl": "https://i.pinimg.com/originals/d7/aa/3f/d7aa3f5558e16f81ad255697fd2f02be.jpg",
+        "imageSource": "Actual Spot Photography (Wahlenpark Zürich)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -8369,7 +8402,9 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&auto=format&fit=crop&q=80"
+            "https://i.pinimg.com/originals/d7/aa/3f/d7aa3f5558e16f81ad255697fd2f02be.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Wahlenpark_018.jpg/960px-Wahlenpark_018.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Wahlenpark_blauerBalken.JPG/960px-Wahlenpark_blauerBalken.JPG"
         ]
     },
     {
@@ -34146,7 +34181,7 @@
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe9YoII_fd1X0wM9kseXLeUHJ1H_qCVHMmB87VRVaaJQM_w7Y7LYev3lJhYXMv_pRQlixDWe9zjK4udXOTwZY_U7pL7nNqOxl-z0znKtQSCCEJbrshbHPtzChT5taI7e1bY-jMh=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by Jura Sport & Spa Resort",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -34155,9 +34190,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLe9YoII_fd1X0wM9kseXLeUHJ1H_qCVHMmB87VRVaaJQM_w7Y7LYev3lJhYXMv_pRQlixDWe9zjK4udXOTwZY_U7pL7nNqOxl-z0znKtQSCCEJbrshbHPtzChT5taI7e1bY-jMh=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdU12Zo0TdLAWSC1_ABxBEpcdEOeK03vT5BQ2QzDlq-q6ITCliaIK3FxMvjT_2zKvKMJeSiDASn0TyanrLuGtUn41SjGSB8ReDlyKSGJBNQCWlhWFkpQquw-gZXXIBbWu6Bmg9wNzP7jFuM=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLe0W8HQCeUsQ1t7AsTiPQ-3NBPMsFKuMgggIQpbjZelBUQc_WtSMmaM-lBHzJKJmvTCS4eiz-hbE8Gwy6Bxjw1CalFGSHZV4eWXwU_8mJ3XaypNjuYC8y6zL8YP-r_BIs3uIgvbgg=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "website": "http://www.jura-resort.ch/",
         "phone": "032 951 24 74"
@@ -36861,8 +36894,8 @@
             "Parking",
             "Indoor Pool"
         ],
-        "imageUrl": "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=900&auto=format&fit=crop&q=80",
-        "imageSource": "Unsplash License (Curated Swiss Style)",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Gemeindezentrum_Geroldswil_-_Hallenbad%2C_Hotel_und_Restaurant.png/960px-Gemeindezentrum_Geroldswil_-_Hallenbad%2C_Hotel_und_Restaurant.png",
+        "imageSource": "Wikimedia Commons (CC BY-SA)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -36870,7 +36903,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=900&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Gemeindezentrum_Geroldswil_-_Hallenbad%2C_Hotel_und_Restaurant.png/960px-Gemeindezentrum_Geroldswil_-_Hallenbad%2C_Hotel_und_Restaurant.png"
         ],
         "website": "https://www.geroldswil.ch/hallenbad",
         "phone": "044 749 32 70"
@@ -43070,7 +43103,7 @@
         "openingHours": "Tu-Fr 13:00-19:30; Sa, Su 13:00-17:00",
         "fees": "Paid Entry",
         "amenities": [],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfIyA1nkhgGrlI9ZilMVvgN12_K131azkYHwBBoBaxMQtwSW8UUIoOYWe4QbxXX4D2Bom2aDTa9xB_sZ__OAjJoiBgfeRNtr4O4dVECz8pR9wATSnWSamYhdS_IJqYsiJkc2AriYMXun6f8=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by Panorama Beatenberg",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -43079,9 +43112,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfIyA1nkhgGrlI9ZilMVvgN12_K131azkYHwBBoBaxMQtwSW8UUIoOYWe4QbxXX4D2Bom2aDTa9xB_sZ__OAjJoiBgfeRNtr4O4dVECz8pR9wATSnWSamYhdS_IJqYsiJkc2AriYMXun6f8=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeJP7zTM5xhdFuKl_jQLxhy649k1TB0ZDH8h0lUgHK3lBw3euxuMQs2kWyR9HUpC7A21fWIGQjAYSugJfvVBJPoMbv4-9Q7Im4cYFMGm1j4bFAU3zFEy3YScKIIWaGuuHWXsPz26kR7Ixry=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLc6S9Mo6uuqE9M3WBnK5GUdY_IDvm9lJvMhsu-cfHgURYHNrx6dz3sNi8SFU1oYazsaq2_SyCxjpnXrr6w9nhthjDzny172X-RT7jDuUH_WeLd0SEyjT1jrPWdhb6xLKSCkieN3fVAlG3rw=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "featured": true,
         "website": "https://www.panorama-beatenberg.ch/",
@@ -46057,8 +46088,8 @@
         "openingHours": null,
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80",
-        "imageSource": "Google Maps / Photo by Pascal Piot (Papi74)",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Rives_du_lac_Yverdon.jpg/960px-Rives_du_lac_Yverdon.jpg",
+        "imageSource": "Wikimedia Commons (CC BY-SA)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -46066,7 +46097,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Rives_du_lac_Yverdon.jpg/960px-Rives_du_lac_Yverdon.jpg"
         ]
     },
     {
@@ -46696,7 +46727,7 @@
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfgm51Fx2GDAmE0ZYCCIhnDP-jSybPNNnQ093s9Cs39EQMJ0Lq9BC6vCQ4AvV0GfxXpUNJlKMDldT9o4cMER6P7s4ao_nhMJ-pA5IPbSEzb-47Mg2Zkzc9dajmcCna6C6nIC56f_g=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by piscine Courtepin",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -46705,9 +46736,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfgm51Fx2GDAmE0ZYCCIhnDP-jSybPNNnQ093s9Cs39EQMJ0Lq9BC6vCQ4AvV0GfxXpUNJlKMDldT9o4cMER6P7s4ao_nhMJ-pA5IPbSEzb-47Mg2Zkzc9dajmcCna6C6nIC56f_g=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfLr6-cRqFJ4FhQU4P0gyt0ZRYxBBDP16TwgdLbGKEDmSh-yeS0RCVHK9uyqoT6htx1yNGnn5vKVVMYd3rYZBRWIzfSIN3Hln4yGULLFYQ-iu541iuJmF1JedaWcYaaM14tCjw=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcvDi4yBL5Ort5yGFKZ9GU3ShMObXxA-cd4S-FxI24XXXuo79voOT7q45CeGWbojwM_R0MXeHWfo6w8soK7pqP23Hiz0huOvtM3fPRAq3EWBakVE42hz8x2UdDO3Rc9nsUGf3bC=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "website": "http://piscinecourtepin.ch/de/kontakt",
         "phone": "026 565 42 48"
@@ -69614,8 +69643,8 @@
         "openingHours": null,
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://images.unsplash.com/photo-1564429238817-393bd4286b2d?w=900&auto=format&fit=crop&q=80",
-        "imageSource": "Unsplash License (Curated Swiss Style)",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Spielbrunnen_Spielplatz_Veielihubel_01.jpg/960px-Spielbrunnen_Spielplatz_Veielihubel_01.jpg",
+        "imageSource": "Wikimedia Commons (CC BY-SA)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -69623,7 +69652,9 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1564429238817-393bd4286b2d?w=900&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Spielbrunnen_Spielplatz_Veielihubel_01.jpg/960px-Spielbrunnen_Spielplatz_Veielihubel_01.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Spielbrunnen_Spielplatz_Veielihubel_04.jpg/960px-Spielbrunnen_Spielplatz_Veielihubel_04.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Spielbrunnen_Spielplatz_Veielihubel_02.jpg/960px-Spielbrunnen_Spielplatz_Veielihubel_02.jpg"
         ]
     },
     {
@@ -89873,8 +89904,8 @@
         "openingHours": null,
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://images.unsplash.com/photo-1551966775-a4ddc8df052b?w=900&auto=format&fit=crop&q=80",
-        "imageSource": "Unsplash License (Curated Swiss Style)",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/CH.NW.Dallenwil_Wirzweli_Witch%27s-Playground_2009-10-25_26_16x9-R_5120x2880.jpg/960px-CH.NW.Dallenwil_Wirzweli_Witch%27s-Playground_2009-10-25_26_16x9-R_5120x2880.jpg",
+        "imageSource": "Wikimedia Commons (CC BY-SA)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -89882,7 +89913,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1551966775-a4ddc8df052b?w=900&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/CH.NW.Dallenwil_Wirzweli_Witch%27s-Playground_2009-10-25_26_16x9-R_5120x2880.jpg/960px-CH.NW.Dallenwil_Wirzweli_Witch%27s-Playground_2009-10-25_26_16x9-R_5120x2880.jpg"
         ]
     },
     {
@@ -111317,7 +111348,7 @@
         "amenities": [
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfXoIIJEqAqSmGRDPP_Vwh7HC7OIqBHJPab-0F-amgbr7MIApBHTxbfKlkdXVM1I9hnmg-OCz-85sg-rWegKbuO5vqnunvq9T1dXECdmDDFZ7eBnDcXMvs3PFcs6_JE4G__IBQT8YxdfGA=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by Roland Zumbuehl",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -111326,9 +111357,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfXoIIJEqAqSmGRDPP_Vwh7HC7OIqBHJPab-0F-amgbr7MIApBHTxbfKlkdXVM1I9hnmg-OCz-85sg-rWegKbuO5vqnunvq9T1dXECdmDDFZ7eBnDcXMvs3PFcs6_JE4G__IBQT8YxdfGA=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcXZpOILYOfF2tYDN0riSxac4wtdD--8HCrZfw0iCBilaarQkvHirDVL_k7irv_RIQqh2m0_hVUQ2iR7IIe0mfCA7MFNgj76Nj7E6NBLKN--pQ-YWfV0AmySHb1PM5TF9CsExHO=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLc1i-3Pz8pGpUL2OE9OUgSJ6b3iv4Oc28G-a-FG1FQAHNii8ATfyjTnKUUakhzzHnXZ_-8KySxUFq1S7C19hieU-kwhfojwzN2WQYk9Rxn_ZHzA3BJHgSPKxFqWyQoyPZHLHh6cLDMbs1Q=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "phone": "044 413 59 84"
     },
@@ -113386,8 +113415,8 @@
         "openingHours": null,
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&auto=format&fit=crop&q=80",
-        "imageSource": "Unsplash License (Curated Swiss Style)",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Linde_am_Spielplatz_-_panoramio.jpg",
+        "imageSource": "Wikimedia Commons (CC BY 3.0)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -113395,7 +113424,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/f/fc/Linde_am_Spielplatz_-_panoramio.jpg"
         ]
     },
     {
@@ -153664,7 +153693,7 @@
         "amenities": [
             "Stroller Friendly"
         ],
-        "imageUrl": "https://images.unsplash.com/photo-1560090995-01632a28895b?w=900&auto=format&fit=crop&q=80",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wahlenpark_Blick-von-oben-auf-SpielwiesemitWasserbecken.JPG/500px-Wahlenpark_Blick-von-oben-auf-SpielwiesemitWasserbecken.JPG",
         "imageSource": "Unsplash License (Curated Swiss Style)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -153673,7 +153702,10 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1560090995-01632a28895b?w=900&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wahlenpark_Blick-von-oben-auf-SpielwiesemitWasserbecken.JPG/500px-Wahlenpark_Blick-von-oben-auf-SpielwiesemitWasserbecken.JPG",
+            "https://cdn.unitycms.io/images/EetGBqMcq1mAl4DMdOkGE3.jpg?op=ocroped&val=1200,600,1000,1000,0,0&sum=qA3SRcjC3lY",
+            "https://www.zuerichunbezahlbar.ch/media/tile_images/planschbecken-wahlenpark/wahlenpark_waves_FF8400.png",
+            "https://www.researchgate.net/profile/Heidi-Kaspar/publication/236857830/figure/fig3/AS:299543984918546@1448428259807/Water-basin-at-Wahlenpark-with-ball-catch-fence-and-flood-light-post-in-the-background.png"
         ],
         "phone": "044 413 87 93"
     },
@@ -154903,7 +154935,7 @@
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLeRdUSPg1B5dQvIt83_t0cd8f_J5Ge_MAU6WTEoRwFh5oe2rX1DC-EGykEMppB3nZ0gDs7e_dCOVggXbFinNOi2c1V_XrhCj7zMG2lcNUNVOuY6-2Xe2WtAbtmfBvf2XnUzIt38cg=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by Micha72",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -154912,9 +154944,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeRdUSPg1B5dQvIt83_t0cd8f_J5Ge_MAU6WTEoRwFh5oe2rX1DC-EGykEMppB3nZ0gDs7e_dCOVggXbFinNOi2c1V_XrhCj7zMG2lcNUNVOuY6-2Xe2WtAbtmfBvf2XnUzIt38cg=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLdDIsHtiZf1pwdSTw-yksNdxAoSs-GPISI83uzRr1EjSISDNgMuR3WxdW7Z2xtDLgfntWS2BGF6J0S8xJCAJZZimWShkNZCJm8xNFOOx5rlncyZ0eL3mefXWupAw4pXXpp9NQZskg=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLehwHL9Rp6hk-ciLwqzJYs2G88jveX-NOTOJXMqfrWy6cRw-T53EV2-t9CQhvr561kw99vIAV5JxZK8XconYd-ubMSeX5AwuSFuwH1WtwqCdJN-f22WdwkxiaARadvEdO2G-kM=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "website": "https://www.glattfelden.ch/freizeit/schwimmbad.html/308",
         "phone": "043 530 01 27"
@@ -159411,8 +159441,8 @@
         "openingHours": null,
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://images.unsplash.com/photo-1575783970733-1aaedde1db74?w=900&auto=format&fit=crop&q=80",
-        "imageSource": "Unsplash License (Curated Swiss Style)",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Brunnen_Spielplatz_Untere_Humboldtstrasse_01.jpg/960px-Brunnen_Spielplatz_Untere_Humboldtstrasse_01.jpg",
+        "imageSource": "Wikimedia Commons (CC BY-SA)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -159420,7 +159450,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1575783970733-1aaedde1db74?w=900&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Brunnen_Spielplatz_Untere_Humboldtstrasse_01.jpg/960px-Brunnen_Spielplatz_Untere_Humboldtstrasse_01.jpg"
         ]
     },
     {
@@ -159489,7 +159519,7 @@
         "openingHours": "Mo-Su,PH 09:30-19:30",
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLd7WFMpT7hNiFl7CmwBbgLLVSBCD1-BYxxXyKzr0gyv4xvOljl5YTiE67jJEkzhunGcvfyrq6WjmfAdD4bOxBnDuDhzDM_1_Fm-1JP5yeac7Nj6SHEoAdci-z_s6UvVFHlkENpeEw=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by Marion Braunl",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -159498,9 +159528,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLd7WFMpT7hNiFl7CmwBbgLLVSBCD1-BYxxXyKzr0gyv4xvOljl5YTiE67jJEkzhunGcvfyrq6WjmfAdD4bOxBnDuDhzDM_1_Fm-1JP5yeac7Nj6SHEoAdci-z_s6UvVFHlkENpeEw=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLeqyWPwppNzCI0VU4WYmQrosAFc2I8QY4EGz9AXTV2E9VAsM7Z_r6a29H0aR-jLqlg1wpULxye1pz-tzJGaMBY45aKpfLVxGpyq7UW4c0aZ3bvynPjA-Drb9t14vRusYK6vIN9Y=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcEAzY1-5NzsZdRW6Kn3OuoZu_WAswI7_d45gXD09Ah-25n2eoSFhqZCfxFluOygo7ypyIpEuxMB575HkhQUUCKQSjdBdn2IozYvcyj52YI8nVLI13UGY9ZcozLpc6FpBjMENJh=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "website": "https://www.lausanne.ch/vie-pratique/sport-pour-tous/installations-sportives/liste-installations-sportives/piscine-bellevaux.html",
         "phone": "021 315 21 18"
@@ -162443,8 +162471,8 @@
         "openingHours": null,
         "fees": "Free",
         "amenities": [],
-        "imageUrl": "https://images.unsplash.com/photo-1551966775-a4ddc8df052b?w=900&auto=format&fit=crop&q=80",
-        "imageSource": "Unsplash License (Curated Swiss Style)",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Brunnen_Spielplatz_Goumo%C3%ABnsmatte_02.jpg/960px-Brunnen_Spielplatz_Goumo%C3%ABnsmatte_02.jpg",
+        "imageSource": "Wikimedia Commons (CC BY-SA)",
         "osmImageUrl": null,
         "wikimediaCommons": null,
         "wikidataId": null,
@@ -162452,7 +162480,9 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://images.unsplash.com/photo-1551966775-a4ddc8df052b?w=900&auto=format&fit=crop&q=80"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Brunnen_Spielplatz_Goumo%C3%ABnsmatte_02.jpg/960px-Brunnen_Spielplatz_Goumo%C3%ABnsmatte_02.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Brunnen_Spielplatz_Goumo%C3%ABnsmatte_03.jpg/960px-Brunnen_Spielplatz_Goumo%C3%ABnsmatte_03.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Brunnen_Spielplatz_Goumo%C3%ABnsmatte_07.jpg/960px-Brunnen_Spielplatz_Goumo%C3%ABnsmatte_07.jpg"
         ]
     },
     {
@@ -162824,7 +162854,7 @@
             "Stroller Friendly",
             "Parking"
         ],
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfmZZ7xXXJTRKnLNNBNUchNXJ6a8ncfic9oAligkwrVknofIXhqG-wqs_QZ-nompdL8ngGv2TZJGZFqONndXvQvW-yCelFayrVB4Pf-6pRFAUjAjZhGYonKpB8DySVdz6iA_JT--FknvvA=s4800-w1000",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80",
         "imageSource": "Google Maps / Photo by Nel Reuling",
         "osmImageUrl": null,
         "wikimediaCommons": null,
@@ -162833,9 +162863,7 @@
         "ratings": [],
         "comments": [],
         "images": [
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLfmZZ7xXXJTRKnLNNBNUchNXJ6a8ncfic9oAligkwrVknofIXhqG-wqs_QZ-nompdL8ngGv2TZJGZFqONndXvQvW-yCelFayrVB4Pf-6pRFAUjAjZhGYonKpB8DySVdz6iA_JT--FknvvA=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLf7vqbElUQAhzfcei29uu0HUT581TGhcMuRnDQOdOWk4i4TywVqkHtwso-J-INAq6PThalHsdVuffHjOCjI8twboLFxJnAwZe3NE0VFjMTS4eaxgl3HrRMjF7rmaTHIBGMJglXVow=s4800-w1000",
-            "https://lh3.googleusercontent.com/grass-cs/AABkmLcyzTR8YQva4jwE_8Xmo84kf9K_N0Z_08v6g2_TeAXIVxQlVzUNK2VXISHF6cil_VOx8kmFlL4SlLRcFow8sd9oncwUiuay3dCU86t1PuoBhYq-LauC8musTSsY1ayjTMzHSloR=s4800-w1000"
+            "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80"
         ],
         "website": "https://www.laufenburg.ch/sportanlagen/6315",
         "phone": "062 874 13 50"

@@ -1260,7 +1260,117 @@ const BLOG_POSTS = [
       { label: 'Read: Sunny Winter Walks (No Skis Needed)', href: '/blog/best-winter-family-hikes-snow-trails-switzerland' },
       { label: 'Warm Up Afterward: Best Mineral Baths for Families', href: '/blog/top-mineral-baths-thermal-spas-families-switzerland' }
     ]
+  },
+  {
+    slug: 'where-to-take-kids-in-winter-switzerland',
+    title: 'Where to Take Kids in Winter in Switzerland: Best Indoor & Outdoor Activities in Major Cities (Zürich, Lucerne, Bern, Basel & Beyond)',
+    subtitle: 'From tropical rainforest domes and giant science labs to fairy-tale ice rinks, illuminated castle gardens, and world-class heated water parks — the ultimate city-by-city winter survival guide for families.',
+    metaDescription: 'Wondering where to take kids during winter in Switzerland? Discover the best family activities in Zürich, Lucerne, Bern, Basel, and Lake Geneva: Technorama, Verkehrshaus, Masoala rainforest, Christmas markets, thermal water parks & ice rinks.',
+    category: 'Seasonal Guide · Winter & Cities',
+    readTime: '9 min read',
+    publishedAt: '2026-11-17',
+    heroImage: 'https://images.unsplash.com/photo-1517824806704-9040b037703b?w=1600&auto=format&fit=crop&q=80',
+    intro: `When cold winter winds or gray freezing drizzle sweep through the Swiss plateau, you don't need a CHF 300 family ski pass to give your children an unforgettable day. Switzerland's major cities — Zürich, Lucerne, Bern, Basel, and the Lake Geneva region — are packed with world-class, weather-proof family destinations: giant tropical glasshouses where you can peel off coats into 28°C warmth, Europe’s top interactive science and transport museums, fairy-tale Christmas night light shows, and thrilling heated indoor water parks. Whether you are living in Switzerland or visiting for winter vacation, here are the top 10 places to take kids during the Swiss winter months.`,
+    items: [
+      {
+        rank: 1,
+        spotId: 'spot-103',
+        name: 'Swiss Science Center Technorama (Winterthur / Greater Zürich)',
+        location: 'Technoramastrasse 1, 8404 Winterthur (S-Bahn S12/S29 to Winterthur Grüze or Bus 5)',
+        badge: 'Indoor · 500+ Hands-on Experiments',
+        summary: 'Widely considered Europe’s best hands-on science playground, Technorama is the ultimate freezing-day savior. Over three sprawling floors, touching, turning, and testing everything is strictly mandatory: make giant soap bubbles, touch magnetic liquid sculptures, trigger room-sized tornadoes, and watch high-voltage indoor lightning shows.',
+        tip: 'Plan for at least 4 to 5 hours. Kids under 6 enter free, and there is a massive indoor picnic area with lockers if you bring your own snacks.'
+      },
+      {
+        rank: 2,
+        spotId: 'spot-101',
+        name: 'Verkehrshaus der Schweiz: Swiss Museum of Transport (Lucerne)',
+        location: 'Lidostrasse 5, 6006 Luzern (8 min by S-Bahn or scenic lake boat from Luzern Bahnhof)',
+        badge: 'Indoor & Outdoor · Switzerland’s #1 Family Museum',
+        summary: 'Switzerland’s most visited museum is pure heaven for children. Kids can climb inside real historic steam locomotives, sit in Swiss airline cockpits, operate miniature battery-powered road diggers, experience the 360-degree Planetarium dome, and take the Lindt Swiss Chocolate Adventure ride with live free chocolate tastings.',
+        tip: 'Combine with the Lucerne Winter Lake Promenade: right outside the museum, watch snow-capped Mount Rigi and Mount Pilatus reflected across the peaceful winter waters of Lake Lucerne.'
+      },
+      {
+        rank: 3,
+        spotId: 'excel-spot-1784120137237-61',
+        name: 'Masoala Rainforest & Winter Penguin Parade at Zoo Zürich (Zürich)',
+        location: 'Zürichbergstrasse 221, 8044 Zürich (Tram 6 from Zürich HB direct to Zoo)',
+        badge: 'All-Weather · 28°C Tropical Dome & Daily Penguin Walk',
+        summary: 'When it is freezing outside, stepping into Zoo Zürich’s Masoala Hall feels like magic: an 11,000 m² authentic Madagascar rainforest kept at a constant 28°C and 80% humidity, where giant fruit bats, colorful chameleons, and lemurs roam free. Outside, on winter days below 10°C, witness the famous daily Penguin Parade at 13:30 as King Penguins waddle down the snowy zoo pathway right past cheering kids.',
+        tip: 'Dress in easy layers! Leave heavy winter jackets in the zoo lockers before entering Masoala Hall so children stay comfortable.'
+      },
+      {
+        rank: 4,
+        spotId: 'spot-48',
+        name: 'Bernaqua Water Park & Adventure Wave Pool (Westside Bern)',
+        location: 'Riedbachstrasse 98, 3027 Bern (Direct S-Bahn S5/S51/S52 to Bern Brünnen Westside)',
+        badge: 'Heated Indoor Splash & Giant Water Slides',
+        summary: 'Located inside Daniel Libeskind’s striking Westside complex, Bernaqua offers over 2,000 m² of heated water world. Highlights include the longest indoor water slides in Switzerland, a fast-flowing whitewater wild river canyon, gentle toddler splash zones with mini fountains, and soothing 36°C salt-water mineral relaxation pools for parents.',
+        tip: 'Pair a morning swim with a visit to Bern’s Museum of Communication (Museum für Kommunikation) in the afternoon — just a quick 12-minute tram ride away.'
+      },
+      {
+        rank: 5,
+        spotId: 'spot-113',
+        name: 'Lindt Home of Chocolate (Kilchberg / Lake Zürich)',
+        location: 'Schokoladenplatz 1, 8802 Kilchberg (Bus 165 from Bürkliplatz or Lake Boat to Kilchberg)',
+        badge: 'Interactive Sweet Experience · 9-Meter Chocolate Fountain',
+        summary: 'A winter wonderland for chocolate lovers of all ages. Greeted in the marble atrium by a towering 9-meter-high real chocolate fountain flowing with 1,500 kg of liquid Lindt chocolate, the interactive audio tour takes children through cocoa history, interactive automated factory lines, and unlimited live tasting stations offering warm liquid dark, milk, and white chocolate.',
+        tip: 'Book tickets at least 1–2 weeks ahead during November and December weekends, as time slots sell out fast.'
+      },
+      {
+        rank: 6,
+        spotId: 'spot-9',
+        name: 'Basler Märchenwald & Aquabasilea Tropical Spas (Basel & Pratteln)',
+        location: 'Münsterplatz, 4051 Basel / Hardstrasse 57, 4133 Pratteln',
+        badge: 'Festive Old Town Workshops & Tropical Water Slides',
+        summary: 'During December, Basel’s historic Münsterplatz turns into the magical Basler Märchenwald (Fairy Tale Forest), where kids can bake gingerbread stars, dip beeswax candles, and forge molten metal. For an energetic indoor splash, head 10 minutes out to Aquabasilea in Pratteln for 13,000 m² of mountain torrents, wave pools, and thermal waters.',
+        tip: 'In central Basel, don’t miss the Spielzeug Welten Museum (Toy Worlds Museum) with four floors housing over 6,000 antique teddy bears and dollhouses.'
+      },
+      {
+        rank: 7,
+        spotId: 'spot-2',
+        name: 'FIFA Museum & Landesmuseum Illuminarium (Zürich Enge & HB)',
+        location: 'Seestrasse 27, 8002 Zürich / Museumstrasse 2, 8001 Zürich',
+        badge: 'Interactive Game Arenas & 3D Castle Light Shows',
+        summary: 'Inside the FIFA Museum at Bahnhof Enge, kids burn off winter energy in the giant pinball arena, skill dribbling cages, and interactive commentary booths. As dusk falls, walk 10 minutes over to the Swiss National Museum (Landesmuseum) courtyard for the Illuminarium: an immersive winter fairytale of 3D light projections, mythical creatures, and hot spiced cider stands.',
+        tip: 'Between late November and Christmas Eve, kids aged 4–10 can also ride the iconic Zürcher Märlitram at Bellevue with Santa and angels.'
+      },
+      {
+        rank: 8,
+        spotId: 'spot-101',
+        name: 'Lucerne "Live On Ice" & Mount Rigi Winter Wonderland (Lucerne)',
+        location: 'Europaplatz KKL, 6003 Luzern & Vitznau / Goldau Cogwheel Railway',
+        badge: 'Lakefront Ice Skating & Groomed Sledge Runs',
+        summary: 'Right on the shoreline of Lake Lucerne in front of the illuminated KKL, families skate under fairy lights with classical music and mountain views. Next morning, hop on the scenic lake boat to Vitznau and take the historic red cogwheel train up to Mount Rigi (Queen of the Mountains) for groomed sunny winter walking paths and toddler-friendly sledging runs.',
+        tip: 'Kids with an SBB Junior Card (CHF 30/year) ride the Rigi mountain railways completely free all year round!'
+      },
+      {
+        rank: 9,
+        spotId: 'spot-3',
+        name: 'Alpamare Pfäffikon & Lake Zurich Sledging (Upper Lake Zürich / Schwyz)',
+        location: 'Gwattstrasse 12, 8808 Pfäffikon SZ (35 min S-Bahn from Zürich HB)',
+        badge: 'Europe’s Biggest Indoor Water Park · 12 Thrill Slides',
+        summary: 'Boasting 12 exhilarating indoor water slides totaling 2.1 kilometers, giant indoor wave pools with tropical palm trees, and outdoor 36°C Alpa-Therme heated saline pools surrounded by winter snow, Alpamare is a beloved family institution for beating winter cabin fever.',
+        tip: 'Check family multi-hour afternoon tickets for substantial savings compared to full day passes.'
+      },
+      {
+        rank: 10,
+        spotId: 'spot-48',
+        name: 'Aquatis Aquarium-Vivarium & Montreux Noël (Lausanne & Lake Geneva)',
+        location: 'Route de Berne 144, 1010 Lausanne (Direct Metro M2 to Vennes)',
+        badge: 'Largest Freshwater Aquarium in Europe & Flying Santa',
+        summary: 'Just off Lausanne’s Metro M2, Aquatis is a jaw-dropping indoor voyage through the world’s freshwater ecosystems, housing 10,000 fish, Komodo dragons, piranhas, and a tropical greenhouse. In December, continue 20 minutes down the lake to the Montreux Noël Christmas market to witness Santa fly through the sky above Lake Geneva against the snowy Dents du Midi.',
+        tip: 'Combine Aquatis with the Lausanne Metro pass, which is provided free to all guests staying in Lausanne family hotels and hostels.'
+      }
+    ],
+    internalLinks: [
+      { label: 'View all Live Kids & Family Events in Switzerland', href: '/#events' },
+      { label: 'Read: Top 10 Sledging Runs for Families in Switzerland', href: '/blog/best-sledging-runs-switzerland-by-distance-and-price' },
+      { label: 'Read: Best Mineral Baths & Thermal Spas for Kids', href: '/blog/top-mineral-baths-thermal-spas-families-switzerland' },
+      { label: 'Explore 493 Groomed Winter Snow Walking Trails', href: '/wandern/winter' }
+    ]
   }
 ];
 
 module.exports = BLOG_POSTS;
+
