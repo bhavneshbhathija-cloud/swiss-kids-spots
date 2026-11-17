@@ -140,7 +140,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 21; Adults CHF 33; Under 6 free",
         officialUrl: "https://www.technorama.ch",
         ticketUrl: "https://www.technorama.ch/de/besuchen/tickets",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/technorama_1-1200x900.jpg",
+        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLd-OxBu61z7QUTuYioIw-QXg62A643FhyM2kwkU83I2FbBT98G0NadiYemQBw0VCdRPWso6mlGThl0fM9j_qugAvXVgVuUjlMhShTLORJAAINtp3h6JpuDuCa6--15H_JRTb4WTEvWpv8Q=s4800-w1000",
         tags: ["science", "experiments", "indoor", "rainy-day", "hands-on", "workshop"],
         organizer: "Swiss Science Center Technorama",
         source: "curated_swiss_family"
@@ -169,7 +169,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6-15) CHF 16; Adults CHF 35; Children under 6 free",
         officialUrl: "https://www.verkehrshaus.ch",
         ticketUrl: "https://www.verkehrshaus.ch/besuchen/tickets-preise.html",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/verkehrshaus_1-1200x900.jpg",
+        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLdAKkPHyCND6P6VtonDNNyZhOK4PZangCZZn97kGPn5r_ezFBvZZ-RZSOgjLJColtQafFimpamWWjcaL56_IITsOQk11-2EHA6_ONwCLaOkObr81_uMwXtbTAxUhG902w4xOxazlw=s4800-w1000",
         tags: ["trains", "cars", "planetarium", "indoor", "outdoor", "traffic-park"],
         organizer: "Verkehrshaus der Schweiz",
         source: "curated_swiss_family"
@@ -198,7 +198,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Free admission for everyone (Registration required for lab workshops)",
         officialUrl: "https://sciencegateway.cern",
         ticketUrl: "https://sciencegateway.cern/practical-information",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/technorama_1-1200x900.jpg",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/CERN_Globe_of_Science_and_Innovation.jpg/960px-CERN_Globe_of_Science_and_Innovation.jpg",
         tags: ["science", "physics", "cern", "free", "indoor", "rainy-day", "hands-on"],
         organizer: "CERN",
         source: "curated_swiss_family"
@@ -430,7 +430,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (4–15) CHF 10; Adults CHF 20; Under 4 free",
         officialUrl: "https://www.papiliorama.ch",
         ticketUrl: "https://www.papiliorama.ch/tickets/",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/papiliorama_1-1200x900.jpg",
+        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLc1d6Q4kli0qKx3JPOM_6zuqdNhgQo10eFYwRzOxcmfMOuEfPMXnwP01o1f8XcxkmAnQcdMN-HFTM1kYoFBi94EXjy1L1_WNE6hYKIBtEwydIuCbLoMCg374fK8GGKXrMyKYSWb=s4800-w1000",
         tags: ["animals", "butterflies", "indoor", "rainy-day", "nature", "night-safari"],
         organizer: "Stiftung Papiliorama",
         source: "curated_swiss_family"
@@ -488,7 +488,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 12; Adults CHF 24; Children under 6 free",
         officialUrl: "https://tierpark.ch",
         ticketUrl: "https://tierpark.ch/tickets/",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/tierpark_goldau_1-1200x900.jpg",
+        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLcSiguk3acdlEreMg61H5L_hW7FIqa-AgDSU89N9U3fF8qaU5RFg2CqxSk1YXcd31W0Jb62JnGhvq2ygAkXmsOsM5ry5xZtGbWTaTDmgy6SwA7Xy_1qTntqTCuTkfN5gcFJPtxiLwOAd-Db=s4800-w1000",
         tags: ["zoo", "animals", "deer", "playground", "nature", "outdoor", "grill"],
         organizer: "Natur- und Tierpark Goldau",
         source: "curated_swiss_family"
@@ -546,7 +546,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (4–15) CHF 14; Adults CHF 26; Under 4 free",
         officialUrl: "https://www.fifamuseum.com",
         ticketUrl: "https://www.fifamuseum.com/de/tickets",
-        imageUrl: "https://www.zuerich.com/sites/default/files/image/2021/web_zuerich_fifa_museum_1280x960_43015.jpg",
+        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLfGMjdszvQxFBvg69CFkRHqCBspGw307JbpZCe3DBeZJltZWJmsuQyXwGkGWA3q42uPws2QJekSrRuTrEXQ_sWH5-6ybHmphtrmAieRvTn5d1xEgH0juf0HA3Nhh6KI9U_JAvWP=s4800-w1000",
         tags: ["football", "sports", "indoor", "rainy-day", "interactive", "skills"],
         organizer: "FIFA Museum Zürich",
         source: "curated_swiss_family"
