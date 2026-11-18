@@ -82,7 +82,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Kids under 4 free; Children 4-15 CHF 15; Adults CHF 24",
         officialUrl: "https://zauberpark.ch/",
         ticketUrl: "https://zauberpark.ch/tickets/",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/02/pt_38349-1200x899.jpg",
+        imageUrl: "/images/events/event-zauberpark-zurich-airport.jpg",
         tags: ["light-art", "concert", "music", "winter", "airport", "food-stalls"],
         organizer: "Flughafen Zürich AG & NOA Mobilitätswelten",
         source: "curated_swiss_family"
@@ -111,7 +111,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Courtyard free; Light Show: Kids (6-15) CHF 9.50, Adults CHF 15.50",
         officialUrl: "https://illuminarium.ch/",
         ticketUrl: "https://illuminarium.ch/#tickets",
-        imageUrl: "https://www.zuerich.com/sites/default/files/styles/sharing/public/image/2023/web_zuerich_illuminarium_landesmuseum_1280x960_43290.jpg",
+        imageUrl: "/images/events/event-illuminarium-zurich.jpg",
         tags: ["light-show", "winter", "christmas-market", "evening", "museum"],
         organizer: "Projektil & Swiss National Museum",
         source: "curated_swiss_family"
@@ -140,7 +140,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 21; Adults CHF 33; Under 6 free",
         officialUrl: "https://www.technorama.ch",
         ticketUrl: "https://www.technorama.ch/de/besuchen/tickets",
-        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLd-OxBu61z7QUTuYioIw-QXg62A643FhyM2kwkU83I2FbBT98G0NadiYemQBw0VCdRPWso6mlGThl0fM9j_qugAvXVgVuUjlMhShTLORJAAINtp3h6JpuDuCa6--15H_JRTb4WTEvWpv8Q=s4800-w1000",
+        imageUrl: "/images/events/event-technorama-science-labs.jpg",
         tags: ["science", "experiments", "indoor", "rainy-day", "hands-on", "workshop"],
         organizer: "Swiss Science Center Technorama",
         source: "curated_swiss_family"
@@ -169,7 +169,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6-15) CHF 16; Adults CHF 35; Children under 6 free",
         officialUrl: "https://www.verkehrshaus.ch",
         ticketUrl: "https://www.verkehrshaus.ch/besuchen/tickets-preise.html",
-        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLdAKkPHyCND6P6VtonDNNyZhOK4PZangCZZn97kGPn5r_ezFBvZZ-RZSOgjLJColtQafFimpamWWjcaL56_IITsOQk11-2EHA6_ONwCLaOkObr81_uMwXtbTAxUhG902w4xOxazlw=s4800-w1000",
+        imageUrl: "/images/events/event-verkehrshaus-planetarium-kids.jpg",
         tags: ["trains", "cars", "planetarium", "indoor", "outdoor", "traffic-park"],
         organizer: "Verkehrshaus der Schweiz",
         source: "curated_swiss_family"
@@ -198,7 +198,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Free admission for everyone (Registration required for lab workshops)",
         officialUrl: "https://sciencegateway.cern",
         ticketUrl: "https://sciencegateway.cern/practical-information",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/CERN_Globe_of_Science_and_Innovation.jpg/960px-CERN_Globe_of_Science_and_Innovation.jpg",
+        imageUrl: "/images/events/event-cern-science-gateway-geneva.jpg",
         tags: ["science", "physics", "cern", "free", "indoor", "rainy-day", "hands-on"],
         organizer: "CERN",
         source: "curated_swiss_family"
@@ -227,7 +227,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (4–16) CHF 8; Adults CHF 14; Family CHF 35",
         officialUrl: "https://www.museumaargau.ch/schloss-lenzburg",
         ticketUrl: "https://www.museumaargau.ch/schloss-lenzburg/preise",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/muehlerama_1-1200x900.jpg",
+        imageUrl: "/images/events/event-schloss-lenzburg-dragon.jpg",
         tags: ["castle", "dragon", "knights", "medieval", "indoor", "history"],
         organizer: "Museum Aargau",
         source: "curated_swiss_family"
@@ -256,7 +256,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 14; Adults CHF 21; Children under 6 free",
         officialUrl: "https://www.swissminiatur.ch",
         ticketUrl: "https://www.swissminiatur.ch/tickets",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/verkehrshaus_1-1200x900.jpg",
+        imageUrl: "/images/events/event-swissminiatur-melide.jpg",
         tags: ["miniature", "trains", "lugano", "ticino", "outdoor", "castles"],
         organizer: "Swissminiatur SA",
         source: "curated_swiss_family"
@@ -285,7 +285,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (8–16) CHF 7; Adults CHF 12; Children under 8 free",
         officialUrl: "https://barryland.ch",
         ticketUrl: "https://barryland.ch/tarifs-horaires/",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/tierpark_goldau_1-1200x900.jpg",
+        imageUrl: "/images/events/event-barryland-saint-bernard-dogs.jpg",
         tags: ["dogs", "st-bernard", "animals", "valais", "puppies", "indoor", "outdoor"],
         organizer: "Fondation Barry",
         source: "curated_swiss_family"
@@ -314,7 +314,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 16; Adults CHF 32; Children under 6 free; Family CHF 76",
         officialUrl: "https://www.ballenberg.ch",
         ticketUrl: "https://www.ballenberg.ch/de/tickets",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/muehlerama_1-1200x900.jpg",
+        imageUrl: "/images/events/event-ballenberg-open-air-museum.jpg",
         tags: ["open-air", "farm-animals", "history", "crafts", "brienz", "outdoor"],
         organizer: "Stiftung Freilichtmuseum Ballenberg",
         source: "curated_swiss_family"
@@ -343,7 +343,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Kids CHF 9; Adults CHF 15 (Includes freshly baked bread)",
         officialUrl: "https://www.muehlerama.ch",
         ticketUrl: "https://www.muehlerama.ch/angebote/fuer-familien/",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/muehlerama_1-1200x900.jpg",
+        imageUrl: "/images/events/event-muehlerama-bread-baking.jpg",
         tags: ["baking", "workshop", "indoor", "rainy-day", "hands-on", "food"],
         organizer: "Mühlerama Museum",
         source: "curated_swiss_family"
@@ -372,7 +372,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Free entry; Pay by weight of beeswax candle made (approx. CHF 12-20)",
         officialUrl: "https://www.kerzenziehen.ch",
         ticketUrl: "https://www.kerzenziehen.ch",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2022/10/kerzenziehen_1-1200x900.jpg",
+        imageUrl: "/images/events/event-buerkliplatz-kerzenziehen-zurich.jpg",
         tags: ["crafts", "winter", "tradition", "christmas", "hands-on"],
         organizer: "Zürcher Kerzenziehen",
         source: "curated_swiss_family"
@@ -401,7 +401,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Festival pin CHF 10 (Children under 16 free)",
         officialUrl: "https://vvvr.ch/r%C3%A4bechilbi",
         ticketUrl: "https://vvvr.ch/r%C3%A4bechilbi",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2022/10/raebechilbi_richterswil_1-1200x900.jpg",
+        imageUrl: "/images/events/event-raebeliechtli-richterswil.jpg",
         tags: ["tradition", "lanterns", "parade", "autumn", "world-record"],
         organizer: "Verkehrsverein Richterswil",
         source: "curated_swiss_family"
@@ -430,7 +430,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (4–15) CHF 10; Adults CHF 20; Under 4 free",
         officialUrl: "https://www.papiliorama.ch",
         ticketUrl: "https://www.papiliorama.ch/tickets/",
-        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLc1d6Q4kli0qKx3JPOM_6zuqdNhgQo10eFYwRzOxcmfMOuEfPMXnwP01o1f8XcxkmAnQcdMN-HFTM1kYoFBi94EXjy1L1_WNE6hYKIBtEwydIuCbLoMCg374fK8GGKXrMyKYSWb=s4800-w1000",
+        imageUrl: "/images/events/event-papiliorama-jungle-night.jpg",
         tags: ["animals", "butterflies", "indoor", "rainy-day", "nature", "night-safari"],
         organizer: "Stiftung Papiliorama",
         source: "curated_swiss_family"
@@ -459,7 +459,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 19; Adults CHF 29; Children under 6 free",
         officialUrl: "https://www.aquatis.ch",
         ticketUrl: "https://www.aquatis.ch/billetterie",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/aquatis_1-1200x900.jpg",
+        imageUrl: "/images/events/event-aquatis-aquarium-lausanne.jpg",
         tags: ["aquarium", "animals", "indoor", "rainy-day", "underwater", "reptiles"],
         organizer: "AQUATIS Lausanne",
         source: "curated_swiss_family"
@@ -488,7 +488,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 12; Adults CHF 24; Children under 6 free",
         officialUrl: "https://tierpark.ch",
         ticketUrl: "https://tierpark.ch/tickets/",
-        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLcSiguk3acdlEreMg61H5L_hW7FIqa-AgDSU89N9U3fF8qaU5RFg2CqxSk1YXcd31W0Jb62JnGhvq2ygAkXmsOsM5ry5xZtGbWTaTDmgy6SwA7Xy_1qTntqTCuTkfN5gcFJPtxiLwOAd-Db=s4800-w1000",
+        imageUrl: "/images/events/event-tierpark-goldau-ranger.jpg",
         tags: ["zoo", "animals", "deer", "playground", "nature", "outdoor", "grill"],
         organizer: "Natur- und Tierpark Goldau",
         source: "curated_swiss_family"
@@ -517,7 +517,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 11; Adults CHF 19; Family ticket CHF 48",
         officialUrl: "https://www.ruettihubelbad.ch/de/sensorium/",
         ticketUrl: "https://www.ruettihubelbad.ch/de/sensorium/preise-und-oeffnungszeiten/",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/sensorium_1-1200x900.jpg",
+        imageUrl: "/images/events/event-sensorium-ruettihubelbad.jpg",
         tags: ["sensory", "science", "indoor", "rainy-day", "emmental", "barefoot"],
         organizer: "Stiftung Rüttihubelbad",
         source: "curated_swiss_family"
@@ -546,7 +546,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (4–15) CHF 14; Adults CHF 26; Under 4 free",
         officialUrl: "https://www.fifamuseum.com",
         ticketUrl: "https://www.fifamuseum.com/de/tickets",
-        imageUrl: "https://lh3.googleusercontent.com/grass-cs/AABkmLfGMjdszvQxFBvg69CFkRHqCBspGw307JbpZCe3DBeZJltZWJmsuQyXwGkGWA3q42uPws2QJekSrRuTrEXQ_sWH5-6ybHmphtrmAieRvTn5d1xEgH0juf0HA3Nhh6KI9U_JAvWP=s4800-w1000",
+        imageUrl: "/images/events/event-fifa-museum-family-sundays.jpg",
         tags: ["football", "sports", "indoor", "rainy-day", "interactive", "skills"],
         organizer: "FIFA Museum Zürich",
         source: "curated_swiss_family"
@@ -575,7 +575,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Free admission to town & fairy tale trail",
         officialUrl: "https://www.maerlistadt.ch",
         ticketUrl: "https://www.maerlistadt.ch",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2022/10/maerlistadt_stein_am_rhein_1-1200x900.jpg",
+        imageUrl: "/images/events/event-maerlistadt-stein-am-rhein.jpg",
         tags: ["fairy-tale", "winter", "medieval", "christmas", "free", "outdoor"],
         organizer: "Märlistadt Stein am Rhein",
         source: "curated_swiss_family"
@@ -604,7 +604,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 19; Adults CHF 29; Children under 6 free",
         officialUrl: "https://www.chaplinsworld.com",
         ticketUrl: "https://www.chaplinsworld.com/billetterie",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/chaplins_world_1-1200x900.jpg",
+        imageUrl: "/images/events/event-chaplins-world-vevey.jpg",
         tags: ["cinema", "hollywood", "interactive", "lake-geneva", "rainy-day"],
         organizer: "Chaplin's World",
         source: "curated_swiss_family"
@@ -633,7 +633,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–16) CHF 5; Adults CHF 15; Under 6 free",
         officialUrl: "https://www.mfk.ch",
         ticketUrl: "https://www.mfk.ch/besuch/preise-tickets",
-        imageUrl: "https://kinderregion.ch/wp-content/uploads/2021/04/museum_kommunikation_1-1200x900.jpg",
+        imageUrl: "/images/events/event-museum-kommunikation-bern.jpg",
         tags: ["communication", "spy", "games", "indoor", "rainy-day", "interactive"],
         organizer: "Museum für Kommunikation",
         source: "curated_swiss_family"
@@ -663,7 +663,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "CHF 10 per child (Tickets online via Jelmoli / VBZ)",
         officialUrl: "https://www.jelmoli.ch/maerlitram",
         ticketUrl: "https://www.jelmoli.ch/maerlitram",
-        imageUrl: "https://www.zuerich.com/sites/default/files/styles/sharing/public/image/2023/web_zuerich_maerlitram_1280x960_43292.jpg",
+        imageUrl: "/images/events/event-maerlitram-zurich.jpg",
         tags: ["christmas", "tram", "fairy-tale", "tradition", "winter", "bellevue"],
         organizer: "VBZ & Jelmoli",
         source: "curated_swiss_family"
@@ -692,7 +692,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Lakeside market: Free; Train to Santa's House (Rochers-de-Naye): Kids CHF 19, Adults CHF 39",
         officialUrl: "https://www.montreuxnoel.com",
         ticketUrl: "https://www.montreuxnoel.com/en-17-the-house-of-santa-claus.html",
-        imageUrl: "https://www.montreuxnoel.com/images/slides/01.jpg",
+        imageUrl: "/images/events/event-montreux-noel-rochers-de-naye.jpg",
         tags: ["christmas-market", "flying-santa", "lake-geneva", "winter", "train", "alps"],
         organizer: "Montreux Noël",
         source: "curated_swiss_family"
@@ -721,7 +721,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Forest entry free; Workshop tokens CHF 5–10 per craft activity",
         officialUrl: "https://www.basel.com/de/veranstaltungen/weihnachten/basler-maerchenwald",
         ticketUrl: "https://www.basel.com/de/veranstaltungen/weihnachten/basler-maerchenwald",
-        imageUrl: "https://www.basel.com/media/d4d98e54-5858-47c0-bf3e-8c886a1f81cf/basler-maerchenwald.jpg",
+        imageUrl: "/images/events/event-basel-maerchenwald-weihnachtsmarkt.jpg",
         tags: ["crafts", "christmas", "fairy-tale", "workshop", "baking", "basel"],
         organizer: "Basler Weihnachtsmarkt",
         source: "curated_swiss_family"
@@ -750,7 +750,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Market entry free; Carousel & activities CHF 3–6",
         officialUrl: "https://bernersternenmarkt.ch",
         ticketUrl: "https://bernersternenmarkt.ch",
-        imageUrl: "https://www.bern.com/assets/images/6/sternenmarkt-bern-kinder-karussell-4b470eb6.jpg",
+        imageUrl: "/images/events/event-berner-sternenmarkt-kleine-schanze.jpg",
         tags: ["christmas-market", "carousel", "storytelling", "bern", "winter", "food"],
         organizer: "Berner Sternenmarkt",
         source: "curated_swiss_family"
@@ -779,7 +779,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (0–11) Free; Teens (12–15) CHF 15; Adults CHF 24",
         officialUrl: "https://zauberwald-lenzerheide.ch",
         ticketUrl: "https://zauberwald-lenzerheide.ch/tickets",
-        imageUrl: "https://zauberwald-lenzerheide.ch/wp-content/uploads/2023/10/zauberwald_hero.jpg",
+        imageUrl: "/images/events/event-zauberwald-lenzerheide.jpg",
         tags: ["light-show", "alps", "concert", "kids-music", "winter", "forest"],
         organizer: "Verein Zauberwald Lenzerheide",
         source: "curated_swiss_family"
@@ -808,7 +808,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Market: Free; Ice skating rink: Kids CHF 6, Adults CHF 9, Skate rental available",
         officialUrl: "https://www.weihnachtsmarkt-luzern.com",
         ticketUrl: "https://www.weihnachtsmarkt-luzern.com",
-        imageUrl: "https://www.luzern.com/fileadmin/_processed_/7/a/csm_Luzern_Live_on_Ice_KKL_8b31a3df34.jpg",
+        imageUrl: "/images/events/event-luzerner-christkindlimarkt-live-on-ice.jpg",
         tags: ["christmas-market", "ice-skating", "lake-lucerne", "carousel", "kkl", "winter"],
         organizer: "Luzerner Weihnachtsmarkt & KKL",
         source: "curated_swiss_family"
@@ -837,7 +837,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (4–15) CHF 9; Adults CHF 13; Skate rental CHF 9",
         officialUrl: "https://www.icemagic.ch",
         ticketUrl: "https://www.icemagic.ch/tickets",
-        imageUrl: "https://www.interlaken.ch/media/a9528f99-4d6d-4952-b883-7bb21535ba62/top-of-europe-ice-magic-interlaken-abendstimmung.jpg",
+        imageUrl: "/images/events/event-ice-magic-interlaken.jpg",
         tags: ["ice-skating", "winter", "jungfrau", "outdoor", "family-fun", "interlaken"],
         organizer: "Ice Magic Interlaken",
         source: "curated_swiss_family"
@@ -866,7 +866,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Children (6–15) CHF 6; Adults CHF 15; Family Pass CHF 35",
         officialUrl: "https://www.chillon.ch",
         ticketUrl: "https://www.chillon.ch/en/agenda/family-events/",
-        imageUrl: "https://www.chillon.ch/wp-content/uploads/2021/11/noel-medieval-chillon-1200x800.jpg",
+        imageUrl: "/images/events/event-noel-medieval-chateau-chillon.jpg",
         tags: ["castle", "medieval", "christmas", "history", "lake-geneva", "workshops"],
         organizer: "Fondation du Château de Chillon",
         source: "curated_swiss_family"
@@ -895,7 +895,7 @@ const CURATED_SWISS_EVENTS = [
         priceText: "Free entry to market; SBB / TER train runs direct from Basel SBB (44 min)",
         officialUrl: "https://www.noel-colmar.com",
         ticketUrl: "https://www.noel-colmar.com",
-        imageUrl: "https://www.noel-colmar.com/medias/images/slider/colmar-marche-noel-enfants.jpg",
+        imageUrl: "/images/events/event-colmar-noel-des-enfants-petite-venise.jpg",
         tags: ["christmas-market", "alsace", "border-trip", "fairy-tale", "carousel", "winter"],
         organizer: "Office de Tourisme de Colmar",
         source: "curated_swiss_family"

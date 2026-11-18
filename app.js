@@ -424,7 +424,7 @@ async function loadSpots() {
         const [baseResponse, hikesResponse, eventsResponse, commResponse] = await Promise.all([
             fetch("base_spots.json?v=16"),
             fetch("hikes.json?v=16"),
-            fetch("/api/events?v=" + Date.now()).catch(() => fetch("events.json?v=1")),
+            fetch("/api/events?v=" + Date.now()).catch(() => fetch("events.json?v=" + Date.now())),
             fetch("/api/community/submissions?v=" + Date.now()).catch(() => null)
         ]);
         const baseSpots = baseResponse.ok ? await baseResponse.json() : [];
@@ -1287,7 +1287,7 @@ function getDefaultSpotFallback(type) {
     if (type === "playpark") return "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&auto=format&fit=crop&q=80";
     if (type === "hiking") return "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=80";
     if (type === "gamezone") return "https://images.unsplash.com/photo-1585504198199-20277593b94f?w=600&auto=format&fit=crop&q=80";
-    if (type === "event") return "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80";
+    if (type === "event") return "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80";
     return "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&auto=format&fit=crop&q=80";
 }
 

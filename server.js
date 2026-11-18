@@ -705,7 +705,7 @@ ${coords.map((pt, i) => {
         res.writeHead(200, {
             'Content-Type': 'application/json; charset=utf-8',
             'Access-Control-Allow-Origin': '*',
-            'Cache-Control': 'public, max-age=3600'
+            'Cache-Control': 'public, max-age=60, stale-while-revalidate=300'
         });
         return res.end(JSON.stringify(filtered));
     }
