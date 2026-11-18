@@ -10944,5 +10944,42 @@
     "phone": "044 575 38 88",
     "isIndoor": true,
     "featured": true
+  },
+  {
+    "id": "spot-huerlimannbad-spa-zurich",
+    "name": "Hürlimannbad & Spa Zürich",
+    "type": "swimmingpool",
+    "description": "Iconic thermal baths and spa built inside the historic stone vaults of the former Hürlimann brewery. Famous for its warm outdoor rooftop infinity pool overlooking the Zürich skyline, ancient stone barrel-vaulted baths, Roman-Irish bathing ritual circuit, and mineral-rich thermal water drawn directly from Zürich's legendary \"Aqui\" spring beneath the city.",
+    "address": "Brandschenkestrasse 150, 8002 Zürich",
+    "zip": "8002",
+    "city": "Zürich",
+    "lat": 47.3659,
+    "lng": 8.5256,
+    "openingHours": "Daily 09:00 – 22:00 (Kids aged 1–15 welcome daily 09:00 – 17:00)",
+    "fees": "Thermal Bath from CHF 39 (Adults) / CHF 19 (Kids 4–15) / Free under 4; babies under 1 not permitted",
+    "minAge": 1,
+    "maxAge": 18,
+    "amenities": [
+      "Thermal Bath",
+      "Rooftop Pool",
+      "Indoor Pool",
+      "Heated Pool",
+      "Mineral Bath",
+      "Cafe/Food",
+      "Toilets",
+      "Lockers",
+      "Warm Water"
+    ],
+    "imageUrl": "/images/spas/huerlimannbad-zuerich.jpg",
+    "ratings": [],
+    "comments": [],
+    "images": [
+      "/images/spas/huerlimannbad-zuerich.jpg",
+      "/images/spas/huerlimannbad-zuerich-vault.jpg"
+    ],
+    "imageSource": "Official Venue / Aqua Spa Resorts",
+    "featured": true,
+    "website": "https://www.aquaspa.ch/en/huerlimannbad-zuerich/",
+    "phone": "044 567 67 67"
   }
 ]

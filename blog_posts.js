@@ -864,11 +864,12 @@ const BLOG_POSTS = [
         "name": "Hürlimannbad & Spa Zürich",
         "location": "Brandschenkestrasse 150, 8002 Zürich (7 min walk from Bahnhof Enge or Tram 5/13)",
         "badge": "Age 1+ · Kids Hours 09:00–17:00 Only",
-        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcbEMLsvYtnUTzeENFzrTOY1WarjFl43v8HbokSSVwKNpYx4npB005RavA-IT384Z_q4cgnvkrL90VOXpMlfu_g7h0-7D_XQKc5XAVyx2ayFEDCkF1kv7LoDWKP5YaxTXUEp9si87y8wgI=s4800-w1200",
+        "imageUrl": "/images/spas/huerlimannbad-zuerich.jpg",
         "actionHref": "/schwimmbaeder/zuerich/zuerich",
         "actionLabel": "Browse Swimming Pools in Zürich",
         "summary": "Inside the brick arches of the old Hürlimann brewery sits Zürich’s most atmospheric thermal bath — including a heated rooftop infinity pool looking straight across the city toward Uetliberg and the Glarus Alps. Kids love the giant wooden vat pools in the historic stone vaults below.",
-        "tip": "Memorize the clock: children aged 1 to 15 are ONLY allowed between 09:00 and 17:00 (ages 0–3 free, babies under 1 not admitted, Roman-Irish spa is 16+). Go for a 10:00 AM morning soak when it is quieter!"
+        "tip": "Memorize the clock: children aged 1 to 15 are ONLY allowed between 09:00 and 17:00 (ages 0–3 free, babies under 1 not admitted, Roman-Irish spa is 16+). Go for a 10:00 AM morning soak when it is quieter!",
+        "spotId": "spot-huerlimannbad-spa-zurich"
       },
       {
         "rank": 8,
