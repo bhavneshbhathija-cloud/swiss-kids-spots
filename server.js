@@ -115,28 +115,65 @@ function saveGroupCheckins(data) {
 
 // Ensure spots_harvested.json in DATA_DIR is up-to-date with repo version
 const repoHarvestedPath = path.join(PUBLIC_DIR, 'spots_harvested.json');
-if (DATA_DIR !== PUBLIC_DIR) {
+if (DATA_DIR !== PUBLIC_DIR && fs.existsSync(repoHarvestedPath)) {
     let shouldCopy = false;
     if (!fs.existsSync(harvestedPath)) {
         shouldCopy = true;
-    } else if (fs.existsSync(repoHarvestedPath)) {
+    } else {
         try {
             const repoSpots = JSON.parse(fs.readFileSync(repoHarvestedPath, 'utf-8'));
             const liveSpots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
-            if (repoSpots.length > liveSpots.length) {
-                console.log(`[Startup] Repo version has more spots (${repoSpots.length}) than persistent volume version (${liveSpots.length}). Overwriting persistent volume.`);
+            
+            // Sync if persistent volume has the legacy 7009 uncleaned file, spot count mismatch, or missing Wahlenpark
+            const liveWahlenpark = liveSpots.find(s => s.id === 'osm-spot-307');
+            const isStale = liveSpots.length === 7009 || 
+                            liveSpots.length !== repoSpots.length || 
+                            !liveWahlenpark || 
+                            liveWahlenpark.name !== 'Wahlenpark';
+
+            if (isStale) {
+                console.log(`[Startup] Persistent volume spots_harvested.json is outdated (live: ${liveSpots.length}, repo: ${repoSpots.length}). Syncing repo version.`);
                 shouldCopy = true;
             }
         } catch (e) {
-            console.warn('[Startup] Failed to compare spots length:', e);
-            shouldCopy = true; // Fallback to copy if file is corrupted
+            console.warn('[Startup] Failed to check spots_harvested.json:', e);
+            shouldCopy = true;
         }
     }
 
-    if (shouldCopy && fs.existsSync(repoHarvestedPath)) {
+    if (shouldCopy) {
         try {
-            fs.copyFileSync(repoHarvestedPath, harvestedPath);
-            console.log(`[Startup] Copied spots_harvested.json to persistent volume: ${harvestedPath}`);
+            // Preserve user-submitted community photos if any exist on live spots
+            if (fs.existsSync(harvestedPath)) {
+                try {
+                    const repoSpots = JSON.parse(fs.readFileSync(repoHarvestedPath, 'utf-8'));
+                    const liveSpots = JSON.parse(fs.readFileSync(harvestedPath, 'utf-8'));
+                    let communityOverrides = 0;
+                    const commMap = new Map();
+                    liveSpots.forEach(s => {
+                        if (s.imageSource && s.imageSource.startsWith('Community Photo')) {
+                            commMap.set(s.id, s);
+                        }
+                    });
+                    if (commMap.size > 0) {
+                        repoSpots.forEach(s => {
+                            if (commMap.has(s.id)) {
+                                const liveS = commMap.get(s.id);
+                                s.imageUrl = liveS.imageUrl;
+                                s.imageSource = liveS.imageSource;
+                                if (liveS.images) s.images = liveS.images;
+                                communityOverrides++;
+                            }
+                        });
+                    }
+                    fs.writeFileSync(harvestedPath, JSON.stringify(repoSpots, null, 2), 'utf-8');
+                    console.log(`[Startup] Successfully synced ${repoSpots.length} repo spots to persistent volume (${communityOverrides} community overrides preserved).`);
+                } catch (e2) {
+                    fs.copyFileSync(repoHarvestedPath, harvestedPath);
+                }
+            } else {
+                fs.copyFileSync(repoHarvestedPath, harvestedPath);
+            }
         } catch (e) {
             console.error('Failed to copy spots_harvested.json on startup:', e);
         }

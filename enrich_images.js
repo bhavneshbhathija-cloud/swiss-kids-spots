@@ -71,10 +71,52 @@ function sleep(ms) {
 }
 
 /**
- * Returns true if the imageUrl is a placeholder (Unsplash stub).
+ * The Ground Rule:
+ * Never Touch Validated Spots: If a spot already has an actual or validated image
+ * (such as Wahlenpark, official venue photos, Swiss tourism imagery, or Google-verified photos),
+ * it is 100% protected and will NEVER be overwritten.
+ * Option 2 is strictly for Placeholders: Option 2 (Wikimedia Commons / OpenStreetMap enrichment)
+ * will ONLY target spots that currently have a generic placeholder image (e.g. Unsplash stock photos).
  */
-function isPlaceholder(url) {
-    return typeof url === 'string' && url.includes('unsplash.com/photo-');
+function isProtectedValidatedSpot(spot) {
+    if (!spot) return false;
+    const src = spot.imageSource || '';
+    const url = spot.imageUrl || (typeof spot === 'string' ? spot : '');
+    
+    // 100% Protected sources
+    if (src.includes('Actual Spot Photography') || 
+        src.includes('Wahlenpark') ||
+        src.includes('Official Venue') || 
+        src.includes('Google') || 
+        src.includes('SchweizMobil') || 
+        src.includes('Switzerland Tourism') || 
+        src.includes('Community Photo') ||
+        src.includes('Local Swiss Directory')) {
+        return true;
+    }
+
+    // Protected domains: Google CDN, Pinterest verified, direct venue domains
+    if (url.includes('googleusercontent.com') || 
+        url.includes('pinimg.com') || 
+        url.includes('schweizmobil.ch') ||
+        url.includes('/images/events/')) {
+        return true;
+    }
+
+    // If it's not an Unsplash placeholder, protect it
+    if (url && !url.includes('unsplash.com/photo-')) {
+        return true;
+    }
+
+    return false;
+}
+
+function isPlaceholder(spotOrUrl) {
+    if (typeof spotOrUrl === 'object' && spotOrUrl !== null) {
+        if (isProtectedValidatedSpot(spotOrUrl)) return false;
+        return typeof spotOrUrl.imageUrl === 'string' && spotOrUrl.imageUrl.includes('unsplash.com/photo-');
+    }
+    return typeof spotOrUrl === 'string' && spotOrUrl.includes('unsplash.com/photo-');
 }
 
 /**
@@ -337,10 +379,10 @@ async function main() {
     const spots = JSON.parse(fs.readFileSync(INPUT_FILE, 'utf8'));
     console.log(`Loaded ${spots.length} spots from ${INPUT_FILE}`);
 
-    // Identify which spots still need enrichment
+    // Identify which spots still need enrichment (Never Touch Validated Spots)
     const indices = [];
     for (let i = 0; i < spots.length; i++) {
-        if (isPlaceholder(spots[i].imageUrl)) {
+        if (isPlaceholder(spots[i])) {
             indices.push(i);
         }
     }
@@ -411,7 +453,7 @@ function printSummary(imagesFound) {
     let remaining = 0;
     try {
         const spots = JSON.parse(fs.readFileSync(INPUT_FILE, 'utf8'));
-        remaining = spots.filter(s => isPlaceholder(s.imageUrl)).length;
+        remaining = spots.filter(s => isPlaceholder(s)).length;
     } catch {
         remaining = stats.total - imagesFound;
     }
