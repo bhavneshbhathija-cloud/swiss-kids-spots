@@ -10981,5 +10981,318 @@
     "featured": true,
     "website": "https://www.aquaspa.ch/en/huerlimannbad-zuerich/",
     "phone": "044 567 67 67"
+  },
+  {
+    "id": "spot-focusterra-eth",
+    "name": "focusTerra – ETH Earth Science Museum",
+    "type": "gamezone",
+    "description": "The Department of Earth Sciences at ETH Zurich invites curious kids to explore the mysteries of planet Earth. Highlights include the dramatic interactive earthquake simulator platform (where you experience real Richter-scale tremors in complete safety), touchable meteorites, glowing minerals in the dark chamber, and giant crystals.",
+    "address": "Sonneggstrasse 5, 8092 Zürich",
+    "zip": "8092",
+    "city": "Zürich",
+    "lat": 47.3787,
+    "lng": 8.5478,
+    "openingHours": "Sun - Fri 10:00 - 16:00 (Closed Saturdays)",
+    "fees": "Free Entry (Earthquake simulator requires guided tour/Family Sundays)",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers"
+    ],
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/FocusTerra_Innenansicht.jpg/1280px-FocusTerra_Innenansicht.jpg",
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/FocusTerra_Innenansicht.jpg/1280px-FocusTerra_Innenansicht.jpg"
+    ],
+    "imageSource": "Wikimedia Commons / ETH Zürich focusTerra",
+    "featured": true,
+    "website": "https://focusterra.ethz.ch"
+  },
+  {
+    "id": "spot-kulturama-zurich",
+    "name": "Kulturama – Museum of Human Evolution",
+    "type": "gamezone",
+    "description": "An interactive hands-on museum tracing 600 million years of human biology and evolution. The discovery trail allows children to touch real dinosaur bones and marine fossils, examine authentic animal skeletons, test human sensory organs, and explore prehistoric human ancestry.",
+    "address": "Englischviertelstrasse 9, 8032 Zürich",
+    "zip": "8032",
+    "city": "Zürich",
+    "lat": 47.3683,
+    "lng": 8.5574,
+    "openingHours": "Tue - Sun 13:00 - 17:00 (Closed Mondays)",
+    "fees": "Under 6 Free, Kids (6-16) 11 CHF, Adults 14 CHF",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Picnic Area"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48242.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48242.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Kulturama",
+    "featured": true,
+    "website": "https://www.kulturama.ch"
+  },
+  {
+    "id": "spot-zoologisches-museum-uzh",
+    "name": "Zoologisches Museum der Universität Zürich",
+    "type": "gamezone",
+    "description": "Home to over 1,500 taxidermy animal specimens from Switzerland and across the globe. Children love listening to authentic animal voices at interactive sound stations, viewing insects and feathers under real laboratory microscopes, and discovering prehistoric megafauna and whales.",
+    "address": "Karl-Schmid-Strasse 4, 8006 Zürich",
+    "zip": "8006",
+    "city": "Zürich",
+    "lat": 47.3748,
+    "lng": 8.5484,
+    "openingHours": "Tue - Sun 10:00 - 17:00 (Closed Mondays)",
+    "fees": "Free Entry",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Cafe/Food"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_museum_zoologischesmuseum_01.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_museum_zoologischesmuseum_01.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Zoologisches Museum UZH",
+    "featured": true,
+    "website": "https://www.zm.uzh.ch"
+  },
+  {
+    "id": "spot-naturmuseum-winterthur",
+    "name": "Naturmuseum Winterthur",
+    "type": "gamezone",
+    "description": "An outstanding child-friendly natural history museum in Winterthur. Features the tactile Discovery Room (Kerngruppe) designed especially for children, with touchable animal specimens, magnifying glasses, puzzles, and a giant cross-section beaver lodge.",
+    "address": "Museumstrasse 52, 8400 Winterthur",
+    "zip": "8400",
+    "city": "Winterthur",
+    "lat": 47.502,
+    "lng": 8.7303,
+    "openingHours": "Tue - Sun 10:00 - 17:00 (Closed Mondays)",
+    "fees": "Under 16 Free, Adults 5 CHF (Swiss Museum Pass accepted)",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Picnic Area"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_30633.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_30633.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Naturmuseum Winterthur",
+    "featured": true,
+    "website": "https://naturmuseum.winterthur.ch"
+  },
+  {
+    "id": "spot-sukkulenten-sammlung-zurich",
+    "name": "Sukkulenten-Sammlung Zürich (Succulent Collection)",
+    "type": "playpark",
+    "description": "One of the world’s largest and most important succulent collections with over 4,500 species across seven heated greenhouses on Lake Zurich. When cold rain pours outside, stepping into these toasty desert glasshouses surrounded by giant saguaro cacti, agave, and exotic desert plants feels like an expedition to Arizona or Madagascar.",
+    "address": "Mythenquai 88, 8002 Zürich",
+    "zip": "8002",
+    "city": "Zürich",
+    "lat": 47.3512,
+    "lng": 8.5332,
+    "openingHours": "09:00 - 16:30 daily",
+    "fees": "Free Entry",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Shade"
+    ],
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Sukkulentensammlung_-_Mythenquai_Z%C3%BCrich_2011-04-06_14-46-18_ShiftN.jpg/1280px-Sukkulentensammlung_-_Mythenquai_Z%C3%BCrich_2011-04-06_14-46-18_ShiftN.jpg",
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Sukkulentensammlung_-_Mythenquai_Z%C3%BCrich_2011-04-06_14-46-18_ShiftN.jpg/1280px-Sukkulentensammlung_-_Mythenquai_Z%C3%BCrich_2011-04-06_14-46-18_ShiftN.jpg"
+    ],
+    "imageSource": "Wikimedia Commons / Stadt Zürich Grün Stadt Zürich",
+    "featured": true,
+    "website": "https://www.stadt-zuerich.ch/sukkulenten"
+  },
+  {
+    "id": "spot-botanischer-garten-uzh",
+    "name": "Botanischer Garten UZH (Tropenhäuser Glasshouses)",
+    "type": "playpark",
+    "description": "Three iconic futuristic bio-domes on the hillside above Lake Zurich housing steamy tropical lowland rainforest, dry forest, and cloud forest ecosystems. Families escape the rain into warm 26°C humidity among giant Amazonian water lilies, hanging orchids, carnivorous pitcher plants, and indoor waterfalls.",
+    "address": "Zollikerstrasse 107, 8008 Zürich",
+    "zip": "8008",
+    "city": "Zürich",
+    "lat": 47.3582,
+    "lng": 8.5615,
+    "openingHours": "09:30 - 16:45 daily (Winter) / until 18:00 (Summer)",
+    "fees": "Free Entry",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Shade",
+      "Picnic Area"
+    ],
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Tropenh%C3%A4user_Botanischer_Garten_Z%C3%BCrich.jpg/1280px-Tropenh%C3%A4user_Botanischer_Garten_Z%C3%BCrich.jpg",
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Tropenh%C3%A4user_Botanischer_Garten_Z%C3%BCrich.jpg/1280px-Tropenh%C3%A4user_Botanischer_Garten_Z%C3%BCrich.jpg"
+    ],
+    "imageSource": "Wikimedia Commons / Universität Zürich",
+    "featured": true,
+    "website": "https://www.bg.uzh.ch"
+  },
+  {
+    "id": "spot-landesmuseum-zurich",
+    "name": "Landesmuseum Zürich (Swiss National Museum)",
+    "type": "gamezone",
+    "description": "Located directly beside Zurich Main Station (HB), the fairytale castle-like Swiss National Museum is ideal on a rainy day. Features the interactive family discovery trail A Carpet of Stories, knight armor displays, historical carriages, secret towers, and dress-up stations for kids.",
+    "address": "Museumstrasse 2, 8001 Zürich",
+    "zip": "8001",
+    "city": "Zürich",
+    "lat": 47.3792,
+    "lng": 8.5404,
+    "openingHours": "Tue - Sun 10:00 - 17:00 (Thu until 19:00, Closed Mondays)",
+    "fees": "Under 16 Free, Adults 10 - 13 CHF (Swiss Museum Pass accepted)",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Cafe/Food",
+      "Parking"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/image/2022/web_zurich_landesmuseum_ZT_22616_1280x960.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zurich_landesmuseum_ZT_22616_1280x960.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Schweizerisches Nationalmuseum",
+    "featured": true,
+    "website": "https://www.landesmuseum.ch"
+  },
+  {
+    "id": "spot-tram-museum-burgwies",
+    "name": "Tram-Museum Burgwies Zürich",
+    "type": "gamezone",
+    "description": "Housed inside the historic 1912 Burgwies tram depot, children can climb inside restored heritage streetcars from 1897 to 1968, sit in the authentic wooden driver cabins, operate genuine brass bells and ticket punchers, and build wooden railway tracks in the children’s play corner.",
+    "address": "Forchstrasse 260, 8008 Zürich",
+    "zip": "8008",
+    "city": "Zürich",
+    "lat": 47.3533,
+    "lng": 8.5714,
+    "openingHours": "Mon, Wed, Fri, Sat, Sun 13:00 - 17:00",
+    "fees": "Under 6 Free, Children (6-16) 6 CHF, Adults 12 CHF",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Picnic Area"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_kultur_tram-museum_01.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_kultur_tram-museum_01.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Tram-Museum Burgwies",
+    "featured": true,
+    "website": "https://www.tram-museum.ch"
+  },
+  {
+    "id": "spot-sauriermuseum-aathal",
+    "name": "Sauriermuseum Aathal (Dinosaur Museum)",
+    "type": "gamezone",
+    "description": "Switzerland’s premier paleontological wonder boasting world-famous original dinosaur skeletons (including Allosaurus Big Al Two), full-scale moving animatronic dinosaurs, fossil preparation laboratories, a mineral cave, and indoor dinosaur movie theater.",
+    "address": "Zürichstrasse 69, 8607 Aathal",
+    "zip": "8607",
+    "city": "Aathal",
+    "lat": 47.3409,
+    "lng": 8.7562,
+    "openingHours": "Tue - Sat 10:00 - 17:00, Sun 10:00 - 18:00 (Closed Mondays)",
+    "fees": "Children (5-16) 13 CHF, Adults 23 CHF, Family Ticket 64 CHF",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Cafe/Food",
+      "Parking"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_culture_sauriermuseum-aathal_03.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_culture_sauriermuseum-aathal_03.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Sauriermuseum Aathal",
+    "featured": true,
+    "website": "https://www.sauriermuseum.ch"
+  },
+  {
+    "id": "spot-muehlerama-zurich",
+    "name": "Mühlerama – Museum & Historic Mill Tiefenbrunnen",
+    "type": "gamezone",
+    "description": "A working historic flour mill set in an atmospheric 1913 industrial complex right by Lake Zurich. Children can slide down the thrilling wooden grain sack slide spanning two floors, grind wheat by hand on real millstones, and participate in Sunday family bread baking workshops.",
+    "address": "Seefeldstrasse 231, 8008 Zürich",
+    "zip": "8008",
+    "city": "Zürich",
+    "lat": 47.3508,
+    "lng": 8.5592,
+    "openingHours": "Tue - Sun 14:00 - 18:00 (Closed Mondays)",
+    "fees": "Under 6 Free, Kids (6-16) 6 CHF, Adults 15 CHF",
+    "amenities": [
+      "Toilets",
+      "Stroller Friendly",
+      "Lockers",
+      "Cafe/Food"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/keyvisual/web_zuerich_muehlerama.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zuerich_muehlerama.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Mühlerama",
+    "featured": true,
+    "website": "https://www.muehlerama.ch"
+  },
+  {
+    "id": "spot-schloss-kyburg",
+    "name": "Museum Schloss Kyburg",
+    "type": "gamezone",
+    "description": "Perched dramatically 150 meters above the Töss river near Winterthur, this 1,000-year-old fortress offers kids an authentic medieval adventure. Explore ancient stone cellars, the knight’s hall, armory, historical kitchen, and take part in interactive dragon and knight treasure hunts.",
+    "address": "Schloss 1, 8314 Kyburg",
+    "zip": "8314",
+    "city": "Kyburg",
+    "lat": 47.4583,
+    "lng": 8.7436,
+    "openingHours": "Apr - Oct Tue - Sun 10:00 - 17:30 (Special winter openings)",
+    "fees": "Under 6 Free, Children (6-16) 5 CHF, Adults 14 CHF",
+    "amenities": [
+      "Toilets",
+      "Picnic Area",
+      "Cafe/Food",
+      "Parking"
+    ],
+    "imageUrl": "https://www.zuerich.com/sites/default/files/web_zuerich_kyburg_2222.jpg",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/web_zuerich_kyburg_2222.jpg"
+    ],
+    "imageSource": "Zürich Tourismus / Schloss Kyburg",
+    "featured": true,
+    "website": "https://www.schlosskyburg.ch"
+  },
+  {
+    "id": "spot-hallenbad-city-zurich",
+    "name": "Hallenbad City Zürich",
+    "type": "swimmingpool",
+    "description": "Zurich’s historic 1930s Bauhaus public bathhouse located near Selnau along the Schanzengraben. Recently revitalized, it offers a 50m Olympic pool, a dedicated warm learner and family pool (30°C) with water jets, and convenient family changing suites.",
+    "address": "Sihlstrasse 71, 8001 Zürich",
+    "zip": "8001",
+    "city": "Zürich",
+    "lat": 47.3719,
+    "lng": 8.5348,
+    "openingHours": "Mon - Fri 06:00 - 22:00, Sat - Sun 08:00 - 18:00",
+    "fees": "Under 6 Free, Kids (6-16) 4.50 CHF, Adults 8.50 CHF",
+    "amenities": [
+      "Toilets",
+      "Lockers",
+      "Stroller Friendly",
+      "Cafe/Food"
+    ],
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/City_-_Hallenbad_City_%28renoviert%29_-_Schanzengraben_2012-10-22_14-51-27.JPG/1280px-City_-_Hallenbad_City_%28renoviert%29_-_Schanzengraben_2012-10-22_14-51-27.JPG",
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/City_-_Hallenbad_City_%28renoviert%29_-_Schanzengraben_2012-10-22_14-51-27.JPG/1280px-City_-_Hallenbad_City_%28renoviert%29_-_Schanzengraben_2012-10-22_14-51-27.JPG"
+    ],
+    "imageSource": "Wikimedia Commons / Stadt Zürich Sportamt",
+    "featured": true,
+    "website": "https://www.stadt-zuerich.ch/hallenbad-city"
   }
 ]
