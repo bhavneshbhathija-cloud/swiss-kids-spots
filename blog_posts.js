@@ -114,7 +114,8 @@ const BLOG_POSTS = [
         "label": "Explore all Indoor Play Centers in Canton Zürich",
         "href": "/indoor-spielplaetze/zuerich"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "top-playparks-kids-spots-lucerne",
@@ -231,7 +232,8 @@ const BLOG_POSTS = [
         "label": "Explore all Family Hikes in Canton Lucerne",
         "href": "/wandern/kanton/luzern"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "top-playparks-kids-spots-interlaken",
@@ -348,7 +350,8 @@ const BLOG_POSTS = [
         "label": "Explore all Stroller-Friendly Hikes in Switzerland",
         "href": "/wandern/kinderwagen"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "top-10-easy-family-hikes-switzerland",
@@ -465,7 +468,8 @@ const BLOG_POSTS = [
         "label": "Read: Top 10 Challenging Family Hikes in Switzerland",
         "href": "/blog/top-10-challenging-family-hikes-switzerland"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "top-10-moderate-family-hikes-switzerland",
@@ -582,7 +586,8 @@ const BLOG_POSTS = [
         "label": "Read: Top 10 Challenging Family Hikes in Switzerland",
         "href": "/blog/top-10-challenging-family-hikes-switzerland"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "top-10-challenging-family-hikes-switzerland",
@@ -699,7 +704,8 @@ const BLOG_POSTS = [
         "label": "Read: Top 10 Moderate Family Hikes in Switzerland",
         "href": "/blog/top-10-moderate-family-hikes-switzerland"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "top-mineral-baths-thermal-spas-families-switzerland",
@@ -913,7 +919,9 @@ const BLOG_POSTS = [
         "label": "Read: Best Winter Family Walks in Switzerland",
         "href": "/blog/best-winter-family-hikes-snow-trails-switzerland"
       }
-    ]
+    ],
+    "lang": "en",
+    "translationSlug": "thermalbaeder-mineralbaeder-familien-schweiz"
   },
   {
     "slug": "best-summer-family-hikes-switzerland",
@@ -1029,7 +1037,8 @@ const BLOG_POSTS = [
         "label": "Find Cool Swimming Pools & Badis by Canton",
         "href": "/schwimmbaeder"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "best-autumn-family-hikes-switzerland",
@@ -1145,7 +1154,8 @@ const BLOG_POSTS = [
         "label": "Read: Best Winter Snow Walks for Families",
         "href": "/blog/best-winter-family-hikes-snow-trails-switzerland"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "best-winter-family-hikes-snow-trails-switzerland",
@@ -1261,7 +1271,8 @@ const BLOG_POSTS = [
         "label": "Warm Up Afterward: Best Mineral Baths for Families",
         "href": "/blog/top-mineral-baths-thermal-spas-families-switzerland"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "best-sledging-runs-switzerland-by-distance-and-price",
@@ -1494,7 +1505,8 @@ const BLOG_POSTS = [
         "label": "Warm Up Afterward: Best Mineral Baths for Families",
         "href": "/blog/top-mineral-baths-thermal-spas-families-switzerland"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "where-to-take-kids-in-winter-switzerland",
@@ -1615,7 +1627,8 @@ const BLOG_POSTS = [
         "label": "Explore 493 Groomed Winter Snow Walking Trails",
         "href": "/wandern/winter"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "indoor-playzones-zurich",
@@ -1790,7 +1803,9 @@ const BLOG_POSTS = [
         "label": "Explore Zürich Family Walking & Hiking Trails",
         "href": "/wandern/kanton/zuerich"
       }
-    ]
+    ],
+    "lang": "en",
+    "translationSlug": "indoor-spielplaetze-zuerich"
   },
   {
     "slug": "indoor-playzones-lucerne",
@@ -1931,7 +1946,9 @@ const BLOG_POSTS = [
         "label": "Check Live Swiss Kids Events Calendar",
         "href": "/#events"
       }
-    ]
+    ],
+    "lang": "en",
+    "translationSlug": "indoor-spielplaetze-luzern"
   },
   {
     "slug": "indoor-playzones-bern",
@@ -2072,7 +2089,9 @@ const BLOG_POSTS = [
         "label": "Check Live Kids & Family Events in Switzerland",
         "href": "/#events"
       }
-    ]
+    ],
+    "lang": "en",
+    "translationSlug": "indoor-spielplaetze-bern"
   },
   {
     "slug": "indoor-playzones-basel",
@@ -2213,7 +2232,9 @@ const BLOG_POSTS = [
         "label": "Check Live Swiss Kids Events Calendar",
         "href": "/#events"
       }
-    ]
+    ],
+    "lang": "en",
+    "translationSlug": "indoor-spielplaetze-basel"
   },
   {
     "slug": "indoor-playzones-st-gallen",
@@ -2354,7 +2375,8 @@ const BLOG_POSTS = [
         "label": "Check Live Swiss Kids Events Calendar",
         "href": "/#events"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "indoor-playzones-appenzell",
@@ -2495,7 +2517,8 @@ const BLOG_POSTS = [
         "label": "Check Live Swiss Kids Events Calendar",
         "href": "/#events"
       }
-    ]
+    ],
+    "lang": "en"
   },
   {
     "slug": "rainy-day-children-activities-zurich",
@@ -2985,6 +3008,1129 @@ const BLOG_POSTS = [
       {
         "href": "/ausflug/zuerich-indoor",
         "label": "Explore Interactive Map"
+      }
+    ],
+    "lang": "en",
+    "translationSlug": "ausfluege-kinder-zuerich-schlechtwetter"
+  },
+  {
+    "slug": "ausfluege-kinder-zuerich-schlechtwetter",
+    "lang": "de",
+    "translationSlug": "rainy-day-children-activities-zurich",
+    "title": "28 beste Ausflugsziele für Kinder in Zürich & Umgebung bei Regen (Guide 2026)",
+    "subtitle": "Von tropischen Regenwäldern und interaktiven Science Centern bis zu riesigen Kletterburgen, Schoggi-Degustationen und warmen Thermalbädern in der Region Zürich.",
+    "metaDescription": "Entdecke 28 geniale Ausflugsziele bei Regen für Kinder in Zürich und Umgebung: Interaktive Science Center, Tropenhäuser, Dinosaurier, Schoggi-Welten, Thermalbäder und Indoor-Spielplätze mit ÖV-Tipps.",
+    "category": "Schlechtwetter & Indoor · Zürich",
+    "readTime": "15 Min. Lesezeit",
+    "publishedAt": "2026-11-20",
+    "heroImage": "https://media.zuerich.com/image/727218228053/image_m34j8n3ctv1ef_2020-09-03_lindt_home_of_chocolate_e0129-ret-rgb.jpg",
+    "intro": "Wenn kalter Nebel über den Zürichsee zieht, winterliches Grau dominiert oder plötzliche Frühlingsregenschauer das Wochenende treffen, droht zu Hause schnell der Lagerkoller. Zum Glück bietet der Grossraum Zürich eine der vielseitigsten Ausflugsszenen Europas für Familien bei Schlechtwetter. Ob tropische 28°C im Regenwald, spektakuläre Hochspannungs-Experimente, rasante Wasserrutschen, Trampolinparks oder dampfende Thermalbäder mit Blick über die Zürcher Altstadt – dieser praxiserprobte Guide stellt die 28 besten Indoor-Ziele in Zürich, Winterthur, Dietikon und Umgebung vor, inklusive genauer SBB-Verbindungen, Altersempfehlungen und echten Eltern-Tipps.",
+    "table": {
+      "title": "28 Zürcher Schlechtwetter-Ausflugsziele auf einen Blick",
+      "headers": [
+        "Ausflugsziel",
+        "Standort",
+        "Kategorie",
+        "Ideales Alter",
+        "Schlechtwetter-Highlight"
+      ],
+      "rows": [
+        [
+          "Technorama",
+          "Winterthur",
+          "Science Center",
+          "Alle Altersstufen (3–18)",
+          "500+ interaktive Experimentierstationen"
+        ],
+        [
+          "Lindt Home of Chocolate",
+          "Kilchberg",
+          "Schoggi-Museum",
+          "Alle Altersstufen",
+          "9m Schokoladenbrunnen & unbegrenzte Degustation"
+        ],
+        [
+          "Zoo Zürich (Masoala & Lewa)",
+          "Zürichberg",
+          "Indoor-Dschungel",
+          "Alle Altersstufen",
+          "Warmer 28°C Tropenwald mit freilebenden Lemuren"
+        ],
+        [
+          "Alpamare Wasserpark",
+          "Pfäffikon SZ",
+          "Erlebnisbad",
+          "3–16 Jahre",
+          "12 Rutschen, Wellenbad & 36°C Thermalbäder"
+        ],
+        [
+          "Landesmuseum Zürich",
+          "Zürich HB",
+          "Märchenschloss",
+          "4–14 Jahre",
+          "Direkt am HB: Teppich der Geschichten & Ritter"
+        ],
+        [
+          "focusTerra ETH",
+          "Zürich Zentrum",
+          "Erdwissenschaften",
+          "5–16 Jahre",
+          "Gratis Eintritt & Erdbebensimulator-Plattform"
+        ],
+        [
+          "FIFA Museum",
+          "Zürich Enge",
+          "Fussball & Games",
+          "4–15 Jahre",
+          "Interaktives Football Lab, Flipper & WM-Pokale"
+        ],
+        [
+          "WOW Museum",
+          "Zürich HB",
+          "Optische Illusionen",
+          "Alle Altersstufen",
+          "Spiegelräume, Zerrwelten & Überkopf-Zimmer"
+        ],
+        [
+          "Trampolino",
+          "Dietikon",
+          "Indoor-Spielpark",
+          "2–14 Jahre",
+          "Grösster Indoor-Spielplatz der Schweiz (4'000 m²)"
+        ],
+        [
+          "Flip Lab Zurich",
+          "Rümlang",
+          "Trampolinhalle",
+          "5–18 Jahre",
+          "Olympische Trampoline & riesige Airbag-Kissen"
+        ],
+        [
+          "Sauriermuseum Aathal",
+          "Aathal",
+          "Dinosaurier",
+          "3–14 Jahre",
+          "Echte Skelette, lebensgrosse Dinos & Fossilien-Labor"
+        ],
+        [
+          "Kulturama",
+          "Zürich Fluntern",
+          "Evolution & Mensch",
+          "5–15 Jahre",
+          "600 Mio. Jahre Evolution & Entdeckerpfad"
+        ],
+        [
+          "Zoologisches Museum UZH",
+          "Zürich Zentrum",
+          "Naturmuseum",
+          "Alle Altersstufen",
+          "Gratis Eintritt, 1'500 Tierpräparate & Tierstimmen"
+        ],
+        [
+          "Hürlimannbad & Spa",
+          "Zürich Enge",
+          "Thermalbad",
+          "Ab 1 Jahr (tagsüber)",
+          "Alte Brauereigewölbe & warmer Dachbad-Pool"
+        ],
+        [
+          "Tram-Museum Burgwies",
+          "Zürich Burgwies",
+          "Verkehrsmuseum",
+          "2–10 Jahre",
+          "Historische Trams besteigen & Glocken läuten"
+        ],
+        [
+          "Mühlerama",
+          "Tiefenbrunnen",
+          "Historische Mühle",
+          "3–12 Jahre",
+          "Laufende Mühle, 2-stöckige Rutsche & Zopfbacken"
+        ],
+        [
+          "Sukkulenten-Sammlung",
+          "Mythenquai",
+          "Wüstenglashaus",
+          "Alle Altersstufen",
+          "Gratis Eintritt, 7 beheizte Gewächshäuser & Kakteen"
+        ],
+        [
+          "Botanischer Garten UZH",
+          "Zollikerstrasse",
+          "Tropenhäuser",
+          "Alle Altersstufen",
+          "Gratis Eintritt, 3 Bio-Domes & Riesen-Seerosen"
+        ],
+        [
+          "Starbie Spielwelt",
+          "Dietikon",
+          "Indoor-Spielzone",
+          "1–8 Jahre",
+          "Elektro-Karts, Bällebad & gemütliche Kleinkindzone"
+        ],
+        [
+          "Skillspark Winterthur",
+          "Winterthur",
+          "Actionsport",
+          "6–18 Jahre",
+          "Grösste Actionhalle Europas: Pumptrack & Big Air"
+        ],
+        [
+          "Umwelt Arena Schweiz",
+          "Spreitenbach",
+          "Öko-Mobilität",
+          "4–14 Jahre",
+          "Indoor-Elektro-Kartbahn & interaktive Stationen"
+        ],
+        [
+          "Monkey Town",
+          "Rümlang",
+          "Dschungel-Spielpark",
+          "1–10 Jahre",
+          "Klettertürme, Röhrenrutschen & Kleinkindbereich"
+        ],
+        [
+          "Formel Fun",
+          "Bülach",
+          "Spiel & Lounge",
+          "3–14 Jahre",
+          "Elektro-Gokarts, Schwarzlicht-Minigolf & Elternlounge"
+        ],
+        [
+          "Minicity Play Village",
+          "Letzipark/Sihlcity",
+          "Rollenspiel-Stadt",
+          "2–7 Jahre",
+          "Mini-Supermarkt, Feuerwehr & Kinderbetreuung"
+        ],
+        [
+          "Naturmuseum Winterthur",
+          "Winterthur",
+          "Naturkunde",
+          "2–12 Jahre",
+          "Gratis für Kids bis 16, Kerngruppe & Biberbau"
+        ],
+        [
+          "Museum Schloss Kyburg",
+          "Kyburg",
+          "Ritterburg",
+          "5–14 Jahre",
+          "1'000 Jahre alte Burg, Rüstkammer & Drachensuche"
+        ],
+        [
+          "Freizeitbad Opfikon",
+          "Opfikon/Glattbrugg",
+          "Hallenbad",
+          "Alle Altersstufen",
+          "65m Rutschbahn, 30°C Lernschwimmbecken & Planschzone"
+        ],
+        [
+          "Hallenbad City",
+          "Zürich Selnau",
+          "Historisches Bad",
+          "Alle Altersstufen",
+          "Saniertes 1930er Bauhausbad mit warmem Familienbecken"
+        ]
+      ]
+    },
+    "items": [
+      {
+        "rank": 1,
+        "spotId": "spot-103",
+        "name": "Swiss Science Center Technorama (Winterthur)",
+        "badge": "Top-Tipp · 500+ Experimentierstationen",
+        "location": "Technoramastrasse 1, 8404 Winterthur (SBB bis Winterthur HB, dann Buslinie 5 direkt zum Technorama)",
+        "summary": "Eines der grössten und faszinierendsten Mitmach-Science-Center der Welt. Auf vier riesigen Etagen bietet das Technorama über 500 Experimentierstationen, an denen Anfassen, Drücken und Kurbeln ausdrücklich erwünscht sind. Kinder erzeugen gigantische Seifenblasen, zähmen echte elektrische Blitze, erforschen optische Täuschungen im Spiegellabyrinth und bestaunen verblüffende Physik- und Chemie-Shows.",
+        "tip": "Geht direkt nach der Ankunft in den Tinkering-Bereich im zweiten Stock, um euch Plätze für die beliebten Mitmach-Workshops zu sichern. Plant mindestens 4 bis 5 Stunden ein!"
+      },
+      {
+        "rank": 2,
+        "spotId": "spot-113",
+        "name": "Lindt Home of Chocolate (Kilchberg)",
+        "badge": "Schoggi-Paradies · 9m Schokobrunnen",
+        "location": "Schokoladenplatz 1, 8802 Kilchberg (S8/S24 bis Kilchberg oder Bus 165 ab Bürkliplatz bis Muschelweg)",
+        "summary": "Ein wahrgewordener Schoggi-Traum am linken Zürichseeufer: Gleich in der Eingangshalle ragt ein über 9 Meter hoher, goldener Schokoladenbrunnen empor, durch den 1'500 Kilogramm flüssige Lindt-Schoggi strömen. Die interaktive Audiotour führt von den Kakaobäumen in Ghana über die Schweizer Schokoladenpioniere bis zur modernen Produktion. Das Highlight: Naschstationen mit unbegrenztem Schoggi-Probieren ab warmen Zapfhähnen.",
+        "tip": "Tickets sind an verregneten Wochenenden oft Tage im Voraus ausgebucht! Reserviert euer Zeitfenster unbedingt vorab online."
+      },
+      {
+        "rank": 3,
+        "spotId": "osm-spot-zoo-zurich",
+        "name": "Zoo Zürich: Masoala Regenwald & Lewa Savanne",
+        "badge": "Tropen-Oase · 28°C Indoor-Dschungel",
+        "location": "Zürichbergstrasse 221, 8044 Zürich (Tram 6 ab Zürich HB direkt zur Endstation Zoo Zürich)",
+        "summary": "Wenn es in Zürich nasskalt und trüb ist, fühlt sich ein Besuch in der 11'000 m² grossen Masoala-Regenwald-Halle wie ein Direktflug nach Madagaskar an. Bei angenehmen 28°C und hoher Luftfeuchtigkeit spazieren Familien auf Dschungelpfaden und Hängebrücken, während freilebende Rote Varis (Lemuren), Flughunde und bunte Vögel direkt über den Köpfen vorbeiziehen. Auch die überdachten Innenbereiche der Lewa-Savanne (Giraffen und Nashörner) und das Koala-Haus sind ideal bei Regen.",
+        "tip": "Nutzt die Schliessfächer direkt am Eingang der Masoala-Halle, um dicke Winterjacken und Schirme abzulegen – im Tropenhaus reichen T-Shirt und leichte Kleidung."
+      },
+      {
+        "rank": 4,
+        "spotId": "spot-3",
+        "name": "Alpamare Erlebnisbad (Pfäffikon SZ)",
+        "badge": "Wasserparadies · 12 rasante Rutschen",
+        "location": "Gwattstrasse 12, 8808 Pfäffikon SZ (S5/S8/S25 bis Pfäffikon SZ, dann Bus 195 bis Seedamm-Center / Alpamare)",
+        "summary": "Europas legendärer Indoor-Wasserpark liegt nur 30 Minuten von Zürich entfernt am oberen Zürichsee. 12 adrenalingeladene Rutschen mit über 2.1 Kilometern Gesamtlänge, ein riesiges Indoor-Wellenbad mit Meeresbrandung und die rasante Alpa-Bob-Reifenbahn garantieren Action pur. Wer Entspannung sucht, taucht in die dampfenden 36°C warmen Jod-Sole-Thermalbecken im Aussenbereich ein, während der Regen auf die Wasseroberfläche prasselt.",
+        "tip": "Prüft SBB RailAway für ermässigte Kombi-Billette aus Zug und Eintritt. Für die kleinsten Geschwister gibt es einen separaten 200 m² grossen Kleinkinderbereich mit Minirutschen."
+      },
+      {
+        "rank": 5,
+        "spotId": "spot-landesmuseum-zurich",
+        "name": "Landesmuseum Zürich (Schweizerisches Nationalmuseum)",
+        "badge": "Märchenschloss · Direkt am Zürcher HB",
+        "location": "Museumstrasse 2, 8001 Zürich (Unmittelbar hinter dem Hauptbahnhof Zürich / Tram 4, 11, 13, 14, 17)",
+        "summary": "Das Landesmuseum wirkt wie ein verwinkeltes Märchenschloss und ist nur wenige Schritte vom Zürcher Hauptbahnhof entfernt – ideal bei strömendem Regen. Die Dauerausstellung «Ein Teppich voller Geschichten» lädt Kinder ein, historische Segelschiffe zu erkunden, in ein Nomadenzelt zu schlüpfen und durch winterliche Wälder zu reisen. Dazu warten echte Ritterrüstungen, Kutschen und Verkleidungsstationen.",
+        "tip": "Freier Eintritt für alle Kinder unter 16 Jahren! Auch Erwachsene mit Schweizer Museumspass oder Raiffeisen MemberPlus-Karte geniessen kostenlosen Eintritt."
+      },
+      {
+        "rank": 6,
+        "spotId": "spot-focusterra-eth",
+        "name": "focusTerra – ETH Erdwissenschaften",
+        "badge": "Gratis Eintritt · Echter Erdbebensimulator",
+        "location": "Sonneggstrasse 5, 8092 Zürich (ETH Hauptgebäude / Tram 6, 9, 10 bis ETH/Universitätsspital oder Polybahn ab Central)",
+        "summary": "Im spektakulären Glas-Lichthof des Departements Erdwissenschaften an der ETH Zürich tauchen Kinder in die Kräfte unseres Planeten ein. Der absolute Star ist die hydraulische Erdbeben-Simulationsplattform: Hier erleben Familien historische Beben in sicherer Umgebung am eigenen Körper. Zudem gibt es leuchtende Mineralien im Dunkelraum, echte Meteoriten zum Anfassen und riesige Bergkristalle.",
+        "tip": "Der Museumseintritt ist komplett kostenlos! Öffentliche Vorführungen des Erdbebensimulators finden an ausgewählten Familiensonntagen statt (Plätze online reservieren)."
+      },
+      {
+        "rank": 7,
+        "spotId": "spot-2",
+        "name": "FIFA Museum (Zürich Enge)",
+        "badge": "Interaktive Fussball-Arena · Enge",
+        "location": "Seestrasse 27, 8002 Zürich (Direkt gegenüber dem Bahnhof Enge / Tram 5, 6, 7 bis Bahnhof Enge)",
+        "summary": "Ein Highlight für junge Fussball-Fans direkt gegenüber dem Bahnhof Enge. Im obersten Stockwerk wartet das «Football Lab»: eine riesige interaktive Flipper-Arena, in der Kinder mit echten Fussbällen auf digitale Sensorwände schiessen, um Schusskraft, Passgenauigkeit und Dribbling-Geschwindigkeit zu messen. Zudem kann man in echten Kommentatoren-Kabinen legendäre WM-Tore kommentieren und den echten WM-Pokal bestaunen.",
+        "tip": "Jeden Sonntag ist «Family Sunday» mit kostenlosen Rätselrallyes, Schminkaktionen und Kreativ-Workshops für Kinder."
+      },
+      {
+        "rank": 8,
+        "spotId": "spot-120",
+        "name": "WOW Museum – Room of Illusions (Zürich HB)",
+        "badge": "Verrückte Welten · Optische Täuschungen",
+        "location": "Werdmühlestrasse 10, 8001 Zürich (3 Gehminuten vom Zürcher HB und der Bahnhofstrasse)",
+        "summary": "Auf drei farbenfrohen Etagen stellt das WOW Museum die Wahrnehmung auf den Kopf. Dutzende optische Täuschungen, unendliche Spiegellabyrinthe, Kaleidoskope und Überkopf-Räume lassen Kinder an der Decke spazieren oder scheinbar schwerelos schweben. Es verbindet spielerische Physik mit purem Familienspass.",
+        "tip": "Akkus voll aufladen! Am Boden markieren Fotopunkte die perfekten Kamerapositionen, um verblüffende Fotos für das Familienalbum zu schiessen."
+      },
+      {
+        "rank": 9,
+        "spotId": "spot-21",
+        "name": "Trampolino Indoor Funpark (Dietikon)",
+        "badge": "Mega-Spielplatz · 4'000 m² Action",
+        "location": "Lerzenstrasse 27, 8953 Dietikon (S3/S11/S12 bis Dietikon, dann Bus 309 bis Silbern)",
+        "summary": "Das Trampolino in Dietikon ist der grösste Hallenspielplatz der Schweiz und bietet auf 4'000 Quadratmetern unendliche Bewegungsmöglichkeiten. Ein riesiger Klettervulkan mit Steilrutsche, Elektro-Gokarts, Autoscooter, eine echte kleine Indoor-Achterbahn, Trampolinanlagen und endlose Kletterlabyrinthe lassen Kinderherzen höherschlagen. Für die Kleinsten gibt es einen eigenen Softplay-Bereich.",
+        "tip": "Antirutschsocken sind für Kinder Pflicht. Grosser Pluspunkt für das Budget: Eigene Picknicks und Snacks dürfen im Sitzbereich konsumiert werden!"
+      },
+      {
+        "rank": 10,
+        "spotId": "spot-55",
+        "name": "Flip Lab Zurich (Rümlang)",
+        "badge": "Freestyle-Trampoline & Riesen-Airbags",
+        "location": "Oberglatterstrasse 35, 8153 Rümlang (S9/S15 bis Rümlang, dann 10 Minuten Fussweg oder Bus 510)",
+        "summary": "Über 3'000 m² Sprungfläche in Rümlang nahe dem Flughafen Zürich: Das Flip Lab bietet professionelle olympische Trampoline, Wall-Running-Wände, weiche Airbag-Sprungkissen, Völkerball-Trampolinfelder und Basketball-Slam-Dunk-Bahnen. Vor jedem Sprungslot führen geschulte Coaches ein gemeinsames Warm-up durch.",
+        "tip": "Sprungzeiten unbedingt vorab online buchen. Die speziellen Flip-Lab-Gripsocken sind Pflicht (können bei Folgebesuchen wiederverwendet werden)."
+      },
+      {
+        "rank": 11,
+        "spotId": "spot-sauriermuseum-aathal",
+        "name": "Sauriermuseum Aathal (Dinosaurier-Museum)",
+        "badge": "Weltberühmte Fossilien & echte Skelette",
+        "location": "Zürichstrasse 69, 8607 Aathal (S14 bis Bahnhof Aathal, dann 5 Minuten gemütlicher Fussweg)",
+        "summary": "Eines der bedeutendsten Dinosauriermuseen Europas, berühmt für echte Skelette aus eigenen US-Grabungen, darunter der weltbekannte Allosaurus «Big Al Two». Kinder begegnen lebensgrossen, brüllenden Dino-Modellen, dürfen versteinertes Dinosaurier-Holz und Knochen anfassen, erkunden eine Mineraliengrotte und schauen Präparatoren im Glaslabor über die Schulter.",
+        "tip": "Am Eingang nach der Dino-Suchrallye fragen: Kinder, die die Fragen lösen, erhalten im Shop einen kleinen Glücks-Edelstein geschenkt."
+      },
+      {
+        "rank": 12,
+        "spotId": "spot-kulturama-zurich",
+        "name": "Kulturama – Museum des Menschen",
+        "badge": "600 Mio. Jahre Leben · Interaktiver Pfad",
+        "location": "Englischviertelstrasse 9, 8032 Zürich (Tram 3/8 bis Hottingerplatz oder Tram 3/9 bis Kunsthaus)",
+        "summary": "Ein faszinierendes Erlebnismuseum zur menschlichen Biologie und Evolution. Auf dem Mitmach-Entdeckerpfad dürfen Kinder echte Tierfossilien und Bernsteine unter der Lupe untersuchen, menschliche und tierische Skelette vergleichen und ihre Sinne an Tast- und Hörstationen testen. Die obere Etage vermittelt kindgerecht die biologische Entwicklung vom Embryo bis ins Alter.",
+        "tip": "Kinder unter 6 Jahren geniessen freien Eintritt. Die Entdecker-Schubladen laden zum eigenständigen Anfassen und Forschen ein."
+      },
+      {
+        "rank": 13,
+        "spotId": "spot-zoologisches-museum-uzh",
+        "name": "Zoologisches Museum der Universität Zürich",
+        "badge": "Gratis Eintritt · 1'500 Tierpräparate",
+        "location": "Karl-Schmid-Strasse 4, 8006 Zürich (Tram 5, 6, 9 bis ETH/Universitätsspital oder Polybahn ab Central)",
+        "summary": "Ein Klassiker auf dem Zürcher Hochschulhügel mit freiem Eintritt für alle Besucher. Über 1'500 Tierpräparate zeigen die heimische Tierwelt der Schweiz sowie die globale Artenvielfalt. An Hörstationen lauschen Kinder echten Vogelstimmen und Wolfsheulen, Mikroskope zeigen Schmetterlingsflügel in Nahaufnahme und das gewaltige Mammutskelett bringt alle zum Staunen.",
+        "tip": "Kombiniert den Besuch mit dem nur 300 Meter entfernten focusTerra auf der ETH-Terrasse für einen perfekten, 100% kostenlosen Wissenschaftsnachmittag."
+      },
+      {
+        "rank": 14,
+        "spotId": "spot-huerlimannbad-spa-zurich",
+        "name": "Hürlimannbad & Spa Zürich",
+        "badge": "Thermal-Oase · Warmer Dachpool",
+        "location": "Brandschenkestrasse 150, 8002 Zürich (S-Bahn S2, S8, S24 bis Giesshübel oder Tram 5/13 bis Waffenplatzstrasse)",
+        "summary": "Unter den historischen Steingewölben der ehemaligen Hürlimann-Brauerei entspringt die legendäre Zürcher Aqui-Quelle (35°C–41°C). Familien baden gemeinsam in riesigen hölzernen Braufässern und mystischen Steinhallen, bevor es mit dem Lift hinauf in den beheizten Dachbad-Infinitypool geht: Hier badet man im dampfenden Wasser mit spektakulärem Panoramablick über die Zürcher Altstadt.",
+        "tip": "Kinder ab 1 Jahr sind tagsüber zwischen 09:00 und 17:00 Uhr im Thermalbad herzlich willkommen (in Begleitung Erwachsener und mit ruhigem Badeverhalten)."
+      },
+      {
+        "rank": 15,
+        "spotId": "spot-tram-museum-burgwies",
+        "name": "Tram-Museum Burgwies Zürich",
+        "badge": "Historische Trams · Glocken & Führerstand",
+        "location": "Forchstrasse 260, 8008 Zürich (Tram 11 oder Forchbahn S18 direkt bis Haltestelle Burgwies)",
+        "summary": "Im denkmalgeschützten Tramdepot Burgwies von 1912 erwacht Zürcher Verkehrsgeschichte zum Leben. Kinder dürfen die historischen Holzsitze testen, auf den Fahrerstand klettern, an Notbremsleinen ziehen und echte Messing-Fussglocken läuten. In der Spielecke wartet eine riesige Brio-Holzeisenbahnanlage.",
+        "tip": "Jeden letzten Sonntag im Monat (ausser Dezember) verkehrt die historische Museumslinie 21 vom Hauptbahnhof und Bellevue direkt zum Depot Burgwies."
+      },
+      {
+        "rank": 16,
+        "spotId": "spot-muehlerama-zurich",
+        "name": "Mühlerama – Museum & Tiefenbrunnen-Mühle",
+        "badge": "Laufende Mühle · 2-stöckige Rutschbahn",
+        "location": "Seefeldstrasse 231, 8008 Zürich (S6/S16 bis Tiefenbrunnen oder Tram 2/4 bis Bahnhof Tiefenbrunnen)",
+        "summary": "Eine über 110 Jahre alte, voll funktionsfähige Industriemühle direkt am Zürichsee. Kinder schlüpfen in weiche Filzpantoffeln, bestaunen die rüttelnden Mehlsiebe und Mahlwalzen, mahlen Korn an echten Handmühlen und sausen die legendäre Holzrutschbahn hinab, über die früher schwere Getreidesäcke transportiert wurden.",
+        "tip": "Jeden Sonntagnachmittag findet das beliebte Familien-Backen statt: Kinder kneten und flechten ihren eigenen Zopf oder Brötchen und backen sie im Steinofen."
+      },
+      {
+        "rank": 17,
+        "spotId": "spot-sukkulenten-sammlung-zurich",
+        "name": "Sukkulenten-Sammlung Zürich",
+        "badge": "Gratis Wärme · 4'500 Wüstenkakteen",
+        "location": "Mythenquai 88, 8002 Zürich (Bus 161/165 ab Bürkliplatz bis Haltestelle Sukkulentensammlung)",
+        "summary": "Eine der bedeutendsten Sukkulenten- und Kakteensammlungen der Erde mit über 4'500 Arten in sieben warmen Glashäusern direkt am Zürichsee. Wenn draussen nasskalter Regen fällt, fühlt sich der Spaziergang zwischen mannshohen Säulenkakteen, Agaven und madagassischen Dickblattgewächsen wie eine Expedition in die Wüste Arizonas an.",
+        "tip": "Der Eintritt ist an 365 Tagen im Jahr komplett kostenlos! Am Eingang liegt ein liebevoll illustriertes Rätselheft für Kinder bereit."
+      },
+      {
+        "rank": 18,
+        "spotId": "spot-botanischer-garten-uzh",
+        "name": "Botanischer Garten UZH (Tropenhäuser)",
+        "badge": "Gratis Eintritt · Futuristische Tropen-Kuppeln",
+        "location": "Zollikerstrasse 107, 8008 Zürich (Tram 11 bis Hegibachplatz oder Bus 77 direkt bis Botanischer Garten)",
+        "summary": "Drei markante, kuppelförmige Schauhäuser, die wie Raumstationen in die Weinegg-Hügel gebettet sind. Im Inneren herrscht feucht-warme Tropenluft (26°C): Riesen-Seerosenblätter aus dem Amazonas, exotische Orchideen, fleischfressende Kannenpflanzen und plätschernde Wasserläufe machen den Rundgang zu einem herrlichen Sinneserlebnis bei schlechtem Wetter.",
+        "tip": "Komplett kostenloser Eintritt! Ein idealer, barrierefreier Rückzugsort für Eltern mit Kinderwagen oder Kleinkindern."
+      },
+      {
+        "rank": 19,
+        "spotId": "osm-spot-1903",
+        "name": "Starbie Spielwelt (Dietikon)",
+        "badge": "Gemütliche Spielwelt · 1 bis 8 Jahre",
+        "location": "Riedstrasse 3, 8953 Dietikon (S3/S12 bis Dietikon, dann Bus 309 bis Moosmatt)",
+        "summary": "Ein liebevoll gestaltetes Indoor-Paradies in Dietikon, ideal für Babys, Kleinkinder und jüngere Schulkinder. Ausgestattet mit Elektro-Minikarts, Riesen-Schaumstoff-Legosteinen, breiten Wellenrutschen, Klettertürmen, Hüpfburgen und einem abgetrennten Bällebad für die Allerkleinsten.",
+        "tip": "Das Café ist so angeordnet, dass Eltern bei einem Kaffee das gesamte Spielgeschehen entspannt im Blick behalten. Sockenpflicht."
+      },
+      {
+        "rank": 20,
+        "spotId": "spot-62",
+        "name": "Skillspark Winterthur (Freestyle-Actionhalle)",
+        "badge": "Actionsport · 6'000 m² Hallenfläche",
+        "location": "Lagerplatz 17, 8400 Winterthur (10 Gehminuten ab Winterthur HB oder Bus 1 bis Lokwerk)",
+        "summary": "Europas grösste Actionsporthalle in den geschichtsträchtigen Sulzer-Industriehallen in Winterthur. Auf 6'000 m² toben sich aktive Kids und Teens auf Asphalt-Pumptracks mit BMX-Bikes und Stunt-Scootern aus, erobern Skatepools, bezwingen Ninja-Warrior-Hindernisse und springen von Trampolinen in riesige Luftkissen.",
+        "tip": "Mietmaterial (BMX, Scooter, Skateboards und Helme) gibt es direkt vor Ort. Perfekt für energiereiche Kinder ab 6 Jahren."
+      },
+      {
+        "rank": 21,
+        "spotId": "spot-119",
+        "name": "Umwelt Arena Schweiz (Spreitenbach)",
+        "badge": "Indoor-Elektro-Karts & Zukunfts-Technik",
+        "location": "Türliackerstrasse 4, 8957 Spreitenbach (Limmattalbahn Tram 20 direkt zur Umwelt Arena)",
+        "summary": "Ein spektakulärer Bau, der Nachhaltigkeit für Kinder greifbar macht. Das absolute Highlight ist der 300 Meter lange Indoor-Testparcours im Untergeschoss: Hier düsen Kinder mit Elektro-Karts, Segways, E-Trottinetts und lustigen Spassvelos über die Piste. Auf den oberen Etagen warten 45 interaktive Stationen mit Touchscreens und Quizspielen.",
+        "tip": "Bequem erreichbar mit der modernen Limmattalbahn (Tram 20) ab Zürich-Altstetten oder Killwangen-Spreitenbach – hält direkt vor dem Eingang."
+      },
+      {
+        "rank": 22,
+        "spotId": "osm-spot-5343",
+        "name": "Monkey Town Indoor-Spielpark (Rümlang)",
+        "badge": "Dschungel-Kletterwelt · Mehrstöckig",
+        "location": "Ifangstrasse 8, 8153 Rümlang (S9/S15 bis Rümlang, dann Bus 510 bis Riedmatt)",
+        "summary": "Ein farbenfroher Dschungel-Spielplatz mit mehrstöckigen Klettergerüsten, Seilbrücken, Röhrenrutschen, Bällekannonen-Arenen und einem weich gepolsterten Kleinkindbereich für Kinder unter 4 Jahren.",
+        "tip": "Schnelles Gratis-WLAN und zahlreiche Cafétische für Eltern, die bei Schmuddelwetter etwas Remote-Work erledigen möchten, während die Kids toben."
+      },
+      {
+        "rank": 23,
+        "spotId": "osm-spot-2324",
+        "name": "Formel Fun / Kiddy Park (Bülach)",
+        "badge": "Elektro-Karts & Schwarzlicht-Minigolf",
+        "location": "Schützenmattstrasse 30, 8180 Bülach (S9/S15 bis Bülach, dann Bus 530/531 bis Schützenmatt)",
+        "summary": "Eine moderne Familien-Erlebniswelt im Zürcher Unterland: Elektro-Minikarts auf rutschfester Piste, ein spannendes Laser-Labyrinth, eine 9-Loch-Schwarzlicht-Minigolfanlage und Klettertürme begeistern Kinder jeden Alters.",
+        "tip": "Die Lounge bietet hochwertigen Barista-Kaffee und frische Paninis – spürbar angenehmer für Eltern als gewöhnliche Hallenspielplätze."
+      },
+      {
+        "rank": 24,
+        "spotId": "spot-56",
+        "name": "Minicity & Play Village (Letzipark & Sihlcity)",
+        "badge": "Rollenspiel-Stadt · Einkaufszentren",
+        "location": "Baslerstrasse 50, 8048 Zürich (Letzipark) und Kalandergasse 1, 8045 Zürich (Sihlcity)",
+        "summary": "Eine detailverliebte Ministadt für Kinder von 2 bis 7 Jahren: Echte Rollenspiele an der Kasse eines Mini-Migros-Supermarkts, Einsätze mit Holz-Feuerwehrautos, Plüschtier-Verarztung im Spital oder Mauern auf der Baustelle.",
+        "tip": "Bietet für Kinder von 3 bis 7 Jahren betreute Betreuungsstunden an, damit Eltern Besorgungen im Center in Ruhe erledigen können."
+      },
+      {
+        "rank": 25,
+        "spotId": "spot-naturmuseum-winterthur",
+        "name": "Naturmuseum Winterthur",
+        "badge": "Gratis für Kinder bis 16 · Kerngruppe",
+        "location": "Museumstrasse 52, 8400 Winterthur (Nur 5 Gehminuten ab Bahnhof Winterthur)",
+        "summary": "Ein liebevoll gestaltetes Naturmuseum zur heimischen Tierwelt. Das Herzstück für Familien ist der Forschersaal «Kerngruppe»: Kinder dürfen Felle ertasten, in einen begehbaren Biberbau klettern, Insekten unter Vergrösserungsgläsern prüfen und Tierpuzzles lösen.",
+        "tip": "Komplett freier Eintritt für alle Kinder und Jugendlichen bis 16 Jahre! Ideal gelegen für einen Ausflug nach Winterthur."
+      },
+      {
+        "rank": 26,
+        "spotId": "spot-schloss-kyburg",
+        "name": "Museum Schloss Kyburg",
+        "badge": "1'000 Jahre alte Burg · Ritter & Drachen",
+        "location": "Schloss 1, 8314 Kyburg (SBB bis Winterthur oder Effretikon, dann Postauto 653 direkt zum Schloss)",
+        "summary": "150 Meter über der Töss thront die älteste Burgmuseum-Anlage der Schweiz. Kinder erforschen dunkle Kellerverliese, die historische Schlossküche, die Rüstkammer mit echten Schwertern und Helmen und begeben sich per Smartphone-App auf Drachensuche.",
+        "tip": "Achtet auf mittelalterliche Handwerker- und Backtage im Jahresprogramm. Feste Schuhe anziehen wegen historischer Pflastersteine."
+      },
+      {
+        "rank": 27,
+        "spotId": "osm-spot-927",
+        "name": "Freizeitbad Opfikon (Bruggwiesen)",
+        "badge": "Familienbad · 65m Röhrenrutsche",
+        "location": "Ifangstrasse 13, 8152 Opfikon (Glattbrugg / S7 bis Balsberg oder S5 bis Glattbrugg)",
+        "summary": "Ein modernes städtisches Hallenbad mit einer rasanten 65-Meter-Wasserrutsche, einem 25-Meter-Schwimmerbecken, einem warmen 30°C Lernschwimmbecken mit Massagedüsen und einer bunten Kleinkinder-Planschzone mit Wasserfontänen.",
+        "tip": "Sehr familienfreundliche städtische Eintrittspreise – eine preiswerte Alternative zu kommerziellen Wasserparks für einen spontanen Badetag."
+      },
+      {
+        "rank": 28,
+        "spotId": "spot-hallenbad-city-zurich",
+        "name": "Hallenbad City Zürich",
+        "badge": "Zentral am Schanzengraben · Warmes Lernbecken",
+        "location": "Sihlstrasse 71, 8001 Zürich (Tram 2, 9 bis Stauffacher oder S-Bahn bis Selnau)",
+        "summary": "Das traditionsreiche Zürcher Hallenbad aus den 1930er Jahren im Bauhausstil, direkt am malerischen Schanzengraben. Das Bad verfügt über ein 50m-Schwimmbecken, ein separates 30°C warmes Familien- und Lernbecken mit sanften Düsen und grosszügige Familien-Umkleiden.",
+        "tip": "Zentral in Gehdistanz zu Paradeplatz und Stadelhofen gelegen – ideal für eine spontane Badepause mitten in Zürich."
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/de/blog/indoor-spielplaetze-zuerich",
+        "label": "Top 8 Indoor-Spielplätze in Zürich"
+      },
+      {
+        "href": "/de/blog/thermalbaeder-mineralbaeder-familien-schweiz",
+        "label": "Die 10 besten Thermalbäder für Familien"
+      },
+      {
+        "href": "/spielplaetze/zuerich",
+        "label": "Alle Spielplätze im Kanton Zürich"
+      },
+      {
+        "href": "/",
+        "label": "Zur interaktiven Schweizer Karte"
+      }
+    ]
+  },
+  {
+    "slug": "indoor-spielplaetze-zuerich",
+    "lang": "de",
+    "translationSlug": "indoor-playzones-zurich",
+    "title": "Die 8 besten Indoor-Spielplätze in Zürich (Guide 2026 für Regentage)",
+    "subtitle": "Von riesigen Kletterburgen und Trampolinparks bis zu Kleinkinder-Spielwelten und Go-Kart-Bahnen: Die besten Adressen im Kanton Zürich.",
+    "metaDescription": "Entdecke die besten Indoor-Spielplätze und Trampolinhallen in Zürich und Umgebung: Trampolino, Flip Lab, Starbie, Formel Fun, Skillspark und Minicity im detaillierten Familien-Check.",
+    "category": "Indoor-Spielplätze · Zürich",
+    "readTime": "10 Min. Lesezeit",
+    "publishedAt": "2026-11-20",
+    "heroImage": "https://lh3.googleusercontent.com/grass-cs/AABkmLfGwI_1AN_bCy6_F5HsacklEwAA4RUL5NhMnDaurQFpDYSaD67bHxrp-HWBSxlf7ZmbCxy_yXRVaWFNmK16nUJ1xBdgWadxF6rj2MeOFle2Rzr7nJUY1-GHB3MFjA3FHlVLkEohFw=s4800-w1000",
+    "intro": "Wenn das Zürcher Wetter grau und nass ist, brauchen Kinder Raum zum Klettern, Rutschen und Toben. Im Kanton Zürich gibt es eine hervorragende Auswahl an Hallenspielplätzen – von der gigantischen 4'000-m²-Erlebniswelt bis zum gemütlichen Kleinkinder-Paradies mit Barista-Kaffee für die Eltern. Hier sind die 8 besten Indoor-Spielzonen in Zürich und Umgebung im direkten Vergleich.",
+    "table": {
+      "title": "Zürcher Indoor-Spielplätze im Überblick",
+      "headers": [
+        "Spielplatz",
+        "Standort",
+        "Bestens geeignet für",
+        "Alter",
+        "Hauptattraktion"
+      ],
+      "rows": [
+        [
+          "Trampolino",
+          "Dietikon",
+          "Maximale Energie verbrennen",
+          "2–14",
+          "Grösster Hallenspielplatz der Schweiz (4'000 m²)"
+        ],
+        [
+          "Flip Lab",
+          "Rümlang",
+          "Trampoline & Freestyle-Flips",
+          "5–18",
+          "Olympische Trampoline, Airbag-Sprungkissen & Ninja Park"
+        ],
+        [
+          "Starbie Spielwelt",
+          "Dietikon",
+          "Kleinkinder & jüngere Kids",
+          "1–8",
+          "Riesen-Softlego, Holzeisenbahnen & Bällebäder"
+        ],
+        [
+          "Formel Fun",
+          "Bülach",
+          "Elektrokarts & Laserspass",
+          "3–15",
+          "Elektro-Minikarts & Schwarzlicht-Minigolf"
+        ],
+        [
+          "Skillspark",
+          "Winterthur",
+          "Action & Rollsport",
+          "4–18",
+          "Pumptrack, Trampoline, Schaumstoffbecken & Skatehalle"
+        ],
+        [
+          "Minicity",
+          "Sihlcity Zürich",
+          "Kreatives Rollenspiel",
+          "2–7",
+          "Mini-Migros-Supermarkt, Spital & Feuerwehr"
+        ],
+        [
+          "FIFA Museum Lab",
+          "Zürich Enge",
+          "Fussballfans & Ballkünstler",
+          "4–14",
+          "Interaktive Sensor-Wände & gigantischer Fussballflipper"
+        ],
+        [
+          "Kids Playland",
+          "Zürich West",
+          "Regnerische Nachmittage",
+          "1–10",
+          "Mehrstöckiger Rutschenturm, Ballkanonen & Partylounges"
+        ]
+      ]
+    },
+    "items": [
+      {
+        "rank": 1,
+        "spotId": "spot-21",
+        "name": "Trampolino Indoor Funpark (Dietikon)",
+        "badge": "Grösster Spielpark der Schweiz · 4'000 m²",
+        "location": "Lerzenstrasse 27, 8953 Dietikon (S3/S11/S12 bis Dietikon, dann Bus 309 bis Silbern)",
+        "summary": "Das Flaggschiff unter den Schweizer Hallenspielplätzen: Auf über 4'000 Quadratmetern finden Kinder einen mächtigen Klettervulkan mit Röhrenrutsche, echte Elektro-Autoscooter, eine Miniactherbahn, Bungee-Trampoline und ein riesiges Klettergerüst. Für Kleinkinder gibt es eine eigene geschützte Softplay-Ecke.",
+        "tip": "Eigene Picknicks und Trinkflaschen sind ausdrücklich erlaubt! Bringt Antirutschsocken für die Kinder mit."
+      },
+      {
+        "rank": 2,
+        "spotId": "spot-55",
+        "name": "Flip Lab Zurich (Rümlang)",
+        "badge": "Freestyle & Profi-Trampoline",
+        "location": "Oberglatterstrasse 35, 8153 Rümlang (S9/S15 bis Rümlang, dann Bus 510 oder kurzer Spaziergang)",
+        "summary": "Ein Trampolinpark der Spitzenklasse auf 3'000 m²: Neben klassischen Trampolinen gibt es spektakuläre Wall-Running-Anlagen, Sprünge in riesige Luftkissen (Bagjump), ein Basketball-Dunking-Feld und einen Ninja-Parcours.",
+        "tip": "Vorab online Sprungzeit buchen, da Einlasskontingente begrenzt sind. Spezielle Gripsocken sind Pflicht."
+      },
+      {
+        "rank": 3,
+        "spotId": "osm-spot-1903",
+        "name": "Starbie Spielwelt (Dietikon)",
+        "badge": "Gemütlich & übersichtlich · 1 bis 8 Jahre",
+        "location": "Riedstrasse 3, 8953 Dietikon (S-Bahn bis Dietikon, dann Bus 309)",
+        "summary": "Besonders bei Eltern von Kleinkindern und Kindergartenkindern beliebt: Starbie besticht durch Übersichtlichkeit, Sauberkeit und eine herzliche Atmosphäre mit Kettcar-Parcours, Hüpfburgen, Riesen-Bausteinen und Bällebad.",
+        "tip": "Das Bistro bietet einen perfekten Rundumblick auf alle Spielbereiche – ideal, um bei einem Cappuccino zu entspannen."
+      },
+      {
+        "rank": 4,
+        "spotId": "osm-spot-2324",
+        "name": "Formel Fun (Bülach)",
+        "badge": "Elektrokarts & Schwarzlicht-Minigolf",
+        "location": "Schützenmattstrasse 30, 8180 Bülach (S9/S15 bis Bülach)",
+        "summary": "Eine moderne Familienlounge im Zürcher Unterland: Flotte Elektro-Gokarts, ein abenteuerliches Laser-Labyrinth, 9 Löcher leuchtendes Schwarzlicht-Minigolf und ein anspruchsvolles Kletterlabyrinth.",
+        "tip": "Stilvolle Elternlounge mit erstklassigem Kaffee, Salaten und Snacks – deutlich ruhiger als klassische Hallen."
+      },
+      {
+        "rank": 5,
+        "spotId": "spot-62",
+        "name": "Skillspark Winterthur",
+        "badge": "Action- & Freestylesport · 6'000 m²",
+        "location": "Lagerplatz 17, 8400 Winterthur (Nahe Winterthur HB / Sulzer-Areal)",
+        "summary": "Die grösste Freestylehalle Europas begeistert Schulkinder, Jugendliche und sportliche Eltern: Asphalt-Pumptrack für BMX und Scooter, Skate-Bowl, Trampoline mit Schnitzelgrube und Ninja-Warrior-Hindernisse.",
+        "tip": "BMX-Bikes, Stunt-Scooter und Helme können vor Ort gemietet werden. Geeignet ab ca. 5–6 Jahren."
+      },
+      {
+        "rank": 6,
+        "spotId": "spot-56",
+        "name": "Minicity & Play Village (Letzipark & Sihlcity)",
+        "badge": "Rollenspiel-Paradies · 2 bis 7 Jahre",
+        "location": "Letzipark (Baslerstrasse 50) & Sihlcity (Kalandergasse 1), Zürich",
+        "summary": "Kreatives Rollenspiel in einer zauberhaften Miniaturstadt: Kinder schlüpfen in die Rolle von Feuerwehrleuten, Ärztinnen, Bauarbeitern oder Einkäufern im Mini-Migros.",
+        "tip": "Stundenweise betreute Kinderbetreuung möglich, ideal um Besorgungen im Einkaufszentrum zu erledigen."
+      },
+      {
+        "rank": 7,
+        "spotId": "spot-2",
+        "name": "FIFA Museum Football Lab (Zürich Enge)",
+        "badge": "Fussball-Action & Riesen-Flipper",
+        "location": "Seestrasse 27, 8002 Zürich (Gegenüber Bahnhof Enge)",
+        "summary": "Die interaktive Spielebene des FIFA Museums: An digitalen Zielwänden kicken Kinder mit echten Bällen, treten in der riesigen Flipper-Arena an und testen ihre Schussgenauigkeit.",
+        "tip": "Besonders an den Familiensonntagen mit zusätzlichem Kinderprogramm und Schminken ein Volltreffer."
+      },
+      {
+        "rank": 8,
+        "spotId": "osm-spot-5031",
+        "name": "Kids Playland (Zürich West)",
+        "badge": "Urbaner Hallenspielplatz · Zürich West",
+        "location": "Hohlstrasse 461, 8048 Zürich (Tram 2 bis Freihofstrasse)",
+        "summary": "Zentral gelegener Hallenspielplatz in Zürich West: Mehrstöckige Klettertürme, Spiralrutschen, Ballkanonen und eigene Lounge-Bereiche für regnerische Nachmittage.",
+        "tip": "Sehr gut mit dem öffentlichen Verkehr ab Zürcher Innenstadt erreichbar."
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/de/blog/ausfluege-kinder-zuerich-schlechtwetter",
+        "label": "28 Schlechtwetter-Ausflüge in Zürich"
+      },
+      {
+        "href": "/de/blog/thermalbaeder-mineralbaeder-familien-schweiz",
+        "label": "Thermalbäder für Familien"
+      },
+      {
+        "href": "/spielplaetze/zuerich",
+        "label": "Spielplätze in Zürich"
+      }
+    ]
+  },
+  {
+    "slug": "thermalbaeder-mineralbaeder-familien-schweiz",
+    "lang": "de",
+    "translationSlug": "top-mineral-baths-thermal-spas-families-switzerland",
+    "title": "Die 10 besten Thermal- & Mineralbäder für Familien in der Schweiz (Mit echten Alterslimiten)",
+    "subtitle": "Wo Kinder wirklich willkommen sind: Echte Einlassregeln, Familientarife und die schönsten warmen Quellen von Leukerbad bis Zürich.",
+    "metaDescription": "Entdecke die 10 besten kinderfreundlichen Thermalbäder und Mineralbäder in der Schweiz: Genaue Alterslimiten, Babyschwimmen, Rutschbahnen und warme Aussenbecken im Praxis-Check.",
+    "category": "Thermalbäder & Wellness · Schweiz",
+    "readTime": "12 Min. Lesezeit",
+    "publishedAt": "2026-11-20",
+    "heroImage": "https://lh3.googleusercontent.com/grass-cs/AABkmLdsWaq5cSUyJdl57V8-ynHivWr603ZVgMI4kiER6yYFqmfl4rClXH_k8-ZKAjFc6Tzn976plRaRRcDgjC0cHjYZ4tTlWTUDRNs9BiZxohekLGCKD6qhiCOvt2VbqjplZjLTgvlX=s4800-w1200",
+    "intro": "Nichts wärmt die Familie an kalten Regen- oder Wintertagen so herrlich auf wie ein Bad in mineralreichem Thermalwasser. Doch viele Schweizer Thermalbäder setzen strenge Alterslimiten oder verlangen absolute Ruhe, was mit lebhaften Kindern schnell zu Frust führen kann. In diesem Guide haben wir die 10 besten Schweizer Thermal- und Mineralbäder zusammengestellt, die Familien ausdrücklich willkommen heissen – inklusive exakter Mindestaltersregeln, Becken-Temperaturen und Tipps für Babys und Kleinkinder.",
+    "table": {
+      "title": "Schweizer Thermalbäder im Familien-Check: Altersregeln auf einen Blick",
+      "headers": [
+        "Thermalbad",
+        "Kanton",
+        "Mindestalter (Hauptbecken)",
+        "Sauna / Spa-Zone",
+        "Besonders geeignet für"
+      ],
+      "rows": [
+        [
+          "Leukerbad Therme",
+          "Wallis",
+          "Alle Altersstufen (unter 6 gratis)",
+          "Ab 16 Jahren",
+          "Rutschen & warme Berg-Aussenpools"
+        ],
+        [
+          "Therme Zurzach",
+          "Aargau",
+          "Alle Altersstufen (Ruhebecken ab 16)",
+          "Eingeschränkt",
+          "Kleinkinder (Papa Moll Wasserwelt)"
+        ],
+        [
+          "Mineralbad Rigi Kaltbad",
+          "Luzern / Schwyz",
+          "Alle Altersstufen (unter 4 gratis)",
+          "Ab 16 Jahren",
+          "Entspanntes Baden mit Bergblick"
+        ],
+        [
+          "Les Bains de la Gruyère",
+          "Freiburg",
+          "Alle Altersstufen (unter 5 gratis)",
+          "Ab 16 Jahren",
+          "Gemütliches warmes Alpenbad"
+        ],
+        [
+          "Centre Thermal Yverdon",
+          "Waadt",
+          "Ab Geburt (kurze Dips)",
+          "Sauna ab 16",
+          "Babys & grosszügige Familienbecken"
+        ],
+        [
+          "Bogn Engiadina Scuol",
+          "Graubünden",
+          "Alle Altersstufen ab 10:30 Uhr",
+          "Ab 16 Jahren",
+          "Aufwärmen nach dem Winterspaziergang"
+        ],
+        [
+          "Hürlimannbad Zürich",
+          "Zürich",
+          "Ab 1 Jahr (9:00–17:00 Uhr)",
+          "Römisch-Irisch ab 16",
+          "Rooftop-Dachpool mit Zürcher Stadtblick"
+        ],
+        [
+          "Tamina Therme Bad Ragaz",
+          "St. Gallen",
+          "Ab 3 Jahren",
+          "Ab 12 Jahren (mit Begleitung)",
+          "Ältere, ruhige Kinder & Architektur"
+        ],
+        [
+          "Les Bains de Lavey",
+          "Waadt",
+          "Ab 4 Jahren (Ausweispflicht)",
+          "Ab 16 Jahren",
+          "Heisseste natürliche Quelle der Schweiz"
+        ],
+        [
+          "sole uno Rheinfelden",
+          "Aargau",
+          "Ab 4 Jahren",
+          "Ab 14 Jahren",
+          "Schweben wie im Toten Meer"
+        ]
+      ]
+    },
+    "items": [
+      {
+        "rank": 1,
+        "name": "Leukerbad Therme (Wallis)",
+        "badge": "Grösstes Thermalbad der Alpen · Rutschen & Bergblick",
+        "location": "Rathausstrasse 32, 3954 Leukerbad (SBB bis Visp/Leuk, dann Bus 471 direkt nach Leukerbad)",
+        "summary": "Das grösste Alpentherme-Resort Europas pumpt täglich 3.9 Millionen Liter mineralreiches, 51°C heisses Quellwasser in zehn verschiedene Badebecken (28°C bis 43°C). Für Familien gibt es zwei rasante Röhrenrutschen (inklusive einer Reifenrutsche), ein Kleinkinderbecken mit Spielfiguren und weitläufige Aussenbecken mit Blick auf die schneebedeckten Daubenhorn-Felswände.",
+        "tip": "Kinder unter 6 Jahren baden komplett kostenlos. Im Hauptbadebereich dürfen Kinder ganz normal planschen und spielen."
+      },
+      {
+        "rank": 2,
+        "name": "Therme Zurzach (Aargau)",
+        "badge": "Papa Moll Wasserwelt · Perfekt für Kleinkinder",
+        "location": "Badstrasse 44, 5330 Bad Zurzach (S-Bahn S27/S36 bis Bad Zurzach)",
+        "summary": "Die Therme Zurzach speist ihre Becken aus der 39.9°C warmen Glaubersalz-Quelle. Das Highlight für junge Familien ist das abgetrennte Papa Moll Kinderbad: Ein farbenfrohes, 32°C warmes Erlebnisbecken mit Rutschbahnen, Wasserspritzen, interaktiven Kanälen und lebensgrossen Papa-Moll-Figuren.",
+        "tip": "Ideal für Babys und Kleinkinder, da der Familienbereich räumlich von den Ruhebecken getrennt ist."
+      },
+      {
+        "rank": 3,
+        "name": "Mineralbad & Spa Rigi Kaltbad (Luzern / Schwyz)",
+        "badge": "Aussichts-Therme · Botta-Architektur",
+        "location": "Rigi Kaltbad (Zahnradbahn ab Vitznau / Goldau oder Luftseilbahn ab Weggis)",
+        "summary": "Entworfen vom weltberühmten Architekten Mario Botta thront dieses Mineralbad hoch über dem Vierwaldstättersee. Das 35°C warme Mineralwasser wird aus der hauseigenen «Drei-Schwestern-Quelle» gespeist. Vom Innenbecken schwimmt man direkt ins Aussenbecken mit unvergesslicher Aussicht auf den See und die Alpen.",
+        "tip": "Kinder jeden Alters sind im Mineralbad herzlich willkommen (unter 4 Jahren gratis). Kombiniert den Besuch mit einer Bahnfahrt auf die Rigi."
+      },
+      {
+        "rank": 4,
+        "name": "Les Bains de la Gruyère (Charmey, Freiburg)",
+        "badge": "Alpen-Panorama · Voralpen-Gemütlichkeit",
+        "location": "Gros-Plan 30, 1637 Val-de-Charmey (SBB bis Bulle, dann Bus 260 nach Charmey)",
+        "summary": "Eingebettet in die idyllischen Freiburger Voralpen bieten die Bains de la Gruyère drei grosse Becken mit 34°C warmem, naturbelassenem Mineralwasser. Whirlpools, Schwanenhalsduschen und das Aussenbecken mit Blick auf den Gipfel des Moléson laden zum Träumen ein.",
+        "tip": "Kinder ab jedem Alter zugelassen (unter 5 Jahren gratis). Sehr entspannte Atmosphäre ohne übertriebene Strenge."
+      },
+      {
+        "rank": 5,
+        "name": "Centre Thermal d'Yverdon-les-Bains (Waadt)",
+        "badge": "Sanfte Quellen · Grosszügige Familienbecken",
+        "location": "Avenue des Bains 22, 1400 Yverdon-les-Bains (SBB bis Yverdon-les-Bains)",
+        "summary": "Das traditionsreiche Thermalzentrum am Neuenburgersee nutzt schwefelhaltige Heilquellen (34°C). Die weitläufigen Innen- und Aussenbecken bieten viel Platz für Familien mit Kindern.",
+        "tip": "Bereits für Säuglinge zugelassen (kurze Aufenthalte von 10–15 Minuten im warmen Wasser einhalten)."
+      },
+      {
+        "rank": 6,
+        "name": "Bogn Engiadina Scuol (Graubünden)",
+        "badge": "Engadiner Bergquell-Therme",
+        "location": "Via Bagnera 170, 7550 Scuol (RhB bis Scuol-Tarasp)",
+        "summary": "Scuol im Unterengadin ist berühmt für seine über zwanzig Mineralquellen. Das Bogn Engiadina bietet sechs Innen- und Aussenbecken mit 34°C warmem Mineralwasser, Strömungskanal und Sprudelliegen vor schneebedeckten Dreitausendern.",
+        "tip": "Für Familien mit Kindern ab 10:30 Uhr geöffnet. Perfekt nach einem Winterspaziergang im Engadin."
+      },
+      {
+        "rank": 7,
+        "spotId": "spot-huerlimannbad-spa-zurich",
+        "name": "Hürlimannbad & Spa Zürich",
+        "badge": "Rooftop-Thermalpool & Alte Steingewölbe",
+        "location": "Brandschenkestrasse 150, 8002 Zürich (S-Bahn bis Giesshübel oder Tram 5/13)",
+        "summary": "In den historischen Steinkellern der alten Hürlimann-Brauerei badet man im warmen Aqui-Mineralwasser (35°C–41°C). Highlight ist der beheizte Dachbadpool mit Rundumblick über die Zürcher Skyline.",
+        "tip": "Familien mit Kindern ab 1 Jahr sind tagsüber von 09:00 bis 17:00 Uhr willkommen. Es gilt eine ruhige Badeatmosphäre."
+      },
+      {
+        "rank": 8,
+        "name": "Tamina Therme Bad Ragaz (St. Gallen)",
+        "badge": "Architektur-Juwel · 36.5°C Heilquelle",
+        "location": "Hans-Albrecht-Strasse, 7310 Bad Ragaz (SBB bis Bad Ragaz)",
+        "summary": "Das legendäre Bad Ragazer Thermalwasser entspringt körperwarm mit 36.5°C in der nahegelegenen Taminaschlucht. Das Bad besticht durch seine schneeweisse, organische Holzarchitektur.",
+        "tip": "Zutritt ab 3 Jahren. Für ruhige, ältere Kinder und Teenager ein unvergleichliches Wellness-Erlebnis."
+      },
+      {
+        "rank": 9,
+        "name": "Les Bains de Lavey (Waadt)",
+        "badge": "Heisseste Quelle der Schweiz (ab 4 Jahren)",
+        "location": "Route des Bains 48, 1892 Lavey-Morcles (SBB bis St-Maurice, dann Postauto)",
+        "summary": "Mit 62°C sprudelt in Lavey das heisseste Thermalwasser der Schweiz aus dem Fels. Die Aussenbecken (33°C bis 36°C) sind abends spektakulär beleuchtet und von steilen Felswänden umrahmt.",
+        "tip": "Striktes Mindestalter: 4 Jahre (Ausweispflicht bei Kindern!). Ab 4 Jahren aber ein unvergessliches Abendbad."
+      },
+      {
+        "rank": 10,
+        "name": "sole uno Wellness-Welt Rheinfelden (Aargau)",
+        "badge": "Schweben wie im Toten Meer (ab 4 Jahren)",
+        "location": "Roberstenstrasse 31, 4310 Rheinfelden (S-Bahn S1 bis Rheinfelden)",
+        "summary": "Das berühmte Rheinfelder Natursolebad: Im Intensiv-Solebecken mit 12% Salzgehalt schweben Badegäste schwerelos an der Wasseroberfläche, untermalt von beruhigender Unterwassermusik.",
+        "tip": "Zutritt ab 4 Jahren. Kinder lieben das Gefühl, ohne Schwimmbewegungen an der Oberfläche getragen zu werden."
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/de/blog/ausfluege-kinder-zuerich-schlechtwetter",
+        "label": "28 Schlechtwetter-Ausflüge in Zürich"
+      },
+      {
+        "href": "/de/blog/indoor-spielplaetze-zuerich",
+        "label": "Indoor-Spielplätze in Zürich"
+      },
+      {
+        "href": "/schwimmbaeder",
+        "label": "Alle Schwimmbäder & Badis der Schweiz"
+      }
+    ]
+  },
+  {
+    "slug": "indoor-spielplaetze-bern",
+    "lang": "de",
+    "translationSlug": "indoor-playzones-bern",
+    "title": "Die besten Indoor-Spielplätze & Schlechtwetter-Tipps in Bern (Guide 2026)",
+    "subtitle": "Kletterparadiese, Sinneswelten und Erlebnisbäder: Die schönsten Ausflugsziele für Familien bei Regen in Bern und Umgebung.",
+    "metaDescription": "Die besten Indoor-Spielplätze und Schlechtwetter-Ausflüge in Bern für Kinder: Bimano, Sensorium Rüttihubelbad, BEO Funpark, Bernaqua und Museum für Kommunikation im Familien-Check.",
+    "category": "Indoor-Spielplätze · Bern",
+    "readTime": "9 Min. Lesezeit",
+    "publishedAt": "2026-11-20",
+    "heroImage": "https://lh3.googleusercontent.com/grass-cs/AABkmLfrNJfU_MjmZc_lkAh4PARqDN6VzQaiKVsvcZdnbXv43x6bRNfkAqQ58ulv9oHlsjPPA1a_TJyNULy_dm5rzoeM3kVDPRDed4ybDMBjgWwC4n2p2KZlMDOSvVWF9DZ--zKqxc91hQ=s4800-w1000",
+    "intro": "Wenn es in der Bundesstadt regnet, müssen Familien keineswegs zu Hause bleiben. Rund um Bern locken aussergewöhnliche Indoor-Erlebniswelten: von urbanen Boulderhallen mit riesigem Holzspielplatz über das geheimnisvolle Sensorium im Emmental bis zum futuristischen Erlebnisbad Bernaqua im Westside.",
+    "items": [
+      {
+        "rank": 1,
+        "spotId": "spot-108",
+        "name": "Bimano Zent (Bern)",
+        "location": "Zentweg 1A, 3006 Bern (Bus 10 or 28 to Zentweg, 2 min walk)",
+        "badge": "Wooden Pirate Ship & Kids Boulder Hall",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfrNJfU_MjmZc_lkAh4PARqDN6VzQaiKVsvcZdnbXv43x6bRNfkAqQ58ulv9oHlsjPPA1a_TJyNULy_dm5rzoeM3kVDPRDed4ybDMBjgWwC4n2p2KZlMDOSvVWF9DZ--zKqxc91hQ=s4800-w1000",
+        "summary": "Bimano is universally adored by Bernese parents. Set inside a former industrial warehouse at the Zent-Areal, it offers an imaginative wooden play kingdom built around a life-sized pirate ship with rope bridges, secret crawl spaces, and slides. Right next to it is a dedicated kids bouldering hall with soft safety mats, plus a mini skatepark. The on-site organic restaurant \"Zent\" serves fresh seasonal meals and great coffee.",
+        "tip": "Children play in non-slip socks or bare feet. On rainy weekends, book your entry slot online to guarantee admission, as capacity is capped to maintain a relaxed atmosphere."
+      },
+      {
+        "rank": 2,
+        "spotId": "spot-3",
+        "name": "Bernaqua Water & Playworld (Westside Shopping Center, Bern)",
+        "location": "Riedbachstrasse 98, 3027 Bern (Direct S-Bahn S5/S52 to Bern Brünnen Westside)",
+        "badge": "Europe’s Modern Indoor Water Paradise",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=900&auto=format&fit=crop&q=80",
+        "summary": "Designed by world-famous architect Daniel Libeskind, Bernaqua is one of Switzerland’s grandest aquatic play paradises. It offers 18 indoor and outdoor pools, three giant 80-meter waterslides with light and sound effects, a fast-flowing wild whitewater river, and a tropical toddler jungle with gentle bubbling geysers and animal water cannons.",
+        "tip": "Combine Bernaqua with the Pathé multiplex cinema and shopping mall inside Westside. The train from Bern HB takes just 8 minutes."
+      },
+      {
+        "rank": 3,
+        "spotId": "spot-108",
+        "name": "Sensorium im Rüttihubelbad (Walkwil / Emmental)",
+        "location": "Rüttihubel 29, 3512 Walkwil (S-Bahn S2 to Worb Dorf, then PostBus 791 to Rüttihubelbad)",
+        "badge": "Interactive Playground of the Senses",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfrNJfU_MjmZc_lkAh4PARqDN6VzQaiKVsvcZdnbXv43x6bRNfkAqQ58ulv9oHlsjPPA1a_TJyNULy_dm5rzoeM3kVDPRDed4ybDMBjgWwC4n2p2KZlMDOSvVWF9DZ--zKqxc91hQ=s4800-w1000",
+        "summary": "Based on the philosophical ideas of Hugo Kükelhaus, the Sensorium is an extraordinary indoor sensory laboratory. Across three wooden floors, kids can strike giant bronze gongs to feel sound waves vibrate through water, walk barefoot over pine cones and river stones, look through kaleidoscopic color wheels, and explore optical illusions in complete darkness.",
+        "tip": "Includes a cozy organic bakery café and outdoor sensory barefoot trail. Children under 6 enter free, and the entire facility is stroller accessible."
+      },
+      {
+        "rank": 4,
+        "spotId": "spot-22",
+        "name": "Funland Thun (Allmendingen)",
+        "location": "Schorenstrasse 39, 3645 Thun (Bus 1/5 from Thun Bahnhof to Schoren)",
+        "badge": "Classic Soft-Play Adventure Park",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdLZajvorVB5avLYxQIv6loSfQ5wd4wNiLMpAfTq41lSBrB555TLWib0sc8AyEuRk_g8QAD6cFe42OwKuGyEcvKhkz6hGJFbzj3dV1HBT5t6F-tRzQfkyyzUkbDBIFwr3QKM9i9=s4800-w1000",
+        "summary": "Just 20 minutes south of Bern on Lake Thun, Funland is a massive indoor playground offering everything children love: bouncy castles, multi-lane racing slides, ball pit cannons, soft foam obstacle courses, and pedal go-karts. A tranquil, separated toddler playground provides safe fun for toddlers with soft building blocks and mini slides.",
+        "tip": "Free on-site parking and friendly café with fair prices. Ideal for burning off steam before or after taking a boat cruise on Lake Thun."
+      },
+      {
+        "rank": 5,
+        "spotId": "spot-22",
+        "name": "Spiez Indoor Funpark (Lake Thun)",
+        "location": "Schachenstrasse 31, 3700 Spiez (SBB to Spiez, then local bus)",
+        "badge": "Lake Thun Family Fun Arena",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdLZajvorVB5avLYxQIv6loSfQ5wd4wNiLMpAfTq41lSBrB555TLWib0sc8AyEuRk_g8QAD6cFe42OwKuGyEcvKhkz6hGJFbzj3dV1HBT5t6F-tRzQfkyyzUkbDBIFwr3QKM9i9=s4800-w1000",
+        "summary": "A wonderful indoor play retreat nestled on Lake Thun. It features large trampoline boxes, climbing towers, soft foam obstacle runs, and indoor pedal-karting. The friendly staff and manageable size make it a favorite for parents wanting to keep visual contact with multiple children at once.",
+        "tip": "Combine with a winter walk along the Spiez castle bay or a visit to the historic medieval Spiez Castle."
+      },
+      {
+        "rank": 6,
+        "spotId": "spot-21",
+        "name": "Jump Factory & Trampoline Arena Bern Region",
+        "location": "Gewerbestrasse 12, 3123 Belp (S-Bahn S3/S31 to Belp, 7 min walk)",
+        "badge": "High-Flying Trampoline Sports",
+        "imageUrl": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&auto=format&fit=crop&q=80",
+        "summary": "For active school kids and teenagers, Bern’s regional trampoline park offers wall-to-wall interconnected jump beds, a foam pit for mastering aerial flips, a gladiator battle beam, and slam-dunk basketball hoops. Great high-energy music and enthusiastic staff keep the energy electric.",
+        "tip": "Grip jump socks required. Great for birthday parties and older siblings who have outgrown traditional soft play."
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/de/blog/ausfluege-kinder-zuerich-schlechtwetter",
+        "label": "Zürich Schlechtwetter-Guide"
+      },
+      {
+        "href": "/de/blog/thermalbaeder-mineralbaeder-familien-schweiz",
+        "label": "Thermalbäder für Familien"
+      },
+      {
+        "href": "/spielplaetze/bern",
+        "label": "Spielplätze im Kanton Bern"
+      }
+    ]
+  },
+  {
+    "slug": "indoor-spielplaetze-luzern",
+    "lang": "de",
+    "translationSlug": "indoor-playzones-lucerne",
+    "title": "Die besten Indoor-Spielplätze & Ausflugsziele in Luzern (Guide 2026)",
+    "subtitle": "Vom weltberühmten Verkehrshaus bis zu Kletterhallen und Erlebnisbädern: Familien-Tipps für Regentage rund um den Vierwaldstättersee.",
+    "metaDescription": "Die besten Indoor-Spielplätze und Ausflugsziele bei Regen in Luzern für Kinder: Verkehrshaus der Schweiz, Hallenbäder Allmend & Mooshüsli, Pilatus Indoor und mehr im Familien-Check.",
+    "category": "Indoor-Spielplätze · Luzern",
+    "readTime": "9 Min. Lesezeit",
+    "publishedAt": "2026-11-20",
+    "heroImage": "https://lh3.googleusercontent.com/grass-cs/AABkmLepahhudVNIuiDjegNJWHZvInORwCwNCxt86k6C8GI25a8B9PrJroAmcssOv98bwX2KBflRAHnxkJrVtJuWU7o6C_DmW_m_6k58TXHYkFhZ71NBUp4wY0dcUijLeHuAkohskM9L=s4800-w1000",
+    "intro": "Rund um den Vierwaldstättersee und die Leuchtenstadt Luzern gibt es auch bei verregnetem Wetter jede Menge zu entdecken. Allen voran steht das weltberühmte Verkehrshaus der Schweiz, ergänzt durch moderne Kletterhallen, interaktive Museen und familienfreundliche Hallenbäder.",
+    "items": [
+      {
+        "rank": 1,
+        "spotId": "spot-60",
+        "name": "Kids Arena Emmenbrücke (Lucerne)",
+        "location": "Rüeggisingerstrasse 152, 6032 Emmenbrücke (S-Bahn S1/S9 to Emmenbrücke Gersag, 5 min walk)",
+        "badge": "Central Switzerland’s #1 Indoor Playpark",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLepahhudVNIuiDjegNJWHZvInORwCwNCxt86k6C8GI25a8B9PrJroAmcssOv98bwX2KBflRAHnxkJrVtJuWU7o6C_DmW_m_6k58TXHYkFhZ71NBUp4wY0dcUijLeHuAkohskM9L=s4800-w1000",
+        "summary": "Kids Arena in Emmenbrücke is the gold standard for indoor play in Canton Lucerne. Spanning three expansive levels, kids navigate a massive climbing labyrinth filled with suspension bridges, spiral tube slides, a steep wave slide, spider climb towers, and electric mini-race cars. A designated, padded toddler zone with sensory soft shapes and ball pools ensures safe play for children under 3.",
+        "tip": "Birthday party packages here are legendary among local Lucerne families. The cafeteria offers panoramic views of the entire play hall so you can watch your kids while enjoying an espresso."
+      },
+      {
+        "rank": 2,
+        "spotId": "spot-11",
+        "name": "Swiss Transport Museum Junior Roadwork & Arena (Verkehrshaus)",
+        "location": "Lidostrasse 5, 6006 Lucerne (Bus 6/8/24 to Verkehrshaus or S-Bahn to Verkehrshaus station)",
+        "badge": "Interactive Hands-On Construction Realm",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLekt3FV8Hn71-UoYy8mEIq076R2DJi2KscxTzmmAaL9NkENF-mQZqUf1bs5pGYVb64-vSRM03c5hech9Ky_Y9XLxLBIFNNIry2DtqqjCJilp2C4A9KIL5E3PThBl9Eu0l97-g8djQ=s4800-w1000",
+        "summary": "Inside Switzerland’s most visited museum, children don hard hats and fluorescent vests to operate miniature electric road-building diggers, transport foam paving stones on wheelbarrows, and build realistic bridges. Inside the road transport hall, kids also pedal go-karts along a realistic street network with working traffic lights, zebra crossings, and train gates.",
+        "tip": "Combine the roadwork arena with the museum’s indoor Planetarium show or chocolate tour at the Swiss Chocolate Adventure downstairs."
+      },
+      {
+        "rank": 3,
+        "spotId": "spot-20",
+        "name": "Kiddy Dome Swiss Adventure Park (Rickenbach)",
+        "location": "Industriestrasse 21, 6221 Rickenbach LU (25 min drive from Lucerne city center)",
+        "badge": "6,000 m² Mega Adventure Kingdom",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdFh7dMhAz1P3OfaSyCA-wDJZCHE4vFqdm4M9f1LvxGipBe_e_YugdiDN7r4fE8w5zeHuxl4qsv__RtakYgKKyq7GuXGebZtgi-dgQnoE6BkIVBGCXDYWYVTQf0YJnawx6NvQx2=s4800-w1000",
+        "summary": "Easily accessible from anywhere in Canton Lucerne, Kiddy Dome is an absolute paradise for high-energy play. Highlights include a 60-meter indoor donut sledging track, a four-lane speed slide, trampoline dodgeball, an indoor zip line course, interactive climbing walls, and a multi-level foam-ball cannon arena.",
+        "tip": "Children must wear grip socks, and comfortable athletic wear is recommended for parents wishing to climb alongside younger kids."
+      },
+      {
+        "rank": 4,
+        "spotId": "spot-53",
+        "name": "Pilatus Indoor Bouldering & Seilpark (Kriens)",
+        "location": "Schauensee, 6010 Kriens (Trolleybus 1 from Lucerne station to Kriens Zentrum)",
+        "badge": "Rainproof Family Climbing",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdkUUpHfaDEQQUrV6cTWN93YZmGkDWU49iPnVr8VEA8NJwZOtT4gGLZtbI_Dv7MiSRsUldyNe9wgyTSFRjhmmnFJzmQ1Z3yFAf1LsoZeHxQH4wLymDPf8sKfvApPXhS99pRmQerJNId5APo=s4800-w1000",
+        "summary": "When wet weather cancels your outdoor hike on Mount Pilatus, head to the indoor climbing and bouldering facilities at the foot of the mountain in Kriens. The center features dedicated family bouldering zones with thick safety mats, child-friendly colorful grip routes, and traverse walls where kids can safely learn the fundamentals of climbing.",
+        "tip": "Climbing shoes are available for rent in all children’s sizes. Perfect for kids from age 4 and up."
+      },
+      {
+        "rank": 5,
+        "spotId": "spot-61",
+        "name": "Freiruum Spielruum (Nearby Zug)",
+        "location": "Zählerweg 5, 6300 Zug (18 min direct S-Bahn S1 from Lucerne station)",
+        "badge": "Trampoline Park, Parkour & Streetfood",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdjwER1f7E5WX7nRFjSLzfL7ROTF_2C6pxA_oL_oaaW_pqgSpwkP_qd1IAlReSxZ2tCcZDx3I8eQusZPZryYg93XV7JSoBnBzCd3gNdUJc4A_KSabzx4lWTzi6KkxroRzJo0z-3PQrB8VrT=s4800-w1000",
+        "summary": "Just an 18-minute train ride from Lucerne, Freiruum is Central Switzerland’s trendiest urban family destination. The massive indoor hall includes a dedicated trampoline park, a ninja warrior track, a boulder area, and a wooden children’s playground, all surrounded by over 20 street-food market stalls serving wood-fired pizza, momos, and fresh crêpes.",
+        "tip": "The ultimate parent win: kids burn energy in the monitored trampoline hall while parents relax with fresh espresso or artisanal food nearby."
+      },
+      {
+        "rank": 6,
+        "spotId": "spot-42",
+        "name": "Hallenbad Mooshüsli & Lido Warm Water Splash (Emmen)",
+        "location": "Mooshüslistrasse 43, 6032 Emmen (Bus 41 to Mooshüsli)",
+        "badge": "Indoor Aquatic & Water Slide Fun",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=900&auto=format&fit=crop&q=80",
+        "summary": "Mooshüsli is Canton Lucerne’s favorite indoor family pool complex. It features a heated leisure pool with gentle current channels, massage jets, a dedicated non-swimmer pool with mini slides, a wide family slide, and a warm baby paddling basin with water toys. Excellent locker and family changing room amenities.",
+        "tip": "Pack swimming goggles and floating armbands for non-swimmers. Family tickets are very reasonably priced compared to private waterparks."
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/de/blog/indoor-spielplaetze-zuerich",
+        "label": "Indoor-Spielplätze in Zürich"
+      },
+      {
+        "href": "/de/blog/thermalbaeder-mineralbaeder-familien-schweiz",
+        "label": "Thermalbäder für Familien"
+      },
+      {
+        "href": "/spielplaetze/luzern",
+        "label": "Spielplätze im Kanton Luzern"
+      }
+    ]
+  },
+  {
+    "slug": "indoor-spielplaetze-basel",
+    "lang": "de",
+    "translationSlug": "indoor-playzones-basel",
+    "title": "Die besten Indoor-Spielplätze & Familien-Ausflüge in Basel (Guide 2026)",
+    "subtitle": "Trampolinhallen, Kindermuseen und tropische Tierhäuser: Die besten Adressen für Kinder bei Regen in der Region Basel.",
+    "metaDescription": "Die besten Indoor-Spielplätze und Familien-Ausflugsziele bei Regen in Basel: Jump Factory, Kindermuseum, Zoo Basel Vivarium, Aquabasilea und mehr im detaillierten Check.",
+    "category": "Indoor-Spielplätze · Basel",
+    "readTime": "9 Min. Lesezeit",
+    "publishedAt": "2026-11-20",
+    "heroImage": "https://lh3.googleusercontent.com/grass-cs/AABkmLdnKYvU4FyPl6ULuUMCAI1fjYXiDpl7BzQQHKRQ3bj6ECsZjhmIdLljVw6rNVuG6AR92v_XGGT6SgKI0OMOnv1zMaP83hx4MAwPkUVe-Rp-pU1wHRVI8qX23T5u4jRX_mcQEb4ZEN7wRhE=s4800-w1000",
+    "intro": "Die Kulturstadt am Rheinknie hält auch für Schlechtwettertage grossartige Familien-Erlebnisse bereit: von rasanten Trampolin-Arenen und dem beliebten Spielzeug Welten Museum bis zu den tropischen Warmhäusern des «Zolli» und dem grossen Wasserpark Aquabasilea.",
+    "items": [
+      {
+        "rank": 1,
+        "spotId": "spot-59",
+        "name": "Jump Factory Basel (Muttenz)",
+        "location": "Gärtnerstrasse 46, 4132 Muttenz (Tram 14 to Muttenz Dorf or S-Bahn S1/S3 to Muttenz)",
+        "badge": "2,500 m² Freestyle Trampoline Hall",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdnKYvU4FyPl6ULuUMCAI1fjYXiDpl7BzQQHKRQ3bj6ECsZjhmIdLljVw6rNVuG6AR92v_XGGT6SgKI0OMOnv1zMaP83hx4MAwPkUVe-Rp-pU1wHRVI8qX23T5u4jRX_mcQEb4ZEN7wRhE=s4800-w1000",
+        "summary": "Covering 2,500 square meters, Jump Factory Basel is the undisputed trampoline Mecca of northwestern Switzerland. It packs high-performance Olympic trampolines, tumble tracks, a giant stunt airbag, slam-dunk basketball lanes, a ninja warrior obstacle trail, and a battle beam above soft foam cubes.",
+        "tip": "Special \"Family Jump\" rates run on weekend mornings with softer music and dedicated lanes for children under 6. Grip socks are mandatory."
+      },
+      {
+        "rank": 2,
+        "spotId": "spot-59",
+        "name": "Bambini-Playland (Pratteln)",
+        "location": "Gewerbestrasse 18, 4133 Pratteln (S-Bahn S1/S3 to Pratteln, then Bus 80 to Rankacker)",
+        "badge": "Basel-Landschaft’s Favorite Soft Play Castle",
+        "imageUrl": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=900&auto=format&fit=crop&q=80",
+        "summary": "Bambini-Playland is a warm, colorful wonderland for toddlers and elementary school kids. The centerpiece is a multi-story play fortress with rope bridges, giant ball pit ball cannons, spiral tube slides, a racing wave slide, and a pedal car track. A soft, fully padded toddler pen allows babies and toddlers to explore safely away from older children.",
+        "tip": "Features a large family café with homemade snacks, coffee, and birthday party rooms. Outside picnic snacks for infants are welcome."
+      },
+      {
+        "rank": 3,
+        "spotId": "spot-58",
+        "name": "Superfly Air Sports Basel",
+        "location": "Webergasse / Basel Border Area (Tram 8 to Neuweilerstrasse or border bus)",
+        "badge": "Extreme Flying Air Sports Park",
+        "imageUrl": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=900&auto=format&fit=crop&q=80",
+        "summary": "Superfly takes indoor jumping to the next level. Featuring circus-inspired flying trapeze swings into massive foam pits, balance slacklines, interactive video-jump trampolines, and multi-tier obstacle courses, it is a favorite for active kids, tweens, and teens who love stunts.",
+        "tip": "Sunday morning \"Friday/Sunday Flight\" sessions are exclusively reserved for toddlers and parents with no older kids allowed."
+      },
+      {
+        "rank": 4,
+        "spotId": "spot-3",
+        "name": "Aquabasilea Indoor Water World (Pratteln)",
+        "location": "Hardstrasse 57, 4133 Pratteln (S-Bahn S1/S3 to Pratteln, 5 min walk)",
+        "badge": "Switzerland’s Most Diverse Water Adventure",
+        "imageUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=900&auto=format&fit=crop&q=80",
+        "summary": "Aquabasilea is an unforgettable day trip for families. It boasts 7 adrenaline-pumping waterslides including steep tube drops, a giant wave pool simulating ocean tides, a lazy mountain river, and a tropical pirate ship splash park with water cannons and shallow bubbling pools for toddlers.",
+        "tip": "Family combi-tickets save significant money compared to individual tickets. Directly connected to the Courtyard by Marriott hotel for weekend getaways."
+      },
+      {
+        "rank": 5,
+        "spotId": "osm-spot-5303",
+        "name": "Royal Kids Basel (Saint-Louis Border)",
+        "location": "Rue de Séville, 68300 Saint-Louis (Tram 3 from Basel Barfüsserplatz to Gare de Saint-Louis)",
+        "badge": "Giant Castle & Sledging Ramp",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLe21Ug64lCGOnMq8G39OJcks6iNwI_J7S7i01Ni8Svfq7QxbpY0uUgwU0315bR84LaDUjMY-U01fxmvcZXbyvTFwlwv6QtYrp1xjgTliHw8kbj-HG0i2npmss7nnTZWTnPnrDaeAVzmCiE=s4800-w1000",
+        "summary": "Just across the Basel border and directly accessible via Basel Tram line 3, Royal Kids is an expansive indoor play hall. Children conquer giant multi-tiered obstacle mazes, zip lines, an indoor sledging ramp, a mini soccer turf court, and interactive bouncy castles.",
+        "tip": "Very popular with Basel families due to affordable euro admission prices and convenient direct tram access from Basel city center."
+      },
+      {
+        "rank": 6,
+        "spotId": "osm-spot-5205",
+        "name": "Kletterhalle & Bouldern Basel / Laufen",
+        "location": "Basel-Landschaft / Laufental (S-Bahn S3 from Basel SBB)",
+        "badge": "Family Bouldering & Agility",
+        "imageUrl": "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=900&auto=format&fit=crop&q=80",
+        "summary": "A wonderful rainy day alternative for families who love physical movement. Features low-height bouldering problems with extra-thick crash mats, kid-friendly colorful handholds shaped like animals, and gentle climbing walls for beginners and toddlers.",
+        "tip": "Special kids’ climbing shoes can be rented on-site, and beginners can book family intro sessions on weekends."
+      }
+    ],
+    "internalLinks": [
+      {
+        "href": "/de/blog/ausfluege-kinder-zuerich-schlechtwetter",
+        "label": "Zürich Schlechtwetter-Guide"
+      },
+      {
+        "href": "/de/blog/thermalbaeder-mineralbaeder-familien-schweiz",
+        "label": "Thermalbäder für Familien"
+      },
+      {
+        "href": "/spielplaetze/basel-stadt",
+        "label": "Spielplätze in Basel-Stadt"
       }
     ]
   }

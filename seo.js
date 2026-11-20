@@ -128,7 +128,7 @@ function build() {
 }
 
 // ---------- HTML ----------
-function page({ title, description, canonical, h1, body, noindex, breadcrumbs, lang, extraSchema, ogImage }) {
+function page({ title, description, canonical, h1, body, noindex, breadcrumbs, lang, extraSchema, ogImage, alternates }) {
   const crumbs = breadcrumbs || [];
   const schemas = [];
   if (crumbs.length) {
@@ -148,7 +148,7 @@ function page({ title, description, canonical, h1, body, noindex, breadcrumbs, l
 <title>${esc(title)}</title><meta name="description" content="${esc(description)}">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${SITE}${canonical}"><meta property="og:type" content="article">${ogImgTag}
-<link rel="canonical" href="${SITE}${canonical}">${noindex ? '<meta name="robots" content="noindex,follow">' : ''}
+<link rel="canonical" href="${SITE}${canonical}">${(alternates && alternates.length) ? '\n' + alternates.map(a => `<link rel="alternate" hreflang="${esc(a.hreflang)}" href="${SITE}${esc(a.href)}">`).join('\n') : ''}${noindex ? '\n<meta name="robots" content="noindex,follow">' : ''}
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48">
 <link rel="icon" type="image/png" href="/favicon.png" sizes="512x512">
@@ -170,6 +170,10 @@ nav.bc{font-size:.85rem;color:var(--muted);margin-bottom:8px}nav.bc a{color:var(
 .btn{display:inline-block;background:var(--acc);color:#fff;padding:9px 16px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.9rem;margin-right:8px;margin-top:6px}
 .btn-sec{display:inline-block;background:#eef3f5;color:var(--fg);padding:9px 16px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.9rem;margin-top:6px}
 .tags span,.badge{display:inline-block;background:#eef3f5;color:#1d2a33;border-radius:999px;padding:3px 11px;margin:2px;font-size:.82rem;font-weight:600}
+.lang-switcher{display:inline-flex;align-items:center;gap:8px;margin:8px 0 16px;padding:6px 14px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:.88rem;flex-wrap:wrap}
+.lang-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.85rem;background:#eef3f5;color:var(--fg);border:1px solid transparent}
+.lang-pill:hover{background:#e2e8f0}
+.lang-pill.active{background:var(--acc);color:#fff}
 .rank-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;margin-right:10px;flex-shrink:0}
 .spot-guide-card{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:start}
 .spot-guide-img{width:100%;height:165px;object-fit:cover;border-radius:10px;background:#0f172a}
@@ -331,47 +335,121 @@ ${h.officialUrl ? `<p class="muted">Offizielle Routeninfo: <a href="${esc(h.offi
 }
 
 // ---- Blog & Family Guides ----
-function blogHub() {
-  const cards = BLOG_POSTS.map(post => {
+function blogHub(lang = 'en') {
+  const isDe = lang === 'de';
+  const dePosts = BLOG_POSTS.filter(p => p.lang === 'de');
+  const enPosts = BLOG_POSTS.filter(p => p.lang !== 'de');
+  const displayedPosts = isDe ? dePosts : enPosts;
+
+  const cards = displayedPosts.map(post => {
     const firstItem = post.items && post.items[0];
     const refSpot = firstItem && (firstItem.spotId ? state.spotById[firstItem.spotId] : (firstItem.hikeId ? state.hikeById[firstItem.hikeId] : null));
     const imgUrl = (firstItem && firstItem.imageUrl) || (refSpot && refSpot.imageUrl) || post.heroImage || '/favicon.png';
-    return `<a class="blog-card" href="/blog/${esc(post.slug)}">
+    const cardHref = post.lang === 'de' ? `/de/blog/${esc(post.slug)}` : `/blog/${esc(post.slug)}`;
+    return `<a class="blog-card" href="${cardHref}">
       <img src="${esc(imgUrl)}" alt="${esc(post.title)}" loading="lazy" referrerpolicy="no-referrer">
       <div class="blog-card-body">
         <div><span class="badge">${esc(post.category)}</span> <span class="muted" style="font-size:.8rem">${esc(post.readTime)}</span></div>
         <h2>${esc(post.title)}</h2>
         <p>${esc(post.subtitle)}</p>
-        <span style="color:var(--acc);font-weight:700;font-size:.88rem">Read Guide &rarr;</span>
+        <span style="color:var(--acc);font-weight:700;font-size:.88rem">${isDe ? 'Ratgeber lesen &rarr;' : 'Read Guide &rarr;'}</span>
       </div>
     </a>`;
   }).join('');
 
+  const alternates = [
+    { hreflang: 'en', href: '/blog' },
+    { hreflang: 'de-CH', href: '/de/blog' },
+    { hreflang: 'de', href: '/de/blog' },
+    { hreflang: 'x-default', href: '/blog' }
+  ];
+
+  const langSwitcherHtml = `<div class="lang-switcher">
+    <span class="muted">${isDe ? 'Sprache:' : 'Language:'}</span>
+    <a class="lang-pill ${!isDe ? 'active' : ''}" href="/blog">🇬🇧 English (${enPosts.length})</a>
+    <a class="lang-pill ${isDe ? 'active' : ''}" href="/de/blog">🇨🇭 Deutsch (${dePosts.length})</a>
+  </div>`;
+
+  const title = isDe
+    ? 'Schweizer Familien-Ratgeber & Guides (Spielplätze, Schlechtwetter, Thermalbäder) | SwissForKids'
+    : 'Swiss Family Blog & Guides (Playparks, Hiking, Mineral Baths & Sledging) | SwissForKids';
+  const description = isDe
+    ? 'Praxisnahe Familien-Ratgeber für die Schweiz: Die besten Schlechtwetter-Ausflüge in Zürich, Indoor-Spielplätze in Bern, Basel & Luzern und die schönsten Thermalbäder mit echten Altersregeln.'
+    : 'Honest, family-tested guides in Switzerland: playparks in Zürich, Lucerne & Interlaken, summer/autumn/winter hikes, mineral baths with real age rules, and sledging runs by distance & price.';
+  const canonical = isDe ? '/de/blog' : '/blog';
+  const h1 = isDe ? 'Schweizer Familien-Ratgeber & Guides' : 'Swiss Family Blog & Guides';
+  const breadcrumbs = isDe
+    ? [['Start', '/'], ['Ratgeber & Blog', '/de/blog']]
+    : [['Home', '/'], ['Family Guides & Blog', '/blog']];
+
   return page({
-    lang: 'en',
-    title: 'Swiss Family Blog & Guides (Playparks, Hiking, Mineral Baths & Sledging) | SwissForKids',
-    description: 'Honest, family-tested guides in Switzerland: playparks in Zürich, Lucerne & Interlaken, summer/autumn/winter hikes, mineral baths with real age rules, and sledging runs by distance & price.',
-    canonical: '/blog',
-    h1: 'Swiss Family Blog & Guides',
-    breadcrumbs: [['Home', '/'], ['Family Guides & Blog', '/blog']],
-    body: `<p class="subtitle">Practical, parent-tested guides to Switzerland's best playgrounds, seasonal hiking trails, mineral baths, and winter sledging runs — complete with SBB tips, honest price checks, and direct map links.</p>
+    lang: isDe ? 'de' : 'en',
+    title,
+    description,
+    canonical,
+    h1,
+    alternates,
+    breadcrumbs,
+    body: `${langSwitcherHtml}
+    <p class="subtitle">${isDe
+      ? 'Praktische, von Eltern getestete Empfehlungen für Schweizer Familienausflüge – mit echten ÖV-Verbindungen, Preis-Checks und direkten Kartenlinks.'
+      : 'Practical, parent-tested guides to Switzerland\'s best playgrounds, seasonal hiking trails, mineral baths, and winter sledging runs — complete with SBB tips, honest price checks, and direct map links.'}</p>
     <div class="blog-grid">${cards}</div>
     <div class="card" style="margin-top:28px">
-      <h2 style="margin-top:0">Browse All 6,300+ Kids Spots &amp; 1,481 Hikes by Region</h2>
-      <p>Use our interactive map with live MeteoSwiss weather suitability checks or browse our canton directories:</p>
+      <h2 style="margin-top:0">${isDe ? 'Entdecke über 6\'300 Ausflugsziele & 1\'481 Wanderungen' : 'Browse All 6,300+ Kids Spots & 1,481 Hikes by Region'}</h2>
+      <p>${isDe ? 'Nutze unsere interaktive Karte mit Live-MeteoSchweiz-Wettercheck oder stöbere in den kantonalen Verzeichnissen:' : 'Use our interactive map with live MeteoSwiss weather suitability checks or browse our canton directories:'}</p>
       <p>
-        <a class="btn" href="/">Open Interactive Map &amp; Weather Finder</a>
-        <a class="btn-sec" href="/spielplaetze">All Playgrounds by Canton</a>
-        <a class="btn-sec" href="/schwimmbaeder">All Swimming Pools &amp; Badis</a>
-        <a class="btn-sec" href="/wandern">All 1,481 Family Hikes</a>
+        <a class="btn" href="/">${isDe ? 'Interaktive Karte &amp; Wetterfinder' : 'Open Interactive Map &amp; Weather Finder'}</a>
+        <a class="btn-sec" href="/spielplaetze">${isDe ? 'Alle Spielplätze nach Kanton' : 'All Playgrounds by Canton'}</a>
+        <a class="btn-sec" href="/schwimmbaeder">${isDe ? 'Alle Schwimmbäder &amp; Badis' : 'All Swimming Pools &amp; Badis'}</a>
+        <a class="btn-sec" href="/wandern">${isDe ? 'Alle 1\'481 Familienwanderungen' : 'All 1,481 Family Hikes'}</a>
       </p>
     </div>`
   });
 }
 
-function blogPostPage(slug) {
+function blogPostPage(slug, requestedLang) {
   const post = BLOG_POSTS.find(p => p.slug === slug);
   if (!post) return null;
+
+  const postLang = post.lang || 'en';
+  const isDe = postLang === 'de';
+
+  let translationPost = null;
+  if (post.translationSlug) {
+    translationPost = BLOG_POSTS.find(p => p.slug === post.translationSlug);
+  }
+
+  const enSlug = isDe ? (translationPost ? translationPost.slug : null) : post.slug;
+  const deSlug = isDe ? post.slug : (translationPost ? translationPost.slug : null);
+
+  const canonical = isDe ? `/de/blog/${post.slug}` : `/blog/${post.slug}`;
+  const alternates = [];
+  if (enSlug) {
+    alternates.push({ hreflang: 'en', href: `/blog/${enSlug}` });
+  }
+  if (deSlug) {
+    alternates.push({ hreflang: 'de-CH', href: `/de/blog/${deSlug}` });
+    alternates.push({ hreflang: 'de', href: `/de/blog/${deSlug}` });
+  }
+  if (enSlug) {
+    alternates.push({ hreflang: 'x-default', href: `/blog/${enSlug}` });
+  }
+
+  let langSwitcherHtml = '';
+  if (translationPost) {
+    const enUrl = isDe ? `/blog/${translationPost.slug}` : `/blog/${post.slug}`;
+    const deUrl = isDe ? `/de/blog/${post.slug}` : `/de/blog/${translationPost.slug}`;
+    langSwitcherHtml = `<div class="lang-switcher">
+      <span class="muted">${isDe ? 'Sprache:' : 'Language:'}</span>
+      <a class="lang-pill ${isDe ? 'active' : ''}" href="${esc(deUrl)}">🇨🇭 Deutsch</a>
+      <a class="lang-pill ${!isDe ? 'active' : ''}" href="${esc(enUrl)}">🇬🇧 English</a>
+    </div>`;
+  }
+
+  const locationLabel = isDe ? '📍 Standort &amp; ÖV:' : '📍 Location &amp; Transit:';
+  const tipLabel = isDe ? '💡 Familien-Tipp:' : '💡 Parent Tip:';
+  const factSheetLabel = (isHike) => isDe ? (isHike ? 'Routen-Details' : 'Ausflugsziel-Details') : (isHike ? 'Route Fact Sheet' : 'Spot Fact Sheet');
 
   const itemCards = post.items.map(item => {
     const isHike = !!item.hikeId;
@@ -381,9 +459,10 @@ function blogPostPage(slug) {
       ? `/?hike=${encodeURIComponent(item.hikeId)}`
       : (item.spotId ? `/?spot=${encodeURIComponent(item.spotId)}` : (item.actionHref || '/'));
     const seoHref = ref && ref.slug ? (isHike ? `/wandern/${ref.slug}` : (ref.curated ? `/ausflug/${ref.slug}` : null)) : null;
-    const primaryLabel = item.hikeId
-      ? 'Open Trail Map, Elevation &amp; SBB'
-      : (item.spotId ? 'Open on Interactive Map &amp; Weather' : (item.actionLabel || 'Explore on Interactive Map'));
+
+    const primaryLabel = isDe
+      ? (item.hikeId ? 'Wanderroute &amp; SBB' : (item.spotId ? 'Auf interaktiver Karte öffnen' : (item.actionLabel || 'Auf Karte ansehen')))
+      : (item.hikeId ? 'Open Trail Map, Elevation &amp; SBB' : (item.spotId ? 'Open on Interactive Map &amp; Weather' : (item.actionLabel || 'Explore on Interactive Map')));
 
     return `<article class="card" id="rank-${item.rank}">
       <div style="display:flex;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px">
@@ -394,12 +473,12 @@ function blogPostPage(slug) {
       <div class="spot-guide-card">
         ${imgUrl ? `<a href="${mapHref}"><img class="spot-guide-img" src="${esc(imgUrl)}" alt="${esc(item.name)}" loading="lazy" referrerpolicy="no-referrer"></a>` : ''}
         <div>
-          <p class="muted" style="margin:0 0 8px"><strong>📍 Location &amp; Transit:</strong> ${esc(item.location)}</p>
+          <p class="muted" style="margin:0 0 8px"><strong>${locationLabel}</strong> ${esc(item.location)}</p>
           <p style="margin:0 0 10px">${esc(item.summary)}</p>
-          ${item.tip ? `<div class="tip-box"><strong>💡 Parent Tip:</strong> ${esc(item.tip)}</div>` : ''}
+          ${item.tip ? `<div class="tip-box"><strong>${tipLabel}</strong> ${esc(item.tip)}</div>` : ''}
           <div>
             <a class="btn" href="${mapHref}">${primaryLabel}</a>
-            ${seoHref ? `<a class="btn-sec" href="${seoHref}">${isHike ? 'Route Fact Sheet' : 'Spot Fact Sheet'}</a>` : ''}
+            ${seoHref ? `<a class="btn-sec" href="${seoHref}">${factSheetLabel(isHike)}</a>` : ''}
           </div>
         </div>
       </div>
@@ -407,16 +486,17 @@ function blogPostPage(slug) {
   }).join('');
 
   const tableHtml = post.table ? `<div class="card">
-    <h2 style="margin-top:0;font-size:1.15rem">${esc(post.table.title || 'Quick Comparison')}</h2>
+    <h2 style="margin-top:0;font-size:1.15rem">${esc(post.table.title || (isDe ? 'Schnellvergleich' : 'Quick Comparison'))}</h2>
     <div class="table-wrap"><table class="guide-table">
       <thead><tr>${post.table.headers.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead>
       <tbody>${post.table.rows.map(row => `<tr>${row.map((cell, i) => `<td>${i === 0 ? `<strong>${esc(cell)}</strong>` : esc(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
     </table></div>
   </div>` : '';
 
-  const otherPosts = BLOG_POSTS.filter(p => p.slug !== slug).map(p =>
-    `<li><a href="/blog/${esc(p.slug)}"><strong>${esc(p.title)}</strong></a> <span class="muted">(${esc(p.category)})</span></li>`
-  ).join('');
+  const otherPosts = BLOG_POSTS.filter(p => (p.lang || 'en') === postLang && p.slug !== slug).map(p => {
+    const postHref = isDe ? `/de/blog/${esc(p.slug)}` : `/blog/${esc(p.slug)}`;
+    return `<li><a href="${postHref}"><strong>${esc(p.title)}</strong></a> <span class="muted">(${esc(p.category)})</span></li>`;
+  }).join('');
 
   const relatedLinks = (post.internalLinks || []).map(l =>
     `<a class="btn-sec" href="${esc(l.href)}" style="margin-right:8px">${esc(l.label)}</a>`
@@ -436,8 +516,9 @@ function blogPostPage(slug) {
       dateModified: state.builtAt,
       author: { '@type': 'Organization', name: 'SwissForKids', url: SITE },
       publisher: { '@type': 'Organization', name: 'SwissForKids', url: SITE },
-      mainEntityOfPage: `${SITE}/blog/${post.slug}`,
-      image: ogImage ? [ogImage] : undefined
+      mainEntityOfPage: `${SITE}${canonical}`,
+      image: ogImage ? [ogImage] : undefined,
+      inLanguage: isDe ? 'de-CH' : 'en'
     },
     {
       '@context': 'https://schema.org',
@@ -451,30 +532,36 @@ function blogPostPage(slug) {
         description: it.summary,
         url: it.hikeId
           ? `${SITE}/?hike=${encodeURIComponent(it.hikeId)}`
-          : (it.spotId ? `${SITE}/?spot=${encodeURIComponent(it.spotId)}` : `${SITE}/blog/${post.slug}#rank-${it.rank}`)
+          : (it.spotId ? `${SITE}/?spot=${encodeURIComponent(it.spotId)}` : `${SITE}${canonical}#rank-${it.rank}`)
       }))
     }
   ];
 
+  const breadcrumbs = isDe
+    ? [['Start', '/'], ['Ratgeber & Blog', '/de/blog'], [post.title, canonical]]
+    : [['Home', '/'], ['Family Guides & Blog', '/blog'], [post.title, canonical]];
+
   return page({
-    lang: 'en',
+    lang: isDe ? 'de' : 'en',
     title: `${post.title} | SwissForKids`,
     description: post.metaDescription,
-    canonical: `/blog/${post.slug}`,
+    canonical,
+    alternates,
     h1: post.title,
     ogImage,
     extraSchema,
-    breadcrumbs: [['Home', '/'], ['Family Guides & Blog', '/blog'], [post.title, `/blog/${post.slug}`]],
-    body: `<p class="subtitle">${esc(post.subtitle)}</p>
-    <p><span class="badge">${esc(post.category)}</span> <span class="muted">Updated ${esc(state.builtAt)} &bull; ${esc(post.readTime)}</span></p>
+    breadcrumbs,
+    body: `${langSwitcherHtml}
+    <p class="subtitle">${esc(post.subtitle)}</p>
+    <p><span class="badge">${esc(post.category)}</span> <span class="muted">${isDe ? 'Aktualisiert' : 'Updated'} ${esc(state.builtAt)} &bull; ${esc(post.readTime)}</span></p>
     <div class="card"><p style="margin:0;font-size:1.03rem">${esc(post.intro)}</p></div>
     ${tableHtml}
     ${itemCards}
-    ${relatedLinks ? `<div class="card"><h3>Explore More in This Category</h3><p>${relatedLinks}</p></div>` : ''}
+    ${relatedLinks ? `<div class="card"><h3>${isDe ? 'Mehr in dieser Kategorie entdecken' : 'Explore More in This Category'}</h3><p>${relatedLinks}</p></div>` : ''}
     <div class="card">
-      <h3 style="margin-top:0">More Swiss Family Guides</h3>
+      <h3 style="margin-top:0">${isDe ? 'Weitere Schweizer Familien-Ratgeber' : 'More Swiss Family Guides'}</h3>
       <ul class="list">${otherPosts}</ul>
-      <p><a class="btn" href="/blog">View All Family Guides</a> <a class="btn-sec" href="/">Open Interactive Map</a></p>
+      <p><a class="btn" href="${isDe ? '/de/blog' : '/blog'}">${isDe ? 'Alle Ratgeber ansehen' : 'View All Family Guides'}</a> <a class="btn-sec" href="/">${isDe ? 'Interaktive Karte öffnen' : 'Open Interactive Map'}</a></p>
     </div>`
   });
 }
@@ -486,9 +573,18 @@ function render(pathname) {
   if (!parts.length) return null;
   const [a, b, c] = parts;
 
+  if (a === 'de' && b === 'blog') {
+    if (parts.length === 2) return blogHub('de');
+    if (parts.length === 3) return blogPostPage(c, 'de');
+    return null;
+  }
   if (a === 'blog') {
-    if (parts.length === 1) return blogHub();
-    if (parts.length === 2) return blogPostPage(b);
+    if (parts.length === 1) return blogHub('en');
+    if (parts.length === 2) {
+      const p = BLOG_POSTS.find(x => x.slug === b);
+      if (p && p.lang === 'de') return blogPostPage(b, 'de');
+      return blogPostPage(b, 'en');
+    }
     return null;
   }
   if (state.sections[a]) {
@@ -528,7 +624,13 @@ function render(pathname) {
 }
 
 function sitemapUrls() {
-  const urls = ['/', '/blog', ...BLOG_POSTS.map(p => `/blog/${p.slug}`), '/wandern', '/wandern/kinderwagen', '/wandern/winter'];
+  const blogUrls = ['/blog'];
+  if (BLOG_POSTS.some(p => p.lang === 'de')) blogUrls.push('/de/blog');
+  for (const p of BLOG_POSTS) {
+    if (p.lang === 'de') blogUrls.push(`/de/blog/${p.slug}`);
+    else blogUrls.push(`/blog/${p.slug}`);
+  }
+  const urls = ['/', ...blogUrls, '/wandern', '/wandern/kinderwagen', '/wandern/winter'];
   for (const [sec, g] of Object.entries(state.groups)) {
     urls.push(`/${sec}`);
     for (const [kt, cities] of Object.entries(g)) {
