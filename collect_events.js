@@ -940,10 +940,16 @@ async function fetchZurichTourismEvents() {
             // Accurately resolve canton from postal code
             const canton = resolveCantonFromAddress(fullAddress, 'ZH');
 
-            // Extract image
-            let img = '';
-            if (item.image && item.image.url) img = item.image.url;
-            else if (item.photo && item.photo[0] && item.photo[0].url) img = item.photo[0].url;
+            // Extract images (single main image and full photo gallery)
+            const photoList = [];
+            if (item.image && item.image.url) photoList.push(item.image.url);
+            if (Array.isArray(item.photo)) {
+                item.photo.forEach(p => {
+                    if (p && p.url && !photoList.includes(p.url)) photoList.push(p.url);
+                });
+            }
+            const img = photoList[0] || '';
+            const images = photoList.length > 0 ? photoList : (img ? [img] : []);
 
             // Extract price summary from HTML or string
             let priceText = 'See official site';
@@ -979,6 +985,7 @@ async function fetchZurichTourismEvents() {
                 officialUrl: (addressObj.url) ? addressObj.url : `https://www.zuerich.com/en/detail/${item.identifier}`,
                 ticketUrl: (addressObj.url) ? addressObj.url : `https://www.zuerich.com/en/detail/${item.identifier}`,
                 imageUrl: img,
+                images: images,
                 tags: ["zurich-tourism", "child-friendly", "indoor", "family-activity"],
                 organizer: "Zürich Tourismus",
                 source: "zuerich_tourism"
@@ -1167,9 +1174,79 @@ async function collectAndSaveEvents() {
     // Combine all sources: Curated Swiss Events + Live Zürich Tourism + Eventfrog
     const allEventsMap = new Map();
 
-    // 1. Add Curated Registry (with postal code canton verification)
+    // Map curated multi-photo galleries for major Swiss festivals and Christmas markets
+    const CURATED_GALLERIES = {
+        "event-montreux-noel-rochers-de-naye": [
+            "/images/events/event-montreux-noel-rochers-de-naye.jpg",
+            "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-basel-maerchenwald-weihnachtsmarkt": [
+            "/images/events/event-basel-maerchenwald-weihnachtsmarkt.jpg",
+            "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-maerlitram-zurich": [
+            "/images/events/event-maerlitram-zurich.jpg",
+            "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1576723417715-6b408c988c23?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-illuminarium-zurich": [
+            "/images/events/event-illuminarium-zurich.jpg",
+            "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-berner-sternenmarkt-kleine-schanze": [
+            "/images/events/event-berner-sternenmarkt-kleine-schanze.jpg",
+            "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-zt-152272": [
+            "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_einsiedeln_weihnachtsmarkt_01.jpg",
+            "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_einsiedeln_lebkuchenmuseum_03.jpg",
+            "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-luzerner-christkindlimarkt-live-on-ice": [
+            "/images/events/event-luzerner-christkindlimarkt-live-on-ice.jpg",
+            "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-maerlistadt-stein-am-rhein": [
+            "/images/events/event-maerlistadt-stein-am-rhein.jpg",
+            "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-zauberwald-lenzerheide": [
+            "/images/events/event-zauberwald-lenzerheide.jpg",
+            "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "event-zauberpark-zurich-airport": [
+            "/images/events/event-zauberpark-zurich-airport.jpg",
+            "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80"
+        ]
+    };
+
+    // 1. Add Curated Registry (with postal code canton verification and galleries)
     for (const ev of CURATED_SWISS_EVENTS) {
         ev.canton = resolveCantonFromAddress(ev.address, ev.canton);
+        if (CURATED_GALLERIES[ev.id]) {
+            ev.images = CURATED_GALLERIES[ev.id];
+            ev.imageUrl = ev.images[0];
+        } else if (!ev.images || ev.images.length === 0) {
+            ev.images = ev.imageUrl ? [ev.imageUrl] : [];
+        }
         allEventsMap.set(ev.id, ev);
     }
 

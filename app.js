@@ -477,6 +477,9 @@ async function loadSpots() {
             officialUrl: ev.officialUrl,
             ticketUrl: ev.ticketUrl || ev.officialUrl,
             imageUrl: ev.imageUrl || getDefaultSpotFallback('event'),
+            images: (Array.isArray(ev.images) && ev.images.length > 0)
+                ? ev.images
+                : (ev.imageUrl ? [ev.imageUrl] : [getDefaultSpotFallback('event')]),
             tags: ev.tags || [],
             organizer: ev.organizer || '',
             ratings: [],

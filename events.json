@@ -31,7 +31,10 @@
       "family"
     ],
     "organizer": "Fmgz",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/2026-neu-1-9NYTBWK6.webp?_=1787043675000"
+    ]
   },
   {
     "id": "event-zt-152272",
@@ -57,7 +60,7 @@
     "priceText": "Free entry to the museum during the opening hours of the store “Goldapfel”.",
     "officialUrl": "https://www.goldapfel.ch/museum/index.html",
     "ticketUrl": "https://www.goldapfel.ch/museum/index.html",
-    "imageUrl": "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_einsiedeln_lebkuchenmuseum_03.jpg",
+    "imageUrl": "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_einsiedeln_weihnachtsmarkt_01.jpg",
     "tags": [
       "zurich-tourism",
       "child-friendly",
@@ -65,7 +68,13 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_einsiedeln_weihnachtsmarkt_01.jpg",
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_einsiedeln_lebkuchenmuseum_03.jpg",
+      "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-zt-1811",
@@ -99,7 +108,14 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_culture_sauriermuseum-aathal_03.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_familie_sauriermuseum_04.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_familie_sauriermuseum_02_0.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_familie_sauriermuseum_05_0.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_familie_sauriermuseum_01_0.jpg"
+    ]
   },
   {
     "id": "event-aquatis-aquarium-lausanne",
@@ -135,7 +151,10 @@
       "reptiles"
     ],
     "organizer": "AQUATIS Lausanne",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-aquatis-aquarium-lausanne.jpg"
+    ]
   },
   {
     "id": "event-ballenberg-open-air-museum",
@@ -171,7 +190,10 @@
       "outdoor"
     ],
     "organizer": "Stiftung Freilichtmuseum Ballenberg",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-ballenberg-open-air-museum.jpg"
+    ]
   },
   {
     "id": "event-barryland-saint-bernard-dogs",
@@ -208,7 +230,10 @@
       "outdoor"
     ],
     "organizer": "Fondation Barry",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-barryland-saint-bernard-dogs.jpg"
+    ]
   },
   {
     "id": "event-zt-1829",
@@ -242,7 +267,18 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_0001_1920x1080.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_4896_1280x960.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_1207_1280x960.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_0012_1280x960.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_3307_1280x960.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_3254_1200x1200.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_3068_1280x960.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_3357_1920x1080.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_brunoweber_5608_1280x960.jpg"
+    ]
   },
   {
     "id": "event-cern-science-gateway-geneva",
@@ -279,7 +315,10 @@
       "hands-on"
     ],
     "organizer": "CERN",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-cern-science-gateway-geneva.jpg"
+    ]
   },
   {
     "id": "event-chaplins-world-vevey",
@@ -314,7 +353,10 @@
       "rainy-day"
     ],
     "organizer": "Chaplin's World",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-chaplins-world-vevey.jpg"
+    ]
   },
   {
     "id": "event-zt-1575",
@@ -348,7 +390,13 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_kultur_bergwerk-kaepfnach_01.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_mine-kaepfnach_02.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_mine-kaepfnach_03.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_mine-kaepfnach_01.jpg"
+    ]
   },
   {
     "id": "event-zt-29440",
@@ -382,7 +430,27 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_museum_fifa_museum_1280x960_46629.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_museum_fifa-museum_03.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2021/web_zuerich_fifa_museum_1280x960_36769.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2021/web_zuerich_fifa_museum_1280x960_36768.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_culture_fifa-museum_03.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_museum_fifa-museum_05.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_fifamuseum_08.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_fifamuseum_09.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_museum_fifa-museum_04.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_museum_fifa_museum_1280x960_46631.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54612.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54611.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54608.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54607.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54606.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54605.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54604.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_museum_fifa_museum_1280x960_54603.jpg"
+    ]
   },
   {
     "id": "event-fifa-museum-family-sundays",
@@ -418,7 +486,10 @@
       "skills"
     ],
     "organizer": "FIFA Museum Zürich",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-fifa-museum-family-sundays.jpg"
+    ]
   },
   {
     "id": "event-zt-1624",
@@ -452,7 +523,17 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48242.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48240.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48243.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48238.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48239.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48241.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_kulturama_1280x960_48237.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_museum_kulturama_05.jpg"
+    ]
   },
   {
     "id": "event-zt-545927",
@@ -486,7 +567,18 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://media.zuerich.com/image/727218228053/image_m34j8n3ctd3773rf2ri0cr4t28/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_nkapdvtlvd493a3sfn7met0h6p/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_0fi3egs5jd65322fpe6m1pnl2h/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_ing5g3rf4l7ujcq8ck08nt9236/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_85m7pudi4d1q9bgit3icionr1u/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_ln7lhdpc2t5i5725iotk9qlh1p/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_kj41ndm1710kd62ndbgg3pdl69/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_a8joc8bmlt1kr4n77jv6dndd6c/-FJPG",
+      "https://media.zuerich.com/image/727218228053/image_s6aqn8m25549d709h8fnk36l4l/-FJPG"
+    ]
   },
   {
     "id": "event-zt-1711",
@@ -520,7 +612,16 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zuerich_muehlerama.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_muehlerama_1280x960_20669.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_muehlerama_1280x960_20668.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_muehlerama_1280x960_20670.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_muehlerama_1280x960_20666.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_muehlerama_zt_6538.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_muehlerama_zt_6528.jpg"
+    ]
   },
   {
     "id": "event-muehlerama-bread-baking",
@@ -556,7 +657,10 @@
       "food"
     ],
     "organizer": "Mühlerama Museum",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-muehlerama-bread-baking.jpg"
+    ]
   },
   {
     "id": "event-zt-6017",
@@ -590,7 +694,14 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_Museum-Burg-Zug_1280x960_55187.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_Museum-Burg-Zug_1280x960_55180.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_Museum-Burg-Zug_1280x960_55186.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_Museum-Burg-Zug_1280x960_55179.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_Museum-Burg-Zug_55177.jpg"
+    ]
   },
   {
     "id": "event-museum-kommunikation-bern",
@@ -626,7 +737,10 @@
       "interactive"
     ],
     "organizer": "Museum für Kommunikation",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-museum-kommunikation-bern.jpg"
+    ]
   },
   {
     "id": "event-zt-1766",
@@ -660,7 +774,15 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/web_zuerich_kyburg_2222.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_museum_schloss-kyburg_05.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_museum_schloss-kyburg_04.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_museum_schloss-kyburg_03.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_museum_schloss-kyburg_02.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_museum_schloss-kyburg_01.jpg"
+    ]
   },
   {
     "id": "event-tierpark-goldau-ranger",
@@ -697,7 +819,10 @@
       "grill"
     ],
     "organizer": "Natur- und Tierpark Goldau",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-tierpark-goldau-ranger.jpg"
+    ]
   },
   {
     "id": "event-zt-1878",
@@ -731,7 +856,18 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_museum_zoologischesmuseum_01.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2025/web_zuerich_naturhistorischesmuseum_UZH_58174.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2025/web_zuerich_naturhistorischesmuseum_UZH_58176.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_zoologisches-museum_02.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_zoologisches_museum_6090.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2025/web_zuerich_naturhistorischesmuseum_UZH_58179.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2025/web_zuerich_naturhistorischesmuseum_UZH_58175.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2025/web_zuerich_naturhistorischesmuseum_UZH_58177.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2025/web_zuerich_naturhistorischesmuseum_UZH_58178.jpg"
+    ]
   },
   {
     "id": "event-zt-70639",
@@ -765,7 +901,16 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_30633.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_6516.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_kultur_naturmuseum-winterthur_02.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_30634.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_30635_0.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_6525.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_naturmuseum_winterthur_6524.jpg"
+    ]
   },
   {
     "id": "event-papiliorama-jungle-night",
@@ -801,7 +946,10 @@
       "night-safari"
     ],
     "organizer": "Stiftung Papiliorama",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-papiliorama-jungle-night.jpg"
+    ]
   },
   {
     "id": "event-schloss-lenzburg-dragon",
@@ -837,7 +985,10 @@
       "history"
     ],
     "organizer": "Museum Aargau",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-schloss-lenzburg-dragon.jpg"
+    ]
   },
   {
     "id": "event-sensorium-ruettihubelbad",
@@ -873,7 +1024,10 @@
       "barefoot"
     ],
     "organizer": "Stiftung Rüttihubelbad",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-sensorium-ruettihubelbad.jpg"
+    ]
   },
   {
     "id": "event-zt-172987",
@@ -907,7 +1061,15 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_nature_naturmuseum-wildnispark_pt_14793.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_nature_naturmuseum-wildnispark_pt_14792.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_nature_naturmuseum-wildnispark_pt_14794.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_nature_naturmuseum-wildnispark_pt_14795.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_nature_naturmuseum-wildnispark_pt_14797.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_nature_naturmuseum-wildnispark_pt_14798.jpg"
+    ]
   },
   {
     "id": "event-zt-1827",
@@ -941,7 +1103,14 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_kindermuseum_baden_1280x960_51002.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_kindermuseum_baden_1280x960_51001.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_kindermuseum_baden_1280x960_51003.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_kindermuseum_baden_1280x960_51004.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2024/web_zuerich_kindermuseum_baden_1280x960_51005.jpg"
+    ]
   },
   {
     "id": "event-verkehrshaus-planetarium-kids",
@@ -977,7 +1146,10 @@
       "traffic-park"
     ],
     "organizer": "Verkehrshaus der Schweiz",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-verkehrshaus-planetarium-kids.jpg"
+    ]
   },
   {
     "id": "event-zt-1666",
@@ -1011,7 +1183,22 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zurich_landesmuseum_ZT_22616_1280x960.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_dauerausstellung_geschichte_schweiz_1280x960_26782.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2023/web_zuerich_landesmuseum_1280x960_49244.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_dauerausstellung_geschichte_schweiz_1280x960_26784.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_pt_8223.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_pt_8232.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_pt_8228.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_pt_8229.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_pt_8230.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_pt_8233.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zuerich_landesmuseum_pt_8234.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zuerich_landesmuseum_luftaufnahme.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zuerich_landesmuseum_luftaufnahme_2.jpg"
+    ]
   },
   {
     "id": "event-swissminiatur-melide",
@@ -1047,7 +1234,10 @@
       "castles"
     ],
     "organizer": "Swissminiatur SA",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-swissminiatur-melide.jpg"
+    ]
   },
   {
     "id": "event-technorama-science-labs",
@@ -1083,7 +1273,10 @@
       "workshop"
     ],
     "organizer": "Swiss Science Center Technorama",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-technorama-science-labs.jpg"
+    ]
   },
   {
     "id": "event-zt-1848",
@@ -1117,7 +1310,15 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/web_zuerich_technorama_26498.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_technorama_03.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_technorama_05.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_technorama_01.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_technorama_04.jpg",
+      "https://www.zuerich.com/sites/default/files/web_zurich_technorama_02.jpg"
+    ]
   },
   {
     "id": "event-zt-1851",
@@ -1151,7 +1352,15 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_kultur_tram-museum_01.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_kultur_trammuseum_01.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_kultur_trammuseum_02.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_kultur_trammuseum_03.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_kultur_trammuseum_05.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_kultur_trammuseum_04.jpg"
+    ]
   },
   {
     "id": "event-zt-556006",
@@ -1185,7 +1394,15 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zuerich_kultur_wow_museum_1280x960_43038.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zuerich_kultur_wow_museum_1280x960_43033.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zuerich_kultur_wow_museum_1280x960_43034.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zuerich_kultur_wow_museum_1280x960_43035.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zuerich_kultur_wow_museum_1280x960_43047.jpg",
+      "https://www.zuerich.com/sites/default/files/image/2022/web_zuerich_kultur_wow_museum_1280x960_43049.jpg"
+    ]
   },
   {
     "id": "event-zt-75556",
@@ -1219,7 +1436,15 @@
       "family-activity"
     ],
     "organizer": "Zürich Tourismus",
-    "source": "zuerich_tourism"
+    "source": "zuerich_tourism",
+    "images": [
+      "https://www.zuerich.com/sites/default/files/keyvisual/web_zurich_family_biberpfad_04.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_family_biberpfad_01.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_family_biberpfad_02.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_family_biberpfad_05.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_family_biberpfad_03.jpg",
+      "https://www.zuerich.com/sites/default/files/imagegallery/web_zurich_family_biberpfad_06.jpg"
+    ]
   },
   {
     "id": "event-buerkliplatz-kerzenziehen-zurich",
@@ -1254,7 +1479,10 @@
       "hands-on"
     ],
     "organizer": "Zürcher Kerzenziehen",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-buerkliplatz-kerzenziehen-zurich.jpg"
+    ]
   },
   {
     "id": "event-illuminarium-zurich",
@@ -1289,7 +1517,13 @@
       "museum"
     ],
     "organizer": "Projektil & Swiss National Museum",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-illuminarium-zurich.jpg",
+      "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-raebeliechtli-richterswil",
@@ -1324,7 +1558,10 @@
       "world-record"
     ],
     "organizer": "Verkehrsverein Richterswil",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-raebeliechtli-richterswil.jpg"
+    ]
   },
   {
     "id": "event-zauberpark-zurich-airport",
@@ -1360,7 +1597,13 @@
       "food-stalls"
     ],
     "organizer": "Flughafen Zürich AG & NOA Mobilitätswelten",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-zauberpark-zurich-airport.jpg",
+      "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-montreux-noel-rochers-de-naye",
@@ -1396,7 +1639,13 @@
       "alps"
     ],
     "organizer": "Montreux Noël",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-montreux-noel-rochers-de-naye.jpg",
+      "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-maerlitram-zurich",
@@ -1432,7 +1681,13 @@
       "bellevue"
     ],
     "organizer": "VBZ & Jelmoli",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-maerlitram-zurich.jpg",
+      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1576723417715-6b408c988c23?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-berner-sternenmarkt-kleine-schanze",
@@ -1468,7 +1723,13 @@
       "food"
     ],
     "organizer": "Berner Sternenmarkt",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-berner-sternenmarkt-kleine-schanze.jpg",
+      "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-ef-7523664802608105030",
@@ -1502,7 +1763,10 @@
       "family"
     ],
     "organizer": "Schweizer Kindermuseum",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/b-adventskalender-basteln-9117ZUE5.webp?_=1793781452000"
+    ]
   },
   {
     "id": "event-ef-7481373783963505838",
@@ -1536,7 +1800,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368956392968553",
@@ -1570,7 +1837,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372048092055013",
@@ -1604,7 +1874,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369251986506295",
@@ -1638,7 +1911,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369650550280742",
@@ -1672,7 +1948,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372669453060688",
@@ -1706,7 +1985,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368089791066078",
@@ -1740,7 +2022,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7477703578250963447",
@@ -1774,7 +2059,10 @@
       "event"
     ],
     "organizer": "Orchestre de Chambre de Lausanne",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/dec2-bebe-concertcarole-aufranc-VRJTTZYF.webp"
+    ]
   },
   {
     "id": "event-ef-7478201831052582809",
@@ -1808,7 +2096,10 @@
       "family"
     ],
     "organizer": "Eventfrog Organizer",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/das-theater-pack-mircos-suche-nach-d-B7A6Z4IS.webp"
+    ]
   },
   {
     "id": "event-ef-7526665666369183623",
@@ -1842,7 +2133,10 @@
       "family"
     ],
     "organizer": "René Wuffli",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7411039157709974148",
@@ -1876,7 +2170,10 @@
       "event"
     ],
     "organizer": "Manuela Steiner-Baumann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/tierlidoktor-kopie-8NJW5G5F-C7C0LEED.webp?_=1783357589000"
+    ]
   },
   {
     "id": "event-ef-7518630676612001963",
@@ -1910,7 +2207,10 @@
       "family"
     ],
     "organizer": "Museum Luzern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/aaf391a02f4ee9f12f7f524f1f4646f83b65-C5FPV072.webp"
+    ]
   },
   {
     "id": "event-ef-7518630755330713836",
@@ -1944,7 +2244,10 @@
       "family"
     ],
     "organizer": "Museum Luzern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/aaf391a02f4ee9f12f7f524f1f4646f83b65-C5FPV072.webp"
+    ]
   },
   {
     "id": "event-ef-7412538844833146543",
@@ -1978,7 +2281,10 @@
       "family"
     ],
     "organizer": "Vindonissa Museum - Museum Aargau",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/4171d1cefcd8c719ef616b2ef97096cc1800-N9NMYSW9.webp?_=1783359608000"
+    ]
   },
   {
     "id": "event-ef-7485927996135587954",
@@ -2012,7 +2318,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7485929265466230026",
@@ -2046,7 +2355,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481365962622565655",
@@ -2080,7 +2392,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481367690042465121",
@@ -2114,7 +2429,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481368762022667273",
@@ -2148,7 +2466,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481361779253062019",
@@ -2182,7 +2503,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481369954664641194",
@@ -2216,7 +2540,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481364053098506219",
@@ -2250,7 +2577,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7477080623615607728",
@@ -2284,7 +2614,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481366351019264762",
@@ -2318,7 +2651,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7508571449134696657",
@@ -2352,7 +2688,10 @@
       "event"
     ],
     "organizer": "Kultur Wehntal",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/bardill-eventfrog-LTTXMFF2.jpg?_=1790185383000"
+    ]
   },
   {
     "id": "event-ef-7529598894721748054",
@@ -2386,7 +2725,10 @@
       "family"
     ],
     "organizer": "Alter Konsum",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/ausschnitt-plakat-FRGBDXDJ.webp?_=1795196270000"
+    ]
   },
   {
     "id": "event-ef-7523390253589086387",
@@ -2420,7 +2762,10 @@
       "event"
     ],
     "organizer": "FUSIO AG c/o FUSIO",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/22-11-16x9-kids-pizza-workshop-olten-PJ1DRF8K.webp?_=1793716045000"
+    ]
   },
   {
     "id": "event-ef-7518632012153896594",
@@ -2454,7 +2799,10 @@
       "workshop"
     ],
     "organizer": "Museum Luzern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/0c1e78434211fef57ffeca2c13ace49455b88c11-866539712.webp?_=1792581552000"
+    ]
   },
   {
     "id": "event-ef-7518632012208422558",
@@ -2488,7 +2836,10 @@
       "workshop"
     ],
     "organizer": "Museum Luzern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/0c1e78434211fef57ffeca2c13ace49455b88c11-866539712.webp?_=1792581552000"
+    ]
   },
   {
     "id": "event-ef-7501958526039757372",
@@ -2522,7 +2873,10 @@
       "event"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/kreativatelier-1-ZCTKTPJ3.webp?_=1788606282000"
+    ]
   },
   {
     "id": "event-ef-7491522594182567700",
@@ -2556,7 +2910,10 @@
       "family"
     ],
     "organizer": "Kunstmuseum Thun",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/40dfce1a770989da0a114b747f07fb17c1134afb-945323104.webp?_=1786118173000"
+    ]
   },
   {
     "id": "event-ef-7501303731616484535",
@@ -2590,7 +2947,10 @@
       "family"
     ],
     "organizer": "Genossenschaft Obere Mühle Oltingen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/marchenzauber-schatzkiste-kopie-EH4ONQLS.webp?_=1788450178000"
+    ]
   },
   {
     "id": "event-ef-7465765501651678906",
@@ -2624,7 +2984,10 @@
       "family"
     ],
     "organizer": "Stiftung Boldern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7497973962887926962",
@@ -2658,7 +3021,10 @@
       "family"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/offenes-atelier-1-F6Z053LT.webp?_=1787656288000"
+    ]
   },
   {
     "id": "event-ef-7516976679304078958",
@@ -2692,7 +3058,10 @@
       "family"
     ],
     "organizer": "Kunst(Zeug)Haus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/performance-von-nicola-genovese-O2Z1BB89.webp?_=1794350505000"
+    ]
   },
   {
     "id": "event-ef-7523690386037951747",
@@ -2726,7 +3095,10 @@
       "theatre"
     ],
     "organizer": "Theater Matte & DAS Kindertheater Bern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/pica-und-poco-ci-vorab-zuschnitt-69X2E6B8.webp?_=1793787501000"
+    ]
   },
   {
     "id": "event-ef-7508491363479982650",
@@ -2760,7 +3132,10 @@
       "event"
     ],
     "organizer": "Kultur Erlinsbach",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/bild2-CF7LISI4.webp?_=1790163842000"
+    ]
   },
   {
     "id": "event-ef-7508529044457045597",
@@ -2794,7 +3169,10 @@
       "theatre"
     ],
     "organizer": "Reisetheater GmbH",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/87ad355d7be650c6e9f83643e1e28486e816-2RB9VV17.webp?_=1790172827000"
+    ]
   },
   {
     "id": "event-ef-7458400925964603676",
@@ -2828,7 +3206,10 @@
       "family"
     ],
     "organizer": "Casinotheater Winterthur",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/schellen-ursli-DHPHBPHB-1METEJL0-EADM83AQ.jpg?_=1783480556000"
+    ]
   },
   {
     "id": "event-ef-7524051168898582791",
@@ -2862,7 +3243,10 @@
       "theatre"
     ],
     "organizer": "Basler Kinder Theater",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/b7d4769d618cef8faa8dff944440fd22dedc-CWTPEPD9.webp?_=1793873573000"
+    ]
   },
   {
     "id": "event-ef-7481373783997060280",
@@ -2896,7 +3280,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368956430717292",
@@ -2930,7 +3317,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372048129803752",
@@ -2964,7 +3354,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369252024255033",
@@ -2998,7 +3391,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369650583835176",
@@ -3032,7 +3428,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372669490809426",
@@ -3066,7 +3465,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368089833009120",
@@ -3100,7 +3502,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7491610032779302631",
@@ -3134,7 +3539,10 @@
       "family"
     ],
     "organizer": "Eventfrog Organizer",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/das-theater-pack-mircos-suche-nach-d-S38NYZRM.webp"
+    ]
   },
   {
     "id": "event-ef-7507779994967378637",
@@ -3168,7 +3576,10 @@
       "event"
     ],
     "organizer": "AquaKidz Schwimmschule",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/2-BVQNTQBL.webp?_=1789994080000"
+    ]
   },
   {
     "id": "event-ef-7523328336698825601",
@@ -3202,7 +3613,10 @@
       "family"
     ],
     "organizer": "Kita Calimero Bindersgarten",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/weihnachtsbaeckerei-in-der-kita-cali-1FX8O0IS.webp?_=1793701253000"
+    ]
   },
   {
     "id": "event-ef-7485929265503978764",
@@ -3236,7 +3650,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7485927996177530996",
@@ -3270,7 +3687,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481365962660314393",
@@ -3304,7 +3724,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481367690084408163",
@@ -3338,7 +3761,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481368762060416011",
@@ -3372,7 +3798,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481361779290810757",
@@ -3406,7 +3835,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481369954702389932",
@@ -3440,7 +3872,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481364053148837869",
@@ -3474,7 +3909,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7477080623665939378",
@@ -3508,7 +3946,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481366351052819196",
@@ -3542,7 +3983,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7524268424773536242",
@@ -3576,7 +4020,10 @@
       "event"
     ],
     "organizer": "Gabriela Glaus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/kinderballet-bubikon-wolfhausen-mini-X9CY8LKW.webp?_=1793925365000"
+    ]
   },
   {
     "id": "event-ef-7508835615162500708",
@@ -3610,7 +4057,10 @@
       "event"
     ],
     "organizer": "Gabriela Glaus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/kindertanzen-wolfhausen-mit-gabriela-WVX36AOO.webp?_=1790245741000"
+    ]
   },
   {
     "id": "event-ef-7508827472063906669",
@@ -3644,7 +4094,10 @@
       "event"
     ],
     "organizer": "Gabriela Glaus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/kindertanzen-wolfhausen-mit-gabriela-glaus.webp?_=1790243908000"
+    ]
   },
   {
     "id": "event-ef-7495408119872275106",
@@ -3678,7 +4131,10 @@
       "family"
     ],
     "organizer": "Fmgz",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/2026-neu-1-9NYTBWK6.webp?_=1787043675000"
+    ]
   },
   {
     "id": "event-ef-7513511612214452725",
@@ -3712,7 +4168,10 @@
       "family"
     ],
     "organizer": "Berner Generationenhaus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/kulturknirps-2026-27-QQ3C2RCN.webp?_=1791360763000"
+    ]
   },
   {
     "id": "event-ef-7515707852775759920",
@@ -3746,7 +4205,10 @@
       "family"
     ],
     "organizer": "Berner Generationenhaus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/kulturknirps-2026-27-QQ3C2RCN.webp"
+    ]
   },
   {
     "id": "event-ef-7526602602349391947",
@@ -3780,7 +4242,10 @@
       "family"
     ],
     "organizer": "Gabriela Glaus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/mami-kind-yoga-mit-gabriela-im-famil-B0WGEHG7.webp?_=1794481899000"
+    ]
   },
   {
     "id": "event-ef-7465765501685233340",
@@ -3814,7 +4279,10 @@
       "family"
     ],
     "organizer": "Stiftung Boldern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7517923731508875026",
@@ -3848,7 +4316,10 @@
       "family"
     ],
     "organizer": "Kita Calimero",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/chatgpt-image-29-sept-2026-13-35-17-2ZHH9FP1.webp"
+    ]
   },
   {
     "id": "event-ef-7442677663972511210",
@@ -3882,7 +4353,10 @@
       "event"
     ],
     "organizer": "Janine Wallimann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/9b9a2409-3611-4073-9132-5cc59ffa3423-5FVYKQBU.webp?_=1783441801000"
+    ]
   },
   {
     "id": "event-ef-7507162832753964892",
@@ -3916,7 +4390,10 @@
       "family"
     ],
     "organizer": "Myriam Nenniger",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/tonie-bild-TQ5UP61M-L5SHHRA8.webp?_=1783225514000"
+    ]
   },
   {
     "id": "event-ef-7481373784034809021",
@@ -3950,7 +4427,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368956468466032",
@@ -3984,7 +4464,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372048167552490",
@@ -4018,7 +4501,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369252057809467",
@@ -4052,7 +4538,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369650621583914",
@@ -4086,7 +4575,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372669528558164",
@@ -4120,7 +4612,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368089870757858",
@@ -4154,7 +4649,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7516171319626445730",
@@ -4188,7 +4686,10 @@
       "event"
     ],
     "organizer": "Custom Kids",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/img-0745-4LN8J5ML.webp?_=1791992723000"
+    ]
   },
   {
     "id": "event-ef-7509228834014691265",
@@ -4222,7 +4723,10 @@
       "event"
     ],
     "organizer": "Bibliothek Langenthal",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/anlass-website-20251222-sebastian-tr-P9D3O6KX.webp"
+    ]
   },
   {
     "id": "event-ef-7485927996215279734",
@@ -4256,7 +4760,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7485929265541727502",
@@ -4290,7 +4797,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481365962714840347",
@@ -4324,7 +4834,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481367690122156901",
@@ -4358,7 +4871,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481368762093970445",
@@ -4392,7 +4908,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481361779328559495",
@@ -4426,7 +4945,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481369954744332974",
@@ -4460,7 +4982,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481364053194975215",
@@ -4494,7 +5019,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7477080623703688116",
@@ -4528,7 +5056,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481366351090567934",
@@ -4562,7 +5093,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7529599829011380934",
@@ -4596,7 +5130,10 @@
       "family"
     ],
     "organizer": "Alter Konsum",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/ausschnitt-plakat-NX3AUQOU.webp?_=1795196811000"
+    ]
   },
   {
     "id": "event-ef-7528431244679376323",
@@ -4630,7 +5167,10 @@
       "event"
     ],
     "organizer": "Nicole Fässler",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/24-11-26-JNQZ62KV.webp?_=1794917880000"
+    ]
   },
   {
     "id": "event-ef-7417820903289944457",
@@ -4664,7 +5204,10 @@
       "event"
     ],
     "organizer": "Familientreff Birmenstorf-Gebenstorf",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/612812687-122251158056066109-7983643-04D0F1P1.webp?_=1783371420000"
+    ]
   },
   {
     "id": "event-ef-7417957200881026433",
@@ -4698,7 +5241,10 @@
       "event"
     ],
     "organizer": "Familientreff Birmenstorf-Gebenstorf",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-baby-WJROBHGZ-D4FSUXGX.webp?_=1783398295000"
+    ]
   },
   {
     "id": "event-ef-7465765501722982078",
@@ -4732,7 +5278,10 @@
       "family"
     ],
     "organizer": "Stiftung Boldern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7517923777390314702",
@@ -4766,7 +5315,10 @@
       "family"
     ],
     "organizer": "Kita Calimero",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/chatgpt-image-29-sept-2026-13-35-17-2ZHH9FP1.webp"
+    ]
   },
   {
     "id": "event-ef-7442677664035425772",
@@ -4800,7 +5352,10 @@
       "event"
     ],
     "organizer": "Janine Wallimann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/9b9a2409-3611-4073-9132-5cc59ffa3423-5FVYKQBU.webp?_=1783441801000"
+    ]
   },
   {
     "id": "event-ef-7450283229402156488",
@@ -4834,7 +5389,10 @@
       "event"
     ],
     "organizer": "Mariana Scvo",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/31-QQI0KZCL-IHYMRU2R.webp?_=1783460304000"
+    ]
   },
   {
     "id": "event-ef-7492649765668131176",
@@ -4868,7 +5426,10 @@
       "event"
     ],
     "organizer": "Familienclub Rohr",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-puppentheater--9JIH2W8J.webp?_=1783398303000"
+    ]
   },
   {
     "id": "event-ef-7515406968741202356",
@@ -4902,7 +5463,10 @@
       "family"
     ],
     "organizer": "Orell Füssli",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/rafiq-aboida-U42ATHYG.webp?_=1791812652000"
+    ]
   },
   {
     "id": "event-ef-7511672722570648845",
@@ -4936,7 +5500,10 @@
       "family"
     ],
     "organizer": "Freizeitverein Spittelhof",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/adventel-ki1komp-OMR2GNQW.webp?_=1790922338000"
+    ]
   },
   {
     "id": "event-ef-7505888826692244166",
@@ -4970,7 +5537,10 @@
       "family"
     ],
     "organizer": "Freizeitverein Spittelhof",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/adventel-ki1komp-ZN13AUQG.webp?_=1789543349000"
+    ]
   },
   {
     "id": "event-ef-7411718098170975400",
@@ -5004,7 +5574,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Aarau",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/franzgeschichten-71PWBXSK-U5PR2SNT.webp?_=1783358627000"
+    ]
   },
   {
     "id": "event-ef-7481373784072557762",
@@ -5038,7 +5611,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368956506214782",
@@ -5072,7 +5648,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372048205301228",
@@ -5106,7 +5685,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369252095558205",
@@ -5140,7 +5722,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369650659332652",
@@ -5174,7 +5759,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372669562112598",
@@ -5208,7 +5796,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368089908506596",
@@ -5242,7 +5833,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7492566243087515940",
@@ -5276,7 +5870,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Luzern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/4zu3-logobuchstart-7NQTLOEL.webp?_=1786366968000"
+    ]
   },
   {
     "id": "event-ef-7529582181439559640",
@@ -5310,7 +5907,10 @@
       "family"
     ],
     "organizer": "Zauberlaterne Bern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/bild-zl-ws-EWHXT7SX.webp?_=1795192286000"
+    ]
   },
   {
     "id": "event-ef-7529582464454388417",
@@ -5344,7 +5944,10 @@
       "family"
     ],
     "organizer": "Zauberlaterne Bern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/bild-zl-ws-EWHXT7SX.webp?_=1795192286000"
+    ]
   },
   {
     "id": "event-ef-7497623089863234453",
@@ -5378,7 +5981,10 @@
       "theatre"
     ],
     "organizer": "Diebstahl bim Samichlaus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/samichlaus-H03H2F6T.webp?_=1787572644000"
+    ]
   },
   {
     "id": "event-ef-7473309081131847318",
@@ -5412,7 +6018,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Thun",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/digitalesgestalten-B7O0GXFE-SA7ZX5RV-OR2QKFUB.webp?_=1783506284000"
+    ]
   },
   {
     "id": "event-ef-7515691164671963645",
@@ -5446,7 +6055,10 @@
       "workshop"
     ],
     "organizer": "Landesmuseum Zürich",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/ffae03089814b405d7c3a681d8b282d1eb6d377f-955577160.webp?_=1791880409000"
+    ]
   },
   {
     "id": "event-ef-7510656059352062734",
@@ -5480,7 +6092,10 @@
       "circus"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/elki-zirkus-ET2CJCKR.webp?_=1790679936000"
+    ]
   },
   {
     "id": "event-ef-7507797620892379233",
@@ -5514,7 +6129,10 @@
       "event"
     ],
     "organizer": "AquaKidz Schwimmschule",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/2-BVQNTQBL.webp"
+    ]
   },
   {
     "id": "event-ef-7516163900364043941",
@@ -5548,7 +6166,10 @@
       "event"
     ],
     "organizer": "Custom Kids",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/img-0745-4LN8J5ML.webp?_=1791992723000"
+    ]
   },
   {
     "id": "event-ef-7509219931067517341",
@@ -5582,7 +6203,10 @@
       "family"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/intuitives-malen-familie-KTW3V27L.webp?_=1790337541000"
+    ]
   },
   {
     "id": "event-ef-7427296735616051406",
@@ -5616,7 +6240,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Katharinen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/geschichtenkarussell-tschechische-erz-JHTL2J68.jpg?_=1783401605000"
+    ]
   },
   {
     "id": "event-ef-7478038398130759187",
@@ -5650,7 +6277,10 @@
       "theatre"
     ],
     "organizer": "Luzerner Theater",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/lt-gilgamesh-hp1ingo-hoehn-37-9J6MRJ6R.webp?_=1782903277000"
+    ]
   },
   {
     "id": "event-ef-7524385963910406286",
@@ -5684,7 +6314,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Zofingen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/gschichtli-fuer-di-chline-L5X7NW99.webp?_=1793952686000"
+    ]
   },
   {
     "id": "event-ef-7518629624647047855",
@@ -5718,7 +6351,10 @@
       "family"
     ],
     "organizer": "Museum Luzern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/ce7db7af31563996ba6e17405417f49e63a69f78-957539970.webp?_=1792580983000"
+    ]
   },
   {
     "id": "event-ef-7485929265579476240",
@@ -5752,7 +6388,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7485927996257222776",
@@ -5786,7 +6425,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481365962752589085",
@@ -5820,7 +6462,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481367690164099943",
@@ -5854,7 +6499,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481361779366308233",
@@ -5888,7 +6536,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481369954782081712",
@@ -5922,7 +6573,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481364053228529649",
@@ -5956,7 +6610,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7477080623741436854",
@@ -5990,7 +6647,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481366351128316672",
@@ -6024,7 +6684,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481368762135913487",
@@ -6058,7 +6721,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7526653185202633938",
@@ -6092,7 +6758,10 @@
       "event"
     ],
     "organizer": "Lea Eichhorn",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/holzblumen-6YYQAN93.webp?_=1794493959000"
+    ]
   },
   {
     "id": "event-ef-7509592526677923932",
@@ -6126,7 +6795,10 @@
       "family"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/intuitives-malen-3-9H5QVMDJ.webp?_=1790426373000"
+    ]
   },
   {
     "id": "event-ef-7499018285171624222",
@@ -6160,7 +6832,10 @@
       "family"
     ],
     "organizer": "Ludothek Spieltruhe",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/flyer-kerzenziehen-NB3YBWNX.webp?_=1787905609000"
+    ]
   },
   {
     "id": "event-ef-7529602192086412933",
@@ -6194,7 +6869,10 @@
       "family"
     ],
     "organizer": "Alter Konsum",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/ausschnitt-plakat-KK1RII9S.webp?_=1795197056000"
+    ]
   },
   {
     "id": "event-ef-7513938141251678595",
@@ -6228,7 +6906,10 @@
       "family"
     ],
     "organizer": "Museum Grenchen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/khm-ausstellung-ritschard-grenchaelogie-026.webp"
+    ]
   },
   {
     "id": "event-ef-7419751461578378742",
@@ -6262,7 +6943,10 @@
       "festival"
     ],
     "organizer": "Sutter AG",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kindergeburtstag-baeckerei-sutter-be-DH4XRAUQ.webp?_=1783376326000"
+    ]
   },
   {
     "id": "event-ef-7518585133806428359",
@@ -6296,7 +6980,10 @@
       "event"
     ],
     "organizer": "Huplant",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/weihnachtskranz-kinder-MIV4RZ2D.webp?_=1792570386000"
+    ]
   },
   {
     "id": "event-ef-7500582845653515596",
@@ -6330,7 +7017,10 @@
       "event"
     ],
     "organizer": "Stadtbibliothek Rheinfelden Schweiz",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/black-and-white-minimalist-elegant-u-P883WAHY.webp"
+    ]
   },
   {
     "id": "event-ef-7506326505196113493",
@@ -6364,7 +7054,10 @@
       "event"
     ],
     "organizer": "Familienzentrum Bern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/generated-de49d1bc-a90e-4bc3-bc43-468c1dd33b54.webp"
+    ]
   },
   {
     "id": "event-ef-7515691610450962665",
@@ -6398,7 +7091,10 @@
       "workshop"
     ],
     "organizer": "Landesmuseum Zürich",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/bb2beab1ce56edfc2768df664aa6f3591f2061d4-955419855.webp?_=1791880515000"
+    ]
   },
   {
     "id": "event-ef-7513212356911974834",
@@ -6432,7 +7128,10 @@
       "event"
     ],
     "organizer": "Les Théopopettes",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/affiche-a3-2026-theopopettes-saison-17.webp?_=1791289363000"
+    ]
   },
   {
     "id": "event-ef-7523710036008245059",
@@ -6466,7 +7165,10 @@
       "family"
     ],
     "organizer": "Kunst(Zeug)Haus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/werbevisual-maerchenkoffer-X9ZMEEE9.webp?_=1793792258000"
+    ]
   },
   {
     "id": "event-ef-7523710129952281027",
@@ -6500,7 +7202,10 @@
       "family"
     ],
     "organizer": "Kunst(Zeug)Haus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/werbevisual-maerchenkoffer-X9ZMEEE9.webp?_=1793792258000"
+    ]
   },
   {
     "id": "event-ef-7518616716429023633",
@@ -6534,7 +7239,10 @@
       "family"
     ],
     "organizer": "Schweizer Kindermuseum",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/b-miracoolix-01-6K1TQY8U.webp?_=1792577895000"
+    ]
   },
   {
     "id": "event-ef-7491026291895882343",
@@ -6568,7 +7276,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Luzern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/4zu3-mittwochsgschicht-HS3A4KQ1.webp?_=1785999813000"
+    ]
   },
   {
     "id": "event-ef-7515689310680520331",
@@ -6602,7 +7313,10 @@
       "family"
     ],
     "organizer": "Landesmuseum Zürich",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/a48e9bdf8529ba208e5b4e87cca9b38c829fdc73-955419860.webp?_=1791879915000"
+    ]
   },
   {
     "id": "event-ef-7465765501760730816",
@@ -6636,7 +7350,10 @@
       "family"
     ],
     "organizer": "Stiftung Boldern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7520954863695433746",
@@ -6670,7 +7387,10 @@
       "family"
     ],
     "organizer": "Verein Eulenblick",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/kerzenziehen-EA1JZSDZ.webp?_=1793135454000"
+    ]
   },
   {
     "id": "event-ef-7497973962934064307",
@@ -6704,7 +7424,10 @@
       "family"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/offenes-atelier-1-F6Z053LT.webp?_=1787656288000"
+    ]
   },
   {
     "id": "event-ef-7508529395046292387",
@@ -6738,7 +7461,10 @@
       "theatre"
     ],
     "organizer": "Reisetheater GmbH",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/87ad355d7be650c6e9f83643e1e28486e816-V0HVA952.webp?_=1790172910000"
+    ]
   },
   {
     "id": "event-ef-7502729398698701707",
@@ -6772,7 +7498,10 @@
       "family"
     ],
     "organizer": "Bibliothek Ruopigen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/logo-ruopisgschichte-eventfrog-NHA37JJ4.webp?_=1788790052000"
+    ]
   },
   {
     "id": "event-ef-7484875095334226137",
@@ -6806,7 +7535,10 @@
       "family"
     ],
     "organizer": "Stadt- und Regionalbibliothek Dietikon",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/smeg-QNF3N2EL.webp?_=1784533315000"
+    ]
   },
   {
     "id": "event-ef-7397244445651954794",
@@ -6840,7 +7572,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Baden",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/schenkmireinegeschichte-jpg-PC6CP536-3JQ9MNSS.jpg?_=1783329262000"
+    ]
   },
   {
     "id": "event-ef-7524051168990858053",
@@ -6874,7 +7609,10 @@
       "theatre"
     ],
     "organizer": "Basler Kinder Theater",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/b7d4769d618cef8faa8dff944440fd22dedc-CWTPEPD9.webp?_=1793873573000"
+    ]
   },
   {
     "id": "event-ef-7406309224475531312",
@@ -6908,7 +7646,10 @@
       "event"
     ],
     "organizer": "Badeplausch Urdorf, Nicole Aeschlimann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-kurs-6TUNFA4B-OIKPTLGJ.webp?_=1783398302000"
+    ]
   },
   {
     "id": "event-ef-7492243456787526795",
@@ -6942,7 +7683,10 @@
       "event"
     ],
     "organizer": "Club Paar Tanz",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/www-club-paar-tanz-ch-3-KOH5MW3J.webp?_=1786289761000"
+    ]
   },
   {
     "id": "event-ef-7468328539122627058",
@@ -6976,7 +7720,10 @@
       "event"
     ],
     "organizer": "Armin Eichmann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/dsc-0392-5O5CKIGB-URSAWJO7-SV2GK24G.webp?_=1783496997000"
+    ]
   },
   {
     "id": "event-ef-7402439241504938875",
@@ -7010,7 +7757,10 @@
       "family"
     ],
     "organizer": "Alte Mühle Gams",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/img-large-2-JBYDIEFP-BI79OTW6.webp?_=1783340342000"
+    ]
   },
   {
     "id": "event-ef-7523332273661323022",
@@ -7044,7 +7794,10 @@
       "event"
     ],
     "organizer": "Freizeitverein Spittelhof",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/holz-ton-einblick-webseite2026-Z6PD5VKQ.webp?_=1793702049000"
+    ]
   },
   {
     "id": "event-ef-7413544211729911987",
@@ -7078,7 +7831,10 @@
       "event"
     ],
     "organizer": "Familientreff Rohrdorf",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/logofamilientreff-farbig-1-2-UUL71OW-F90KIODN.webp?_=1783361038000"
+    ]
   },
   {
     "id": "event-ef-7475136346400536763",
@@ -7112,7 +7868,10 @@
       "event"
     ],
     "organizer": "Zulauf Gartencenter",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/klara-weihnachtsbasteln-kw36-0F3KV6Y-H2ZH4G78.webp?_=1783508311000"
+    ]
   },
   {
     "id": "event-ef-7491889550270150077",
@@ -7146,7 +7905,10 @@
       "circus"
     ],
     "organizer": "Moveo-Artistik",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/akrobatik-X3FP1BE4.webp?_=1786205448000"
+    ]
   },
   {
     "id": "event-ef-7481373784106112216",
@@ -7180,7 +7942,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368956543963520",
@@ -7214,7 +7979,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372048243049966",
@@ -7248,7 +8016,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369252133306943",
@@ -7282,7 +8053,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369650697081390",
@@ -7316,7 +8090,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372669599861336",
@@ -7350,7 +8127,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368089946255334",
@@ -7384,7 +8164,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7406308378639629786",
@@ -7418,7 +8201,10 @@
       "event"
     ],
     "organizer": "Badeplausch Urdorf, Nicole Aeschlimann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-kurs-6TUNFA4B-OIKPTLGJ.webp?_=1783398302000"
+    ]
   },
   {
     "id": "event-basel-maerchenwald-weihnachtsmarkt",
@@ -7454,7 +8240,13 @@
       "basel"
     ],
     "organizer": "Basler Weihnachtsmarkt",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-basel-maerchenwald-weihnachtsmarkt.jpg",
+      "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1513297887119-d46091b24bfa?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-colmar-noel-des-enfants-petite-venise",
@@ -7490,7 +8282,10 @@
       "winter"
     ],
     "organizer": "Office de Tourisme de Colmar",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-colmar-noel-des-enfants-petite-venise.jpg"
+    ]
   },
   {
     "id": "event-ef-7465370720001862497",
@@ -7524,7 +8319,10 @@
       "family"
     ],
     "organizer": "Administration Administration",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kerzenziehen-4NA36OSL-HERJ2Y2P-DUCQ37Y5.webp?_=1783494716000"
+    ]
   },
   {
     "id": "event-ef-7516171319672583076",
@@ -7558,7 +8356,10 @@
       "event"
     ],
     "organizer": "Custom Kids",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/img-0745-4LN8J5ML.webp?_=1791992723000"
+    ]
   },
   {
     "id": "event-ef-7431710768360326826",
@@ -7592,7 +8393,10 @@
       "family"
     ],
     "organizer": "Gemeinde- und Schulbibliothek Niederlenz",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7485927996294971514",
@@ -7626,7 +8430,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7485929265617224978",
@@ -7660,7 +8467,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481365962794532127",
@@ -7694,7 +8504,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481367690201848681",
@@ -7728,7 +8541,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481368762173662225",
@@ -7762,7 +8578,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481366351166065410",
@@ -7796,7 +8615,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481361779408251275",
@@ -7830,7 +8652,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481369954819830450",
@@ -7864,7 +8689,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481364053266278387",
@@ -7898,7 +8726,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7477080623779185592",
@@ -7932,7 +8763,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7529631244889420016",
@@ -7966,7 +8800,10 @@
       "family"
     ],
     "organizer": "Alter Konsum",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/ausschnitt-plakat-OI7BPL45.webp?_=1795203983000"
+    ]
   },
   {
     "id": "event-ef-7523019648658339480",
@@ -8000,7 +8837,10 @@
       "event"
     ],
     "organizer": "Tiina Huttunen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/whatsapp-image-2026-09-16-at-10-25-4-FF8TL5SN.webp?_=1793626878000"
+    ]
   },
   {
     "id": "event-ef-7508409340182697465",
@@ -8034,7 +8874,10 @@
       "event"
     ],
     "organizer": "Familienverein Rheinfelden",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/elki-cafe-12-FO11O5JL-4QVPEVT3.webp?_=1782824838000"
+    ]
   },
   {
     "id": "event-ef-7496494304845667965",
@@ -8068,7 +8911,10 @@
       "family"
     ],
     "organizer": "Claudia Casanova",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/pk-a6-krabbelgruppe-elterntreff-gzd--SSG13KMF.webp?_=1783365737000"
+    ]
   },
   {
     "id": "event-ef-7524161417651458716",
@@ -8102,7 +8948,10 @@
       "event"
     ],
     "organizer": "Denise Flamm",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/1000123806-B0FBRHV4.jpg?_=1793899863000"
+    ]
   },
   {
     "id": "event-ef-7524160206009298890",
@@ -8136,7 +8985,10 @@
       "event"
     ],
     "organizer": "Denise Flamm",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/1000123807-P8MUXTA2.png?_=1793899574000"
+    ]
   },
   {
     "id": "event-ef-7465765501802673858",
@@ -8170,7 +9022,10 @@
       "family"
     ],
     "organizer": "Stiftung Boldern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7442674430755517013",
@@ -8204,7 +9059,10 @@
       "event"
     ],
     "organizer": "Janine Wallimann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/9b9a2409-3611-4073-9132-5cc59ffa3423-5FVYKQBU.webp?_=1783441801000"
+    ]
   },
   {
     "id": "event-ef-7524378870356695983",
@@ -8238,7 +9096,10 @@
       "family"
     ],
     "organizer": "Basler Verkehrs-Betriebe",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/wd-intranet-m-778IXDE0.webp"
+    ]
   },
   {
     "id": "event-ef-7475534601181509378",
@@ -8272,7 +9133,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Rheinfelden Schweiz",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/drache1-EU3V7QXN-L1OLFBHD.webp?_=1783509231000"
+    ]
   },
   {
     "id": "event-ef-7481373784143860956",
@@ -8306,7 +9170,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368956585906562",
@@ -8340,7 +9207,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372048280798704",
@@ -8374,7 +9244,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369252166861377",
@@ -8408,7 +9281,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486369650730635826",
@@ -8442,7 +9318,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7481372669633415770",
@@ -8476,7 +9355,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7486368089984004072",
@@ -8510,7 +9392,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/denflinkegrafiker-ai-generated-8153574-1920.webp"
+    ]
   },
   {
     "id": "event-ef-7440666079855177386",
@@ -8544,7 +9429,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Baden",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/eventfrog-bilderbuchzeit-OPDCAXSA-UY7B33IM.jpg?_=1783436297000"
+    ]
   },
   {
     "id": "event-ef-7397201427062356304",
@@ -8578,7 +9466,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Baden",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/eventfrog-bilderbuchzeit-Z8730SQU-4RBI9I31.jpg?_=1783329098000"
+    ]
   },
   {
     "id": "event-ef-7505175868546748849",
@@ -8612,7 +9503,10 @@
       "event"
     ],
     "organizer": "Fabienne Kaufmann",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/img-1447-JULBCXJV-NGEQQV47.webp"
+    ]
   },
   {
     "id": "event-ef-7442966819596453501",
@@ -8646,7 +9540,10 @@
       "theatre"
     ],
     "organizer": "Sabine Heiz-Wullschleger",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/chatgpt-image-26-maerz-2026-17-11-41-7XLUQUJL.webp?_=1783443026000"
+    ]
   },
   {
     "id": "event-ef-7515032598252416127",
@@ -8680,7 +9577,10 @@
       "family"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/klangzauber-bild-YUFJ04BM.webp?_=1791723379000"
+    ]
   },
   {
     "id": "event-ef-7472155147574970842",
@@ -8714,7 +9614,10 @@
       "family"
     ],
     "organizer": "Zirkusschule Tortellini",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7507797620934322275",
@@ -8748,7 +9651,10 @@
       "event"
     ],
     "organizer": "AquaKidz Schwimmschule",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/2-BVQNTQBL.webp"
+    ]
   },
   {
     "id": "event-ef-7516171319722914726",
@@ -8782,7 +9688,10 @@
       "event"
     ],
     "organizer": "Custom Kids",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/img-0745-4LN8J5ML.webp?_=1791992723000"
+    ]
   },
   {
     "id": "event-ef-7524026713510037684",
@@ -8816,7 +9725,10 @@
       "family"
     ],
     "organizer": "Stadt- und Regionalbibliothek Dietikon",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/geschichtenrakete-GT3JG5LE.webp?_=1793867759000"
+    ]
   },
   {
     "id": "event-ef-7485927996332720252",
@@ -8850,7 +9762,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7485929265654973716",
@@ -8884,7 +9799,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481365962832280865",
@@ -8918,7 +9836,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481367690239597419",
@@ -8952,7 +9873,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481368762215605267",
@@ -8986,7 +9910,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481361779446000013",
@@ -9020,7 +9947,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481369954857579188",
@@ -9054,7 +9984,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481364053308221429",
@@ -9088,7 +10021,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7477080623812740026",
@@ -9122,7 +10058,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7481366351203814148",
@@ -9156,7 +10095,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7509592526724061277",
@@ -9190,7 +10132,10 @@
       "family"
     ],
     "organizer": "Fabienne Gallina",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/intuitives-malen-3-9H5QVMDJ.webp?_=1790426373000"
+    ]
   },
   {
     "id": "event-ef-7523269834265610211",
@@ -9224,7 +10169,10 @@
       "event"
     ],
     "organizer": "Tiina Huttunen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/whatsapp-image-2026-09-16-at-10-25-4-V3ZEG5B7.webp?_=1793687602000"
+    ]
   },
   {
     "id": "event-ef-7523272201715381805",
@@ -9258,7 +10206,10 @@
       "event"
     ],
     "organizer": "Tiina Huttunen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/whatsapp-image-2026-09-16-at-10-25-4-7FDSN01I.webp?_=1794289937000"
+    ]
   },
   {
     "id": "event-ef-7515692015805322358",
@@ -9292,7 +10243,10 @@
       "workshop"
     ],
     "organizer": "Landesmuseum Zürich",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/f032c182facb78ee3e00cd8f65aa58fc704a16e3-955419864.webp?_=1791880612000"
+    ]
   },
   {
     "id": "event-ef-7524117713179941490",
@@ -9326,7 +10280,10 @@
       "event"
     ],
     "organizer": "Raphael Meyer",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/flyer-lernbuero-H4W5UGLJ.webp?_=1793889427000"
+    ]
   },
   {
     "id": "event-ef-7384872749628445037",
@@ -9360,7 +10317,10 @@
       "workshop"
     ],
     "organizer": "Stadtbibliothek Aarau",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/lose-lego-logo-IZ4DHAKK-PJHVP1MT.webp?_=1783300073000"
+    ]
   },
   {
     "id": "event-ef-7523328033660338918",
@@ -9394,7 +10354,10 @@
       "family"
     ],
     "organizer": "Verein Robi-Spiel-Aktionen Basel",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/maerchenwald-hk-13-1-WYU554CZ.webp?_=1793781343000"
+    ]
   },
   {
     "id": "event-ef-7516880861205154470",
@@ -9428,7 +10391,10 @@
       "family"
     ],
     "organizer": "Theater Basel",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/03-AI50JMO6.webp?_=1794992896000"
+    ]
   },
   {
     "id": "event-ef-7515689310747629196",
@@ -9462,7 +10428,10 @@
       "family"
     ],
     "organizer": "Landesmuseum Zürich",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/a48e9bdf8529ba208e5b4e87cca9b38c829fdc73-955419860.webp?_=1791879915000"
+    ]
   },
   {
     "id": "event-ef-7465765501840422596",
@@ -9496,7 +10465,10 @@
       "family"
     ],
     "organizer": "Stiftung Boldern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-ef-7526240612321907723",
@@ -9530,7 +10502,10 @@
       "event"
     ],
     "organizer": "Naada Groner",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/img-8878-M1AW7MPA.webp"
+    ]
   },
   {
     "id": "event-ef-7475535453438890614",
@@ -9564,7 +10539,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Rheinfelden Schweiz",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/roesslirite-3-3CP33AGO-82GBHUTT.webp?_=1783509235000"
+    ]
   },
   {
     "id": "event-ef-7397230636094776889",
@@ -9598,7 +10576,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Baden",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/schenkmireinegeschichte-jpg-4LMN1WI4-GUDDJ515.jpg?_=1783329224000"
+    ]
   },
   {
     "id": "event-ef-7417184240591198547",
@@ -9632,7 +10613,10 @@
       "family"
     ],
     "organizer": "Stadtbibliothek Zofingen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/bearbeitet-mutter-und-kind-mit-gesch-R54K65AC.webp?_=1783369666000"
+    ]
   },
   {
     "id": "event-ef-7417822511486751290",
@@ -9666,7 +10650,10 @@
       "family"
     ],
     "organizer": "Familientreff Birmenstorf-Gebenstorf",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/613423623-122251158140066109-6601636-ROJ7RF7D.webp?_=1783371424000"
+    ]
   },
   {
     "id": "event-ef-7417894980386034347",
@@ -9700,7 +10687,10 @@
       "family"
     ],
     "organizer": "Familientreff Birmenstorf-Gebenstorf",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/leitung-6-FFBM2IQA-5B5YGRPI.webp?_=1783371680000"
+    ]
   },
   {
     "id": "event-ef-7518558873378102398",
@@ -9734,7 +10724,10 @@
       "family"
     ],
     "organizer": "Huplant",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/sternennacht-1-OMIR6U4M.webp?_=1792568803000"
+    ]
   },
   {
     "id": "event-ef-7503825970282932635",
@@ -9768,7 +10761,10 @@
       "family"
     ],
     "organizer": "KULTURAMA Museum des Menschen",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/taschenlampenfuehrung-eventfrog-W4RY4-30DB5WNP.png"
+    ]
   },
   {
     "id": "event-ef-7524381795258769880",
@@ -9802,7 +10798,10 @@
       "event"
     ],
     "organizer": "Collage Remedy - Liza Petruczynik-Krawczykowska",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/couleur-top-2614145-08G0Q0IG.webp?_=1794408212000"
+    ]
   },
   {
     "id": "event-ef-7450283229460876746",
@@ -9836,7 +10835,10 @@
       "event"
     ],
     "organizer": "Mariana Scvo",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/31-QQI0KZCL-IHYMRU2R.webp?_=1783460304000"
+    ]
   },
   {
     "id": "event-noel-medieval-chateau-chillon",
@@ -9872,7 +10874,10 @@
       "workshops"
     ],
     "organizer": "Fondation du Château de Chillon",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-noel-medieval-chateau-chillon.jpg"
+    ]
   },
   {
     "id": "event-ef-7523877025636950622",
@@ -9906,7 +10911,10 @@
       "family"
     ],
     "organizer": "Kunst(Zeug)Haus",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/familienworkshop-kreisel-RSDIWS7I.webp?_=1794091272000"
+    ]
   },
   {
     "id": "event-ef-7485929265692722454",
@@ -9940,7 +10948,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-ef-7485927996374663312",
@@ -9974,7 +10985,10 @@
       "family"
     ],
     "organizer": "CityQuest-Games by VPA4U",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/games-harrypotter-compr-FZJ67WTK.webp"
+    ]
   },
   {
     "id": "event-luzerner-christkindlimarkt-live-on-ice",
@@ -10010,7 +11024,13 @@
       "winter"
     ],
     "organizer": "Luzerner Weihnachtsmarkt & KKL",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-luzerner-christkindlimarkt-live-on-ice.jpg",
+      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-ef-7465765501882365638",
@@ -10044,7 +11064,10 @@
       "family"
     ],
     "organizer": "Stiftung Boldern",
-    "source": "eventfrog"
+    "source": "eventfrog",
+    "images": [
+      "https://res.eventfrog.net/production_res_public/kinderveranstaltungen-familie-YBB4B4-O34JWKYG.webp?_=1783398296000"
+    ]
   },
   {
     "id": "event-maerlistadt-stein-am-rhein",
@@ -10080,7 +11103,13 @@
       "outdoor"
     ],
     "organizer": "Märlistadt Stein am Rhein",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-maerlistadt-stein-am-rhein.jpg",
+      "https://images.unsplash.com/photo-1543258103-a62bdc069871?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-zauberwald-lenzerheide",
@@ -10116,7 +11145,13 @@
       "forest"
     ],
     "organizer": "Verein Zauberwald Lenzerheide",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-zauberwald-lenzerheide.jpg",
+      "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1576692155415-95f820a2c4c1?auto=format&fit=crop&w=1200&q=80"
+    ]
   },
   {
     "id": "event-ice-magic-interlaken",
@@ -10152,6 +11187,9 @@
       "interlaken"
     ],
     "organizer": "Ice Magic Interlaken",
-    "source": "curated_swiss_family"
+    "source": "curated_swiss_family",
+    "images": [
+      "/images/events/event-ice-magic-interlaken.jpg"
+    ]
   }
 ]
