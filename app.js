@@ -577,18 +577,43 @@ async function loadSpots() {
     // Refresh lists and map markers once loaded
     renderSpotsList();
 
-    // Auto-open spot or Group Hike Invite if present in URL
+    // Auto-open spot, event, or Group Hike Invite if present in URL
     const urlParams = new URLSearchParams(window.location.search);
-    const targetHike = urlParams.get('hike') || urlParams.get('spot');
-    if (targetHike) {
-        const found = spots.find(s => s.id === targetHike);
+    const targetId = urlParams.get('event') || urlParams.get('spot') || urlParams.get('hike');
+    if (targetId) {
+        let found = spots.find(s => s.id === targetId);
+        if (!found && targetId.startsWith("osm-spot-") && typeof loadOsmSpots === 'function') {
+            await loadOsmSpots();
+            found = spots.find(s => s.id === targetId);
+        }
         if (found) {
+            // Activate corresponding filter so user sees relevant markers and list context
+            if (found.type === 'event' && typeof window.quickFilterType === 'function') {
+                window.quickFilterType('event');
+            } else if (found.type === 'hiking' && urlParams.get('hike') && typeof window.quickFilterType === 'function') {
+                window.quickFilterType('hiking');
+            } else {
+                const typeCheckbox = document.getElementById(`filter-${found.type}`);
+                if (typeCheckbox && !typeCheckbox.checked) {
+                    typeCheckbox.checked = true;
+                    if (typeof renderSpotsList === 'function') {
+                        renderSpotsList();
+                    }
+                }
+            }
+
+            if (activeMap && found.lat && found.lng) {
+                try {
+                    activeMap.setView([found.lat, found.lng], 13);
+                } catch (e) {}
+            }
+
             setTimeout(() => {
                 const groupId = urlParams.get('groupId') || '';
                 const isGroup = urlParams.get('group') === '1' || !!groupId;
                 const openRadarDirectly = urlParams.get('radar') === '1' || (isGroup && !!groupId);
 
-                openDetails(targetHike, {
+                openDetails(targetId, {
                     groupPlan: isGroup,
                     groupId: groupId,
                     date: urlParams.get('date'),
@@ -599,7 +624,7 @@ async function loadSpots() {
 
                 if (openRadarDirectly) {
                     setTimeout(() => {
-                        openGroupRadar(targetHike, groupId);
+                        openGroupRadar(targetId, groupId);
                     }, 400);
                 }
             }, 300);

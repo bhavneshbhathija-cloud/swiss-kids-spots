@@ -457,7 +457,9 @@ function blogPostPage(slug, requestedLang) {
     const imgUrl = item.imageUrl || (ref && ref.imageUrl) || post.heroImage || '';
     const mapHref = item.hikeId
       ? `/?hike=${encodeURIComponent(item.hikeId)}`
-      : (item.spotId ? `/?spot=${encodeURIComponent(item.spotId)}` : (item.actionHref || '/'));
+      : (item.eventId
+        ? `/?event=${encodeURIComponent(item.eventId)}`
+        : (item.spotId ? `/?spot=${encodeURIComponent(item.spotId)}` : (item.actionHref || '/')));
     const seoHref = ref && ref.slug ? (isHike ? `/wandern/${ref.slug}` : (ref.curated ? `/ausflug/${ref.slug}` : null)) : null;
 
     const primaryLabel = isDe
