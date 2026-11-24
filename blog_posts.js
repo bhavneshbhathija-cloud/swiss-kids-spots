@@ -3772,6 +3772,7 @@ const BLOG_POSTS = [
     "items": [
       {
         "rank": 1,
+        "spotId": "spot-24",
         "name": "Leukerbad Therme (Wallis)",
         "badge": "Grösstes Thermalbad der Alpen · Rutschen & Bergblick",
         "location": "Rathausstrasse 32, 3954 Leukerbad (SBB bis Visp/Leuk, dann Bus 471 direkt nach Leukerbad)",
@@ -3783,6 +3784,9 @@ const BLOG_POSTS = [
         "name": "Therme Zurzach (Aargau)",
         "badge": "Papa Moll Wasserwelt · Perfekt für Kleinkinder",
         "location": "Badstrasse 44, 5330 Bad Zurzach (S-Bahn S27/S36 bis Bad Zurzach)",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdsWaq5cSUyJdl57V8-ynHivWr603ZVgMI4kiER6yYFqmfl4rClXH_k8-ZKAjFc6Tzn976plRaRRcDgjC0cHjYZ4tTlWTUDRNs9BiZxohekLGCKD6qhiCOvt2VbqjplZjLTgvlX=s4800-w1200",
+        "actionHref": "/schwimmbaeder/aargau",
+        "actionLabel": "Bäder im Kanton Aargau entdecken",
         "summary": "Die Therme Zurzach speist ihre Becken aus der 39.9°C warmen Glaubersalz-Quelle. Das Highlight für junge Familien ist das abgetrennte Papa Moll Kinderbad: Ein farbenfrohes, 32°C warmes Erlebnisbecken mit Rutschbahnen, Wasserspritzen, interaktiven Kanälen und lebensgrossen Papa-Moll-Figuren.",
         "tip": "Ideal für Babys und Kleinkinder, da der Familienbereich räumlich von den Ruhebecken getrennt ist."
       },
@@ -3791,6 +3795,9 @@ const BLOG_POSTS = [
         "name": "Mineralbad & Spa Rigi Kaltbad (Luzern / Schwyz)",
         "badge": "Aussichts-Therme · Botta-Architektur",
         "location": "Rigi Kaltbad (Zahnradbahn ab Vitznau / Goldau oder Luftseilbahn ab Weggis)",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLd9gnkntJthafKJKuFQULDsMQ5I1F4sXpxkffB5_778gatZ947cEH1yWP0Xy-AaYSekYCH89Xa4b7ayCE757KkHxqsCWgloa5YsqIr2G5utmDFZdL3iP2WaWqnjxG2VaPVhthxmEQoTRlMe=s4800-w1200",
+        "actionHref": "/schwimmbaeder/luzern",
+        "actionLabel": "Bäder rund um den Vierwaldstättersee",
         "summary": "Entworfen vom weltberühmten Architekten Mario Botta thront dieses Mineralbad hoch über dem Vierwaldstättersee. Das 35°C warme Mineralwasser wird aus der hauseigenen «Drei-Schwestern-Quelle» gespeist. Vom Innenbecken schwimmt man direkt ins Aussenbecken mit unvergesslicher Aussicht auf den See und die Alpen.",
         "tip": "Kinder jeden Alters sind im Mineralbad herzlich willkommen (unter 4 Jahren gratis). Kombiniert den Besuch mit einer Bahnfahrt auf die Rigi."
       },
@@ -3799,11 +3806,15 @@ const BLOG_POSTS = [
         "name": "Les Bains de la Gruyère (Charmey, Freiburg)",
         "badge": "Alpen-Panorama · Voralpen-Gemütlichkeit",
         "location": "Gros-Plan 30, 1637 Val-de-Charmey (SBB bis Bulle, dann Bus 260 nach Charmey)",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdEFqTuTd690KgW6QH1kmsLfslZpkRl6OD3-4nXgITSj-Pe8M79Dx3n7-H38y1JkThI7m_yuJNEQkvIGedVmakXzcxD0kfyhoovsMHIzEJ02bIMnKi9WP88JJUJCTkIdyRrPGEb_cMyg50=s4800-w1200",
+        "actionHref": "/schwimmbaeder/freiburg",
+        "actionLabel": "Bäder im Kanton Freiburg entdecken",
         "summary": "Eingebettet in die idyllischen Freiburger Voralpen bieten die Bains de la Gruyère drei grosse Becken mit 34°C warmem, naturbelassenem Mineralwasser. Whirlpools, Schwanenhalsduschen und das Aussenbecken mit Blick auf den Gipfel des Moléson laden zum Träumen ein.",
         "tip": "Kinder ab jedem Alter zugelassen (unter 5 Jahren gratis). Sehr entspannte Atmosphäre ohne übertriebene Strenge."
       },
       {
         "rank": 5,
+        "spotId": "osm-spot-6310",
         "name": "Centre Thermal d'Yverdon-les-Bains (Waadt)",
         "badge": "Sanfte Quellen · Grosszügige Familienbecken",
         "location": "Avenue des Bains 22, 1400 Yverdon-les-Bains (SBB bis Yverdon-les-Bains)",
@@ -3815,6 +3826,9 @@ const BLOG_POSTS = [
         "name": "Bogn Engiadina Scuol (Graubünden)",
         "badge": "Engadiner Bergquell-Therme",
         "location": "Via Bagnera 170, 7550 Scuol (RhB bis Scuol-Tarasp)",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLfMqL7x5Rqj0WvygyBBAhGB2uUTqoUrFL6tayttKBwheZcm5Qx5yOSdWapZLPqa04uVqSC8ak4OtwUDsUR1LlbHPGY8Pne0WmA5sf_npayCVzLS7edsWc9_MH659ise5qKpZ212=s4800-w1200",
+        "actionHref": "/schwimmbaeder/graubuenden",
+        "actionLabel": "Bäder in Graubünden entdecken",
         "summary": "Scuol im Unterengadin ist berühmt für seine über zwanzig Mineralquellen. Das Bogn Engiadina bietet sechs Innen- und Aussenbecken mit 34°C warmem Mineralwasser, Strömungskanal und Sprudelliegen vor schneebedeckten Dreitausendern.",
         "tip": "Für Familien mit Kindern ab 10:30 Uhr geöffnet. Perfekt nach einem Winterspaziergang im Engadin."
       },
@@ -3824,6 +3838,9 @@ const BLOG_POSTS = [
         "name": "Hürlimannbad & Spa Zürich",
         "badge": "Rooftop-Thermalpool & Alte Steingewölbe",
         "location": "Brandschenkestrasse 150, 8002 Zürich (S-Bahn bis Giesshübel oder Tram 5/13)",
+        "imageUrl": "/images/spas/huerlimannbad-zuerich.jpg",
+        "actionHref": "/schwimmbaeder/zuerich/zuerich",
+        "actionLabel": "Bäder in Zürich entdecken",
         "summary": "In den historischen Steinkellern der alten Hürlimann-Brauerei badet man im warmen Aqui-Mineralwasser (35°C–41°C). Highlight ist der beheizte Dachbadpool mit Rundumblick über die Zürcher Skyline.",
         "tip": "Familien mit Kindern ab 1 Jahr sind tagsüber von 09:00 bis 17:00 Uhr willkommen. Es gilt eine ruhige Badeatmosphäre."
       },
@@ -3832,11 +3849,15 @@ const BLOG_POSTS = [
         "name": "Tamina Therme Bad Ragaz (St. Gallen)",
         "badge": "Architektur-Juwel · 36.5°C Heilquelle",
         "location": "Hans-Albrecht-Strasse, 7310 Bad Ragaz (SBB bis Bad Ragaz)",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLcGTPn73iiv4vbx1mOzHLCq_MJsdRmUizjLKpqnbe8RXvcQnVbBD2eN7phIIyZ7yxywpw9-y2to2p1uNz3l059t4OqoNKGtWUqBqgHdIqcefkk8r35yMspHy3EmAqg93HTnX61Uz6XcxEI=s4800-w1200",
+        "actionHref": "/schwimmbaeder/st-gallen",
+        "actionLabel": "Bäder im Kanton St. Gallen entdecken",
         "summary": "Das legendäre Bad Ragazer Thermalwasser entspringt körperwarm mit 36.5°C in der nahegelegenen Taminaschlucht. Das Bad besticht durch seine schneeweisse, organische Holzarchitektur.",
         "tip": "Zutritt ab 3 Jahren. Für ruhige, ältere Kinder und Teenager ein unvergleichliches Wellness-Erlebnis."
       },
       {
         "rank": 9,
+        "spotId": "spot-133",
         "name": "Les Bains de Lavey (Waadt)",
         "badge": "Heisseste Quelle der Schweiz (ab 4 Jahren)",
         "location": "Route des Bains 48, 1892 Lavey-Morcles (SBB bis St-Maurice, dann Postauto)",
@@ -3848,6 +3869,9 @@ const BLOG_POSTS = [
         "name": "sole uno Wellness-Welt Rheinfelden (Aargau)",
         "badge": "Schweben wie im Toten Meer (ab 4 Jahren)",
         "location": "Roberstenstrasse 31, 4310 Rheinfelden (S-Bahn S1 bis Rheinfelden)",
+        "imageUrl": "https://lh3.googleusercontent.com/grass-cs/AABkmLdmIaYyYHLA7TIp-AVtFVzdqGfvkVR0EH0WCVdmkStOwHI1ODbWJ1k5B4NmyM_hPlaV6Nc4ckqOJjWqW_GUbBk0yuqFXrfLgOx7R1vf7RELrKeAE7lEEBtk29fYH_8l0G_U1Mkz=s4800-w1200",
+        "actionHref": "/schwimmbaeder/aargau",
+        "actionLabel": "Bäder im Kanton Aargau entdecken",
         "summary": "Das berühmte Rheinfelder Natursolebad: Im Intensiv-Solebecken mit 12% Salzgehalt schweben Badegäste schwerelos an der Wasseroberfläche, untermalt von beruhigender Unterwassermusik.",
         "tip": "Zutritt ab 4 Jahren. Kinder lieben das Gefühl, ohne Schwimmbewegungen an der Oberfläche getragen zu werden."
       }

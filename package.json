@@ -4,7 +4,8 @@
   "description": "Online site for discovering playparks, swimming pools, and game zones for kids in Switzerland with live weather checking.",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "audit:blogs": "node scripts/audit_blog_links.js"
   },
   "keywords": [
     "switzerland",
