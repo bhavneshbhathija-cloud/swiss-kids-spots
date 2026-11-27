@@ -1306,6 +1306,10 @@
                     <button type="button" id="btn-open-admin" class="footer-link" style="color: var(--primary-color); font-weight: 600;">
                         <i class="fa-solid fa-shield-halved"></i> Admin Review <span id="admin-footer-badge" class="admin-badge-count" style="display: none;">0</span>
                     </button>
+                    <span class="footer-sep">&bull;</span>
+                    <a href="/stats" class="footer-link" style="color: var(--secondary-color, #2a9d8f); font-weight: 600; text-decoration: none;" target="_blank">
+                        <i class="fa-solid fa-chart-line"></i> Traffic &amp; Stats
+                    </a>
                 </div>
                 <p class="footer-copy">
                     &copy; 2026 SwissForKids (swissforkids.ch). Made with <i class="fa-solid fa-heart text-red"></i> for families &amp; hikers in Switzerland.
@@ -1319,7 +1323,9 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
+    <!-- Privacy-First Analytics Tracker -->
+    <script src="analytics-client.js?v=1" defer></script>
     <!-- Custom Application Logic -->
-    <script src="app.js?v=48"></script>
+    <script src="app.js?v=49"></script>
 </body>
 </html>

@@ -205,7 +205,8 @@ a{color:#1b6fa8}.muted{color:var(--muted);font-size:.9rem}footer{color:var(--mut
 </header>
 <main>${crumbs.length ? `<nav class="bc">${crumbs.map(c => `<a href="${c[1]}">${esc(c[0])}</a>`).join(' › ')}</nav>` : ''}
 <h1>${esc(h1)}</h1>${body}</main>
-<footer><a href="/blog">Family Blog &amp; Top 10 Guides</a> · <a href="/spielplaetze">Spielplätze</a> · <a href="/schwimmbaeder">Schwimmbäder</a> · <a href="/indoor-spielplaetze">Indoor-Spielplätze</a> · <a href="/wandern">Familienwanderungen</a> · <a href="/wandern/kinderwagen">Kinderwagen-Wanderungen</a> · <a href="/wandern/winter">Winterwanderungen</a></footer>
+<footer><a href="/blog">Family Blog &amp; Top 10 Guides</a> · <a href="/spielplaetze">Spielplätze</a> · <a href="/schwimmbaeder">Schwimmbäder</a> · <a href="/indoor-spielplaetze">Indoor-Spielplätze</a> · <a href="/wandern">Familienwanderungen</a> · <a href="/wandern/kinderwagen">Kinderwagen-Wanderungen</a> · <a href="/wandern/winter">Winterwanderungen</a> · <a href="/stats">📊 Stats</a></footer>
+<script src="/analytics-client.js" defer></script>
 </body></html>`;
 }
 const appLink = (param, id, label) => `<p><a class="btn" href="/?${param}=${encodeURIComponent(id)}">${esc(label)}</a></p>`;

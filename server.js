@@ -46,6 +46,10 @@ const uploadsDir = path.join(DATA_DIR, 'uploads');
 const seo = require('./seo');
 try { seo.init({ dataDir: DATA_DIR, publicDir: PUBLIC_DIR }); } catch (e) { console.error('SEO init failed', e); }
 
+// Privacy-First Built-in Analytics (see analytics.js)
+const analytics = require('./analytics');
+try { analytics.init({ dataDir: DATA_DIR }); } catch (e) { console.error('Analytics init failed', e); }
+
 if (!fs.existsSync(uploadsDir)) {
     try {
         fs.mkdirSync(uploadsDir, { recursive: true });
@@ -364,6 +368,41 @@ const server = http.createServer(async (req, res) => {
 
     const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
     const pathname = parsedUrl.pathname;
+
+    // Analytics: Ingest visitor event
+    if (pathname === '/api/analytics/event' && req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk;
+            if (body.length > 50000) { req.destroy(); }
+        });
+        req.on('end', () => {
+            try {
+                const data = JSON.parse(body);
+                analytics.trackEvent(data);
+            } catch (e) {}
+            res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            res.end(JSON.stringify({ ok: true }));
+        });
+        return;
+    }
+
+    // Analytics: Get aggregated dashboard stats
+    if (pathname === '/api/analytics/stats' && req.method === 'GET') {
+        res.writeHead(200, {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify(analytics.getStats()));
+        return;
+    }
+
+    if (pathname === '/stats' || pathname === '/stats.html') {
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        fs.createReadStream(path.join(PUBLIC_DIR, 'stats.html')).pipe(res);
+        return;
+    }
 
     if (seo.handle(req, res, pathname)) return;
 
@@ -1645,6 +1684,9 @@ ${coords.map((pt, i) => {
         isDataFile = true;
     } else if (pathname === '/community_submissions.json') {
         filePath = path.join(DATA_DIR, 'community_submissions.json');
+        isDataFile = true;
+    } else if (pathname === '/analytics.json') {
+        filePath = path.join(DATA_DIR, 'analytics.json');
         isDataFile = true;
     } else if (pathname.startsWith('/uploads/')) {
         const safeFilename = path.basename(pathname);

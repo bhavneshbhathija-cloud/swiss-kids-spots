@@ -1790,6 +1790,15 @@ async function openDetails(spotId, options = {}) {
     const spot = spots.find(s => s.id === spotId);
     if (!spot) return;
 
+    if (window.sfkTrack) {
+        window.sfkTrack('item_view', {
+            id: spot.id,
+            title: spot.name,
+            type: spot.type,
+            category: spot.category || spot.type
+        });
+    }
+
     let isGenericName = /^(playground|swimming pool|indoor play center) (in|at) /i.test(spot.name);
 
     // If it's an OSM spot with a generic name, try to reverse geocode it to get a specific street name
@@ -4243,6 +4252,14 @@ window.openGroupHikePlanner = function(spotId, prefill = {}) {
 
     currentGroupHikeSpot = spot;
 
+    if (window.sfkTrack) {
+        window.sfkTrack('group_hike', {
+            id: spot.id,
+            title: spot.name,
+            type: 'hike'
+        });
+    }
+
     const modal = document.getElementById('group-hike-modal');
     if (!modal) return;
 
@@ -4906,6 +4923,14 @@ function generateHikeMilestones(spot) {
 window.openGroupRadar = async function(spotId, customGroupId = null) {
     const spot = spots.find(s => s.id === spotId) || currentGroupHikeSpot;
     if (!spot) return;
+
+    if (window.sfkTrack) {
+        window.sfkTrack('interaction', {
+            id: spot.id,
+            title: spot.name,
+            type: 'radar_open'
+        });
+    }
 
     currentGroupRadarSpot = spot;
 
@@ -6057,6 +6082,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const whatsappBtn = document.getElementById("gh-btn-whatsapp");
     if (whatsappBtn) {
         whatsappBtn.addEventListener("click", () => {
+            if (window.sfkTrack) {
+                window.sfkTrack('interaction', {
+                    id: 'whatsapp_share',
+                    title: 'Group Hike WhatsApp Share'
+                });
+            }
             const text = generateGroupHikeInviteText();
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
         });
@@ -6065,6 +6096,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyTextBtn = document.getElementById("gh-btn-copy-text");
     if (copyTextBtn) {
         copyTextBtn.addEventListener("click", async () => {
+            if (window.sfkTrack) {
+                window.sfkTrack('interaction', {
+                    id: 'copy_hike_link',
+                    title: 'Copied Group Hike Invite'
+                });
+            }
             const text = generateGroupHikeInviteText();
             try {
                 await navigator.clipboard.writeText(text);

@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics & Traffic Dashboard | SwissForKids</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root {
+            --primary: #d8232a;
+            --primary-hover: #b71c22;
+            --secondary: #2a9d8f;
+            --dark: #1e293b;
+            --slate: #475569;
+            --light-slate: #64748b;
+            --border: #e2e8f0;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            line-height: 1.5;
+            padding: 1.5rem 1rem 3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 900;
+        }
+
+        .brand-title h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title p {
+            font-size: 0.85rem;
+            color: var(--slate);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #dcfce7;
+            color: #15803d;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--dark);
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            border-color: #cbd5e1;
+            background: #f1f5f9;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Filter Controls */
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .time-filters {
+            display: inline-flex;
+            background: #e2e8f0;
+            padding: 3px;
+            border-radius: 10px;
+        }
+
+        .time-pill {
+            padding: 0.35rem 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 7px;
+            border: none;
+            background: transparent;
+            color: var(--slate);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .time-pill.active {
+            background: white;
+            color: var(--dark);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.15rem 1.25rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .kpi-card.sec::before { background: var(--secondary); }
+        .kpi-card.amber::before { background: #d97706; }
+        .kpi-card.purple::before { background: #8b5cf6; }
+        .kpi-card.blue::before { background: #2563eb; }
+
+        .kpi-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--light-slate);
+            margin-bottom: 0.35rem;
+        }
+
+        .kpi-val {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .kpi-sub {
+            font-size: 0.75rem;
+            color: var(--slate);
+            margin-top: 0.4rem;
+        }
+
+        /* Chart Card */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* SVG Bar Chart */
+        .chart-container {
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .timeline-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 180px;
+            padding: 10px 0 25px;
+            border-bottom: 1px solid var(--border);
+            min-width: 400px;
+        }
+
+        .chart-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .chart-bar {
+            width: 100%;
+            max-width: 32px;
+            background: linear-gradient(180deg, #d8232a, #b71c22);
+            border-radius: 4px 4px 0 0;
+            min-height: 4px;
+            transition: height 0.3s ease, transform 0.15s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .chart-bar:hover {
+            transform: scaleY(1.05);
+            background: #ef4444;
+        }
+
+        .chart-tooltip {
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            color: white;
+            font-size: 0.72rem;
+            padding: 3px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease;
+            z-index: 10;
+        }
+
+        .chart-col:hover .chart-tooltip {
+            opacity: 1;
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -22px;
+            font-size: 0.7rem;
+            color: var(--light-slate);
+            white-space: nowrap;
+        }
+
+        /* Main 2-column Layout */
+        .two-cols {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .two-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tabs */
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--slate);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        /* Table */
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        th {
+            background: #f8fafc;
+            color: var(--light-slate);
+            font-weight: 700;
+            padding: 0.65rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            font-weight: 800;
+            color: var(--light-slate);
+            width: 26px;
+        }
+
+        .item-title {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .item-meta {
+            font-size: 0.75rem;
+            color: var(--slate);
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            background: #f1f5f9;
+            color: var(--slate);
+        }
+
+        .badge-red { background: #fee2e2; color: #b91c1c; }
+        .badge-green { background: #dcfce7; color: #15803d; }
+        .badge-blue { background: #dbeafe; color: #1d4ed8; }
+
+        /* Audience Widgets */
+        .breakdown-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.6rem;
+            font-size: 0.85rem;
+        }
+
+        .breakdown-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .breakdown-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .breakdown-bar-fill.sec { background: var(--secondary); }
+        .breakdown-bar-fill.blue { background: #2563eb; }
+
+        /* Live Stream List */
+        .stream-list {
+            list-style: none;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .stream-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.82rem;
+        }
+
+        .stream-item:last-child { border-bottom: none; }
+
+        .stream-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .stream-time {
+            font-size: 0.72rem;
+            color: var(--light-slate);
+            white-space: nowrap;
+        }
+
+        /* Group Hike Showcase Cards */
+        .hike-group-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--slate);
+            font-size: 0.88rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header>
+        <a href="/" class="brand-area" title="Back to SwissForKids Home">
+            <div class="brand-logo">🇨🇭</div>
+            <div class="brand-title">
+                <h1>SwissForKids Analytics</h1>
+                <p>Real-time privacy-first traffic &amp; engagement metrics</p>
+            </div>
+        </a>
+        <div class="header-actions">
+            <span class="status-badge"><span class="status-dot"></span> Live Tracker Active</span>
+            <button class="btn" onclick="fetchStats()"><span id="refresh-icon">🔄</span> Refresh</button>
+            <a href="/" class="btn btn-primary">Open Website &rarr;</a>
+        </div>
+    </header>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+        <div class="time-filters">
+            <button class="time-pill" onclick="switchFilter('today', this)">Today</button>
+            <button class="time-pill" onclick="switchFilter('7days', this)">Last 7 Days</button>
+            <button class="time-pill active" onclick="switchFilter('30days', this)">Last 30 Days</button>
+            <button class="time-pill" onclick="switchFilter('all', this)">All Time</button>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--light-slate);" id="last-updated-text">
+            Connecting...
+        </div>
+    </div>
+
+    <!-- Key Metrics Cards -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-label">Page Views</div>
+            <div class="kpi-val" id="kpi-views">0</div>
+            <div class="kpi-sub" id="kpi-views-sub">Across all pages</div>
+        </div>
+        <div class="kpi-card sec">
+            <div class="kpi-label">Unique Visitors</div>
+            <div class="kpi-val" id="kpi-visitors">0</div>
+            <div class="kpi-sub">Anonymous daily sessions</div>
+        </div>
+        <div class="kpi-card amber">
+            <div class="kpi-label">Spots &amp; Hikes Explored</div>
+            <div class="kpi-val" id="kpi-spots">0</div>
+            <div class="kpi-sub">Detail modals opened</div>
+        </div>
+        <div class="kpi-card purple">
+            <div class="kpi-label">Events &amp; Markets</div>
+            <div class="kpi-val" id="kpi-events">0</div>
+            <div class="kpi-sub">Family event views</div>
+        </div>
+        <div class="kpi-card blue">
+            <div class="kpi-label">Blog Guides Read</div>
+            <div class="kpi-val" id="kpi-blogs">0</div>
+            <div class="kpi-sub">Article readers</div>
+        </div>
+        <div class="kpi-card sec">
+            <div class="kpi-label">Group Hikes Planned</div>
+            <div class="kpi-val" id="kpi-grouphikes">0</div>
+            <div class="kpi-sub">Active hike meetups</div>
+        </div>
+    </div>
+
+    <!-- Daily Views Chart -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">📈 Daily Activity Trend</h2>
+            <span class="badge" id="chart-badge">Daily Visits</span>
+        </div>
+        <div class="chart-container">
+            <div class="timeline-chart" id="timeline-chart">
+                <div class="empty-state">Loading timeline data...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 Column Section: Popular Content vs Audience -->
+    <div class="two-cols">
+        <!-- Content Column -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">🏆 Popular Content</h2>
+            </div>
+            
+            <nav class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('spots', this)">🏞️ Spots</button>
+                <button class="tab-btn" onclick="switchTab('hikes', this)">🥾 Hikes</button>
+                <button class="tab-btn" onclick="switchTab('events', this)">🎄 Events</button>
+                <button class="tab-btn" onclick="switchTab('blogs', this)">📚 Blogs</button>
+            </nav>
+
+            <div class="table-wrap">
+                <table id="popular-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">#</th>
+                            <th>Name / Title</th>
+                            <th style="width: 100px; text-align: right;">Views</th>
+                        </tr>
+                    </thead>
+                    <tbody id="popular-tbody">
+                        <tr><td colspan="3" class="empty-state">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Audience & Technology Column -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Language & Devices -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🌐 Visitor Breakdown</h2>
+                </div>
+
+                <div style="margin-bottom: 1.25rem;">
+                    <div class="breakdown-row">
+                        <strong>Language Preference</strong>
+                        <span id="lang-percent-text">DE 0% • EN 0%</span>
+                    </div>
+                    <div class="breakdown-bar-bg" style="display: flex;">
+                        <div id="bar-lang-de" class="breakdown-bar-fill" style="width: 50%;" title="German"></div>
+                        <div id="bar-lang-en" class="breakdown-bar-fill sec" style="width: 50%;" title="English"></div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.25rem;">
+                    <div class="breakdown-row">
+                        <strong>Device Type</strong>
+                        <span id="device-percent-text">Mobile 0% • Desktop 0%</span>
+                    </div>
+                    <div class="breakdown-bar-bg" style="display: flex;">
+                        <div id="bar-dev-mob" class="breakdown-bar-fill blue" style="width: 70%;" title="Mobile"></div>
+                        <div id="bar-dev-desk" class="breakdown-bar-fill" style="width: 30%; background: #64748b;" title="Desktop"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="breakdown-row">
+                        <strong>Top Referral Sources</strong>
+                    </div>
+                    <div id="referrers-list" style="font-size: 0.8rem; color: var(--slate);">
+                        Direct • Google Search
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Hike Activity Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">👥 Group Hike Plans</h2>
+                    <span class="badge badge-green" id="hike-count-badge">0 Active</span>
+                </div>
+                <div id="group-hikes-container" style="max-height: 280px; overflow-y: auto;">
+                    <div class="empty-state">Loading group hikes...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Event Feed -->
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">⚡ Live Activity Feed</h2>
+            <span style="font-size: 0.78rem; color: var(--light-slate);">Real-time anonymous visitor clicks</span>
+        </div>
+        <ul class="stream-list" id="stream-list">
+            <li class="empty-state">Listening for real-time visitor activity...</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    let currentFilter = '30days';
+    let currentTab = 'spots';
+    let globalStats = null;
+
+    async function fetchStats() {
+        const refreshIcon = document.getElementById('refresh-icon');
+        if (refreshIcon) refreshIcon.style.transform = 'rotate(180deg)';
+
+        try {
+            const res = await fetch('/api/analytics/stats?v=' + Date.now());
+            if (!res.ok) throw new Error('Failed to load stats');
+            globalStats = await res.json();
+            renderDashboard();
+            document.getElementById('last-updated-text').textContent = 'Last updated ' + new Date().toLocaleTimeString();
+        } catch (err) {
+            console.error('Fetch stats error:', err);
+            document.getElementById('last-updated-text').textContent = 'Connection error, retrying...';
+        } finally {
+            if (refreshIcon) setTimeout(() => refreshIcon.style.transform = 'none', 300);
+        }
+    }
+
+    function switchFilter(filterKey, el) {
+        currentFilter = filterKey;
+        document.querySelectorAll('.time-pill').forEach(btn => btn.classList.remove('active'));
+        if (el) el.classList.add('active');
+        renderDashboard();
+    }
+
+    function switchTab(tabKey, el) {
+        currentTab = tabKey;
+        document.querySelectorAll('.tab-nav .tab-btn').forEach(btn => btn.classList.remove('active'));
+        if (el) el.classList.add('active');
+        renderPopularTable();
+    }
+
+    function renderDashboard() {
+        if (!globalStats) return;
+
+        let activeData = globalStats.summary;
+        if (currentFilter === 'today') activeData = globalStats.today;
+        else if (currentFilter === '7days') activeData = globalStats.last7Days;
+        else if (currentFilter === '30days') activeData = globalStats.last30Days;
+
+        // KPIs
+        document.getElementById('kpi-views').textContent = (activeData.pageviews || 0).toLocaleString();
+        document.getElementById('kpi-visitors').textContent = (activeData.sessions || 0).toLocaleString();
+        document.getElementById('kpi-spots').textContent = ((activeData.spot_views || 0) + (activeData.hike_views || 0)).toLocaleString();
+        document.getElementById('kpi-events').textContent = (activeData.event_views || 0).toLocaleString();
+        document.getElementById('kpi-blogs').textContent = (activeData.blog_views || 0).toLocaleString();
+        document.getElementById('kpi-grouphikes').textContent = (globalStats.summary.total_group_hikes || 0).toLocaleString();
+
+        renderTimeline();
+        renderPopularTable();
+        renderAudienceBreakdown();
+        renderGroupHikes();
+        renderLiveStream();
+    }
+
+    function renderTimeline() {
+        const container = document.getElementById('timeline-chart');
+        const list = globalStats.dailyTimeline || [];
+        if (!list || list.length === 0) {
+            container.innerHTML = '<div class="empty-state">No timeline events recorded yet. Browse around the website to start seeing daily trends!</div>';
+            return;
+        }
+
+        const maxViews = Math.max(...list.map(d => d.pageviews || 0), 10);
+
+        container.innerHTML = list.map(item => {
+            const heightPct = Math.max(Math.round(((item.pageviews || 0) / maxViews) * 100), 5);
+            const dateLabel = item.date.slice(5); // MM-DD
+            return `
+                <div class="chart-col">
+                    <div class="chart-tooltip">${item.date}: ${item.pageviews || 0} views (${item.sessions || 0} visitors)</div>
+                    <div class="chart-bar" style="height: ${heightPct}%;"></div>
+                    <span class="chart-label">${dateLabel}</span>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function renderPopularTable() {
+        const tbody = document.getElementById('popular-tbody');
+        if (!globalStats) return;
+
+        let items = [];
+        let viewType = 'spots';
+        if (currentTab === 'spots') items = globalStats.topSpots || [];
+        else if (currentTab === 'hikes') items = globalStats.topHikes || [];
+        else if (currentTab === 'events') items = globalStats.topEvents || [];
+        else if (currentTab === 'blogs') items = globalStats.topBlogs || [];
+
+        if (items.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="3" class="empty-state">No ${currentTab} views logged yet. View items on the site to see them ranked here!</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = items.map((item, idx) => {
+            const title = item.title || item.slug || item.id || 'Untitled';
+            const views = item.views || 0;
+            let link = '#';
+            if (currentTab === 'spots' || currentTab === 'hikes' || currentTab === 'events') {
+                link = `/?spot=${encodeURIComponent(item.id)}`;
+            } else if (currentTab === 'blogs') {
+                link = `/blog/${encodeURIComponent(item.slug)}`;
+            }
+
+            return `
+                <tr>
+                    <td class="rank-num">${idx + 1}</td>
+                    <td>
+                        <a href="${link}" target="_blank" style="text-decoration: none; color: inherit;">
+                            <div class="item-title">${escapeHtml(title)}</div>
+                            <div class="item-meta">${item.type ? '<span class="badge">' + escapeHtml(item.type) + '</span>' : ''}</div>
+                        </a>
+                    </td>
+                    <td style="text-align: right; font-weight: 800; color: var(--primary);">${views.toLocaleString()}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    function renderAudienceBreakdown() {
+        const totals = globalStats.totals || {};
+        const langs = totals.languages || { en: 0, de: 0 };
+        const totalLang = (langs.de || 0) + (langs.en || 0);
+
+        if (totalLang > 0) {
+            const dePct = Math.round((langs.de / totalLang) * 100);
+            const enPct = 100 - dePct;
+            document.getElementById('lang-percent-text').textContent = `DE ${dePct}% • EN ${enPct}%`;
+            document.getElementById('bar-lang-de').style.width = dePct + '%';
+            document.getElementById('bar-lang-en').style.width = enPct + '%';
+        }
+
+        const devs = totals.devices || { mobile: 0, desktop: 0, tablet: 0 };
+        const totalDev = (devs.mobile || 0) + (devs.desktop || 0) + (devs.tablet || 0);
+        if (totalDev > 0) {
+            const mobPct = Math.round(((devs.mobile + devs.tablet) / totalDev) * 100);
+            const deskPct = 100 - mobPct;
+            document.getElementById('device-percent-text').textContent = `Mobile ${mobPct}% • Desktop ${deskPct}%`;
+            document.getElementById('bar-dev-mob').style.width = mobPct + '%';
+            document.getElementById('bar-dev-desk').style.width = deskPct + '%';
+        }
+
+        const refs = totals.referrers || {};
+        const refEntries = Object.entries(refs).sort((a, b) => b[1] - a[1]);
+        if (refEntries.length > 0) {
+            document.getElementById('referrers-list').innerHTML = refEntries.map(([src, count]) => {
+                return `<div style="display: flex; justify-content: space-between; margin-top: 0.35rem;">
+                    <span>${escapeHtml(src)}</span>
+                    <strong style="color: var(--dark);">${count}</strong>
+                </div>`;
+            }).join('');
+        }
+    }
+
+    function renderGroupHikes() {
+        const container = document.getElementById('group-hikes-container');
+        const badge = document.getElementById('hike-count-badge');
+        const hikes = globalStats.groupHikes || [];
+
+        badge.textContent = `${hikes.length} Hikes`;
+
+        if (hikes.length === 0) {
+            container.innerHTML = '<div class="empty-state">No group hikes recorded yet.</div>';
+            return;
+        }
+
+        container.innerHTML = hikes.slice(0, 10).map(g => {
+            const parts = (g.participants && g.participants.length > 0) ? g.participants.join(', ') : 'Solo / Anonymous';
+            const dateStr = g.date ? `${g.date} ${g.time || ''}` : 'Upcoming';
+            const checkinsStr = `${g.checkinsCount || 0} Check-ins • ${g.pingsCount || 0} Pings`;
+
+            return `
+                <div class="hike-group-card">
+                    <div style="font-weight: 700; font-size: 0.85rem; color: var(--dark);">🥾 ${escapeHtml(g.spotId || 'Hike Meetup')}</div>
+                    <div style="font-size: 0.75rem; color: var(--slate); margin: 0.2rem 0;">
+                        📅 ${escapeHtml(dateStr)} • 📍 ${escapeHtml(g.meetingPoint || 'Trailhead')}
+                    </div>
+                    <div style="font-size: 0.75rem; display: flex; justify-content: space-between; margin-top: 0.35rem;">
+                        <span style="color: #2a9d8f; font-weight: 600;">👥 ${escapeHtml(parts)}</span>
+                        <span class="badge">${checkinsStr}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function renderLiveStream() {
+        const list = document.getElementById('stream-list');
+        const recent = globalStats.recent || [];
+
+        if (recent.length === 0) {
+            list.innerHTML = '<li class="empty-state">Waiting for activity events... Browse your site to see live events stream here.</li>';
+            return;
+        }
+
+        list.innerHTML = recent.map(item => {
+            let icon = '📄';
+            if (item.type === 'blog_view') icon = '📚';
+            else if (item.targetType === 'event') icon = '🎄';
+            else if (item.targetType === 'hike') icon = '🥾';
+            else if (item.type === 'item_view') icon = '🏞️';
+            else if (item.type === 'group_hike') icon = '👥';
+
+            const timeStr = formatTimeAgo(new Date(item.ts));
+            const devBadge = item.device === 'mobile' ? '📱 Mobile' : '💻 Desktop';
+            const langBadge = (item.lang || 'en').toUpperCase();
+
+            return `
+                <li class="stream-item">
+                    <div class="stream-icon">${icon}</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; color: var(--dark);">${escapeHtml(item.title || item.type)}</div>
+                        <div style="font-size: 0.72rem; color: var(--light-slate); margin-top: 2px;">
+                            ${devBadge} • <span class="badge" style="font-size: 0.65rem; padding: 1px 4px;">${langBadge}</span>
+                        </div>
+                    </div>
+                    <div class="stream-time">${timeStr}</div>
+                </li>
+            `;
+        }).join('');
+    }
+
+    function formatTimeAgo(date) {
+        const seconds = Math.floor((new Date() - date) / 1000);
+        if (seconds < 60) return 'Just now';
+        const minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return `${minutes}m ago`;
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return `${hours}h ago`;
+        return date.toLocaleDateString();
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    // Auto load & refresh every 25 seconds
+    fetchStats();
+    setInterval(fetchStats, 25000);
+</script>
+
+</body>
+</html>
