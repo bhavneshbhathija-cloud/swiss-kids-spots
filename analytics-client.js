@@ -75,6 +75,17 @@
                         keepalive: true
                     }).catch(function() {});
                 }
+
+                // Also forward event to Google Analytics (GA4) if loaded
+                if (typeof window.gtag === 'function') {
+                    window.gtag('event', eventType, {
+                        item_id: data.id || data.slug || '',
+                        item_name: data.title || data.name || '',
+                        item_category: data.category || data.type || '',
+                        language: payload.lang,
+                        device_category: payload.device
+                    });
+                }
             } catch (err) {
                 // Ignore analytics errors to never impact site functionality
             }

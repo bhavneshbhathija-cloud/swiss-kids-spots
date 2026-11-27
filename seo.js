@@ -145,6 +145,14 @@ function page({ title, description, canonical, h1, body, noindex, breadcrumbs, l
   const ogImgTag = ogImage ? `<meta property="og:image" content="${esc(ogImage)}">` : '';
   return `<!doctype html><html lang="${lang || 'de'}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-02CHF7C2XK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-02CHF7C2XK');
+</script>
 <title>${esc(title)}</title><meta name="description" content="${esc(description)}">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${SITE}${canonical}"><meta property="og:type" content="article">${ogImgTag}
