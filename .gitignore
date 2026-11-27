@@ -7,6 +7,7 @@ Thumbs.db
 
 *.backup.json
 osm_hike_pois_cache.json
+analytics.json
 
 uploads/*
 !uploads/.gitkeep
