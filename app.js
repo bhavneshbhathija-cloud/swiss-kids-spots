@@ -614,7 +614,7 @@ async function loadSpots() {
             setTimeout(() => {
                 const groupId = urlParams.get('groupId') || '';
                 const isGroup = urlParams.get('group') === '1' || !!groupId;
-                const openRadarDirectly = urlParams.get('radar') === '1' || (isGroup && !!groupId);
+                const openRadarDirectly = urlParams.get('radar') === '1';
 
                 openDetails(targetId, {
                     groupPlan: isGroup,
